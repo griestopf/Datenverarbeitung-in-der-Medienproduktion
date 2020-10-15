@@ -7,9 +7,10 @@ title: Übung 2 - Würfelturm
 ![turm](img/turm.png)
 
 Türmchen:
-    - Genau gestapelte Würfel
-    - nach oben schmaler werden
-    - Würfel mit random Scale, Z-Rotation und Location-Offset
+
+- Genau gestapelte Würfel
+- nach oben schmaler werden
+- Würfel mit random Scale, Z-Rotation und Location-Offset
 
 **Beispielcode Würfeltürmchen**
 ```python
