@@ -1,0 +1,195 @@
+baseurl = "general/"
+languageCode = "de"
+title = "Computergrafik"
+theme = "material-docs"
+metadataformat = "yaml"
+canonifyurls = true
+# Enable Google Analytics by entering your tracking id
+googleAnalytics = ""
+
+[params]
+	# General information
+	description = "Online-Material zum Fach Computergrafik."
+
+	logo = "images/lecture_logo_cg.png"
+	favicon = "images/lecture_icon.png"
+
+	permalink = "#"
+
+	# Custom assets
+	custom_css = ["stylesheets/custom.css"]
+
+	# Syntax highlighting theme
+	highlight_css  = ""
+
+	[params.palette]
+    	primary = "light-green"
+    	accent  = "lime"
+
+    [params.font]
+    	text = "Ubuntu"
+    	code = "Ubuntu Mono"
+
+[[menu.main]]
+	name   = "Allgemeines"
+	url    = "general/"
+	weight = 1
+
+[[menu.main]]
+	name   = "Kapitel 1"
+	weight = 1
+
+[[menu.main]]
+	name   = "1.0 - Lektion - Blender"
+	url    = "chapter01/lecture01/"
+	weight = 10
+	parent = "Kapitel 1"
+
+[[menu.main]]
+	name   = "1.1 - Übung - Intro"
+	url    = "chapter01/exercise01/"
+	weight = 11
+	parent = "Kapitel 1"
+
+[[menu.main]]
+	name   = "Kapitel 2"
+	weight = 2
+	
+[[menu.main]]
+	name   = "2.0 - Lektion - Einfaches Modelling"
+	url    = "chapter02/lecture01/"
+	weight = 20
+	parent = "Kapitel 2"
+
+[[menu.main]]
+	name   = "2.1 - Übung - Polygonal Modeling"
+	url    = "chapter02/exercise01/"
+	weight = 21
+	parent = "Kapitel 2"	
+
+[[menu.main]]
+	name   = "Kapitel 3"
+	weight = 3
+	
+[[menu.main]]
+	name   = "3.0 - Lektion - Geometrie verstehen"
+	url    = "chapter03/lecture01/"
+	weight = 30
+	parent = "Kapitel 3"
+
+[[menu.main]]
+	name   = "3.1 - Übung - Subdivision Surface Modeling"
+	url    = "chapter03/exercise01/"
+	weight = 31
+	parent = "Kapitel 3"
+
+[[menu.main]]
+	name   = "3.2 - Übung - Sculpting"
+	url    = "chapter03/exercise02/"
+	weight = 32
+	parent = "Kapitel 3"
+
+[[menu.main]]
+	name   = "Kapitel 4"
+	weight = 4
+
+[[menu.main]]
+	name   = "4.0 - Lektion - Rendering"
+	url    = "chapter04/lecture01/"
+	weight = 40
+	parent = "Kapitel 4"
+	
+[[menu.main]]
+	name   = "4.1 - Übung - Shading"
+	url    = "chapter04/exercise01/"
+	weight = 41
+	parent = "Kapitel 4"
+
+[[menu.main]]
+	name   = "4.2 - Übung - Rendering"
+	url    = "chapter04/exercise02/"
+	weight = 42
+	parent = "Kapitel 4"
+
+[[menu.main]]
+	name   = "Kapitel 5"
+	weight = 5
+
+
+[[menu.main]]
+	name   = "5.1 - Übung - UV-Editing"
+	url    = "chapter05/exercise01/"
+	weight = 51
+	parent = "Kapitel 5"
+
+[[menu.main]]
+	name   = "5.2 - Übung - Texture-Painting"
+	url    = "chapter05/exercise02/"
+	weight = 52
+	parent = "Kapitel 5"
+
+[[menu.main]]
+	name   = "Kapitel 6"
+	weight = 6
+
+[[menu.main]]
+	name   = "6.0 - Lektion - Animation"
+	url    = "chapter06/lecture01/"
+	weight = 60
+	parent = "Kapitel 6"
+
+[[menu.main]]
+	name   = "6.1 - Übung - Animation"
+	url    = "chapter06/exercise01/"
+	weight = 61
+	parent = "Kapitel 6"
+
+[[menu.main]]
+	name   = "Kapitel 7"
+	weight = 7
+
+[[menu.main]]
+	name   = "7.1 - Übung - Rigging"
+	url    = "chapter07/exercise01/"
+	weight = 71
+	parent = "Kapitel 7"
+
+[[menu.main]]
+	name   = "7.2 - Übung - Partikelsystem"
+	url    = "chapter07/exercise02/"
+	weight = 72
+	parent = "Kapitel 7"
+
+[[menu.main]]
+	name   = "Kapitel 8"
+	weight = 8
+
+[[menu.main]]
+	name   = "Medieninformatik 2. Semesterhälfte"
+	url    = "chapter08/lecture01/"
+	weight = 81
+	parent = "Kapitel 8"
+
+
+# [[menu.main]]
+# 	name   = "Die Endabgabe"
+#	url    = "ressources/abgabe/"
+#	weight = 100
+#	parent = "Tips & Links"
+
+[[menu.main]]
+	name   = "Kursseite"
+	name   = "FELIX"
+	weight = 997
+
+[[menu.main]]
+	name   = "Ergebnisse einreichen"
+	url    = "https://felix.hs-furtwangen.de/url/RepositoryEntry/3701669910"
+	weight = 998
+	parent = "FELIX"
+
+[blackfriday]
+	smartypants	= true
+	fractions = true
+	smartDashes = true
+	plainIDAnchors = true

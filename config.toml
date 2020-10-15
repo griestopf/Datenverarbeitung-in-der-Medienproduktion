@@ -1,0 +1,79 @@
+baseurl = "general/"
+languageCode = "de"
+title = "Datenverarbeitung in der Medienproduktion"
+theme = "material-docs"
+metadataformat = "yaml"
+canonifyurls = true
+# Enable Google Analytics by entering your tracking id
+googleAnalytics = ""
+
+[params]
+	# General information
+	description = "Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion."
+
+	logo = "images/lecture_logo_dvmp.png"
+	favicon = "images/lecture_icon.png"
+
+	permalink = "#"
+
+	# Custom assets
+	custom_css = ["stylesheets/custom.css"]
+
+	# Syntax highlighting theme
+	highlight_css  = ""
+
+	[params.palette]
+    	primary = "teal"
+    	accent  = "lime"
+
+    [params.font]
+    	text = "Ubuntu"
+    	code = "Ubuntu Mono"
+
+[[menu.main]]
+	name   = "Allgemeines"
+	url    = "general/"
+	weight = 1
+
+[[menu.main]]
+	name   = "Kapitel 1"
+	weight = 1
+
+[[menu.main]]
+	name   = "1.1 - Übung - Monkeygrid"
+	url    = "chapter01/exercise01_a/"
+	weight = 11
+	parent = "Kapitel 1"
+
+
+[[menu.main]]
+	name   = "Kapitel 2"
+	weight = 1
+
+[[menu.main]]
+	name   = "2.1 - Übung - Intro"
+	url    = "chapter02/exercise01_a/"
+	weight = 11
+	parent = "Kapitel 2"
+
+[[menu.main]]
+	name   = "Leistungsbeispiele"
+	url    = "abgabe/leistungsbeispiele/"
+	weight = 84
+	parent = "Teamabgabe (OMB & MKB)"
+
+[[menu.main]]
+	name   = "FELIX"
+	weight = 997
+
+[[menu.main]]
+	name   = "Ergebnisse einreichen"
+	url    = "KUrSLINK EINFÜGEN"
+	weight = 998
+	parent = "FELIX"
+
+[blackfriday]
+	smartypants	= true
+	fractions = true
+	smartDashes = true
+	plainIDAnchors = true
