@@ -68,7 +68,7 @@ googleAnalytics = ""
 
 [[menu.main]]
 	name   = "Ergebnisse einreichen"
-	url    = "KUrSLINK EINFÜGEN"
+	url    = "KURSLINK EINFÜGEN"
 	weight = 998
 	parent = "FELIX"
 
