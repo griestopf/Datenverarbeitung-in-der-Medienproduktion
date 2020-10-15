@@ -52,6 +52,7 @@ Temporary Items
 # =========================
 # Hugo/Project Files
 # =========================
+public/
 _class/links.xml
 backup/*.xml
 BuildMeLocal.bat
