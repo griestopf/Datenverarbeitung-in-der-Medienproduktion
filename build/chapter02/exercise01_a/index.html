@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="de">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Übung 2 - Würfelturm - Datenverarbeitung in der Medienproduktion</title>
+    <meta name="generator" content="Hugo 0.76.3" />
+
+    
+    <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
+    
+    <link rel="canonical" href="general/chapter02/exercise01_a/">
+    
+
+    <meta property="og:url" content="general/chapter02/exercise01_a/">
+    <meta property="og:title" content="Datenverarbeitung in der Medienproduktion">
+    <meta property="og:image" content="general/images/lecture_logo_dvmp.png">
+    <meta name="apple-mobile-web-app-title" content="Datenverarbeitung in der Medienproduktion">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="general/images/lecture_icon.png">
+    <link rel="icon" type="image/x-icon" href="general/images/lecture_icon.png">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('general/fonts/icon.eot');
+        src: url('general/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('general/fonts/icon.woff')
+               format('woff'),
+             url('general/fonts/icon.ttf')
+               format('truetype'),
+             url('general/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="general/stylesheets/application.css">
+    <link rel="stylesheet" href="general/stylesheets/temporary.css">
+    <link rel="stylesheet" href="general/stylesheets/palettes.css">
+    <link rel="stylesheet" href="general/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="general/stylesheets/custom.css">
+    
+    <script src="general/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-lime">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Übung 2 - Würfelturm
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="general/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="general/images/lecture_logo_dvmp.png">
+        </div>
+      
+      <div class="name">
+        <strong>Datenverarbeitung in der Medienproduktion </strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Allgemeines" href="general/">
+	
+	Allgemeines
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Kapitel 1</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="1.1 - Monkeygrid" href="general/chapter01/exercise01_a/">
+	
+	1.1 - Monkeygrid
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Kapitel 2</span>
+    <ul>
+      
+        
+        
+
+
+
+<a class="current" title="2.1 - Intro" href="general/chapter02/exercise01_a/">
+	
+	2.1 - Intro
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
+    </ul>
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Kapitel 3</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="3.1 - Meshgenerierung" href="general/chapter03/exercise01_a/">
+	
+	3.1 - Meshgenerierung
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">FELIX</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Ergebnisse einreichen" href="general/KURSLINK%20EINF%c3%9cGEN">
+	
+	Ergebnisse einreichen
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Übung 2 - Würfelturm </h1>
+
+			<h2 id="prozedurale-würfeltürmchen-bauen">Prozedurale Würfeltürmchen bauen</h2>
+<p><img src="img/turm.png" alt="turm"></p>
+<p><strong>Würfelturm</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
+<span style="color:#f92672">import</span> random
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">import</span> mathutils
+
+MAX_STACKS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+MIN_STACKS <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+MAX_SCALE <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.5</span>
+MIN_SCALE <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
+
+<span style="color:#75715e"># clear scene - später entfernen</span>
+bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>select_all(action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;SELECT&#39;</span>)
+bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>delete()
+
+
+random<span style="color:#f92672">.</span>seed(datetime<span style="color:#f92672">.</span>now())
+
+<span style="color:#75715e"># später selektiertes Objekt verwenden</span>
+bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>mesh<span style="color:#f92672">.</span>primitive_cube_add()
+C <span style="color:#f92672">=</span> bpy<span style="color:#f92672">.</span>context
+
+src_obj <span style="color:#f92672">=</span> C<span style="color:#f92672">.</span>active_object <span style="color:#75715e">#später von ausgewähltem Objekt beziehen</span>
+
+src_obj<span style="color:#f92672">.</span>rotation_euler<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>random() <span style="color:#f92672">*</span> <span style="color:#ae81ff">360</span>
+
+rand_scale <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>uniform(MIN_SCALE, MAX_SCALE)
+src_obj<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> mathutils<span style="color:#f92672">.</span>Vector((rand_scale,rand_scale,rand_scale))
+src_obj<span style="color:#f92672">.</span>location<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> rand_scale
+
+height <span style="color:#f92672">=</span> rand_scale <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># * 2 weil cube 2m groß ist. Später durch dimensions ersetzen.</span>
+
+
+previous_scale <span style="color:#f92672">=</span> rand_scale
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range (<span style="color:#ae81ff">1</span>, random<span style="color:#f92672">.</span>randint(MIN_STACKS, MAX_STACKS)):
+    new_obj <span style="color:#f92672">=</span> src_obj<span style="color:#f92672">.</span>copy()
+    new_obj<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> src_obj<span style="color:#f92672">.</span>data
+    new_obj<span style="color:#f92672">.</span>rotation_euler<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>random() <span style="color:#f92672">*</span> <span style="color:#ae81ff">360</span>
+    
+    rand_scale <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>uniform(MIN_SCALE, MAX_SCALE)  <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> i <span style="color:#f92672">/</span> MAX_STACKS)
+    
+    new_obj<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> mathutils<span style="color:#f92672">.</span>Vector((rand_scale, rand_scale, rand_scale))
+    
+    height <span style="color:#f92672">+=</span> rand_scale
+    new_obj<span style="color:#f92672">.</span>location<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> height
+    height <span style="color:#f92672">+=</span> rand_scale
+    
+    
+    
+    previous_scale <span style="color:#f92672">=</span> rand_scale
+    
+    C<span style="color:#f92672">.</span>collection<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>link(new_obj)
+
+</code></pre></div>
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="general/chapter03/exercise01_a/" title="Übung 3 - Würfeldimension">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Übung 3 - Würfeldimension
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="general/chapter01/exercise01_a/" title="Übung 1 - Intro">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Übung 1 - Intro
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="general/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
