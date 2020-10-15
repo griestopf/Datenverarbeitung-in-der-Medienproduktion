@@ -2,7 +2,13 @@
 title: Übung 4 - Meshgenerierung
 ---
 
-## Meshgenerierung
+**Basics der Meshgenerierung und -manipulation
+
+- BMesh
+- Vertices bewegen
+- Anwendung? Funktion plotten, Terrain / Fraktal generieren?
+
+## Meshmanipulation Codebeispiel
 
 - [BMesh](https://docs.blender.org/api/current/bmesh.html) Einführung
 

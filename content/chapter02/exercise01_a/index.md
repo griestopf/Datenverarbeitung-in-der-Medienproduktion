@@ -6,7 +6,12 @@ title: Übung 2 - Würfelturm
 
 ![turm](img/turm.png)
 
-**Würfelturm**
+Türmchen:
+    - Genau gestapelte Würfel
+    - nach oben schmaler werden
+    - Würfel mit random Scale, Z-Rotation und Location-Offset
+
+**Beispielcode Würfeltürmchen**
 ```python
 import bpy
 import random
@@ -26,11 +31,10 @@ bpy.ops.object.delete()
 
 random.seed(datetime.now())
 
-# später selektiertes Objekt verwenden
 bpy.ops.mesh.primitive_cube_add()
 C = bpy.context
 
-src_obj = C.active_object #später von ausgewähltem Objekt beziehen
+src_obj = C.active_object
 
 src_obj.rotation_euler.z = random.random() * 360
 
@@ -40,8 +44,8 @@ src_obj.location.z = rand_scale
 
 height = rand_scale * 2 # * 2 weil cube 2m groß ist. Später durch dimensions ersetzen.
 
-
 previous_scale = rand_scale
+
 for i in range (1, random.randint(MIN_STACKS, MAX_STACKS)):
     new_obj = src_obj.copy()
     new_obj.data = src_obj.data
@@ -54,8 +58,6 @@ for i in range (1, random.randint(MIN_STACKS, MAX_STACKS)):
     height += rand_scale
     new_obj.location.z = height
     height += rand_scale
-    
-    
     
     previous_scale = rand_scale
     
