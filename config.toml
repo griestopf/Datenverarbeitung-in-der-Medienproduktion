@@ -40,7 +40,7 @@ googleAnalytics = ""
 	weight = 1
 
 [[menu.main]]
-	name   = "1.1 - Übung - Monkeygrid"
+	name   = "1.1 - Monkeygrid"
 	url    = "chapter01/exercise01_a/"
 	weight = 11
 	parent = "Kapitel 1"
@@ -51,17 +51,20 @@ googleAnalytics = ""
 	weight = 1
 
 [[menu.main]]
-	name   = "2.1 - Übung - Intro"
+	name   = "2.1 - Intro"
 	url    = "chapter02/exercise01_a/"
 	weight = 11
 	parent = "Kapitel 2"
 
 [[menu.main]]
-	name   = "Leistungsbeispiele"
-	url    = "abgabe/leistungsbeispiele/"
-	weight = 84
-	parent = "Teamabgabe (OMB & MKB)"
+	name   = "Kapitel 3"
+	weight = 1
 
+[[menu.main]]
+	name   = "3.1 - Meshgenerierung"
+	url    = "chapter03/exercise01_a/"
+	weight = 11
+	parent = "Kapitel 3"
 [[menu.main]]
 	name   = "FELIX"
 	weight = 997
