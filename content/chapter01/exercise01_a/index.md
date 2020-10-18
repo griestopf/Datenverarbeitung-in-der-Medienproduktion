@@ -1,20 +1,8 @@
 ---
-title: Übung 1 - Intro
+title: Übung 1 - Blender Setup & Scripting-Tools
+
 ---
-
-## Blender Setup und Scripting-Tools
-
-- Setup Blender für Scripting
-- Blender Basics falls nötig
-- Blender Tools:
-	- Terminal
-	- Echtzeit Konsole
-	- Infopanel
-	- Texteditor
-	- Python Tooltips
-- bpy
-- copypasta stuff aus Echtzeitkonsole
-	- Suzanne hinzufügen und platzieren
+ 
 
 ![turm](img/monkeygrid.png)
 
@@ -40,16 +28,17 @@ title: Übung 1 - Intro
 
 - Wechselt nun zum Workspace-Tab ***Scripting***
 
-![Scripting Workspace](img/scripting_workspace.png)
-- Der **<span style="color: ForestGreen">3D View</span>** stellt die aktuelle Szene in 3D dar.
-- Die **<span style="color: DarkGoldenRod">Python Konsole</span>** ermöglicht es live Python-Befehle mit Autovervollständigung (`TAB`)auszuführen
-- Das **<span style="color: Blue">Info Fenster</span>** gibt den Code von in Blender ausgeführten Aktionen aus
-- Im **<span style="color: Red">Text Editor</span>** wird der Code für unsere Scripte geschrieben
-- Die beiden **<span style="color: DarkOrange">Outliner Fenster</span>** zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files
-- Der **<span style="color: Magenta">Properties Editor</span>** ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.
+![Scripting Workspace](img/scripting_workspace.png) <!--TODO Bild Counter einfügen-->
+- Der **<span style="color: ForestGreen">3D View</span>** <span class="counter">1</span> stellt die aktuelle Szene in 3D dar.
+- Die **<span style="color: DarkGoldenRod">Python Konsole</span>** <span class="counter">2</span> ermöglicht es live Python-Befehle mit Autovervollständigung (`TAB`)auszuführen
+- Das **<span style="color: Blue">Info Fenster</span>** <span class="counter">3</span> gibt den Code von in Blender ausgeführten Aktionen aus
+- Im **<span style="color: Red">Text Editor</span>** <span class="counter">4</span> wird der Code für unsere Scripte geschrieben
+- Die beiden **<span style="color: DarkOrange">Outliner Fenster</span>** <span class="counter">5</span> zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files
+- Der **<span style="color: Magenta">Properties Editor</span>** <span class="counter">6</span> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.
 
 ## Live Scripting
 Todo
+
 
 ## Affentheater
 Todo
@@ -85,3 +74,15 @@ for i in range(0, GRID_SIZE):
 > ```python
 >  import math
 > ```
+
+## Ressourcen & Tutorials zum Thema
+
+| Art/Länge | Titel | Beschreibung | Quelle |
+|---|---|---|---|
+|<img src="/general/icons/video.png" class="resicon">  44min | [Python Crashcourse for Blender](https://youtu.be/XqX5wh4YeRw) | Guter Schnelleinstieg in Scripting mit Blender | [YouTube -  Curtis Holt](https://www.youtube.com/channel/UCzghqpGuEmk4YdVewxA79GA) |
+|<img src="/general/icons/article.png" class="resicon"> | [Blender Python API Dokumentation](https://docs.blender.org/api/current/info_quickstart.html) | Offizielle Blender API Dokumentation | [Blender Python API Dokumentation](https://docs.blender.org/api/current/index.html) |
+|<img src="/general/icons/playlist.png" class="resicon"> 21x je 5-20min | [Blender Python - Scripting Series](https://www.youtube.com/playlist?list=PLFtLHTf5bnym_wk4DcYIMq1DkjqB7kDb-) | Ausführlichere Serie zu Blender Scripting | [YouTube - Darkfall](https://www.youtube.com/c/DarkfallBlender) |
+|<img src="/general/icons/playlist.png" class="resicon"> 15x je 5-20min | [Scripting for Artists](https://cloud.blender.org/p/scripting-for-artists/) | Sehr gute aufgearbeitete Serie zu Blender Scripting und Addon Entwicklung - teilweise jedoch kostenpflichtig | [Blender Cloud](https://cloud.blender.org/welcome) - [Dr. Sybren A. Stüvel](https://stuvel.eu/) |
+|<img src="/general/icons/article.png" class="resicon"> | [Einführung ins Programmieren mit Python](https://pythonbuch.com/) | Auf Deutsch | [pythonbuch.com](pythonbuch.com) |
+|<img src="/general/icons/article.png" class="resicon"> | [The Python 3.7 Tutorial](https://docs.python.org/3.7/tutorial/index.html) | Einstieg in Python | [Offizielle Python 3.7 Documentation](https://docs.python.org/3.7/) |
+|<img src="/general/icons/video.png" class="resicon"> 111min | [Python Tutorial 2020](https://youtu.be/H1elmMBnykA) | Einführung in alle wichtigen Python Funktionalitäten (Blender unabhängig) | [YouTube - Derek Banas](https://www.youtube.com/channel/UCwRXb5dUK4cvsHbx-rGzSgw) |

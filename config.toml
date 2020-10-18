@@ -30,17 +30,29 @@ googleAnalytics = ""
     	text = "Ubuntu"
     	code = "Ubuntu Mono"
 
+
 [[menu.main]]
 	name   = "Allgemeines"
+	weight = 20
+
+[[menu.main]]
+	name   = "Kursinfo"
 	url    = "general/"
 	weight = 10
+	parent = "Allgemeines"
+
+[[menu.main]]
+	name   = "Links & Literatur"
+	url    = "links/"
+	weight = 10
+	parent = "Allgemeines"
 
 [[menu.main]]
 	name   = "Kapitel"
 	weight = 20
 
 [[menu.main]]
-	name   = "1. Blender & Dev-Tools"
+	name   = "1. Blender & Scripting-Tools"
 	url    = "chapter01/exercise01_a/"
 	weight = 21
 	parent = "Kapitel"
