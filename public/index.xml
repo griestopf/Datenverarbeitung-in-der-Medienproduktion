@@ -9,11 +9,20 @@
     <item>
       <title>Allgemeines</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/</link>
-      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/</guid>
       <description>Vorlesungsunterlagen für die Veranstalltung Datenverarbeitung in der Medienproduktion.
 Geplante Veranstaltungsstruktur    VS Nr. Inhalt     1 Blender Setup und Scripting-Tools - Monkeygrid   2 Python &amp;amp; Blender API - zufällige Würfeltürmchen generieren   3 Operatoren &amp;amp; Codestruktur - Würfeldimension   4 Meshgenerierung und Manipulation 1 &amp;amp; Projektthemen Orga   5 Meshgenerierung und Manipulation 2 - BMesh   6 VS Code Setup &amp;amp; Addon-Entwicklung (vlt auch vor Meshgen.</description>
+    </item>
+    
+    <item>
+      <title>Links &amp; Literatur</title>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/links/</guid>
+      <description>Python    Art/Länge Titel Beschreibung Quelle      Einführung ins Programmieren mit Python Auf Deutsch pythonbuch.com    The Python 3.7 Tutorial Einstieg in Python Offizielle Python 3.7 Documentation   111min Python Tutorial 2020 Einführung in alle wichtigen Python Funktionalitäten (Blender unabhängig) YouTube - Derek Banas    Blender Scripting allgemein    Art/Länge Titel Beschreibung Quelle     44min Python Crashcourse for Blender Guter Schnelleinstieg in Scripting mit Blender YouTube - Curtis Holt    Blender Python API Dokumentation Offizielle Blender API Dokumentation Blender Python API Dokumentation   21x je 5-20min Blender Python - Scripting Series Ausführlichere Serie zu Blender Scripting YouTube - Darkfall   15x je 5-20min Scripting for Artists Sehr gute aufgearbeitete Serie zu Blender Scripting und Addon Entwicklung - teilweise jedoch kostenpflichtig Blender Cloud - Dr.</description>
     </item>
     
     <item>
@@ -53,13 +62,13 @@ Geplante Veranstaltungsstruktur    VS Nr. Inhalt     1 Blender Setup und Scripti
     </item>
     
     <item>
-      <title>Übung 1 - Intro</title>
+      <title>Übung 1 - Blender Setup &amp; Scripting-Tools</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</guid>
-      <description>Blender Setup und Scripting-Tools  Setup Blender für Scripting Blender Basics falls nötig Blender Tools:  Terminal Echtzeit Konsole Infopanel Texteditor Python Tooltips   bpy copypasta stuff aus Echtzeitkonsole  Suzanne hinzufügen und platzieren    In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.
-Blender Setup  Ladet euch zunächst von Blender.</description>
+      <description>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.
+Blender Setup  Ladet euch zunächst von Blender.org die aktuelle Version von Blender herunter. Dieses Script behandelt die Version 2.90. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.   Eine Einführung in Blender selbst, sowie Links mit Tutorials etc.</description>
     </item>
     
     <item>

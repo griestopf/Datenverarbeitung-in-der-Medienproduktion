@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 1 - Intro - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 1 - Blender Setup &amp; Scripting-Tools - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.76.3" />
 
     
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 1 - Intro
+        Übung 1 - Blender Setup &amp; Scripting-Tools
       </div>
     </div>
 
@@ -151,17 +151,36 @@
 
 <li>
   
-    
+    <span class="section">Allgemeines</span>
+    <ul>
+      
+        
+        
 
 
 
-<a  title="Allgemeines" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/">
+<a  title="Kursinfo" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/">
 	
-	Allgemeines
+	Kursinfo
 </a>
 
 
 
+      
+        
+        
+
+
+
+<a  title="Links &amp; Literatur" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/links/">
+	
+	Links &amp; Literatur
+</a>
+
+
+
+      
+    </ul>
   
 </li>
 
@@ -177,9 +196,9 @@
 
 
 
-<a class="current" title="1. Blender &amp; Dev-Tools" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/">
+<a class="current" title="1. Blender &amp; Scripting-Tools" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/">
 	
-	1. Blender &amp; Dev-Tools
+	1. Blender &amp; Scripting-Tools
 </a>
 
 
@@ -271,29 +290,9 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 1 - Intro </h1>
+			<h1>Übung 1 - Blender Setup &amp; Scripting-Tools </h1>
 
-			<h2 id="blender-setup-und-scripting-tools">Blender Setup und Scripting-Tools</h2>
-<ul>
-<li>Setup Blender für Scripting</li>
-<li>Blender Basics falls nötig</li>
-<li>Blender Tools:
-<ul>
-<li>Terminal</li>
-<li>Echtzeit Konsole</li>
-<li>Infopanel</li>
-<li>Texteditor</li>
-<li>Python Tooltips</li>
-</ul>
-</li>
-<li>bpy</li>
-<li>copypasta stuff aus Echtzeitkonsole
-<ul>
-<li>Suzanne hinzufügen und platzieren</li>
-</ul>
-</li>
-</ul>
-<p><img src="img/monkeygrid.png" alt="turm"></p>
+			<p><img src="img/monkeygrid.png" alt="turm"></p>
 <p><strong>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.</strong></p>
 <h2 id="blender-setup">Blender Setup</h2>
 <ul>
@@ -318,17 +317,30 @@
 <ul>
 <li>Wechselt nun zum Workspace-Tab <em><strong>Scripting</strong></em></li>
 </ul>
-<p><img src="img/scripting_workspace.png" alt="Scripting Workspace"></p>
+<p><img src="img/scripting_workspace.png" alt="Scripting Workspace"> <!--TODO Bild Counter einfügen--></p>
 <ul>
-<li>Der <strong><span style="color: ForestGreen">3D View</span></strong> stellt die aktuelle Szene in 3D dar.</li>
-<li>Die <strong><span style="color: DarkGoldenRod">Python Konsole</span></strong> ermöglicht es live Python-Befehle mit Autovervollständigung (<code>TAB</code>)auszuführen</li>
-<li>Das <strong><span style="color: Blue">Info Fenster</span></strong> gibt den Code von in Blender ausgeführten Aktionen aus</li>
-<li>Im <strong><span style="color: Red">Text Editor</span></strong> wird der Code für unsere Scripte geschrieben</li>
-<li>Die beiden <strong><span style="color: DarkOrange">Outliner Fenster</span></strong> zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files</li>
-<li>Der <strong><span style="color: Magenta">Properties Editor</span></strong> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.</li>
+<li>Der <strong><span style="color: ForestGreen">3D View</span></strong> <span class="counter">1</span> stellt die aktuelle Szene in 3D dar.</li>
+<li>Die <strong><span style="color: DarkGoldenRod">Python Konsole</span></strong> <span class="counter">2</span> ermöglicht es live Python-Befehle mit Autovervollständigung (<code>TAB</code>)auszuführen</li>
+<li>Das <strong><span style="color: Blue">Info Fenster</span></strong> <span class="counter">3</span> gibt den Code von in Blender ausgeführten Aktionen aus</li>
+<li>Im <strong><span style="color: Red">Text Editor</span></strong> <span class="counter">4</span> wird der Code für unsere Scripte geschrieben</li>
+<li>Die beiden <strong><span style="color: DarkOrange">Outliner Fenster</span></strong> <span class="counter">5</span> zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files</li>
+<li>Der <strong><span style="color: Magenta">Properties Editor</span></strong> <span class="counter">6</span> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.</li>
 </ul>
 <h2 id="live-scripting">Live Scripting</h2>
-<p>Todo</p>
+<!--Zwei-Spalten layout in "Markdown" WOW!-->
+<div class="row">
+    <div class="column left">
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+    </div>
+    <div class="column right">
+        <video autoplay controls loop src="img/live_console.mp4"></video>
+    </div>
+</div>
+<br>
 <h2 id="affentheater">Affentheater</h2>
 <p>Todo</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
@@ -363,6 +375,61 @@ GRID_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</sp
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"> <span style="color:#f92672">import</span> math
 </code></pre></div></blockquote>
+<h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
+<table>
+<thead>
+<tr>
+<th>Art/Länge</th>
+<th>Titel</th>
+<th>Beschreibung</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/icons/video.png" class="resicon">  44min</td>
+<td><a href="https://youtu.be/XqX5wh4YeRw">Python Crashcourse for Blender</a></td>
+<td>Guter Schnelleinstieg in Scripting mit Blender</td>
+<td><a href="https://www.youtube.com/channel/UCzghqpGuEmk4YdVewxA79GA">YouTube -  Curtis Holt</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.blender.org/api/current/info_quickstart.html">Blender Python API Dokumentation</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/icons/playlist.png" class="resicon"> 21x je 5-20min</td>
+<td><a href="https://www.youtube.com/playlist?list=PLFtLHTf5bnym_wk4DcYIMq1DkjqB7kDb-">Blender Python - Scripting Series</a></td>
+<td>Ausführlichere Serie zu Blender Scripting</td>
+<td><a href="https://www.youtube.com/c/DarkfallBlender">YouTube - Darkfall</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/icons/playlist.png" class="resicon"> 15x je 5-20min</td>
+<td><a href="https://cloud.blender.org/p/scripting-for-artists/">Scripting for Artists</a></td>
+<td>Sehr gute aufgearbeitete Serie zu Blender Scripting und Addon Entwicklung - teilweise jedoch kostenpflichtig</td>
+<td><a href="https://cloud.blender.org/welcome">Blender Cloud</a> - <a href="https://stuvel.eu/">Dr. Sybren A. Stüvel</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/icons/article.png" class="resicon"></td>
+<td><a href="https://pythonbuch.com/">Einführung ins Programmieren mit Python</a></td>
+<td>Auf Deutsch</td>
+<td><a href="pythonbuch.com">pythonbuch.com</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.python.org/3.7/tutorial/index.html">The Python 3.7 Tutorial</a></td>
+<td>Einstieg in Python</td>
+<td><a href="https://docs.python.org/3.7/">Offizielle Python 3.7 Documentation</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/icons/video.png" class="resicon"> 111min</td>
+<td><a href="https://youtu.be/H1elmMBnykA">Python Tutorial 2020</a></td>
+<td>Einführung in alle wichtigen Python Funktionalitäten (Blender unabhängig)</td>
+<td><a href="https://www.youtube.com/channel/UCwRXb5dUK4cvsHbx-rGzSgw">YouTube - Derek Banas</a></td>
+</tr>
+</tbody>
+</table>
 
 
 			<aside class="copyright" role="note">
