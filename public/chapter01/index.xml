@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chapter01s on Datenverarbeitung in der Medienproduktion</title>
+    <link>/chapter01/</link>
+    <description>Recent content in Chapter01s on Datenverarbeitung in der Medienproduktion</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de</language><atom:link href="/chapter01/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Übung 1 - Basics</title>
+      <link>/chapter01/exercise01_b/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/chapter01/exercise01_b/</guid>
+      <description>U1 </description>
+    </item>
+    
+    <item>
+      <title>Übung 1 - Intro</title>
+      <link>/chapter01/exercise01_a/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/chapter01/exercise01_a/</guid>
+      <description>Blender Setup und Scripting-Tools  Setup Blender für Scripting Blender Basics falls nötig Blender Tools:  Terminal Echtzeit Konsole Infopanel Texteditor Python Tooltips   bpy copypasta stuff aus Echtzeitkonsole  Suzanne hinzufügen und platzieren    Monkey Grid
+import bpy GRID_SCALE = 5 GRID_SIZE = 5 for i in range(0, 5): for j in range(0, GRID_SIZE): bpy.ops.mesh.primitive_monkey_add(location=(GRID_SCALE * j ,GRID_SCALE * i, 0)) bpy.ops.transform.rotate(value=0.575267, orient_axis=&amp;#39;Z&amp;#39;, orient_type=&amp;#39;VIEW&amp;#39;, orient_matrix=((4.93038e-32, 1, 2.</description>
+    </item>
+    
+  </channel>
+</rss>
