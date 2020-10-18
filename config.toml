@@ -36,55 +36,44 @@ googleAnalytics = ""
 	weight = 10
 
 [[menu.main]]
-	name   = "Kapitel 1"
+	name   = "Kapitel"
 	weight = 20
 
 [[menu.main]]
-	name   = "1.1 - Monkeygrid"
+	name   = "1. Blender & Dev-Tools"
 	url    = "chapter01/exercise01_a/"
 	weight = 21
-	parent = "Kapitel 1"
-
-
-[[menu.main]]
-	name   = "Kapitel 2"
-	weight = 30
+	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "2.1 - Intro"
+	name   = "2. Python & Blender API"
 	url    = "chapter02/exercise01_a/"
 	weight = 31
-	parent = "Kapitel 2"
+	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "Kapitel 3"
-	weight = 40
-
-[[menu.main]]
-	name   = "3.1 - Würfeldimension"
+	name   = "3. Operatoren & Codestruktur"
 	url    = "chapter03/exercise01_a/"
 	weight = 41
-	parent = "Kapitel 3"
+	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "Kapitel 4"
-	weight = 50
-
-[[menu.main]]
-	name   = "4.1 - Meshgenerierung"
+	name   = "4. Meshgenerierung 1 "
 	url    = "chapter04/exercise01_a/"
 	weight = 51
-	parent = "Kapitel 4"
+	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "FELIX"
-	weight = 997
+	name   = "5. Meshgenerierung 2 - BMesh"
+	url    = "chapter05/exercise01_a/"
+	weight = 51
+	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "Ergebnisse einreichen"
-	url    = "KURSLINK EINFÜGEN"
-	weight = 998
-	parent = "FELIX"
+	name   = "6 Addon-Entwicklung und VS Code"
+	url    = "chapter06/exercise01_a/"
+	weight = 51
+	parent = "Kapitel"
 
 [blackfriday]
 	smartypants	= true
