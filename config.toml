@@ -58,13 +58,13 @@ googleAnalytics = ""
 	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "4. Meshgenerierung 1 "
+	name   = "4. Meshes - Basics "
 	url    = "chapter04/exercise01_a/"
 	weight = 51
 	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "5. Meshgenerierung 2 - BMesh"
+	name   = "5. Meshes - BMesh"
 	url    = "chapter05/exercise01_a/"
 	weight = 51
 	parent = "Kapitel"
@@ -80,3 +80,22 @@ googleAnalytics = ""
 	fractions = true
 	smartDashes = true
 	plainIDAnchors = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      attribute = true
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = true
+      xhtml = false

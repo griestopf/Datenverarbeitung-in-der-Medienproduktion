@@ -54,18 +54,21 @@
 - Endpräsentationen vor Gruppe in letzte(n) 1-2 VL oder Extratermin
 - Abgabe besteht aus Scripts als Addon und optional Blender File + Video-/Bildmaterial
 
-### Projektthemen Bsp
+### Projektthemen Bsp.
 - Fraktale
 - Gebäude generieren
 - Daten auslesen und Visualisieren
 - 
 
 ## Notizen
-
 - Assets & Code für jede Stunde vorbereiten.
-- Teil der Aufgabe in Script beschreiben und Stunde live zeigen - dann Zusatzaufgabe für "Zuhause".
+- Teil der Aufgabe in Script beschreiben und Stunde live zeigen - dann Zusatzaufgabe für "Zuhause". Eine der Lösungen Anfang nächster Stunde demonstrieren.
 - Werden Python Basics wirklich benötigt? Wenn ja vlt direkt in Blender anfangen. Grundkenntnisse im Programmieren vlt. als Voraussetzung - hatten ja die Meisten.
 
+**Vorschläge Namensänderung:**
+Da der aktuelle Name der Veranstaltung recht nichtssagend ist:
+- Automatisierung in der Computergrafik
+- Datenverarbeitung in der Computergrafik
 
 ## Nützliche Links
 - [Scripting for Artists (Blender Cloud)](https://cloud.blender.org/p/scripting-for-artists/)

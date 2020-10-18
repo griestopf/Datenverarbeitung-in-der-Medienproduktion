@@ -2,6 +2,9 @@
 title: Übung 2 - Würfelturm
 ---
 
+- [bpy und andere Module](https://docs.blender.org/api/current/index.html)  Grundaufbau - anhand Livekonsole demonstrieren
+  - Genauer eingehen auf bpy.context, bpy.data, bpy.ops
+
 ## Prozedurale Würfeltürmchen bauen
 
 ![turm](img/turm.png)
