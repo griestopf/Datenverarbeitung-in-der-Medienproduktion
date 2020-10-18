@@ -37,8 +37,24 @@ title: Übung 1 - Blender Setup & Scripting-Tools
 - Der **<span style="color: Magenta">Properties Editor</span>** <span class="counter">6</span> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.
 
 ## Live Scripting
-Todo
 
+<!--Zwei-Spalten layout in "Markdown" WOW!-->
+<div class="row">
+    <div class="column left">
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+        Die Konsole lorem Ipsum und soalkshfkjeanfmds
+    </div>
+    <div class="column right">
+        <video autoplay controls loop src="img/live_console.mp4"></video>
+    </div>
+</div>
+
+
+
+<br>
 
 ## Affentheater
 Todo

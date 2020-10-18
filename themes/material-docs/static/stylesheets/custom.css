@@ -40,6 +40,34 @@ pre {
     margin: 0px 3px !important;
 }
 
+.column {
+    float: left;
+    height: auto; /* Should be removed. Only for demonstration */
+  }
+
+  
+  .left {
+    width: 50%;
+  }
+  
+  .right {
+    width: 50%;
+  }
+
+  
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
 .video_example {
     display: inline-block;
     background: rgb(195, 243, 206);
