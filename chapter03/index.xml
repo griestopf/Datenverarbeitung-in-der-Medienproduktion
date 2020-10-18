@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chapter03s on Datenverarbeitung in der Medienproduktion</title>
+    <link>/chapter03/</link>
+    <description>Recent content in Chapter03s on Datenverarbeitung in der Medienproduktion</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de</language><atom:link href="/chapter03/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Übung 1 - Basics</title>
+      <link>/chapter03/exercise01_b/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/chapter03/exercise01_b/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Übung 3 - Würfeldimension</title>
+      <link>/chapter03/exercise01_a/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/chapter03/exercise01_a/</guid>
+      <description>Addon mit UI erstellen um Würfeldimension zu generieren:
+ Set an Türmchenassets generieren Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen Würfel bis zum Horizont - hübsch rendern (bei bedarf vorgegebene Szene)  </description>
+    </item>
+    
+  </channel>
+</rss>
