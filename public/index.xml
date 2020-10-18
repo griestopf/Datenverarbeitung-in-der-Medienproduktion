@@ -12,7 +12,8 @@
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/</guid>
-      <description>Allgemeines yo.</description>
+      <description>Vorlesungsunterlagen für die Veranstalltung Datenverarbeitung in der Medienproduktion.
+Geplante Veranstaltungsstruktur    VS Nr. Inhalt     1 Blender Setup und Scripting-Tools - Monkeygrid   2 Python &amp;amp; Blender API - zufällige Würfeltürmchen generieren   3 Operatoren &amp;amp; Codestruktur - Würfeldimension   4 Meshgenerierung und Manipulation 1 &amp;amp; Projektthemen Orga   5 Meshgenerierung und Manipulation 2 - BMesh   6 VS Code Setup &amp;amp; Addon-Entwicklung (vlt auch vor Meshgen.</description>
     </item>
     
     <item>
@@ -57,8 +58,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</guid>
-      <description>Blender Setup und Scripting-Tools  Setup Blender für Scripting Blender Basics falls nötig Blender Tools:  Terminal Echtzeit Konsole Infopanel Texteditor Python Tooltips   bpy copypasta stuff aus Echtzeitkonsole  Suzanne hinzufügen und platzieren    Monkey Grid
-import bpy GRID_SCALE = 5 GRID_SIZE = 5 for i in range(0, 5): for j in range(0, GRID_SIZE): bpy.ops.mesh.primitive_monkey_add(location=(GRID_SCALE * j ,GRID_SCALE * i, 0)) bpy.ops.transform.rotate(value=0.575267, orient_axis=&amp;#39;Z&amp;#39;, orient_type=&amp;#39;VIEW&amp;#39;, orient_matrix=((4.93038e-32, 1, 2.</description>
+      <description>Blender Setup und Scripting-Tools  Setup Blender für Scripting Blender Basics falls nötig Blender Tools:  Terminal Echtzeit Konsole Infopanel Texteditor Python Tooltips   bpy copypasta stuff aus Echtzeitkonsole  Suzanne hinzufügen und platzieren    In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.
+Blender Setup  Ladet euch zunächst von Blender.</description>
     </item>
     
     <item>
@@ -67,9 +68,9 @@ import bpy GRID_SCALE = 5 GRID_SIZE = 5 for i in range(0, 5): for j in range(0, 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/</guid>
-      <description>Prozedurale Würfeltürmchen bauen Türmchen:
+      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops    Prozedurale Würfeltürmchen bauen Türmchen:
  Genau gestapelte Würfel nach oben schmaler werden Würfel mit random Scale, Z-Rotation und Location-Offset  Beispielcode Würfeltürmchen
-import bpy import random from datetime import datetime import mathutils MAX_STACKS = 10 MIN_STACKS = 2 MAX_SCALE = 2.5 MIN_SCALE = 0.5 # clear scene - später entfernen bpy.ops.object.select_all(action=&amp;#39;SELECT&amp;#39;) bpy.ops.object.delete() random.seed(datetime.now()) bpy.ops.mesh.primitive_cube_add() C = bpy.context src_obj = C.active_object src_obj.rotation_euler.z = random.random() * 360 rand_scale = random.uniform(MIN_SCALE, MAX_SCALE) src_obj.scale = mathutils.</description>
+import bpy import random from datetime import datetime import mathutils MAX_STACKS = 10 MIN_STACKS = 2 MAX_SCALE = 2.5 MIN_SCALE = 0.5 # clear scene - später entfernen bpy.</description>
     </item>
     
     <item>
@@ -79,7 +80,7 @@ import bpy import random from datetime import datetime import mathutils MAX_STAC
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/</guid>
       <description>Addon mit UI erstellen um Würfeldimension zu generieren:
- Set an Türmchenassets generieren Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen Würfel bis zum Horizont - hübsch rendern (bei bedarf vorgegebene Szene)  </description>
+ Set an Türmchenassets generieren Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)  </description>
     </item>
     
     <item>
@@ -90,6 +91,16 @@ import bpy import random from datetime import datetime import mathutils MAX_STAC
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/</guid>
       <description>Basics der Meshgenerierung und -manipulation
  BMesh Vertices bewegen Anwendung? Funktion plotten, Terrain / Fraktal generieren?  Meshmanipulation Codebeispiel  BMesh Einführung  # This example assumes we have a mesh object selected import bpy import bmesh # Get the active mesh me = bpy.context.object.data # Get a BMesh representation bm = bmesh.new() # create an empty BMesh bm.from_mesh(me) # fill it in from a Mesh # Modify the BMesh, can do anything here.</description>
+    </item>
+    
+    <item>
+      <title>Übung 6 - Addon-Entwicklung und VS Code</title>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/exercise01_a/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/exercise01_a/</guid>
+      <description>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.
+bl_info = { &amp;#34;name&amp;#34;: &amp;#34;New Object&amp;#34;, &amp;#34;author&amp;#34;: &amp;#34;Your Name Here&amp;#34;, &amp;#34;version&amp;#34;: (1, 0), &amp;#34;blender&amp;#34;: (2, 80, 0), &amp;#34;location&amp;#34;: &amp;#34;View3D &amp;gt; Add &amp;gt; Mesh &amp;gt; New Object&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;Adds a new Mesh Object&amp;#34;, &amp;#34;warning&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;doc_url&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;category&amp;#34;: &amp;#34;Add Mesh&amp;#34;, } </description>
     </item>
     
   </channel>

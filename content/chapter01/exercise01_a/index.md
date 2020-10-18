@@ -60,7 +60,7 @@ import bpy
 GRID_SCALE = 5
 GRID_SIZE = 5
 
-for i in range(0, 5):
+for i in range(0, GRID_SIZE):
     for j in range(0, GRID_SIZE):
         bpy.ops.mesh.primitive_monkey_add(location=(GRID_SCALE * j ,GRID_SCALE * i, 0))
 
@@ -74,13 +74,13 @@ for i in range(0, 5):
 
 ```
 
-## Aufgabe
+## Aufgabe bis zum nächsten Mal
 - Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet
 - Optional: Lasst die Affenköpfe alle in die Mitte der Szene gucken.
 > **Tipps** 
 > - Die Formel für die Position eines Punktes im Einheitskreis ist<br>
 > ![img](img/einheitskreis.png)<br>
-> - t ist dabei der Winkel in Radianten. 360° entspricht 2Pi
+> - **t** ist dabei der Winkel in Radianten. 360° entspricht 2Pi
 > - Zur Nutzung von Sinus & Cosinus muss das math Modul importiert werden 
 > ```python
 >  import math

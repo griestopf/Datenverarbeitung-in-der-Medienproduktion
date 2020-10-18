@@ -21,9 +21,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/</guid>
-      <description>Prozedurale Würfeltürmchen bauen Türmchen:
+      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops    Prozedurale Würfeltürmchen bauen Türmchen:
  Genau gestapelte Würfel nach oben schmaler werden Würfel mit random Scale, Z-Rotation und Location-Offset  Beispielcode Würfeltürmchen
-import bpy import random from datetime import datetime import mathutils MAX_STACKS = 10 MIN_STACKS = 2 MAX_SCALE = 2.5 MIN_SCALE = 0.5 # clear scene - später entfernen bpy.ops.object.select_all(action=&amp;#39;SELECT&amp;#39;) bpy.ops.object.delete() random.seed(datetime.now()) bpy.ops.mesh.primitive_cube_add() C = bpy.context src_obj = C.active_object src_obj.rotation_euler.z = random.random() * 360 rand_scale = random.uniform(MIN_SCALE, MAX_SCALE) src_obj.scale = mathutils.</description>
+import bpy import random from datetime import datetime import mathutils MAX_STACKS = 10 MIN_STACKS = 2 MAX_SCALE = 2.5 MIN_SCALE = 0.5 # clear scene - später entfernen bpy.</description>
     </item>
     
   </channel>
