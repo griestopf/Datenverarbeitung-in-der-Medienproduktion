@@ -169,7 +169,7 @@
 
 <li>
   
-    <span class="section">Kapitel 1</span>
+    <span class="section">Kapitel</span>
     <ul>
       
         
@@ -177,9 +177,9 @@
 
 
 
-<a class="current" title="1.1 - Monkeygrid" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/">
+<a class="current" title="1. Blender &amp; Dev-Tools" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/">
 	
-	1.1 - Monkeygrid
+	1. Blender &amp; Dev-Tools
 </a>
 
 
@@ -188,97 +188,66 @@
 
 
       
-    </ul>
-  
-</li>
-
-
-
-<li>
-  
-    <span class="section">Kapitel 2</span>
-    <ul>
-      
         
         
 
 
 
-<a  title="2.1 - Intro" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/">
+<a  title="2. Python &amp; Blender API" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/">
 	
-	2.1 - Intro
+	2. Python &amp; Blender API
 </a>
 
 
 
       
-    </ul>
-  
-</li>
-
-
-
-<li>
-  
-    <span class="section">Kapitel 3</span>
-    <ul>
-      
         
         
 
 
 
-<a  title="3.1 - Würfeldimension" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/">
+<a  title="3. Operatoren &amp; Codestruktur" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/">
 	
-	3.1 - Würfeldimension
+	3. Operatoren &amp; Codestruktur
 </a>
 
 
 
       
-    </ul>
-  
-</li>
-
-
-
-<li>
-  
-    <span class="section">Kapitel 4</span>
-    <ul>
-      
         
         
 
 
 
-<a  title="4.1 - Meshgenerierung" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/">
+<a  title="4. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/">
 	
-	4.1 - Meshgenerierung
+	4. Meshes - Basics 
 </a>
 
 
 
       
-    </ul>
-  
-</li>
+        
+        
 
 
 
-<li>
-  
-    <span class="section">FELIX</span>
-    <ul>
+<a  title="5. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter05/exercise01_a/">
+	
+	5. Meshes - BMesh
+</a>
+
+
+
       
         
         
 
 
 
-<a  title="Ergebnisse einreichen" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/KURSLINK%20EINF%c3%9cGEN">
+<a  title="6 Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/exercise01_a/">
 	
-	Ergebnisse einreichen
+	6 Addon-Entwicklung und VS Code
 </a>
 
 
@@ -325,13 +294,49 @@
 </li>
 </ul>
 <p><img src="img/monkeygrid.png" alt="turm"></p>
-<p><strong>Monkey Grid</strong></p>
+<p><strong>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.</strong></p>
+<h2 id="blender-setup">Blender Setup</h2>
+<ul>
+<li>Ladet euch zunächst von <a href="https://www.blender.org/download/">Blender.org</a> die aktuelle Version von Blender herunter. Dieses Script behandelt die Version 2.90. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.</li>
+</ul>
+<!--Link zu CG Webseite? Ist ja nicht immer alles Online und vlt auch nicht immer auf Davids Webspace?-->
+<blockquote>
+<p>Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im <a href="https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/chapter01/lecture01/"><strong>Script zur Veranstalltung Computergrafik</strong></a></p>
+</blockquote>
+<ul>
+<li>Öffnet Blender und in Blender die <em><strong>Preferences</strong></em>
+<img src="img/preferences.png" alt="Preferences"></li>
+<li>Aktiviert hier nun im <em><strong>Interface</strong></em> Tab <em>Python Tooltips</em> und <em>Development Extras</em></li>
+</ul>
+<blockquote>
+<p><strong>Python Tooltips</strong> zeigt beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.<br>
+<img src="img/python_tooltip.png" alt="Python Tooltip"></p>
+<p><strong>Development Extras</strong> Ermöglicht einige Funktionen, die uns das Scripten erleichter, wie z.b. das Anzeigen des Python-Codes von Features (<code>RMB</code> → <em>Edit Source</em>)<br>
+<img src="img/edit_source.png" alt="Edit Source"></p>
+</blockquote>
+<h2 id="scripting-tools">Scripting Tools</h2>
+<ul>
+<li>Wechselt nun zum Workspace-Tab <em><strong>Scripting</strong></em></li>
+</ul>
+<p><img src="img/scripting_workspace.png" alt="Scripting Workspace"></p>
+<ul>
+<li>Der <strong><span style="color: ForestGreen">3D View</span></strong> stellt die aktuelle Szene in 3D dar.</li>
+<li>Die <strong><span style="color: DarkGoldenRod">Python Konsole</span></strong> ermöglicht es live Python-Befehle mit Autovervollständigung (<code>TAB</code>)auszuführen</li>
+<li>Das <strong><span style="color: Blue">Info Fenster</span></strong> gibt den Code von in Blender ausgeführten Aktionen aus</li>
+<li>Im <strong><span style="color: Red">Text Editor</span></strong> wird der Code für unsere Scripte geschrieben</li>
+<li>Die beiden <strong><span style="color: DarkOrange">Outliner Fenster</span></strong> zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files</li>
+<li>Der <strong><span style="color: Magenta">Properties Editor</span></strong> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.</li>
+</ul>
+<h2 id="live-scripting">Live Scripting</h2>
+<p>Todo</p>
+<h2 id="affentheater">Affentheater</h2>
+<p>Todo</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
 
 GRID_SCALE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
 GRID_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
 
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>):
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, GRID_SIZE):
     <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, GRID_SIZE):
         bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>mesh<span style="color:#f92672">.</span>primitive_monkey_add(location<span style="color:#f92672">=</span>(GRID_SCALE <span style="color:#f92672">*</span> j ,GRID_SCALE <span style="color:#f92672">*</span> i, <span style="color:#ae81ff">0</span>))
 
@@ -343,7 +348,22 @@ GRID_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</sp
         <span style="color:#75715e"># bpy.context.object.modifiers[&#34;Subdivision&#34;].levels = 1</span>
         bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>shade_smooth()
 
-</code></pre></div>
+</code></pre></div><h2 id="aufgabe-bis-zum-nächsten-mal">Aufgabe bis zum nächsten Mal</h2>
+<ul>
+<li>Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet</li>
+<li>Optional: Lasst die Affenköpfe alle in die Mitte der Szene gucken.</li>
+</ul>
+<blockquote>
+<p><strong>Tipps</strong></p>
+<ul>
+<li>Die Formel für die Position eines Punktes im Einheitskreis ist<br>
+<img src="img/einheitskreis.png" alt="img"><br></li>
+<li><strong>t</strong> ist dabei der Winkel in Radianten. 360° entspricht 2Pi</li>
+<li>Zur Nutzung von Sinus &amp; Cosinus muss das math Modul importiert werden</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"> <span style="color:#f92672">import</span> math
+</code></pre></div></blockquote>
+
 
 			<aside class="copyright" role="note">
 				
