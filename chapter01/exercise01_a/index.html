@@ -359,9 +359,19 @@
 <h2 id="abläufe-als-script-speichern">Abläufe als Script speichern</h2>
 <p>Das Info Fenster gibt uns für die meisten Aktionen, die wir in Blender tun den Python-Code aus, der im Hintergrund ausgeführt wird. So können wir schnell Arbeitsabläufe einfach aus dem Info Fenster herauskopieren und als Script abspeichern, um uns repetetive Arbeit zu sparen.</p>
 <p><img src="img/info.png" alt="Info Fenster">
-<em>Das Info Fenster nachdem ein Affenkopf hinzugefügt wurde, diesem ein Subdivisio Surface Modifier hinzugefügt wurde und er auf der Z-Achse um 2.0 skaliert wurde</em></p>
-<p>Nun kann der Inhalt des Info-Fensters mit <code>LMB + Drag</code> selektiert werden und mit <code>STRG + C</code> &amp; <code>STRG + V</code> in das Textfenster kopiert werden (vorher dort oben auf <em><strong>New</strong></em> klicken).</p>
+Das Info Fenster nachdem ein Affenkopf hinzugefügt, diesem ein Subdivisio Surface Modifier hinzugefügt und er auf der Z-Achse um 2.0 skaliert wurde</p>
+<ul>
+<li>
+<p>Der Inhalt des Info-Fensters kann mit <code>LMB + Drag</code> selektiert werden und mit <code>STRG + C</code> &amp; <code>STRG + V</code> in das Textfenster kopiert werden (vorher dort oben auf <em><strong>New</strong></em> klicken).</p>
+</li>
+<li>
 <p>Damit unser Script funktioniert muss hier noch das <strong>bpy Modul</strong> importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).</p>
+</li>
+<li>
+<p>Das Script kann mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut <code>ALT + P</code> (mit Mauscursor im Texteditor) ausgeführt werden.</p>
+</li>
+</ul>
+<p><img src="img/automated.png" alt="Automatisierung von Abläufen"></p>
 <p>Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen werden, wenn sie nicht benötigt werden. Es reicht daher für diesen Zweck auf folgender Code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
 
@@ -371,38 +381,77 @@ bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>tr
 </code></pre></div><blockquote>
 <p>in Python können Funktionsparameter (hier z.b. der <em>value</em> Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.</p>
 </blockquote>
-<p><img src="img/automated.png" alt="Automatisierung von Abläufen"></p>
-<p>Nun kann das Script mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut <code>ALT + P</code> (mit Mauscursor im Texteditor) ausgeführt werden.</p>
 <h2 id="affentheater">Affentheater</h2>
-<p>Todo</p>
+<p>Wir wollen nun das erlernte anwenden, um eine Horde von Affenköpfen (im Rechteck angeordnet) zu erstellen.</p>
+<p><img src="img/affentheater.png" alt="Affentheater"></p>
+<ul>
+<li>Erstellt im Text Editor ein neues Script</li>
+<li>importiert zunächst die Blender API mit <code>import bpy</code></li>
+<li>Um ein Gitter zu erzeugen benötigen wir zwei verschachtelte Schleifen (Zeilen und Spalten). Solche For-Schleifen in Python sind sehr einfach mit der <strong>range</strong> funktion möglich. Wird in dieser nur eine Zahl angegeben, entspricht diese der Anzahl an ausgeführten Iterationen.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+    <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+        <span style="color:#75715e">#...Code um Affengitter mit 5 Reihen und Spalten zu erzeugen</span>
+</code></pre></div><ul>
+<li>
+<p>Fügt nun den Code der Operatoren, den ihr aus dem Info Fenster kopieren könnt, in die geschachtelte Schleife ein. Wir wollen mit jeder Iteration:</p>
+<ul>
+<li>Einen Affen (Suzanne) an seinem Platz im Gitter hinzufügen</li>
+<li>Den Affen rotieren, damit er hübscher guckt</li>
+<li>Das Shading des Meshes auf <em>Smooth</em> setzen</li>
+</ul>
+</li>
+<li>
+<p>Entfernt nun die nicht benötigten Parameter aus den Operatorfunktionen</p>
+</li>
+</ul>
+<p>Das Affengitter-Script sollte nun in etwa so aussehen:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
 
-GRID_SCALE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
-GRID_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
-
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, GRID_SIZE):
-    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, GRID_SIZE):
-        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>mesh<span style="color:#f92672">.</span>primitive_monkey_add(location<span style="color:#f92672">=</span>(GRID_SCALE <span style="color:#f92672">*</span> j ,GRID_SCALE <span style="color:#f92672">*</span> i, <span style="color:#ae81ff">0</span>))
-
-        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>transform<span style="color:#f92672">.</span>rotate(value<span style="color:#f92672">=</span><span style="color:#ae81ff">0.575267</span>, orient_axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Z&#39;</span>, orient_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;VIEW&#39;</span>, orient_matrix<span style="color:#f92672">=</span>((<span style="color:#ae81ff">4.93038e-32</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2.22045e-16</span>), (<span style="color:#ae81ff">2.22045e-16</span>, <span style="color:#ae81ff">4.93038e-32</span>, <span style="color:#ae81ff">1</span>), (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2.22045e-16</span>, <span style="color:#ae81ff">4.93038e-32</span>)), orient_matrix_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;VIEW&#39;</span>)
-
-        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>transform<span style="color:#f92672">.</span>translate(value<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.608087</span>), orient_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;GLOBAL&#39;</span>, orient_matrix<span style="color:#f92672">=</span>((<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)), orient_matrix_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;GLOBAL&#39;</span>)
-
-        <span style="color:#75715e"># bpy.ops.object.modifier_add(type=&#39;SUBSURF&#39;)</span>
-        <span style="color:#75715e"># bpy.context.object.modifiers[&#34;Subdivision&#34;].levels = 1</span>
+<span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+    <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>mesh<span style="color:#f92672">.</span>primitive_monkey_add(location<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> row ,<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> column, <span style="color:#ae81ff">0</span>))
+        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>transform<span style="color:#f92672">.</span>rotate(value<span style="color:#f92672">=</span><span style="color:#ae81ff">0.6</span>, orient_axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;X&#39;</span>, orient_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;GLOBAL&#39;</span>)
         bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>shade_smooth()
+</code></pre></div><p>Schließlich wollen wir die Verwendung von Magic Numbers (undokumentierte Zahlen irgendwo im Code) reduzieren.</p>
+<ul>
+<li>Dazu legen wir oben im Script die entsprechenden &ldquo;Konstanten&rdquo; an (speziell deklarierte Konstanten gibt es in Python nicht) und setzen sie unten im Code ein.</li>
+<li>Hier importieren wir noch das <strong>random</strong> modul und verwenden deren <strong>uniform</strong> Funktion, um jedem Affen eine zufällige Größe zu geben. Diese gibt einen zufälligen Wert innerhalb der Beiden übergebenen Parameter zurück.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
+<span style="color:#f92672">import</span> random
 
-</code></pre></div><h2 id="aufgabe-bis-zum-nächsten-mal">Aufgabe bis zum nächsten Mal</h2>
+GRID_SPACING <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+GRID_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+SIZE_MIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
+SIZE_MAX <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+
+<span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(GRID_SIZE):
+    <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> range(GRID_SIZE):
+        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>mesh<span style="color:#f92672">.</span>primitive_monkey_add(location<span style="color:#f92672">=</span>(GRID_SPACING <span style="color:#f92672">*</span> row ,GRID_SPACING <span style="color:#f92672">*</span> column, <span style="color:#ae81ff">0</span>))
+        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>transform<span style="color:#f92672">.</span>rotate(value<span style="color:#f92672">=</span><span style="color:#ae81ff">0.6</span>, orient_axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;X&#39;</span>, orient_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;GLOBAL&#39;</span>)
+        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>shade_smooth()
+        
+        <span style="color:#75715e"># random size</span>
+        size <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>uniform(SIZE_MIN, SIZE_MAX)
+        bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>transform<span style="color:#f92672">.</span>resize(value<span style="color:#f92672">=</span>(size, size, size))
+
+</code></pre></div><p><em>Der fertige Affentheater Code</em></p>
+<h2 id="aufgabe-bis-zum-nächsten-mal">Aufgabe bis zum nächsten Mal</h2>
 <ul>
 <li>Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet</li>
-<li>Optional: Lasst die Affenköpfe alle in die Mitte der Szene gucken.</li>
+<li>Freiwilliger Zusatz: Lasst die Affenköpfe alle in die Mitte der Szene gucken.</li>
+</ul>
+<p><img src="img/affenkreis.png" alt="img"></p>
+<ul>
+<li>Experimentiert auch gerne mit weiteren Funkionen</li>
 </ul>
 <blockquote>
 <p><strong>Tipps</strong></p>
 <ul>
-<li>Die Formel für die Position eines Punktes im Einheitskreis ist<br>
+<li>Die Formel für die Position eines Punktes im Einheitskreis ist Folgende:<br>
 <img src="img/einheitskreis.png" alt="img"><br></li>
-<li><strong>t</strong> ist dabei der Winkel in Radianten. 360° entspricht 2Pi</li>
+<li><strong>t</strong> ist dabei der Winkel in Radianten. 360° entspricht 2Pi.</li>
 <li>Zur Nutzung von Sinus &amp; Cosinus muss das math Modul importiert werden</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"> <span style="color:#f92672">import</span> math
