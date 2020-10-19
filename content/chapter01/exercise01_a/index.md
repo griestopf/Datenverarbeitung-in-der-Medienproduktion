@@ -38,23 +38,61 @@ title: Übung 1 - Blender Setup & Scripting-Tools
 
 ## Live Scripting
 
-<!--Zwei-Spalten layout in "Markdown" WOW!-->
+<!--Zwei-Spalten layout in "Markdown" WOW! Funktioniert nur ohne Einrückung-->
 <div class="row">
-    <div class="column left">
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-    </div>
-    <div class="column right">
-        <video autoplay controls loop src="img/live_console.mp4"></video>
-    </div>
+<div class="column left">
+
+Die **Python Konsole** ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (**b**lender **py**thon API) getippt werden und anschließend mit `TAB` die verfügbaren nachfolgenden Pfade angezeigt werden. Mit `Pfeil nach oben` kann der letzte Befehl wieder aufgerufen werden.
+
+Mit folgendem Befehl können wir z.b. mit der folgenden Reihe an Befehlen die Position des selektierten Objekts verändern:
+```n
+bpy.context.object.location = (1, 0, 0)
+```
+
+Pfade können auch in Variablen gespeichert und dann über diese manipulert werden:
+```n
+my_cube = bpy.context.object
+```
+```n
+my_cube.location.x += 2
+```
+
+wird lediglich der Pfad zu einer Variablen oa. eingegeben, gibt die Konsole deren Wert zurück. Z.b. ```my_cube.scale``` gibt ```Vector((1.0, 1.0, 1.0))``` zurück. Wir wissen also nun, dass es sich bei scale um eine Datenstruktur "Vector" handelt und diese die Werte (1,1,1) für x, y und z hat.
+
+Die Struktur der API wird im folgenden Kapitel noch genauer behandelt.
+
+</div>
+<div class="column right">
+<video autoplay controls loop src="img/live_console.mp4"></video>
+</div>
 </div>
 
+## Abläufe als Script speichern
 
+Das Info Fenster gibt uns für die meisten Aktionen, die wir in Blender tun den Python-Code aus, der im Hintergrund ausgeführt wird. So können wir schnell Arbeitsabläufe einfach aus dem Info Fenster herauskopieren und als Script abspeichern, um uns repetetive Arbeit zu sparen.
 
-<br>
+![Info Fenster](img/info.png)
+*Das Info Fenster nachdem ein Affenkopf hinzugefügt wurde, diesem ein Subdivisio Surface Modifier hinzugefügt wurde und er auf der Z-Achse um 2.0 skaliert wurde*
+
+Nun kann der Inhalt des Info-Fensters mit `LMB + Drag` selektiert werden und mit `STRG + C` & `STRG + V` in das Textfenster kopiert werden (vorher dort oben auf ***New*** klicken).
+
+Damit unser Script funktioniert muss hier noch das **bpy Modul** importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).
+
+Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen werden, wenn sie nicht benötigt werden. Es reicht daher für diesen Zweck auf folgender Code:
+
+```python
+import bpy
+
+bpy.ops.mesh.primitive_monkey_add()
+bpy.ops.object.modifier_add(type='SUBSURF')
+bpy.ops.transform.resize(value=(1, 1, 2)) #(1, 1, 2) steht hierbei für 1 auf X- und Y-Achse und 2 auf der Z-Achse
+```
+
+> in Python können Funktionsparameter (hier z.b. der *value* Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden.
+
+![Automatisierung von Abläufen](img/automated.png)
+
+Nun kann das Script mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut `ALT + P` (mit Mauscursor im Texteditor) ausgeführt werden.
 
 ## Affentheater
 Todo
