@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 4 - Meshgenerierung - Datenverarbeitung in der Medienproduktion</title>
+    <title>Python Style Guide - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.76.3" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
     
-    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/">
+    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/python-style-guide/">
     
 
-    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/">
+    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/python-style-guide/">
     <meta property="og:title" content="Datenverarbeitung in der Medienproduktion">
     <meta property="og:image" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/images/lecture_logo_dvmp.png">
     <meta name="apple-mobile-web-app-title" content="Datenverarbeitung in der Medienproduktion">
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 4 - Meshgenerierung
+        Python Style Guide
       </div>
     </div>
 
@@ -185,11 +185,14 @@
 
 
 
-<a  title="Python Style Guide" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/python-style-guide/">
+<a class="current" title="Python Style Guide" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/python-style-guide/">
 	
 	Python Style Guide
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
       
@@ -248,14 +251,11 @@
 
 
 
-<a class="current" title="4. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/">
+<a  title="4. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/">
 	
 	4. Meshes - Basics 
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
       
@@ -303,44 +303,12 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 4 - Meshgenerierung </h1>
+			<h1>Python Style Guide </h1>
 
-			<p><strong>Basics der Meshgenerierung und -manipulation</strong></p>
+			<p>Um Code schnell lesbar für Dritte zu machen, sollte beim Programmieren gewissen Regeln gefolgt werden. Das betrifft die Benennung von Variablen, Imports, Einrückungen, Leerzeichen etc. Haltet euch beim Scripting mit Python für Blender daher so gut wie möglich an die unten verlinkten Stylingregeln.</p>
 <ul>
-<li>BMesh</li>
-<li>Vertices bewegen</li>
-<li>Anwendung? Funktion plotten, Terrain / Fraktal generieren?</li>
-</ul>
-<h2 id="meshmanipulation-codebeispiel">Meshmanipulation Codebeispiel</h2>
-<ul>
-<li><a href="https://docs.blender.org/api/current/bmesh.html">BMesh</a> Einführung</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># This example assumes we have a mesh object selected</span>
-
-<span style="color:#f92672">import</span> bpy
-<span style="color:#f92672">import</span> bmesh
-
-<span style="color:#75715e"># Get the active mesh</span>
-me <span style="color:#f92672">=</span> bpy<span style="color:#f92672">.</span>context<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>data
-
-<span style="color:#75715e"># Get a BMesh representation</span>
-bm <span style="color:#f92672">=</span> bmesh<span style="color:#f92672">.</span>new()   <span style="color:#75715e"># create an empty BMesh</span>
-bm<span style="color:#f92672">.</span>from_mesh(me)   <span style="color:#75715e"># fill it in from a Mesh</span>
-
-<span style="color:#75715e"># Modify the BMesh, can do anything here...</span>
-<span style="color:#66d9ef">for</span> v <span style="color:#f92672">in</span> bm<span style="color:#f92672">.</span>verts:
-    v<span style="color:#f92672">.</span>co<span style="color:#f92672">.</span>x <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1.0</span>
-
-<span style="color:#75715e"># Finish up, write the bmesh back to the mesh</span>
-bm<span style="color:#f92672">.</span>to_mesh(me)
-bm<span style="color:#f92672">.</span>free()  <span style="color:#75715e"># free and prevent further access</span>
-
-me<span style="color:#f92672">.</span>update()
-</code></pre></div><h2 id="ressourcen--tutorials">Ressourcen &amp; Tutorials</h2>
-<ul>
-<li><a href="https://youtu.be/mljWBuj0Gho">How to Make Meshes with Python in Blender!</a></li>
-<li><a href="http://sinestesia.co/blog/tutorials/python-2d-grid/">create meshes from low-level data | Diego Gangl</a></li>
-<li><a href="https://medium.com/@behreajj/shaping-models-with-bmesh-in-blender-2-9-2f4fcc889bf0">Shaping models with BMesh | jeremy Beherandt</a></li>
+<li>Für Python ist der offizielle Styleguide das sogenannte <a href="https://www.python.org/dev/peps/pep-0008/"><strong>PEP (Python Enhancement Proposal)</strong></a>.</li>
+<li>Für Blender-Scripting sollte daher auch diesem Standard gefolgt werden. Spezifisch für Blender gibt es noch eine <a href="https://wiki.blender.org/wiki/Style_Guide/Python"><strong>kurze Erweiterung zu PEP.</strong></a></li>
 </ul>
 
 
@@ -358,7 +326,7 @@ me<span style="color:#f92672">.</span>update()
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/exercise01_a/" title="Übung 6 - Addon-Entwicklung und VS Code">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_b/" title="Übung 1 - Basics">
         <span class="direction">
           Previous
         </span>
@@ -368,7 +336,7 @@ me<span style="color:#f92672">.</span>update()
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 6 - Addon-Entwicklung und VS Code
+              Übung 1 - Basics
             </div>
           </div>
         </div>
@@ -378,14 +346,14 @@ me<span style="color:#f92672">.</span>update()
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/" title="Übung 3 - Würfeldimension">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/links/" title="Links &amp; Literatur">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 3 - Würfeldimension
+              Links &amp; Literatur
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
