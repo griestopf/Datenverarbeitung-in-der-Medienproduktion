@@ -327,20 +327,39 @@
 <li>Der <strong><span style="color: Magenta">Properties Editor</span></strong> <span class="counter">6</span> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.</li>
 </ul>
 <h2 id="live-scripting">Live Scripting</h2>
-<!--Zwei-Spalten layout in "Markdown" WOW!-->
+<!--Zwei-Spalten layout in "Markdown" WOW! Funktioniert nur ohne Einrückung-->
 <div class="row">
-    <div class="column left">
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-        Die Konsole lorem Ipsum und soalkshfkjeanfmds
-    </div>
-    <div class="column right">
-        <video autoplay controls loop src="img/live_console.mp4"></video>
-    </div>
+<div class="column left">
+<p>Die <strong>Python Konsole</strong> ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (<strong>b</strong>lender <strong>py</strong>thon API) getippt werden und anschließend mit <code>TAB</code> die verfügbaren nachfolgenden Pfade angezeigt werden. Mit <code>Pfeil nach oben</code> kann der letzte Befehl wieder aufgerufen werden.</p>
+<p>Mit folgendem Befehl können wir z.b. mit der folgenden Reihe an Befehlen die Position des selektierten Objekts verändern:</p>
+<pre><code class="language-n" data-lang="n">bpy.context.object.location = (1, 0, 0)
+</code></pre><p>Pfade können auch in Variablen gespeichert und dann über diese manipulert werden:</p>
+<pre><code class="language-n" data-lang="n">my_cube = bpy.context.object
+</code></pre><pre><code class="language-n" data-lang="n">my_cube.location.x += 2
+</code></pre><p>wird lediglich der Pfad zu einer Variablen oa. eingegeben, gibt die Konsole deren Wert zurück. Z.b. <code>my_cube.scale</code> gibt <code>Vector((1.0, 1.0, 1.0))</code> zurück. Wir wissen also nun, dass es sich bei scale um eine Datenstruktur &ldquo;Vector&rdquo; handelt und diese die Werte (1,1,1) für x, y und z hat.</p>
+<p>Die Struktur der API wird im folgenden Kapitel noch genauer behandelt.</p>
 </div>
-<br>
+<div class="column right">
+<video autoplay controls loop src="img/live_console.mp4"></video>
+</div>
+</div>
+<h2 id="abläufe-als-script-speichern">Abläufe als Script speichern</h2>
+<p>Das Info Fenster gibt uns für die meisten Aktionen, die wir in Blender tun den Python-Code aus, der im Hintergrund ausgeführt wird. So können wir schnell Arbeitsabläufe einfach aus dem Info Fenster herauskopieren und als Script abspeichern, um uns repetetive Arbeit zu sparen.</p>
+<p><img src="img/info.png" alt="Info Fenster">
+<em>Das Info Fenster nachdem ein Affenkopf hinzugefügt wurde, diesem ein Subdivisio Surface Modifier hinzugefügt wurde und er auf der Z-Achse um 2.0 skaliert wurde</em></p>
+<p>Nun kann der Inhalt des Info-Fensters mit <code>LMB + Drag</code> selektiert werden und mit <code>STRG + C</code> &amp; <code>STRG + V</code> in das Textfenster kopiert werden (vorher dort oben auf <em><strong>New</strong></em> klicken).</p>
+<p>Damit unser Script funktioniert muss hier noch das <strong>bpy Modul</strong> importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).</p>
+<p>Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen werden, wenn sie nicht benötigt werden. Es reicht daher für diesen Zweck auf folgender Code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
+
+bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>mesh<span style="color:#f92672">.</span>primitive_monkey_add()
+bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>modifier_add(type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;SUBSURF&#39;</span>)
+bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>transform<span style="color:#f92672">.</span>resize(value<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)) <span style="color:#75715e">#(1, 1, 2) steht hierbei für 1 auf X- und Y-Achse und 2 auf der Z-Achse</span>
+</code></pre></div><blockquote>
+<p>in Python können Funktionsparameter (hier z.b. der <em>value</em> Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden.</p>
+</blockquote>
+<p><img src="img/automated.png" alt="Automatisierung von Abläufen"></p>
+<p>Nun kann das Script mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut <code>ALT + P</code> (mit Mauscursor im Texteditor) ausgeführt werden.</p>
 <h2 id="affentheater">Affentheater</h2>
 <p>Todo</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
