@@ -72,11 +72,16 @@ Die Struktur der API wird im folgenden Kapitel noch genauer behandelt.
 Das Info Fenster gibt uns für die meisten Aktionen, die wir in Blender tun den Python-Code aus, der im Hintergrund ausgeführt wird. So können wir schnell Arbeitsabläufe einfach aus dem Info Fenster herauskopieren und als Script abspeichern, um uns repetetive Arbeit zu sparen.
 
 ![Info Fenster](img/info.png)
-*Das Info Fenster nachdem ein Affenkopf hinzugefügt wurde, diesem ein Subdivisio Surface Modifier hinzugefügt wurde und er auf der Z-Achse um 2.0 skaliert wurde*
+Das Info Fenster nachdem ein Affenkopf hinzugefügt, diesem ein Subdivisio Surface Modifier hinzugefügt und er auf der Z-Achse um 2.0 skaliert wurde
 
-Nun kann der Inhalt des Info-Fensters mit `LMB + Drag` selektiert werden und mit `STRG + C` & `STRG + V` in das Textfenster kopiert werden (vorher dort oben auf ***New*** klicken).
+- Der Inhalt des Info-Fensters kann mit `LMB + Drag` selektiert werden und mit `STRG + C` & `STRG + V` in das Textfenster kopiert werden (vorher dort oben auf ***New*** klicken).
 
-Damit unser Script funktioniert muss hier noch das **bpy Modul** importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).
+- Damit unser Script funktioniert muss hier noch das **bpy Modul** importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).
+
+- Das Script kann mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut `ALT + P` (mit Mauscursor im Texteditor) ausgeführt werden.
+
+![Automatisierung von Abläufen](img/automated.png)
+
 
 Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen werden, wenn sie nicht benötigt werden. Es reicht daher für diesen Zweck auf folgender Code:
 
@@ -90,40 +95,80 @@ bpy.ops.transform.resize(value=(1, 1, 2)) #(1, 1, 2) steht hierbei für 1 auf X-
 
 > in Python können Funktionsparameter (hier z.b. der *value* Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.
 
-![Automatisierung von Abläufen](img/automated.png)
-
-Nun kann das Script mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut `ALT + P` (mit Mauscursor im Texteditor) ausgeführt werden.
 
 ## Affentheater
-Todo
 
+Wir wollen nun das erlernte anwenden, um eine Horde von Affenköpfen (im Rechteck angeordnet) zu erstellen.
+
+![Affentheater](img/affentheater.png)
+
+- Erstellt im Text Editor ein neues Script
+- importiert zunächst die Blender API mit ```import bpy```
+- Um ein Gitter zu erzeugen benötigen wir zwei verschachtelte Schleifen (Zeilen und Spalten). Solche For-Schleifen in Python sind sehr einfach mit der **range** funktion möglich. Wird in dieser nur eine Zahl angegeben, entspricht diese der Anzahl an ausgeführten Iterationen.
+
+```python
+for row in range(5):
+    for column in range(5):
+        #...Code um Affengitter mit 5 Reihen und Spalten zu erzeugen
+```
+
+- Fügt nun den Code der Operatoren, den ihr aus dem Info Fenster kopieren könnt, in die geschachtelte Schleife ein. Wir wollen mit jeder Iteration:
+  - Einen Affen (Suzanne) an seinem Platz im Gitter hinzufügen
+  - Den Affen rotieren, damit er hübscher guckt
+  - Das Shading des Meshes auf *Smooth* setzen
+  
+- Entfernt nun die nicht benötigten Parameter aus den Operatorfunktionen
+
+Das Affengitter-Script sollte nun in etwa so aussehen:
 ```python
 import bpy
 
-GRID_SCALE = 5
-GRID_SIZE = 5
-
-for i in range(0, GRID_SIZE):
-    for j in range(0, GRID_SIZE):
-        bpy.ops.mesh.primitive_monkey_add(location=(GRID_SCALE * j ,GRID_SCALE * i, 0))
-
-        bpy.ops.transform.rotate(value=0.575267, orient_axis='Z', orient_type='VIEW', orient_matrix=((4.93038e-32, 1, 2.22045e-16), (2.22045e-16, 4.93038e-32, 1), (1, 2.22045e-16, 4.93038e-32)), orient_matrix_type='VIEW')
-
-        bpy.ops.transform.translate(value=(0, 0, 0.608087), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL')
-
-        # bpy.ops.object.modifier_add(type='SUBSURF')
-        # bpy.context.object.modifiers["Subdivision"].levels = 1
+for row in range(5):
+    for column in range(5):
+        bpy.ops.mesh.primitive_monkey_add(location=(3 * row ,3 * column, 0))
+        bpy.ops.transform.rotate(value=0.6, orient_axis='X', orient_type='GLOBAL')
         bpy.ops.object.shade_smooth()
+```
+
+Schließlich wollen wir die Verwendung von Magic Numbers (undokumentierte Zahlen irgendwo im Code) reduzieren. 
+
+- Dazu legen wir oben im Script die entsprechenden "Konstanten" an (speziell deklarierte Konstanten gibt es in Python nicht) und setzen sie unten im Code ein.
+- Hier importieren wir noch das **random** modul und verwenden deren **uniform** Funktion, um jedem Affen eine zufällige Größe zu geben. Diese gibt einen zufälligen Wert innerhalb der Beiden übergebenen Parameter zurück.
+
+```python
+import bpy
+import random
+
+GRID_SPACING = 3
+GRID_SIZE = 5
+SIZE_MIN = 0.2
+SIZE_MAX = 1.2
+
+for row in range(GRID_SIZE):
+    for column in range(GRID_SIZE):
+        bpy.ops.mesh.primitive_monkey_add(location=(GRID_SPACING * row ,GRID_SPACING * column, 0))
+        bpy.ops.transform.rotate(value=0.6, orient_axis='X', orient_type='GLOBAL')
+        bpy.ops.object.shade_smooth()
+        
+        # random size
+        size = random.uniform(SIZE_MIN, SIZE_MAX)
+        bpy.ops.transform.resize(value=(size, size, size))
 
 ```
+*Der fertige Affentheater Code*
 
 ## Aufgabe bis zum nächsten Mal
 - Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet
-- Optional: Lasst die Affenköpfe alle in die Mitte der Szene gucken.
+- Freiwilliger Zusatz: Lasst die Affenköpfe alle in die Mitte der Szene gucken.
+
+![img](img/affenkreis.png)
+
+- Experimentiert auch gerne mit weiteren Funkionen
+
 > **Tipps** 
-> - Die Formel für die Position eines Punktes im Einheitskreis ist<br>
+> - Die Formel für die Position eines Punktes im Einheitskreis ist Folgende:<br>
 > ![img](img/einheitskreis.png)<br>
-> - **t** ist dabei der Winkel in Radianten. 360° entspricht 2Pi
+> - **t** ist dabei der Winkel in Radianten. 360° entspricht 2Pi.
 > - Zur Nutzung von Sinus & Cosinus muss das math Modul importiert werden 
 > ```python
 >  import math
