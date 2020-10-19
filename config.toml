@@ -33,18 +33,24 @@ googleAnalytics = ""
 
 [[menu.main]]
 	name   = "Allgemeines"
-	weight = 20
+	weight = 10
 
 [[menu.main]]
 	name   = "Kursinfo"
 	url    = "general/"
-	weight = 10
+	weight = 11
 	parent = "Allgemeines"
 
 [[menu.main]]
 	name   = "Links & Literatur"
 	url    = "links/"
-	weight = 10
+	weight = 12
+	parent = "Allgemeines"
+
+[[menu.main]]
+	name   = "Python Style Guide"
+	url    = "python-style-guide/"
+	weight = 13
 	parent = "Allgemeines"
 
 [[menu.main]]
@@ -60,31 +66,31 @@ googleAnalytics = ""
 [[menu.main]]
 	name   = "2. Python & Blender API"
 	url    = "chapter02/exercise01_a/"
-	weight = 31
+	weight = 22
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "3. Operatoren & Codestruktur"
 	url    = "chapter03/exercise01_a/"
-	weight = 41
+	weight = 23
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "4. Meshes - Basics "
 	url    = "chapter04/exercise01_a/"
-	weight = 51
+	weight = 24
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "5. Meshes - BMesh"
 	url    = "chapter05/exercise01_a/"
-	weight = 51
+	weight = 25
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "6 Addon-Entwicklung und VS Code"
 	url    = "chapter06/exercise01_a/"
-	weight = 51
+	weight = 26
 	parent = "Kapitel"
 
 [blackfriday]
