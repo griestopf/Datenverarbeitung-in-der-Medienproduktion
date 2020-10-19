@@ -3,6 +3,10 @@
     padding-bottom: 12px !important;
 }
 
+.footer {
+  display: none !important;
+}
+
 .project {
     height: 90px;
 }
