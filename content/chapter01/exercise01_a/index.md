@@ -3,9 +3,6 @@ title: Übung 1 - Blender Setup & Scripting-Tools
 
 ---
  
-
-![turm](img/monkeygrid.png)
-
 **In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.**
 
 ## Blender Setup
