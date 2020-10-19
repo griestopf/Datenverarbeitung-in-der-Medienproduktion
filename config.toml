@@ -4,6 +4,8 @@ title = "Datenverarbeitung in der Medienproduktion"
 theme = "material-docs"
 metadataformat = "yaml"
 canonifyurls = true
+home = "general/"
+
 # Enable Google Analytics by entering your tracking id
 googleAnalytics = ""
 
@@ -33,64 +35,53 @@ googleAnalytics = ""
 
 [[menu.main]]
 	name   = "Allgemeines"
-	weight = 10
 
 [[menu.main]]
 	name   = "Kursinfo"
 	url    = "general/"
-	weight = 11
 	parent = "Allgemeines"
 
 [[menu.main]]
 	name   = "Links & Literatur"
 	url    = "links/"
-	weight = 12
 	parent = "Allgemeines"
 
 [[menu.main]]
 	name   = "Python Style Guide"
 	url    = "python-style-guide/"
-	weight = 13
 	parent = "Allgemeines"
 
 [[menu.main]]
 	name   = "Kapitel"
-	weight = 20
 
 [[menu.main]]
 	name   = "1. Blender & Scripting-Tools"
 	url    = "chapter01/exercise01_a/"
-	weight = 21
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "2. Python & Blender API"
 	url    = "chapter02/exercise01_a/"
-	weight = 22
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "3. Operatoren & Codestruktur"
 	url    = "chapter03/exercise01_a/"
-	weight = 23
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "4. Meshes - Basics "
 	url    = "chapter04/exercise01_a/"
-	weight = 24
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "5. Meshes - BMesh"
 	url    = "chapter05/exercise01_a/"
-	weight = 25
 	parent = "Kapitel"
 
 [[menu.main]]
 	name   = "6 Addon-Entwicklung und VS Code"
 	url    = "chapter06/exercise01_a/"
-	weight = 26
 	parent = "Kapitel"
 
 [blackfriday]

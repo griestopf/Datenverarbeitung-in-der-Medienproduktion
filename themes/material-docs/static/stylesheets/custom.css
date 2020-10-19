@@ -7,6 +7,10 @@
     height: 90px;
 }
 
+.footer {
+  display: none !important;
+}
+
 .section {
     padding-top: 16px !important;
     padding-bottom: 10px !important;

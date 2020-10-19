@@ -1,6 +1,6 @@
 **Vorlesungsunterlagen für die Veranstalltung Datenverarbeitung in der Medienproduktion.**
 
-## [Hugo-Seite mit Content & Notizen](https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/)
+## [Hugo-Seite mit Content & Notizen](https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/)
 
 
 ## Bisherige Veranstaltungsstruktur (WS 20/21)
