@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -8,30 +8,37 @@
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -44,6 +51,7 @@
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/tags/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
