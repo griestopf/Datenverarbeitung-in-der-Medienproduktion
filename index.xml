@@ -91,16 +91,18 @@ Einführung Wie viele andere Softwarepakete im Bereich der Medienproduktion läs
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</guid>
-      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops   Das Blender-Python-Modul bpy Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python Module. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul bpy (Abk.</description>
+      <description>Das Blender-Python-Modul bpy Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python Module. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul bpy (Abk. f. Blender Python) zur Verfügung.
+In Blender-Skripten muss dieses Modul wie jedes andere Modul auch zunächst mit einer import-Anweisung eingebunden werden:</description>
     </item>
     
     <item>
-      <title>Übung 3 - Würfeldimension</title>
+      <title>Übung 3 - Operatoren &amp; Codestruktur</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/</guid>
-      <description>Addon mit UI erstellen um Würfeldimension zu generieren: - Set an Türmchenassets generieren - Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen - Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)</description>
+      <description>Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unserer TODO - JA WAS DENN erweitern.
+Operatoren Wir haben bereits die ops Kategorie des bpy Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der F3-Suche gefunden werden kann.</description>
     </item>
     
     <item>
