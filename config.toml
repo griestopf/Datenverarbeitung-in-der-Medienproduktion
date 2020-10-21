@@ -1,4 +1,4 @@
-baseurl = "https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/"
+baseurl = "https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/"
 languageCode = "de"
 title = "Datenverarbeitung in der Medienproduktion"
 theme = "material-docs"
