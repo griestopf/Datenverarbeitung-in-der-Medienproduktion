@@ -25,7 +25,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</guid>
-      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops   Das Blender-Python-Modul bpy Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python Module. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul bpy (Abk.</description>
+      <description>Das Blender-Python-Modul bpy Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python Module. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul bpy (Abk. f. Blender Python) zur Verfügung.
+In Blender-Skripten muss dieses Modul wie jedes andere Modul auch zunächst mit einer import-Anweisung eingebunden werden:</description>
     </item>
     
   </channel>

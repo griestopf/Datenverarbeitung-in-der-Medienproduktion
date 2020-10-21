@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 3 - Würfeldimension - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 3 - Operatoren &amp; Codestruktur - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.54.0" />
 
     
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 3 - Würfeldimension
+        Übung 3 - Operatoren &amp; Codestruktur
       </div>
     </div>
 
@@ -303,14 +303,91 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 3 - Würfeldimension </h1>
+			<h1>Übung 3 - Operatoren &amp; Codestruktur </h1>
 
-			<p><img src="img/wuerfeldimension.png" alt="Würfeldimension" /></p>
+			
 
-<p><strong>Addon mit UI erstellen um Würfeldimension zu generieren:</strong>
+<p><img src="img/wuerfeldimension.png" alt="Würfeldimension" /></p>
+
+<!--
+**Addon mit UI erstellen um Würfeldimension zu generieren:**
+
 - Set an Türmchenassets generieren
 - Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen
-- Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)</p>
+- Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)
+-->
+
+<p>Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unserer TODO - JA WAS DENN erweitern.</p>
+
+<h2 id="operatoren">Operatoren</h2>
+
+<p>Wir haben bereits die <code>ops</code> Kategorie des <code>bpy</code> Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der <code>F3</code>-Suche gefunden werden kann.
+<!--Suche nach neuem Op. funktioniert aktuell (2.91 Beta) nicht - BUG? Report hier: https://developer.blender.org/T81936 --></p>
+
+<blockquote class="todo">
+    <ul>
+<li>öffne im Text Editor das <em>&ldquo;Operator Simple&rdquo;</em> Template.
+<img src="img/template.png" alt="Simple Operator Template" /></li>
+</ul>
+
+</blockquote>
+
+<p>Sehen wir uns hier nun ersteinmal die Klasse <code>SimpleOperator an</code></p>
+
+<pre><code class="language-python">class SimpleOperator(bpy.types.Operator):
+    &quot;&quot;&quot;Tooltip&quot;&quot;&quot;
+    bl_idname = &quot;object.simple_operator&quot;
+    bl_label = &quot;Simple Object Operator&quot;
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
+    def execute(self, context):
+        main(context)
+        return {'FINISHED'}
+</code></pre>
+
+<ul>
+<li>Mit der Deklaration <strong><code>class SimpleOperator(bpy.types.Operator)</code></strong> geben wir an, dass unsere Klasse ein Operator ist - also von <code>bpy.types.Operator</code> erbt.</li>
+<li>Darunter können wir mit <strong><code>&quot;&quot;&quot;Mein Tooltipp&quot;&quot;&quot;</code></strong> eine Beschreibung angeben, die dem Nutzer beim überfahren des Operators mit dem Cursor angezeigt bekommt.</li>
+<li><strong><code>bl_idname</code></strong> ist der pfad API-Pfad unter dem der Operator aufrufbar sein wird <code>&quot;object.simple_operator&quot;</code> lässt sich dann mit <code>bpy.ops.object.simple_operator()</code> aufrufen.</li>
+<li><code>bl_label</code>
+<!--Warum ist poll classmethod und execute nicht?--></li>
+
+<li><p>Die <strong><code>poll</code></strong> Methode ist optional. Sie empfängt hier TODO(KLASSE) und den aktuellen Kontex</p></li>
+
+<li><p>Die <strong><code>execute</code></strong> Methode ist der tatsächlich ausgeführte Code beim aufrufen des Operators. Ihr wird hier <code>self</code> übergeben (in Python wird über <code>self.meine_variable</code> auf Membervariablen der aktuellen Klasseninstanz zugegriffen) und wiederum der aktuelle Kontext.</p></li>
+</ul>
+
+<p>Der ausgeführte Code wurde in diesem Beispiel in die <code>main</code> Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben.</p>
+
+<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes</p>
+
+<blockquote class="info">
+    <p>Wenn viele Klassen zu registrieren sind, lässt sich auch die <code>register_classes_factory</code> nutzen, der ein Tuple an Klassen übergeben wird.</p>
+
+<pre><code class="language-python">register, unregister = bpy.utils.register_classes_factory(
+    (MeineKlasse1,
+    MeineKlasse2,
+    MeineKlasse3,)
+)
+</code></pre>
+
+</blockquote>
+
+<ul>
+<li><p>Zuguterletzt folgen die etwas kryptische Zeilen</p>
+
+<pre><code class="language-python">if __name__ == &quot;__main__&quot;:
+register()
+
+# test call
+bpy.ops.object.simple_operator()
+</code></pre></li>
+</ul>
+
+<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die registrierung des Operators in der API und ein Testlauf.</p>
 
 
 			<aside class="copyright" role="note">

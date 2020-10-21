@@ -5,7 +5,5 @@ IF ERRORLEVEL 1 (
     EXIT /B
 )
 echo on
-rd public /s/q
-hugo --destination public/script --baseURL https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/
-xcopy /i /s /y _site\*.* public
-
+hugo
+git subtree push --prefix public origin gh-pages
