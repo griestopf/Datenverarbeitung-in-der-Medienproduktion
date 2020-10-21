@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Datenverarbeitung in der Medienproduktion</title>
     <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/</link>
     <description>Recent content on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>de</language><atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/index.xml" rel="self" type="application/rss+xml" />
+    <language>de</language>
+    
+	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Allgemeines</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/</link>
@@ -41,7 +45,7 @@ Geplante Veranstaltungsstruktur    VS Nr. Inhalt     1 Blender Setup und Scripti
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_b/</guid>
-      <description>U1 </description>
+      <description> U1 </description>
     </item>
     
     <item>
@@ -78,7 +82,7 @@ Geplante Veranstaltungsstruktur    VS Nr. Inhalt     1 Blender Setup und Scripti
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</guid>
       <description>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.
-Blender Setup  Ladet euch zunächst von Blender.org die aktuelle Version von Blender herunter. Dieses Script behandelt die Version 2.90. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.   Eine Einführung in Blender selbst, sowie Links mit Tutorials etc.</description>
+Einführung Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen python Unterverzeichnis). Obwohl Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt.</description>
     </item>
     
     <item>
@@ -87,9 +91,7 @@ Blender Setup  Ladet euch zunächst von Blender.org die aktuelle Version von Ble
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/</guid>
-      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops    Prozedurale Würfeltürmchen bauen Türmchen:
- Genau gestapelte Würfel nach oben schmaler werden Würfel mit random Scale, Z-Rotation und Location-Offset  Beispielcode Würfeltürmchen
-import bpy import random from datetime import datetime import mathutils MAX_STACKS = 10 MIN_STACKS = 2 MAX_SCALE = 2.5 MIN_SCALE = 0.5 # clear scene - später entfernen bpy.</description>
+      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops   Das Blender-Python-Modul bpy Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python Module. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul bpy (Abk.</description>
     </item>
     
     <item>
@@ -98,8 +100,7 @@ import bpy import random from datetime import datetime import mathutils MAX_STAC
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/</guid>
-      <description>Addon mit UI erstellen um Würfeldimension zu generieren:
- Set an Türmchenassets generieren Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)  </description>
+      <description>Addon mit UI erstellen um Würfeldimension zu generieren: - Set an Türmchenassets generieren - Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen - Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)</description>
     </item>
     
     <item>
@@ -119,7 +120,7 @@ import bpy import random from datetime import datetime import mathutils MAX_STAC
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/exercise01_a/</guid>
       <description>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.
-bl_info = { &amp;#34;name&amp;#34;: &amp;#34;New Object&amp;#34;, &amp;#34;author&amp;#34;: &amp;#34;Your Name Here&amp;#34;, &amp;#34;version&amp;#34;: (1, 0), &amp;#34;blender&amp;#34;: (2, 80, 0), &amp;#34;location&amp;#34;: &amp;#34;View3D &amp;gt; Add &amp;gt; Mesh &amp;gt; New Object&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;Adds a new Mesh Object&amp;#34;, &amp;#34;warning&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;doc_url&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;category&amp;#34;: &amp;#34;Add Mesh&amp;#34;, } </description>
+bl_info = { &amp;quot;name&amp;quot;: &amp;quot;New Object&amp;quot;, &amp;quot;author&amp;quot;: &amp;quot;Your Name Here&amp;quot;, &amp;quot;version&amp;quot;: (1, 0), &amp;quot;blender&amp;quot;: (2, 80, 0), &amp;quot;location&amp;quot;: &amp;quot;View3D &amp;gt; Add &amp;gt; Mesh &amp;gt; New Object&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;Adds a new Mesh Object&amp;quot;, &amp;quot;warning&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;doc_url&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;category&amp;quot;: &amp;quot;Add Mesh&amp;quot;, }  </description>
     </item>
     
   </channel>

@@ -5,6 +5,91 @@ title: Übung 2 - Würfelturm
 - [bpy und andere Module](https://docs.blender.org/api/current/index.html)  Grundaufbau - anhand Livekonsole demonstrieren
   - Genauer eingehen auf bpy.context, bpy.data, bpy.ops
 
+
+## Das Blender-Python-Modul `bpy`
+
+Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python _Module_. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul `bpy` (Abk. f. _Blender Python_) zur Verfügung. 
+
+In Blender-Skripten muss dieses Modul wie jedes andere Modul auch zunächst mit einer `import`-Anweisung eingebunden werden:
+
+```Python
+import bpy
+
+# Rest des Skripts...
+```
+
+Wird die in Blender eingebaute interaktive Python-Konsole verwendet, ist dies automatisch schon geschehen, d.h. es kann direkt auf alles, was `bpy` bietet, zugegriffen werden.
+
+### Aufteilung
+
+Das Modul `bpy` bietet die gesamte skript-bare Blender-Funktionalität in acht "Unterebenen" an.
+
+{{<todo>}}
+- Gebt auf der Blender-Python-Console nur `bpy.` ein und drückt dann `Strg`-`Leertaste`, bzw. den Button "Autocomplete" 
+- Es werden die acht möglichen "Unterebenen" angezeigt.
+{{</todo>}}
+
+
+Von diesen acht Gruppen unterhalb von `bpy` sollen hier die folgenden drei näher betrachtet werden:
+- `bpy.ops`
+- `bpy.context`
+- `bpy.data`
+
+## Die wichtigsten "Untermodule" von `bpy`
+
+### `bpy.context`
+
+Klassen und Methoden unterhalb von `bpy.context` erlauben den Zugriff auf den aktuellen Kontext, in dem sich der Benutzer befindet wie z.B. Szene, Modus, Selektierte Objekte, Faces, Kanten u. Vertices.
+
+### `bpy.data`
+
+`bpy.data` ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das ".blend"-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  `bpy.data` Zugegriffen werden. Einen Überblick darüber, was das ist, liefert der Outliner-Editor, wenn man ihn von "All Scenes" auf "Blender File" oder "All Data Blocks" umstellt. Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über `bpy.data`.
+
+### `bpy.ops`
+
+`bpy.ops` steht für "Operatoren". Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus `bpy.ops`.
+
+Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden.
+
+## Beispiel: Matrix Extrude
+
+
+## Aufgaben
+
+Implemeniert ein Skript zum unten beschriebenen "Matrix Extrude":
+
+Insbesondere beim Box Modelling kommt folgende Abfolge von Bearbeitungsschritten auf einer Fläche häufig vor
+
+1. Fläche wird in Richtung der Flächennormalen um eine Länge extrudiert.
+2. Die extrudierte Fläche wird skaliert (z.B. verkleinert).
+3. Die extrudierte Fläche wird rotiert.
+
+Durch mehrfaches Wiederholen der o.g. Schritte lassen sich sehr gut "Auswüchse" aus einem bestehenden Box-Modell erzeugen, wie z.B. Arme, Beine, Tentakel u.ä.
+
+Schreibt ein Skript, das die aktuell selektierten Flächen eines Mesh um einen bestimmten Betrag entlang der Normalen extrudiert, die Flächen um einen bestimmten Betrag skaliert und rotiert. Packt diese drei Anweisungen in eine Schleife, die eine definierte Anzahl von durchläufen wiederholt wird.
+
+{{<info>}}
+Tipp: Führt oben genannten Arbeitsschritte von Hand aus und schaut im Arbeitsbereich des Info-Editors, welche Python-Befehle sich dahinter verbergen. Die im Info-Editor angezeigten Befehele enthalten immer den vollen Parametersatz. Davon können viele Einstellungen weggelassen werden, wenn sie sowieso die voreingestellten Standardwerte sind. Dünnt die Aufrufe in Eurem Code aus.
+{{</info>}}
+
+Packt die vom Benutzer zu verändernden Werte wie Rotationswinkel/Achse, Skalierungsfaktor, Extrusions-Strecke und Anzahl der Wiederholungen in Variablen, die zentral am Anfang des Skriptes stehen und dort bequem geändert werden können.
+
+{{<todo>}}
+- Arbeitet das einleitende Kapitel der offiziellen [Blender Python Dokumentation](https://docs.blender.org/api/current/info_quickstart.html) durch.
+  - Was ist das besondere an den `bpy`-Collections?
+  - Wie wird ein neues Mesh erzeugt?
+  - Wie setze ich das aktuell selektierte Objekt in Python?
+{{</todo>}}
+
+<!-- TODO Erstzen
+- Sucht im Internet sinnvolle Python-Code-Schnipsel für die Verwendung der drei oben genannten "Untermodule" `bpy.context`, `bpy.data`, `bpy.ops`.
+ - Probiert die Code-Schnipsel selbst aus.
+ - Variiert den Code und schaut was sich ändert
+ - Lest die Referenz-Doku u. ggf. andere Quellen zu den verwendeten Befehlen nach.
+ - Gibt es im jweiligen Untermodul ähnliche Befehle? Welche Funktion haben diese
+-->
+
+
 ## Prozedurale Würfeltürmchen bauen
 
 ![turm](img/turm.png)

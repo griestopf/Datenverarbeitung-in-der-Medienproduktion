@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 6 - Addon-Entwicklung und VS Code - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.76.5" />
+    <meta name="generator" content="Hugo 0.54.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -306,18 +306,20 @@
 			<h1>Übung 6 - Addon-Entwicklung und VS Code </h1>
 
 			<p>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bl_info <span style="color:#f92672">=</span> {
-    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;New Object&#34;</span>,
-    <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Your Name Here&#34;</span>,
-    <span style="color:#e6db74">&#34;version&#34;</span>: (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
-    <span style="color:#e6db74">&#34;blender&#34;</span>: (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">0</span>),
-    <span style="color:#e6db74">&#34;location&#34;</span>: <span style="color:#e6db74">&#34;View3D &gt; Add &gt; Mesh &gt; New Object&#34;</span>,
-    <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Adds a new Mesh Object&#34;</span>,
-    <span style="color:#e6db74">&#34;warning&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-    <span style="color:#e6db74">&#34;doc_url&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-    <span style="color:#e6db74">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;Add Mesh&#34;</span>,
+
+<pre><code class="language-python">bl_info = {
+    &quot;name&quot;: &quot;New Object&quot;,
+    &quot;author&quot;: &quot;Your Name Here&quot;,
+    &quot;version&quot;: (1, 0),
+    &quot;blender&quot;: (2, 80, 0),
+    &quot;location&quot;: &quot;View3D &gt; Add &gt; Mesh &gt; New Object&quot;,
+    &quot;description&quot;: &quot;Adds a new Mesh Object&quot;,
+    &quot;warning&quot;: &quot;&quot;,
+    &quot;doc_url&quot;: &quot;&quot;,
+    &quot;category&quot;: &quot;Add Mesh&quot;,
 }
-</code></pre></div>
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
@@ -333,25 +335,25 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-  </div>
-
-  <div class="next">
-  
       <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/" title="Übung 4 - Meshgenerierung">
         <span class="direction">
-          Next
+          Previous
         </span>
         <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
           <div class="stretch">
             <div class="title">
               Übung 4 - Meshgenerierung
             </div>
           </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
         </div>
       </a>
+  
+  </div>
+
+  <div class="next">
   
   </div>
 </nav>

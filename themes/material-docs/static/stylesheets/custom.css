@@ -8,7 +8,7 @@
 }
 
 .footer {
-  display: none !important;
+    display: none !important;
 }
 
 .section {
@@ -17,7 +17,6 @@
 }
 
 code {
-    color: #277a00 !important;
     border: #c3c3c3 solid 1px;
     border-radius: 3px;
     padding: 2px 4px !important;
@@ -33,7 +32,7 @@ pre {
 }
 
 .resicon {
-    float:left; 
+    float: left;
     margin-right: 8px;
 }
 
@@ -48,32 +47,33 @@ pre {
 
 .column {
     float: left;
-    height: auto; /* Should be removed. Only for demonstration */
-  }
+    height: auto;
+    /* Should be removed. Only for demonstration */
+}
 
-  
-  .left {
+.left {
     width: 50%;
     padding-right: 10px;
-  }
-  
-  .right {
+}
+
+.right {
     width: 50%;
-  }
+}
 
-  
-  @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .column {
-      width: 100%;
+        width: 100%;
     }
-  }
+}
 
-  /* Clear floats after the columns */
-  .row:after {
+
+/* Clear floats after the columns */
+
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
+}
 
 .video_example {
     display: inline-block;
@@ -93,19 +93,4 @@ pre {
     height: 145px;
     overflow: hidden;
     bottom: 10px;
-}
-
-blockquote {
-    background: rgb(217, 240, 253);
-    background-image: url(../images/lightbulb.svg);
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-size: 24px;
-    background-position-x: 4px;
-    background-position-y: 4px;
-    padding-left: 35px !important;
-    min-height: 35px;
-    border-color: rgb(255, 221, 171) !important;
-    border-width: 5px !important;
-    color: #555 !important;
 }

@@ -5,45 +5,75 @@ title: Übung 1 - Blender Setup & Scripting-Tools
  
 **In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.**
 
-## Blender Setup
-- Ladet euch zunächst von [Blender.org](https://www.blender.org/download/) die aktuelle Version von Blender herunter. Dieses Script behandelt die Version 2.90. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.
+## Einführung
+
+Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen `python` Unterverzeichnis). Obwohl Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus sind sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a. 
+
+- Szenen und Objekte
+- Geometrie
+- Kamera und Beleuchtung
+- Materialien
+- Texturen
+
+## Erste Schritte
+
+{{<todo>}}
+Ladet euch zunächst von [Blender.org](https://www.blender.org/download/) die aktuelle Version von Blender herunter. 
+{{</todo>}}
+Dieses Script behandelt die Version 2.90. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.
 
 <!--Link zu CG Webseite? Ist ja nicht immer alles Online und vlt auch nicht immer auf Davids Webspace?-->
-> Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im [**Script zur Veranstalltung Computergrafik**](https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/chapter01/lecture01/) 
+- Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im [**Script zur Veranstalltung Computergrafik**](https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/chapter01/lecture01/) 
 
+{{<todo>}}
 - Öffnet Blender und in Blender die ***Preferences***
 ![Preferences](img/preferences.png)
 - Aktiviert hier nun im ***Interface*** Tab *Python Tooltips* und *Development Extras*
+{{</todo>}}
 
-> **Python Tooltips** zeigt beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.<br>
-> ![Python Tooltip](img/python_tooltip.png)
-> 
-> **Development Extras** Ermöglicht einige Funktionen, die uns das Scripten erleichter, wie z.b. das Anzeigen des Python-Codes von Features (`RMB` → *Edit Source*)<br>
-> ![Edit Source](img/edit_source.png)
+{{<twoculumn>}}
+{{<left >}}
+**Python Tooltips** zeigt beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.
+{{</left>}}
+{{<right>}}
+![Python Tooltip](img/python_tooltip.png)
+{{</right >}}
+{{</twoculumn>}}
 
+{{<twoculumn>}}
+{{<left>}}
+**Development Extras** Ermöglicht einige Funktionen, die uns das Scripten erleichter, wie z.b. das Anzeigen des Python-Codes von Features (`RMB` → *Edit Source*). Der Sourcecode wird dann im Texteditor geöffnet. Da manche Bereiche der UI automatisch über den [C-Kern](https://github.com/blender/blender/tree/master/source/blender) von Blender generiert werden, gibt es jedoch nicht zu jedem Wert und Knopf ein Pythonscript.
+{{</left>}}
+{{<right>}}
+![Edit Source](img/edit_source.png)
+{{</right>}}
+{{</twoculumn>}}    
 ## Scripting Tools
 
-- Wechselt nun zum Workspace-Tab ***Scripting***
-
+{{<todo>}}
+Wechselt nun zum Workspace-Tab ***Scripting***
+{{</todo>}}
 ![Scripting Workspace](img/scripting_workspace.png) <!--TODO Bild Counter einfügen-->
-- Der **<span style="color: ForestGreen">3D View</span>** <span class="counter">1</span> stellt die aktuelle Szene in 3D dar.
-- Die **<span style="color: DarkGoldenRod">Python Konsole</span>** <span class="counter">2</span> ermöglicht es live Python-Befehle mit Autovervollständigung (`TAB`)auszuführen
-- Das **<span style="color: Blue">Info Fenster</span>** <span class="counter">3</span> gibt den Code von in Blender ausgeführten Aktionen aus
-- Im **<span style="color: Red">Text Editor</span>** <span class="counter">4</span> wird der Code für unsere Scripte geschrieben
-- Die beiden **<span style="color: DarkOrange">Outliner Fenster</span>** <span class="counter">5</span> zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files
-- Der **<span style="color: Magenta">Properties Editor</span>** <span class="counter">6</span> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.
+
+
+- Der **<span style="color: ForestGreen">3D View</span>** {{<counter 1>}} stellt die aktuelle Szene in 3D dar.
+- Mit der **<span style="color: DarkGoldenRod">Python Konsole</span>**  {{<counter 2>}} kann wie mit dem `python`-Befehl von der Kommandozeile des Betriebssystems interaktiv Python-Code Zeile für Zeile eingegeben werden.
+- Das **<span style="color: Blue">Info Fenster</span>**  {{<counter 3>}} gibt den Code von in Blender ausgeführten Aktionen aus
+- Im **<span style="color: Red">Text Editor</span>**  {{<counter 4>}} wird der Code für unsere Scripte geschrieben
+- Die beiden **<span style="color: DarkOrange">Outliner Fenster</span>**  {{<counter 5>}} zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files
+- Der **<span style="color: Magenta">Properties Editor</span>**  {{<counter 6>}} ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.
 
 ## Live Scripting
 
 <!--Zwei-Spalten layout in "Markdown" WOW! Funktioniert nur ohne Einrückung-->
-<div class="row">
-<div class="column left">
+{{<twoculumn>}}
 
+{{<left>}}
 Die **Python Konsole** ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (**b**lender **py**thon API) getippt werden und anschließend mit `TAB` die verfügbaren nachfolgenden Pfade angezeigt werden. Mit `Pfeil nach oben` kann der letzte Befehl wieder aufgerufen werden.
 
-Mit folgendem Befehl können wir z.b. mit der folgenden Reihe an Befehlen die Position des selektierten Objekts verändern:
+Mit folgendem Befehl können wir z.b. das selektierten Objekts um zwei Einheiten entlang der Y-Achse verschieben.
 ```n
-bpy.context.object.location = (1, 0, 0)
+bpy.ops.transform.translate(value=(0, 2, 0))
 ```
 
 Pfade können auch in Variablen gespeichert und dann über diese manipulert werden:
@@ -57,12 +87,25 @@ my_cube.location.x += 2
 wird lediglich der Pfad zu einer Variablen oa. eingegeben, gibt die Konsole deren Wert zurück. Z.b. ```my_cube.scale``` gibt ```Vector((1.0, 1.0, 1.0))``` zurück. Wir wissen also nun, dass es sich bei scale um eine Datenstruktur "Vector" handelt und diese die Werte (1,1,1) für x, y und z hat.
 
 Die Struktur der API wird im folgenden Kapitel noch genauer behandelt.
+{{</left>}}
 
-</div>
-<div class="column right">
+{{<right>}}
 <video autoplay controls loop src="img/live_console.mp4"></video>
-</div>
-</div>
+{{</right>}}
+
+{{</twoculumn>}}
+
+Was fällt uns hier ins Auge?:
+
+- Alles, was Blender für das Skripten zur Verfügung stellt, ist über das Python-_Modul_ `bpy` abrufbar. Unterhalb von `bpy` gibt es eine weitere hierarchische Aufteilung, so dass Blender-Kommandos in Python folgende Struktur haben:
+  ```
+  bpy.abc.def.[...].command()
+  ```
+  Das Kommando ```bpy.ops.transform.translate()``` verwendet aus der Gesamtheit aller Blender-Python-Funktionalität `bpy` die Untergruppe der Operatoren `ops`, dort wird dann aus der Untergruppe der Transformations-Operatoren `transform` die Methode `translate` aufgerufen.
+
+- Funktionen (Methoden), die Parameter entgegen nehmen, verwenden meist _named_ Paramter. Im Beispiel oben muss daher der Verschiebungsvektor, der an die Methode ```translate``` übergeben wird, mit ```value=...``` explizit benannt werden. Bislang haben wir bei Python-Methoden die aus anderen Programmiersprachen bekannten _positional_ Parameter kennen gelernt, bei denen die Position in der Parameterliste eindeutig bestimmt, welcher Parameter gemeint ist.
+
+- Vektoren werden in  einer 3D-Anwendung an allen möglichen Stellen verwendet. So auch in Blender, z.B. für die Angaben von Verschiebungen, Positionen, Normalen, Euler-Winkel, Textur-Koordinaten usw.. Diese können in Blender Python als _Tupel_ (Siehe Lektion 2 - Datentypen) angegeben werden. 
 
 ## Abläufe als Script speichern
 
@@ -71,6 +114,7 @@ Das Info Fenster gibt uns für die meisten Aktionen, die wir in Blender tun den 
 ![Info Fenster](img/info.png)
 Das Info Fenster nachdem ein Affenkopf hinzugefügt, diesem ein Subdivisio Surface Modifier hinzugefügt und er auf der Z-Achse um 2.0 skaliert wurde
 
+{{<todo>}}
 - Der Inhalt des Info-Fensters kann mit `LMB + Drag` selektiert werden und mit `STRG + C` & `STRG + V` in das Textfenster kopiert werden (vorher dort oben auf ***New*** klicken).
 
 - Damit unser Script funktioniert muss hier noch das **bpy Modul** importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).
@@ -78,6 +122,7 @@ Das Info Fenster nachdem ein Affenkopf hinzugefügt, diesem ein Subdivisio Surfa
 - Das Script kann mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut `ALT + P` (mit Mauscursor im Texteditor) ausgeführt werden.
 
 ![Automatisierung von Abläufen](img/automated.png)
+{{</todo>}}
 
 
 Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen werden, wenn sie nicht benötigt werden. Es reicht daher für diesen Zweck auf folgender Code:
@@ -99,6 +144,8 @@ Wir wollen nun das erlernte anwenden, um eine Horde von Affenköpfen (im Rechtec
 
 ![Affentheater](img/affentheater.png)
 
+{{<todo>}}
+
 - Erstellt im Text Editor ein neues Script
 - importiert zunächst die Blender API mit ```import bpy```
 - Um ein Gitter zu erzeugen benötigen wir zwei verschachtelte Schleifen (Zeilen und Spalten). Solche For-Schleifen in Python sind sehr einfach mit der **range** funktion möglich. Wird in dieser nur eine Zahl angegeben, entspricht diese der Anzahl an ausgeführten Iterationen.
@@ -115,6 +162,7 @@ for row in range(5):
   - Das Shading des Meshes auf *Smooth* setzen
   
 - Entfernt nun die nicht benötigten Parameter aus den Operatorfunktionen
+{{</todo>}}
 
 Das Affengitter-Script sollte nun in etwa so aussehen:
 ```python
@@ -129,6 +177,7 @@ for row in range(5):
 
 Schließlich wollen wir die Verwendung von Magic Numbers (undokumentierte Zahlen irgendwo im Code) reduzieren. 
 
+{{<todo>}}
 - Dazu legen wir oben im Script die entsprechenden "Konstanten" an (speziell deklarierte Konstanten gibt es in Python nicht) und setzen sie unten im Code ein.
 - Hier importieren wir noch das **random** modul und verwenden deren **uniform** Funktion, um jedem Affen eine zufällige Größe zu geben. Diese gibt einen zufälligen Wert innerhalb der Beiden übergebenen Parameter zurück.
 
@@ -153,6 +202,9 @@ for row in range(GRID_SIZE):
 
 ```
 *Der fertige Affentheater Code*
+{{</todo>}}
+
+{{<todo>}}
 
 ## Aufgabe bis zum nächsten Mal
 - Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet
@@ -162,14 +214,16 @@ for row in range(GRID_SIZE):
 
 - Experimentiert auch gerne mit weiteren Funkionen
 
-> **Tipps** 
-> - Die Formel für die Position eines Punktes im Einheitskreis ist Folgende:<br>
-> ![img](img/einheitskreis.png)<br>
-> - **t** ist dabei der Winkel in Radianten. 360° entspricht 2Pi.
-> - Zur Nutzung von Sinus & Cosinus muss das math Modul importiert werden 
-> ```python
->  import math
-> ```
+### Tipps
+- Die Formel für die Position eines Punktes im Einheitskreis ist Folgende:<br>
+![img](img/einheitskreis.png)<br>
+- **t** ist dabei der Winkel in Radianten. 360° entspricht 2Pi.
+- Zur Nutzung von Sinus & Cosinus muss das math Modul importiert werden
+
+```python
+ import math
+```
+{{</todo>}}
 
 ## Ressourcen & Tutorials zum Thema
 

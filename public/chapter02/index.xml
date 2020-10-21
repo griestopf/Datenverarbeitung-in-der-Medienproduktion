@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapter02s on Datenverarbeitung in der Medienproduktion</title>
     <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/</link>
     <description>Recent content in Chapter02s on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>de</language><atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/index.xml" rel="self" type="application/rss+xml" />
+    <language>de</language>
+    
+	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Übung 1 - Basics</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_b/</link>
@@ -21,9 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/</guid>
-      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops    Prozedurale Würfeltürmchen bauen Türmchen:
- Genau gestapelte Würfel nach oben schmaler werden Würfel mit random Scale, Z-Rotation und Location-Offset  Beispielcode Würfeltürmchen
-import bpy import random from datetime import datetime import mathutils MAX_STACKS = 10 MIN_STACKS = 2 MAX_SCALE = 2.5 MIN_SCALE = 0.5 # clear scene - später entfernen bpy.</description>
+      <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops   Das Blender-Python-Modul bpy Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python Module. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul bpy (Abk.</description>
     </item>
     
   </channel>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 2 - Würfelturm - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.76.5" />
+    <meta name="generator" content="Hugo 0.54.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -305,73 +305,173 @@
 		<div class="wrapper">
 			<h1>Übung 2 - Würfelturm </h1>
 
-			<ul>
+			
+
+<ul>
 <li><a href="https://docs.blender.org/api/current/index.html">bpy und andere Module</a>  Grundaufbau - anhand Livekonsole demonstrieren
+
 <ul>
 <li>Genauer eingehen auf bpy.context, bpy.data, bpy.ops</li>
+</ul></li>
 </ul>
-</li>
+
+<h2 id="das-blender-python-modul-bpy">Das Blender-Python-Modul <code>bpy</code></h2>
+
+<p>Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python <em>Module</em>. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul <code>bpy</code> (Abk. f. <em>Blender Python</em>) zur Verfügung.</p>
+
+<p>In Blender-Skripten muss dieses Modul wie jedes andere Modul auch zunächst mit einer <code>import</code>-Anweisung eingebunden werden:</p>
+
+<pre><code class="language-Python">import bpy
+
+# Rest des Skripts...
+</code></pre>
+
+<p>Wird die in Blender eingebaute interaktive Python-Konsole verwendet, ist dies automatisch schon geschehen, d.h. es kann direkt auf alles, was <code>bpy</code> bietet, zugegriffen werden.</p>
+
+<h3 id="aufteilung">Aufteilung</h3>
+
+<p>Das Modul <code>bpy</code> bietet die gesamte skript-bare Blender-Funktionalität in acht &ldquo;Unterebenen&rdquo; an.</p>
+
+<blockquote class="todo">
+    <ul>
+<li>Gebt auf der Blender-Python-Console nur <code>bpy.</code> ein und drückt dann <code>Strg</code>-<code>Leertaste</code>, bzw. den Button &ldquo;Autocomplete&rdquo;</li>
+<li>Es werden die acht möglichen &ldquo;Unterebenen&rdquo; angezeigt.</li>
 </ul>
+
+</blockquote>
+
+<p>Von diesen acht Gruppen unterhalb von <code>bpy</code> sollen hier die folgenden drei näher betrachtet werden:
+- <code>bpy.ops</code>
+- <code>bpy.context</code>
+- <code>bpy.data</code></p>
+
+<h2 id="die-wichtigsten-untermodule-von-bpy">Die wichtigsten &ldquo;Untermodule&rdquo; von <code>bpy</code></h2>
+
+<h3 id="bpy-context"><code>bpy.context</code></h3>
+
+<p>Klassen und Methoden unterhalb von <code>bpy.context</code> erlauben den Zugriff auf den aktuellen Kontext, in dem sich der Benutzer befindet wie z.B. Szene, Modus, Selektierte Objekte, Faces, Kanten u. Vertices.</p>
+
+<h3 id="bpy-data"><code>bpy.data</code></h3>
+
+<p><code>bpy.data</code> ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das &ldquo;.blend&rdquo;-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  <code>bpy.data</code> Zugegriffen werden. Einen Überblick darüber, was das ist, liefert der Outliner-Editor, wenn man ihn von &ldquo;All Scenes&rdquo; auf &ldquo;Blender File&rdquo; oder &ldquo;All Data Blocks&rdquo; umstellt. Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über <code>bpy.data</code>.</p>
+
+<h3 id="bpy-ops"><code>bpy.ops</code></h3>
+
+<p><code>bpy.ops</code> steht für &ldquo;Operatoren&rdquo;. Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus <code>bpy.ops</code>.</p>
+
+<p>Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden.</p>
+
+<h2 id="beispiel-matrix-extrude">Beispiel: Matrix Extrude</h2>
+
+<h2 id="aufgaben">Aufgaben</h2>
+
+<p>Implemeniert ein Skript zum unten beschriebenen &ldquo;Matrix Extrude&rdquo;:</p>
+
+<p>Insbesondere beim Box Modelling kommt folgende Abfolge von Bearbeitungsschritten auf einer Fläche häufig vor</p>
+
+<ol>
+<li>Fläche wird in Richtung der Flächennormalen um eine Länge extrudiert.</li>
+<li>Die extrudierte Fläche wird skaliert (z.B. verkleinert).</li>
+<li>Die extrudierte Fläche wird rotiert.</li>
+</ol>
+
+<p>Durch mehrfaches Wiederholen der o.g. Schritte lassen sich sehr gut &ldquo;Auswüchse&rdquo; aus einem bestehenden Box-Modell erzeugen, wie z.B. Arme, Beine, Tentakel u.ä.</p>
+
+<p>Schreibt ein Skript, das die aktuell selektierten Flächen eines Mesh um einen bestimmten Betrag entlang der Normalen extrudiert, die Flächen um einen bestimmten Betrag skaliert und rotiert. Packt diese drei Anweisungen in eine Schleife, die eine definierte Anzahl von durchläufen wiederholt wird.</p>
+
+<blockquote class="info">
+    Tipp: Führt oben genannten Arbeitsschritte von Hand aus und schaut im Arbeitsbereich des Info-Editors, welche Python-Befehle sich dahinter verbergen. Die im Info-Editor angezeigten Befehele enthalten immer den vollen Parametersatz. Davon können viele Einstellungen weggelassen werden, wenn sie sowieso die voreingestellten Standardwerte sind. Dünnt die Aufrufe in Eurem Code aus.
+</blockquote>
+
+<p>Packt die vom Benutzer zu verändernden Werte wie Rotationswinkel/Achse, Skalierungsfaktor, Extrusions-Strecke und Anzahl der Wiederholungen in Variablen, die zentral am Anfang des Skriptes stehen und dort bequem geändert werden können.</p>
+
+<blockquote class="todo">
+    <ul>
+<li>Arbeitet das einleitende Kapitel der offiziellen <a href="https://docs.blender.org/api/current/info_quickstart.html">Blender Python Dokumentation</a> durch.
+
+<ul>
+<li>Was ist das besondere an den <code>bpy</code>-Collections?</li>
+<li>Wie wird ein neues Mesh erzeugt?</li>
+<li>Wie setze ich das aktuell selektierte Objekt in Python?</li>
+</ul></li>
+</ul>
+
+</blockquote>
+
+<!-- TODO Erstzen
+- Sucht im Internet sinnvolle Python-Code-Schnipsel für die Verwendung der drei oben genannten "Untermodule" `bpy.context`, `bpy.data`, `bpy.ops`.
+ - Probiert die Code-Schnipsel selbst aus.
+ - Variiert den Code und schaut was sich ändert
+ - Lest die Referenz-Doku u. ggf. andere Quellen zu den verwendeten Befehlen nach.
+ - Gibt es im jweiligen Untermodul ähnliche Befehle? Welche Funktion haben diese
+-->
+
 <h2 id="prozedurale-würfeltürmchen-bauen">Prozedurale Würfeltürmchen bauen</h2>
-<p><img src="img/turm.png" alt="turm"></p>
+
+<p><img src="img/turm.png" alt="turm" /></p>
+
 <p>Türmchen:</p>
+
 <ul>
 <li>Genau gestapelte Würfel</li>
 <li>nach oben schmaler werden</li>
 <li>Würfel mit random Scale, Z-Rotation und Location-Offset</li>
 </ul>
+
 <p><strong>Beispielcode Würfeltürmchen</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bpy
-<span style="color:#f92672">import</span> random
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
-<span style="color:#f92672">import</span> mathutils
+<pre><code class="language-python">import bpy
+import random
+from datetime import datetime
 
-MAX_STACKS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
-MIN_STACKS <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
-MAX_SCALE <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.5</span>
-MIN_SCALE <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
+import mathutils
 
-<span style="color:#75715e"># clear scene - später entfernen</span>
-bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>select_all(action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;SELECT&#39;</span>)
-bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>object<span style="color:#f92672">.</span>delete()
+MAX_STACKS = 10
+MIN_STACKS = 2
+MAX_SCALE = 2.5
+MIN_SCALE = 0.5
+
+# clear scene - später entfernen
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete()
 
 
-random<span style="color:#f92672">.</span>seed(datetime<span style="color:#f92672">.</span>now())
+random.seed(datetime.now())
 
-bpy<span style="color:#f92672">.</span>ops<span style="color:#f92672">.</span>mesh<span style="color:#f92672">.</span>primitive_cube_add()
-C <span style="color:#f92672">=</span> bpy<span style="color:#f92672">.</span>context
+bpy.ops.mesh.primitive_cube_add()
+C = bpy.context
 
-src_obj <span style="color:#f92672">=</span> C<span style="color:#f92672">.</span>active_object
+src_obj = C.active_object
 
-src_obj<span style="color:#f92672">.</span>rotation_euler<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>random() <span style="color:#f92672">*</span> <span style="color:#ae81ff">360</span>
+src_obj.rotation_euler.z = random.random() * 360
 
-rand_scale <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>uniform(MIN_SCALE, MAX_SCALE)
-src_obj<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> mathutils<span style="color:#f92672">.</span>Vector((rand_scale,rand_scale,rand_scale))
-src_obj<span style="color:#f92672">.</span>location<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> rand_scale
+rand_scale = random.uniform(MIN_SCALE, MAX_SCALE)
+src_obj.scale = mathutils.Vector((rand_scale,rand_scale,rand_scale))
+src_obj.location.z = rand_scale
 
-height <span style="color:#f92672">=</span> rand_scale <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># * 2 weil cube 2m groß ist. Später durch dimensions ersetzen.</span>
+height = rand_scale * 2 # * 2 weil cube 2m groß ist. Später durch dimensions ersetzen.
 
-previous_scale <span style="color:#f92672">=</span> rand_scale
+previous_scale = rand_scale
 
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range (<span style="color:#ae81ff">1</span>, random<span style="color:#f92672">.</span>randint(MIN_STACKS, MAX_STACKS)):
-    new_obj <span style="color:#f92672">=</span> src_obj<span style="color:#f92672">.</span>copy()
-    new_obj<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> src_obj<span style="color:#f92672">.</span>data
-    new_obj<span style="color:#f92672">.</span>rotation_euler<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>random() <span style="color:#f92672">*</span> <span style="color:#ae81ff">360</span>
+for i in range (1, random.randint(MIN_STACKS, MAX_STACKS)):
+    new_obj = src_obj.copy()
+    new_obj.data = src_obj.data
+    new_obj.rotation_euler.z = random.random() * 360
     
-    rand_scale <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>uniform(MIN_SCALE, MAX_SCALE)  <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> i <span style="color:#f92672">/</span> MAX_STACKS)
+    rand_scale = random.uniform(MIN_SCALE, MAX_SCALE)  * (1 - i / MAX_STACKS)
     
-    new_obj<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> mathutils<span style="color:#f92672">.</span>Vector((rand_scale, rand_scale, rand_scale))
+    new_obj.scale = mathutils.Vector((rand_scale, rand_scale, rand_scale))
     
-    height <span style="color:#f92672">+=</span> rand_scale
-    new_obj<span style="color:#f92672">.</span>location<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> height
-    height <span style="color:#f92672">+=</span> rand_scale
+    height += rand_scale
+    new_obj.location.z = height
+    height += rand_scale
     
-    previous_scale <span style="color:#f92672">=</span> rand_scale
+    previous_scale = rand_scale
     
-    C<span style="color:#f92672">.</span>collection<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>link(new_obj)
+    C.collection.objects.link(new_obj)
 
-</code></pre></div>
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
@@ -387,7 +487,7 @@ previous_scale <span style="color:#f92672">=</span> rand_scale
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/" title="Übung 3 - Würfeldimension">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/" title="Übung 1 - Blender Setup &amp; Scripting-Tools">
         <span class="direction">
           Previous
         </span>
@@ -397,7 +497,7 @@ previous_scale <span style="color:#f92672">=</span> rand_scale
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 3 - Würfeldimension
+              Übung 1 - Blender Setup &amp; Scripting-Tools
             </div>
           </div>
         </div>
@@ -407,14 +507,14 @@ previous_scale <span style="color:#f92672">=</span> rand_scale
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/" title="Übung 1 - Blender Setup &amp; Scripting-Tools">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/" title="Übung 3 - Würfeldimension">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 1 - Blender Setup &amp; Scripting-Tools
+              Übung 3 - Würfeldimension
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
