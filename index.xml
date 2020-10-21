@@ -2,123 +2,123 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Datenverarbeitung in der Medienproduktion</title>
-    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/</link>
+    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/</link>
     <description>Recent content on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de</language>
     
-	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Allgemeines</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/general/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/</guid>
       <description>Vorlesungsunterlagen für die Veranstalltung Datenverarbeitung in der Medienproduktion.
 Geplante Veranstaltungsstruktur    VS Nr. Inhalt     1 Blender Setup und Scripting-Tools - Monkeygrid   2 Python &amp;amp; Blender API - zufällige Würfeltürmchen generieren   3 Operatoren &amp;amp; Codestruktur - Würfeldimension   4 Meshgenerierung und Manipulation 1 &amp;amp; Projektthemen Orga   5 Meshgenerierung und Manipulation 2 - BMesh   6 VS Code Setup &amp;amp; Addon-Entwicklung (vlt auch vor Meshgen.</description>
     </item>
     
     <item>
       <title>Links &amp; Literatur</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/links/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/links/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/links/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/links/</guid>
       <description>Python    Art/Länge Titel Beschreibung Quelle      Einführung ins Programmieren mit Python Auf Deutsch pythonbuch.com    The Python 3.7 Tutorial Einstieg in Python Offizielle Python 3.7 Documentation   111min Python Tutorial 2020 Einführung in alle wichtigen Python Funktionalitäten (Blender unabhängig) YouTube - Derek Banas    Blender Scripting allgemein    Art/Länge Titel Beschreibung Quelle     44min Python Crashcourse for Blender Guter Schnelleinstieg in Scripting mit Blender YouTube - Curtis Holt    Blender Python API Dokumentation Offizielle Blender API Dokumentation Blender Python API Dokumentation   21x je 5-20min Blender Python - Scripting Series Ausführlichere Serie zu Blender Scripting YouTube - Darkfall   15x je 5-20min Scripting for Artists Sehr gute aufgearbeitete Serie zu Blender Scripting und Addon Entwicklung - teilweise jedoch kostenpflichtig Blender Cloud - Dr.</description>
     </item>
     
     <item>
       <title>Python Style Guide</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/python-style-guide/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/python-style-guide/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/</guid>
       <description>Um Code schnell lesbar für Dritte zu machen, sollte beim Programmieren gewissen Regeln gefolgt werden. Das betrifft die Benennung von Variablen, Imports, Einrückungen, Leerzeichen etc. Haltet euch beim Scripting mit Python für Blender daher so gut wie möglich an die unten verlinkten Stylingregeln.
  Für Python ist der offizielle Styleguide das sogenannte PEP (Python Enhancement Proposal). Für Blender-Scripting sollte daher auch diesem Standard gefolgt werden. Spezifisch für Blender gibt es noch eine kurze Erweiterung zu PEP.</description>
     </item>
     
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_b/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_b/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_b/</guid>
       <description> U1 </description>
     </item>
     
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_b/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_b/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_b/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_b/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_b/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_b/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Übung 1 - Blender Setup &amp; Scripting-Tools</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/</guid>
       <description>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.
 Einführung Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen python Unterverzeichnis). Obwohl Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt.</description>
     </item>
     
     <item>
       <title>Übung 2 - Würfelturm</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter02/exercise01_a/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</guid>
       <description>bpy und andere Module Grundaufbau - anhand Livekonsole demonstrieren  Genauer eingehen auf bpy.context, bpy.data, bpy.ops   Das Blender-Python-Modul bpy Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python Module. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul bpy (Abk.</description>
     </item>
     
     <item>
       <title>Übung 3 - Würfeldimension</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter03/exercise01_a/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/</guid>
       <description>Addon mit UI erstellen um Würfeldimension zu generieren: - Set an Türmchenassets generieren - Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen - Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)</description>
     </item>
     
     <item>
       <title>Übung 4 - Meshgenerierung</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/</guid>
       <description>Basics der Meshgenerierung und -manipulation
  BMesh Vertices bewegen Anwendung? Funktion plotten, Terrain / Fraktal generieren?  Meshmanipulation Codebeispiel  BMesh Einführung  # This example assumes we have a mesh object selected import bpy import bmesh # Get the active mesh me = bpy.context.object.data # Get a BMesh representation bm = bmesh.new() # create an empty BMesh bm.from_mesh(me) # fill it in from a Mesh # Modify the BMesh, can do anything here.</description>
     </item>
     
     <item>
       <title>Übung 6 - Addon-Entwicklung und VS Code</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/exercise01_a/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter06/exercise01_a/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
       <description>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.
 bl_info = { &amp;quot;name&amp;quot;: &amp;quot;New Object&amp;quot;, &amp;quot;author&amp;quot;: &amp;quot;Your Name Here&amp;quot;, &amp;quot;version&amp;quot;: (1, 0), &amp;quot;blender&amp;quot;: (2, 80, 0), &amp;quot;location&amp;quot;: &amp;quot;View3D &amp;gt; Add &amp;gt; Mesh &amp;gt; New Object&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;Adds a new Mesh Object&amp;quot;, &amp;quot;warning&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;doc_url&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;category&amp;quot;: &amp;quot;Add Mesh&amp;quot;, }  </description>
     </item>

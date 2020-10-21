@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapter04s on Datenverarbeitung in der Medienproduktion</title>
-    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/</link>
+    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/</link>
     <description>Recent content in Chapter04s on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de</language>
     
-	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_b/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_b/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Übung 4 - Meshgenerierung</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter04/exercise01_a/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/</guid>
       <description>Basics der Meshgenerierung und -manipulation
  BMesh Vertices bewegen Anwendung? Funktion plotten, Terrain / Fraktal generieren?  Meshmanipulation Codebeispiel  BMesh Einführung  # This example assumes we have a mesh object selected import bpy import bmesh # Get the active mesh me = bpy.context.object.data # Get a BMesh representation bm = bmesh.new() # create an empty BMesh bm.from_mesh(me) # fill it in from a Mesh # Modify the BMesh, can do anything here.</description>
     </item>

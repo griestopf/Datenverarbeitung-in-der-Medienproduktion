@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapter01s on Datenverarbeitung in der Medienproduktion</title>
-    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/</link>
+    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/</link>
     <description>Recent content in Chapter01s on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de</language>
     
-	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_b/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_b/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_b/</guid>
       <description> U1 </description>
     </item>
     
     <item>
       <title>Übung 1 - Blender Setup &amp; Scripting-Tools</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</link>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/public/chapter01/exercise01_a/</guid>
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/</guid>
       <description>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.
 Einführung Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen python Unterverzeichnis). Obwohl Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt.</description>
     </item>
