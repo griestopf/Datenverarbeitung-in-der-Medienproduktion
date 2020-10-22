@@ -321,8 +321,7 @@
 
 <h2 id="operatoren">Operatoren</h2>
 
-<p>Wir haben bereits die <code>ops</code> Kategorie des <code>bpy</code> Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der <code>F3</code>-Suche gefunden werden kann.
-<!--Suche nach neuem Op. funktioniert aktuell (2.91 Beta) nicht - BUG? Report hier: https://developer.blender.org/T81936 --></p>
+<p>Wir haben bereits die <code>ops</code> Kategorie des <code>bpy</code> Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der <code>F3</code>-Suche gefunden werden kann.</p>
 
 <blockquote class="todo">
     <ul>
@@ -360,9 +359,9 @@
 <li><p>Die <strong><code>execute</code></strong> Methode ist der tatsächlich ausgeführte Code beim aufrufen des Operators. Ihr wird hier <code>self</code> übergeben (in Python wird über <code>self.meine_variable</code> auf Membervariablen der aktuellen Klasseninstanz zugegriffen) und wiederum der aktuelle Kontext.</p></li>
 </ul>
 
-<p>Der ausgeführte Code wurde in diesem Beispiel in die <code>main</code> Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben.</p>
+<p>Der ausgeführte Code wurde hier in die <code>main</code> Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben. In diesem Beispiel wird über jedes Objekt in der aktuellen Szene <code>context.scene.objects</code> iteriert und dieses in der Konsole ausgegeben. <code>for</code> lässt dich in Python nutzen wie <code>foreach</code> in anderen Sprachen.</p>
 
-<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes</p>
+<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes .</p>
 
 <blockquote class="info">
     <p>Wenn viele Klassen zu registrieren sind, lässt sich auch die <code>register_classes_factory</code> nutzen, der ein Tuple an Klassen übergeben wird.</p>
@@ -388,6 +387,26 @@ bpy.ops.object.simple_operator()
 </ul>
 
 <p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die registrierung des Operators in der API und ein Testlauf.</p>
+
+<blockquote class="todo">
+    <ul>
+<li>Stelle sicher, dass <strong>Preferences → Interface → Developer Extras</strong> aktiviert ist (nur dann lassen sich so erstellte Operatoren mit F3 suchen)</li>
+<li>Führe das SKript <em>Operator Simple</em> im Texteditor aus</li>
+<li>Öffne die Systemkonsole mit <strong>Window → Toggle System Console</strong></li>
+<li>Suche im mit F3 nach *&ldquo;Simple Object Operator&rdquo;</li>
+</ul>
+
+<p>In der Konsole wird nun eine Liste der Objekte in der Szene ausgegeben.</p>
+
+<p><p style="margin-bottom: -30px; margin-left: 5px;"> <img style="margin-bottom: -3px;" height="20px" src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/blender_icon.png" alt=""> blender.exe</p>
+<pre class="console" style="width: 700px;">
+found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.91\python
+&lt;bpy_struct, Object() at 0x000001D2821FC088&gt;
+&lt;bpy_struct, Object(&ldquo;Light&rdquo;) at 0x000001D2821FC608&gt;
+&lt;bpy_struct, Object(&ldquo;Camera&rdquo;) at 0x000001D2821FBB08&gt;&gt;}}
+</pre></p>
+
+</blockquote>
 
 
 			<aside class="copyright" role="note">

@@ -1,0 +1,17 @@
+{
+    "Todo Shortcode": {
+        "prefix": ["todo", "shortcode"],
+        "body": ["{{<todo>}}\n{{</todo>}}"],
+        "description": "For my Hugo todo Shortcode"
+    },
+    "Info Shortcode": {
+        "prefix": ["info", "shortcode"],
+        "body": ["{{<info>}}\n{{</info>}}"],
+        "description": "For my Hugo Info Shortcode"
+    },
+    "Two Columns Shortcode": {
+        "prefix": ["column", "two column", "layout", "shortcode"],
+        "body": ["{{<twoculumn>}}\n{{<left>}}\nCONTENT LEFT\n{{</left>}}\n{{<right>}}\nCONTENT RIGHT\n{{</right>}}\n{{</twoculumn>}}"],
+        "description": "For my Hugo Info Shortcode"
+    }
+}

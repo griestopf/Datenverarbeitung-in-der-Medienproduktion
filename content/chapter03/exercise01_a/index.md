@@ -17,7 +17,7 @@ Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben 
 ## Operatoren
 
 Wir haben bereits die `ops` Kategorie des `bpy` Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der `F3`-Suche gefunden werden kann.
-<!--Suche nach neuem Op. funktioniert aktuell (2.91 Beta) nicht - BUG? Report hier: https://developer.blender.org/T81936 -->
+
 
 {{<todo>}}
 - öffne im Text Editor das *"Operator Simple"* Template.
@@ -49,9 +49,9 @@ class SimpleOperator(bpy.types.Operator):
 
 - Die **`execute`** Methode ist der tatsächlich ausgeführte Code beim aufrufen des Operators. Ihr wird hier `self` übergeben (in Python wird über `self.meine_variable` auf Membervariablen der aktuellen Klasseninstanz zugegriffen) und wiederum der aktuelle Kontext.
 
-Der ausgeführte Code wurde in diesem Beispiel in die `main` Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben.
+Der ausgeführte Code wurde hier in die `main` Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben. In diesem Beispiel wird über jedes Objekt in der aktuellen Szene `context.scene.objects` iteriert und dieses in der Konsole ausgegeben. `for` lässt dich in Python nutzen wie `foreach` in anderen Sprachen.
 
-Schließlich fallen noch die beiden Methoden `register` und `unregister` auf. Diese sind außerhalb des Klassenrumpfes 
+Schließlich fallen noch die beiden Methoden `register` und `unregister` auf. Diese sind außerhalb des Klassenrumpfes .
 
 {{<info>}}
 Wenn viele Klassen zu registrieren sind, lässt sich auch die `register_classes_factory` nutzen, der ein Tuple an Klassen übergeben wird.
@@ -75,3 +75,19 @@ if __name__ == "__main__":
 ```
 
 Die Überprüfung `if __name__ == "__main__"` überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die registrierung des Operators in der API und ein Testlauf.
+
+{{<todo>}}
+- Stelle sicher, dass **Preferences → Interface → Developer Extras** aktiviert ist (nur dann lassen sich so erstellte Operatoren mit F3 suchen)
+- Führe das SKript *Operator Simple* im Texteditor aus
+- Öffne die Systemkonsole mit **Window → Toggle System Console**
+- Suche im mit F3 nach *"Simple Object Operator"
+
+In der Konsole wird nun eine Liste der Objekte in der Szene ausgegeben.
+
+{{<console 700px>}}
+found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.91\python
+&lt;bpy_struct, Object() at 0x000001D2821FC088&gt;
+&lt;bpy_struct, Object("Light") at 0x000001D2821FC608&gt;
+&lt;bpy_struct, Object("Camera") at 0x000001D2821FBB08&gt;>}}
+{{</console>}} 
+{{</todo>}}

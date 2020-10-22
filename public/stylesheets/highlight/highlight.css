@@ -36,7 +36,9 @@
 .hljs-literal,
 .hljs-variable,
 .hljs-template-variable,
-.hljs-tag .hljs-attr {}
+.hljs-tag .hljs-attr {
+    color: teal;
+}
 
 .hljs-string,
 .hljs-doctag {
