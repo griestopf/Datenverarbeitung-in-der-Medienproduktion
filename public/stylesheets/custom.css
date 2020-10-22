@@ -94,3 +94,12 @@ pre {
     overflow: hidden;
     bottom: 10px;
 }
+
+.tabletitle {
+    color: white;
+    position: relative;
+    margin-left: 15px;
+    margin-bottom: -65px;
+    z-index: 2000 !important;
+    position: flex;
+}
