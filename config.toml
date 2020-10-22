@@ -65,24 +65,25 @@ googleAnalytics = ""
 	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "3. Operatoren & Codestruktur"
+	name   = "3. Operatoren & Addons"
 	url    = "chapter03/exercise01_a/"
 	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "4. Meshes - Basics "
+	name   = "4. Addon-Entwicklung und VS Code"
+	url    = "chapter06/exercise01_a/"
+	parent = "Kapitel"
+
+[[menu.main]]
+	name   = "5. Meshes - Basics "
 	url    = "chapter04/exercise01_a/"
 	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "5. Meshes - BMesh"
+	name   = "6. Meshes - BMesh"
 	url    = "chapter05/exercise01_a/"
 	parent = "Kapitel"
 
-[[menu.main]]
-	name   = "6 Addon-Entwicklung und VS Code"
-	url    = "chapter06/exercise01_a/"
-	parent = "Kapitel"
 
 [blackfriday]
 	smartypants	= true
