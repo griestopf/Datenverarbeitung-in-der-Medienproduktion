@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 3 - Operatoren &amp; Codestruktur - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 3 - Operatoren &amp; Addons - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.54.0" />
 
     
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 3 - Operatoren &amp; Codestruktur
+        Übung 3 - Operatoren &amp; Addons
       </div>
     </div>
 
@@ -235,9 +235,9 @@
 
 
 
-<a class="current" title="3. Operatoren &amp; Codestruktur" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/">
+<a class="current" title="3. Operatoren &amp; Addons" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/">
 	
-	3. Operatoren &amp; Codestruktur
+	3. Operatoren &amp; Addons
 </a>
 
 
@@ -251,9 +251,9 @@
 
 
 
-<a  title="4. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
+<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
 	
-	4. Meshes - Basics 
+	4. Addon-Entwicklung und VS Code
 </a>
 
 
@@ -264,9 +264,9 @@
 
 
 
-<a  title="5. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
+<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
 	
-	5. Meshes - BMesh
+	5. Meshes - Basics 
 </a>
 
 
@@ -277,9 +277,9 @@
 
 
 
-<a  title="6 Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
+<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
 	
-	6 Addon-Entwicklung und VS Code
+	6. Meshes - BMesh
 </a>
 
 
@@ -303,7 +303,7 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 3 - Operatoren &amp; Codestruktur </h1>
+			<h1>Übung 3 - Operatoren &amp; Addons </h1>
 
 			
 
@@ -349,7 +349,7 @@
 
 <ul>
 <li>Mit der Deklaration <strong><code>class SimpleOperator(bpy.types.Operator)</code></strong> geben wir an, dass unsere Klasse ein Operator ist - also von <code>bpy.types.Operator</code> erbt.</li>
-<li>Darunter können wir mit <strong><code>&quot;&quot;&quot;Mein Tooltipp&quot;&quot;&quot;</code></strong> eine Beschreibung angeben, die dem Nutzer beim überfahren des Operators mit dem Cursor angezeigt bekommt.</li>
+<li>Darunter können wir mit <strong><code>&quot;&quot;&quot;Mein Tooltipp&quot;&quot;&quot;</code></strong> eine Beschreibung angeben, die dem Nutzer beim überfahren des Operators mit dem Cursor angezeigt wird.</li>
 <li><strong><code>bl_idname</code></strong> ist der pfad API-Pfad unter dem der Operator aufrufbar sein wird <code>&quot;object.simple_operator&quot;</code> lässt sich dann mit <code>bpy.ops.object.simple_operator()</code> aufrufen.</li>
 <li><code>bl_label</code>
 <!--Warum ist poll classmethod und execute nicht?--></li>
@@ -386,14 +386,14 @@ bpy.ops.object.simple_operator()
 </code></pre></li>
 </ul>
 
-<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die registrierung des Operators in der API und ein Testlauf.</p>
+<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.</p>
 
 <blockquote class="todo">
     <ul>
 <li>Stelle sicher, dass <strong>Preferences → Interface → Developer Extras</strong> aktiviert ist (nur dann lassen sich so erstellte Operatoren mit F3 suchen)</li>
-<li>Führe das SKript <em>Operator Simple</em> im Texteditor aus</li>
+<li>Führe das Skript <em>Operator Simple</em> im Texteditor aus</li>
 <li>Öffne die Systemkonsole mit <strong>Window → Toggle System Console</strong></li>
-<li>Suche im mit F3 nach *&ldquo;Simple Object Operator&rdquo;</li>
+<li>Suche im mit F3 nach <em>Simple Object Operator</em></li>
 </ul>
 
 <p>In der Konsole wird nun eine Liste der Objekte in der Szene ausgegeben.</p>
@@ -401,12 +401,208 @@ bpy.ops.object.simple_operator()
 <p><p style="margin-bottom: -30px; margin-left: 5px;"> <img style="margin-bottom: -3px;" height="20px" src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/blender_icon.png" alt=""> blender.exe</p>
 <pre class="console" style="width: 700px;">
 found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.91\python
-&lt;bpy_struct, Object() at 0x000001D2821FC088&gt;
+&lt;bpy_struct, Object(&ldquo;Cube&rdquo;) at 0x000001D2821FC088&gt;
 &lt;bpy_struct, Object(&ldquo;Light&rdquo;) at 0x000001D2821FC608&gt;
 &lt;bpy_struct, Object(&ldquo;Camera&rdquo;) at 0x000001D2821FBB08&gt;&gt;}}
 </pre></p>
 
 </blockquote>
+
+<p>TODO ADDON INHALT - generierung von irgendwass. Vlt Würfeldimension</p>
+
+<h2 id="properties">Properties</h2>
+
+<p>Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren <em>Properties</em>.</p>
+
+<p>Properties lassen sich ganz einfach als Eigenschaften der Klasse, die den Operator definiert implementieren (also die Klasse, die von <code>bpy.types.Operator</code> erbt und die eine <code>execute</code>-Methode definiert). Hierzu können innerhalb des Klassenrumpfes Eigenschaften definiert werden, denen ein Aufruf einer der folgenden Funktionen zugewiesen wird.</p>
+
+<pre><code class="language-python"> bpy.props.IntProperty
+ bpy.props.BoolProperty
+ bpy.props.FloatProperty
+ bpy.props.FloatVectorProperty
+</code></pre>
+
+<p>Diesem Funktionsaufruf werden dann <code>name</code> (Label des Operators in der GUI), sowie optional eine <code>description</code> und ein <code>default</code> - Wert zugewiesen.</p>
+
+<pre><code class="language-python">my_float: bpy.props.FloatProperty(
+        name=&quot;My Float&quot;,
+        description=&quot;does stuff with the thing.&quot;,
+        default = 1)
+</code></pre>
+
+<blockquote class="info">
+    Es handelt sich hierbei nicht um klassische Variablendeklaration. Wir weisen keinen Wert einer Python-Variablen hinzu, wir sagen Blender nur: &ldquo;Erstelle in deiner internen Datenstruktur eine Float-Variable mit diesem Namen etc.&rdquo;
+</blockquote>
+
+<blockquote class="todo">
+    <div class="row">
+    <div class="column left">
+    <p>Passe das <strong>Operator Simple</strong> Template folgendermaßen an:</p>
+
+<ul>
+<li><p>Zunächst Wir legen wir in der Operatorklasse eine <code>FloatVectorProperty</code> an und weisen ihr Name, Beschreibung und Defaultwert zu.</p></li>
+
+<li><p>Nun können wir unsere Property anwenden. Diese sind innerhalb der Klasse über das Schlüsselwort <code>self</code> (ähnlich wie <code>this</code> in anderen Sprachen) aufrufbar. In diesem Beispiel Fügen wir unserer <code>main</code> Methode einen Parameter <code>value</code> hinzu und übergeben bei deren Aufruf in der <code>execute</code> Methode <code>self.my_vector</code>.</p></li>
+
+<li><p>Damit beim Ausführen des Operators auch etwas passiert, ändern wir in <code>main</code> die Position jedes Objekts zu diesem Wert.</p></li>
+</ul>
+
+<p>Sind die Properties so der Operatorklasse hinzugefügt, sind sie bei Aufruf des Operators über die Python Konsole bereits einstellbar.</p>
+
+<ul>
+<li>Führe das Script aus und teste den Operator mit der Python-Konsole:</li>
+</ul>
+
+<pre><code>&gt;&gt;&gt; bpy.ops.object.simple_operator(my_vec=(2,2,2))
+</code></pre>
+
+<p>Alle Objekte in der Szene sollten nun an die Position (2, 2, 2) verschoben werden.</p>
+
+<p><img src="img/location.png" alt="location" /></p>
+
+</div>
+<div class="column right">
+    <pre><code class="language-python">import bpy
+
+def main(context, loc):
+    for ob in context.scene.objects:
+        ob.location = loc
+
+
+class SimpleOperator(bpy.types.Operator):
+    &quot;&quot;&quot;Tooltip&quot;&quot;&quot;
+    bl_idname = &quot;object.simple_operator&quot;
+    bl_label = &quot;Simple Object Operator&quot;
+
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
+    def execute(self, context):
+        main(context, self.my_vec)
+        return {'FINISHED'}
+
+    my_vec: bpy.props.FloatVectorProperty(
+        name=&quot;My Vector&quot;,
+        description=&quot;does stuff with the thing.&quot;,
+        default = (1, 1, 1))
+
+
+def register():
+    bpy.utils.register_class(SimpleOperator)
+
+def unregister():
+    bpy.utils.unregister_class(SimpleOperator)
+
+
+if __name__ == &quot;__main__&quot;:
+    register()
+
+    # test call
+    bpy.ops.object.simple_operator()
+</code></pre>
+
+</div>
+
+<p></div></p>
+
+</blockquote>
+
+<pre><code class="language-python">bpy.ops.object.simple_operator(my_float=5.2)
+</code></pre>
+
+<p>damit diese nun auch in einem Menü beim Aufruf des Operators eingestellt werden können, müssen wir das Blender in der Operatorklasse mit einer weiteren bl_&hellip; Zeile: <code>bl_options = {&quot;REGISTER&quot;, &quot;UNDO&quot;}</code> sagen.</p>
+
+<p>Im Beispielcode <a href="MatrixExtrudeAddonProps.py">MatrixExtrudeAddonProps.py</a> wurden dem Matrix-Etrude-Operator drei solcher Properties hinzugefügt:
+- <code>segment_count</code>
+- <code>scale</code> und
+- <code>angle</code></p>
+
+<h2 id="addons">Addons</h2>
+
+<div class="row">
+    <div class="column left">
+    Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Nicht alle Parameter sind dabei verpflichtend. Für sehr einfache Addons reicht theoretisch Name, Author und Kategorie.
+</div>
+<div class="column right">
+    <pre><code class="language-python">bl_info = {
+    &quot;name&quot;: &quot;Cubedimension&quot;,
+    &quot;author&quot;: &quot;Ich&quot;,
+    &quot;version&quot;: (1, 0),
+    &quot;blender&quot;: (2, 91, 0),
+    &quot;location&quot;: &quot;View3D &gt; Search Menu &gt; Cubedimension&quot;,
+    &quot;description&quot;: &quot;Creates a cool Cube Dimension&quot;,
+    &quot;warning&quot;: &quot;Nur ausfüllen falls es etwas zu warnen gibt&quot;,
+    &quot;doc_url&quot;: &quot;&quot;,
+    &quot;category&quot;: &quot;Add Mesh&quot;,
+}
+</code></pre>
+
+</div>
+
+</div>
+
+<!--Dunkle Markdown-CSS Magie-->
+
+<p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info<b></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>gibt die (frei wählbare) Versionsnummer des Addons an.</td>
+</tr>
+
+<tr>
+<td><code>blender</code></td>
+<td>ist die Blender Version, mit der das Addon getestet wurde (was nicht heißt, dass es nicht auch in anderen Versionen funktionieren kann)</td>
+</tr>
+
+<tr>
+<td><code>location</code></td>
+<td>zeigt den Weg zur UI des Addons (nur als Anleitung für den Nutzer)</td>
+</tr>
+
+<tr>
+<td><code>doc_url</code></td>
+<td>Link zur Dokumentation, falls diese existiert (was meist wünschenswert ist)</td>
+</tr>
+
+<tr>
+<td><code>category</code></td>
+<td>Gibt die Kategorie unter der das Addon in den Einstellungen angezeigt wird</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="ressourcen-tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
+
+<table>
+<thead>
+<tr>
+<th>Art/Länge</th>
+<th>Titel</th>
+<th>Beschreibung</th>
+<th>Quelle</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  22min</td>
+<td><a href="https://youtu.be/xscQ9tcN4GI">Your Own Operator - Scripting for Artists [8]</a></td>
+<td>Operators</td>
+<td><a href="https://cloud.blender.org/welcome">Blender Cloud</a> - <a href="https://stuvel.eu/">Dr. Sybren A. Stüvel</a></td>
+</tr>
+</tbody>
+</table>
 
 
 			<aside class="copyright" role="note">

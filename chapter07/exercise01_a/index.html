@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 1 - Basics - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 6 - Addon-Entwicklung und VS Code - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.54.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
     
-    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_b/">
+    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/">
     
 
-    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_b/">
+    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/">
     <meta property="og:title" content="Datenverarbeitung in der Medienproduktion">
     <meta property="og:image" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/lecture_logo_dvmp.png">
     <meta name="apple-mobile-web-app-title" content="Datenverarbeitung in der Medienproduktion">
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 1 - Basics
+        Übung 6 - Addon-Entwicklung und VS Code
       </div>
     </div>
 
@@ -300,9 +300,23 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 1 - Basics </h1>
+			<h1>Übung 6 - Addon-Entwicklung und VS Code </h1>
 
-			
+			<p>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.</p>
+
+<pre><code class="language-python">bl_info = {
+    &quot;name&quot;: &quot;New Object&quot;,
+    &quot;author&quot;: &quot;Your Name Here&quot;,
+    &quot;version&quot;: (1, 0),
+    &quot;blender&quot;: (2, 80, 0),
+    &quot;location&quot;: &quot;View3D &gt; Add &gt; Mesh &gt; New Object&quot;,
+    &quot;description&quot;: &quot;Adds a new Mesh Object&quot;,
+    &quot;warning&quot;: &quot;&quot;,
+    &quot;doc_url&quot;: &quot;&quot;,
+    &quot;category&quot;: &quot;Add Mesh&quot;,
+}
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
@@ -318,7 +332,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/" title="Übung 1 - Basics">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/" title="Übung 6 - Addon-Entwicklung mit Visual Studio Code">
         <span class="direction">
           Previous
         </span>
@@ -328,7 +342,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 1 - Basics
+              Übung 6 - Addon-Entwicklung mit Visual Studio Code
             </div>
           </div>
         </div>
@@ -337,22 +351,6 @@
   </div>
 
   <div class="next">
-  
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_b/" title="Übung 1 - Basics">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Übung 1 - Basics
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
   
   </div>
 </nav>
