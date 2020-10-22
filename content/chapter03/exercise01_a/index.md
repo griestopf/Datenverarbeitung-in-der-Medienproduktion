@@ -65,7 +65,7 @@ register, unregister = bpy.utils.register_classes_factory(
 ```
 {{</info>}}
 
-- Zuguterletzt folgen die etwas kryptische Zeilen
+- Zu guter Letzt folgen die etwas kryptische Zeilen
 ```python
 if __name__ == "__main__":
     register()

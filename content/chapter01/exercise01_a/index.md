@@ -63,6 +63,16 @@ Wechselt nun zum Workspace-Tab ***Scripting***
 - Die beiden **<span style="color: DarkOrange">Outliner Fenster</span>**  {{<counter 5>}} zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files
 - Der **<span style="color: Magenta">Properties Editor</span>**  {{<counter 6>}} ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.
 
+
+Ein weiteres wichtiges Werkzeug ist die **Systemkonsole**. 
+{{<todo>}}
+- Wenn Windows benutzt wird, wählt **Window → Toggle System Console**
+- In Linux und Mac(? - TODO) muss Blender über das Terminal gestartet werden und dieses Terminal erfüllt dann deren Zweck.
+![Scripting Workspace](img/console.png) <!--TODO Bild Counter einfügen-->
+{{</todo>}}
+
+Nach dem Start von Blender zeigt uns die Systemkonsole die mitgelieferte Python-Installation an. Hier werden auch Fehlermeldungen und Ausgaben des `print()` Befehls ausgegeben.
+
 ## Live Scripting
 
 <!--Zwei-Spalten layout in "Markdown" WOW! Funktioniert nur ohne Einrückung-->
