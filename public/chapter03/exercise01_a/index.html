@@ -319,7 +319,7 @@
 
 <p>Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unserer TODO - JA WAS DENN erweitern.</p>
 
-<h2 id="operatoren">Operatoren</h2>
+<h2 id="operatoren-hahahugoshortcode-0xc00026e000-1-hbhb">Operatoren <a href="https://docs.blender.org/api/current/bpy.types.Operator.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 
 <p>Wir haben bereits die <code>ops</code> Kategorie des <code>bpy</code> Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der <code>F3</code>-Suche gefunden werden kann.</p>
 
@@ -410,7 +410,7 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 
 <p>TODO ADDON INHALT - generierung von irgendwass. Vlt Würfeldimension</p>
 
-<h2 id="properties">Properties</h2>
+<h2 id="properties-hahahugoshortcode-0xc00026e000-5-hbhb">Properties <a href="https://docs.blender.org/api/current/bpy.props.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 
 <p>Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren <em>Properties</em>.</p>
 
@@ -512,16 +512,15 @@ if __name__ == &quot;__main__&quot;:
 <p></div></p>
 
 <ul>
-<li><p>Damit Properties nun auch in einem Menü beim Aufruf des Operators eingestellt werden können, müssen wir das Blender in der Operatorklasse mit einer weiteren bl_&hellip; Zeile: <code>bl_options = {&quot;REGISTER&quot;, &quot;UNDO&quot;}</code> sagen.</p></li>
-
-<li><p>Testet den Operator mit dem <code>F3</code> Suchmenü im Viewport</p></li>
+<li>Damit Properties nun auch in einem Menü beim Aufruf des Operators eingestellt werden können, müssen wir das Blender in der Operatorklasse mit einer weiteren bl_&hellip; Zeile: <code>bl_options = {&quot;REGISTER&quot;, &quot;UNDO&quot;}</code> sagen.</li>
+<li>Testet den Operator mit dem <code>F3</code> Suchmenü im Viewport</li>
 </ul>
 
 <video autoplay loop src="img/operator.mp4"></video>
 
 </blockquote>
 
-<h2 id="addons">Addons</h2>
+<h2 id="addons-hahahugoshortcode-0xc00026e000-8-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 
 <div class="row">
     <div class="column left" style="width: 50%">

@@ -36,11 +36,15 @@ pre {
     margin-right: 8px;
 }
 
-.doclink {
+.doclink img {
     position: relative;
     /* Adjust these values accordingly */
     top: 5px;
     width: 28px;
+}
+
+.anchor .doclink {
+    display: none !important;
 }
 
 .counter {

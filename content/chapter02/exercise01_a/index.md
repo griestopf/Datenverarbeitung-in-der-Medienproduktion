@@ -80,7 +80,7 @@ Zu beachten ist hier, dass *My_Cam_Object* nicht dasselbe ist wie *My_Cam_Data*.
 
 ---
 
-### [`bpy.ops`] {{<doclink "https://docs.blender.org/api/current/bpy.ops.html">}}
+### `bpy.ops` {{<doclink "https://docs.blender.org/api/current/bpy.ops.html">}}
 
 `bpy.ops` steht für **"Operatoren"**. Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus `bpy.ops`.
 

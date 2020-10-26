@@ -14,7 +14,7 @@ title: Übung 3 - Operatoren & Addons
 
 Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unserer TODO - JA WAS DENN erweitern.
 
-## Operatoren
+## Operatoren {{<doclink "https://docs.blender.org/api/current/bpy.types.Operator.html">}}
 
 Wir haben bereits die `ops` Kategorie des `bpy` Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der `F3`-Suche gefunden werden kann.
 
@@ -94,7 +94,7 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 
 TODO ADDON INHALT - generierung von irgendwass. Vlt Würfeldimension
 
-## Properties
+## Properties {{<doclink "https://docs.blender.org/api/current/bpy.props.html">}}
 
 Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren _Properties_.
 
@@ -192,17 +192,13 @@ if __name__ == "__main__":
 {{</twoculumn>}}
 
 - Damit Properties nun auch in einem Menü beim Aufruf des Operators eingestellt werden können, müssen wir das Blender in der Operatorklasse mit einer weiteren bl_... Zeile: `bl_options = {"REGISTER", "UNDO"}` sagen.
-
 - Testet den Operator mit dem `F3` Suchmenü im Viewport
 
 <video autoplay loop src="img/operator.mp4"></video>
-
-
-
 {{</todo>}}
 
 
-## Addons
+## Addons {{<doclink "https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html">}}
 {{<twoculumn>}}
 {{<left 50>}}
 Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem `bl_info` Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.

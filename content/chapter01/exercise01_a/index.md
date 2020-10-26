@@ -7,7 +7,7 @@ title: Übung 1 - Blender Setup & Scripting-Tools
 
 ## Einführung
 
-Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen `python` Unterverzeichnis). Obwohl Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus sind sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a. 
+Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen `python` Unterverzeichnis). Obwohl der Kern von Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus sind sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a. 
 
 - Szenen und Objekte
 - Geometrie
@@ -31,23 +31,26 @@ Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventue
 - Aktiviert hier nun im ***Interface*** Tab *Python Tooltips* und *Development Extras*
 {{</todo>}}
 
+<br>
+
 {{<twoculumn>}}
 {{<left 50>}}
-**Python Tooltips** zeigt beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.
+**Python Tooltips** zeigt nun beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.
 {{</left>}}
 {{<right 50>}}
 ![Python Tooltip](img/python_tooltip.png)
-{{</right >}}
+{{</right>}}
 {{</twoculumn>}}
 
 {{<twoculumn>}}
 {{<left 50>}}
 **Development Extras** Ermöglicht einige Funktionen, die uns das Scripten erleichter, wie z.b. das Anzeigen des Python-Codes von Features (`RMB` → *Edit Source*). Der Sourcecode wird dann im Texteditor geöffnet. Da manche Bereiche der UI automatisch über den [C-Kern](https://github.com/blender/blender/tree/master/source/blender) von Blender generiert werden, gibt es jedoch nicht zu jedem Wert und Knopf ein Pythonscript.
 {{</left>}}
- {{<right 50>}}}}
+ {{<right 50>}}
 ![Edit Source](img/edit_source.png)
 {{</right>}}
 {{</twoculumn>}}    
+
 ## Scripting Tools
 
 {{<todo>}}

@@ -12,7 +12,7 @@
     "Two Columns Shortcode": {
         "prefix": ["column", "two column", "layout", "shortcode"],
         "body": ["{{<twoculumn>}}\n{{<left 50>}}\nCONTENT LEFT\n{{</left>}}\n{{<right>}}\nCONTENT RIGHT\n{{</right 50>}}\n{{</twoculumn>}}"],
-        "description": "For my Hugo Info Shortcode"
+        "description": "For my Hugo two-column-layout Shortcode"
     },
     "console": {
         "prefix": ["console"],
@@ -22,6 +22,11 @@
     "table title only": {
         "prefix": ["table title only"],
         "body": ["{{<console 700px>}}\nCONTENT. ESCAPE < WITH &lt; AND > WITH &gt;\n{{</console>}}"],
-        "description": "For my Hugo console Shortcode"
+        "description": "For tables with a title only"
+    },
+    "doclink": {
+        "prefix": ["doclink"],
+        "body": ["{{<doclink \"url\" >}}"],
+        "description": "For my Hugo doclink Shortcode"
     },
 }
