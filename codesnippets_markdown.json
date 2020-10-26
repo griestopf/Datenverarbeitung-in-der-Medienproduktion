@@ -11,7 +11,17 @@
     },
     "Two Columns Shortcode": {
         "prefix": ["column", "two column", "layout", "shortcode"],
-        "body": ["{{<twoculumn>}}\n{{<left>}}\nCONTENT LEFT\n{{</left>}}\n{{<right>}}\nCONTENT RIGHT\n{{</right>}}\n{{</twoculumn>}}"],
+        "body": ["{{<twoculumn>}}\n{{<left 50>}}\nCONTENT LEFT\n{{</left>}}\n{{<right>}}\nCONTENT RIGHT\n{{</right 50>}}\n{{</twoculumn>}}"],
         "description": "For my Hugo Info Shortcode"
-    }
+    },
+    "console": {
+        "prefix": ["console"],
+        "body": ["{{<console 700px>}}\nCONTENT. ESCAPE < WITH &lt; AND > WITH &gt;\n{{</console>}}"],
+        "description": "For my Hugo console Shortcode"
+    },
+    "table title only": {
+        "prefix": ["table title only"],
+        "body": ["{{<console 700px>}}\nCONTENT. ESCAPE < WITH &lt; AND > WITH &gt;\n{{</console>}}"],
+        "description": "For my Hugo console Shortcode"
+    },
 }

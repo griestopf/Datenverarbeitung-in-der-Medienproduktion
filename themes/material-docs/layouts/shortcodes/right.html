@@ -1,3 +1,5 @@
-<div class="column right">
+<div class="column right" style="width: {{ index .Params 0 }}%">
+
     {{.Inner | markdownify}}
+
 </div>

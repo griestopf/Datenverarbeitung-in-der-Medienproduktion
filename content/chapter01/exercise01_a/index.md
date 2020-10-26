@@ -32,19 +32,19 @@ Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventue
 {{</todo>}}
 
 {{<twoculumn>}}
-{{<left >}}
+{{<left 50>}}
 **Python Tooltips** zeigt beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.
 {{</left>}}
-{{<right>}}
+{{<right 50>}}
 ![Python Tooltip](img/python_tooltip.png)
 {{</right >}}
 {{</twoculumn>}}
 
 {{<twoculumn>}}
-{{<left>}}
+{{<left 50>}}
 **Development Extras** Ermöglicht einige Funktionen, die uns das Scripten erleichter, wie z.b. das Anzeigen des Python-Codes von Features (`RMB` → *Edit Source*). Der Sourcecode wird dann im Texteditor geöffnet. Da manche Bereiche der UI automatisch über den [C-Kern](https://github.com/blender/blender/tree/master/source/blender) von Blender generiert werden, gibt es jedoch nicht zu jedem Wert und Knopf ein Pythonscript.
 {{</left>}}
-{{<right>}}
+ {{<right 50>}}}}
 ![Edit Source](img/edit_source.png)
 {{</right>}}
 {{</twoculumn>}}    
@@ -78,7 +78,7 @@ Nach dem Start von Blender zeigt uns die Systemkonsole die mitgelieferte Python-
 <!--Zwei-Spalten layout in "Markdown" WOW! Funktioniert nur ohne Einrückung-->
 {{<twoculumn>}}
 
-{{<left>}}
+{{<left 50>}}
 Die **Python Konsole** ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (**b**lender **py**thon API) getippt werden und anschließend mit `TAB` die verfügbaren nachfolgenden Pfade angezeigt werden. Mit `Pfeil nach oben` kann der letzte Befehl wieder aufgerufen werden.
 
 Mit folgendem Befehl können wir z.b. das selektierten Objekts um zwei Einheiten entlang der Y-Achse verschieben.
@@ -99,7 +99,7 @@ wird lediglich der Pfad zu einer Variablen oa. eingegeben, gibt die Konsole dere
 Die Struktur der API wird im folgenden Kapitel noch genauer behandelt.
 {{</left>}}
 
-{{<right>}}
+{{<right 50>}}
 <video autoplay controls loop src="img/live_console.mp4"></video>
 {{</right>}}
 

@@ -34,19 +34,72 @@ Von diesen acht Gruppen unterhalb von `bpy` sollen hier die folgenden drei nähe
 
 ## Die wichtigsten "Untermodule" von `bpy`
 
-### `bpy.context`
+### `bpy.context` {{<doclink "https://docs.blender.org/api/current/bpy.context.html">}}
 
 Klassen und Methoden unterhalb von `bpy.context` erlauben den Zugriff auf den aktuellen Kontext, in dem sich der Benutzer befindet wie z.B. Szene, Modus, Selektierte Objekte, Faces, Kanten u. Vertices.
 
-### `bpy.data`
+---
 
-`bpy.data` ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das ".blend"-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  `bpy.data` Zugegriffen werden. Einen Überblick darüber, was das ist, liefert der Outliner-Editor, wenn man ihn von "All Scenes" auf "Blender File" oder "All Data Blocks" umstellt. Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über `bpy.data`.
+###  `bpy.data` {{<doclink "https://docs.blender.org/api/current/bpy.data.html">}}
 
-### `bpy.ops`
+`bpy.data` ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das ".blend"-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  `bpy.data` Zugegriffen werden. Einen Überblick darüber, was das ist, liefert die *Blender File* Ansicht des Outliners.
+Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über `bpy.data`.
 
-`bpy.ops` steht für "Operatoren". Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus `bpy.ops`.
+Ein typischer Anwendungsfall ist zum Beispiel der Zugriff auf Materialien. Dieser erfolgt mit 
+```python
+bpy.data.materials["materialname"]
+```
 
-Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden.
+{{<info>}}
+{{<twoculumn>}}
+
+{{<left 60>}}
+Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die Kameradaten hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich {{<counter 1>}}
+
+```python
+bpy.data.cameras["My_Cam_Data"]
+```
+
+**oder** über die [Collection](https://docs.blender.org/manual/en/latest/scene_layout/collections/collections.html), welche das Kameraobjekt *My_Cam_Object* und die ihm zugewiesenen Kameradaten beinhaltet {{<counter 2>}}
+
+
+```python
+bpy.data.collections["Collection"].objects["My_Cam_Object"].data
+```
+{{</left>}}
+
+{{<right 40>}}
+<br>
+![bpy data](img/bpydata.png)
+{{</right>}}
+{{</twoculumn>}}
+
+Zu beachten ist hier, dass *My_Cam_Object* nicht dasselbe ist wie *My_Cam_Data*. Ersteres ist das generische Blender-Objekt - z.b. mit dessen Transformation. Letzteres sind die ihm zugewiesenen Kameradaten - z.b. mit Brennweite und Tiefenunschärfe.
+
+{{</info>}}
+
+---
+
+### [`bpy.ops`] {{<doclink "https://docs.blender.org/api/current/bpy.ops.html">}}
+
+`bpy.ops` steht für **"Operatoren"**. Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus `bpy.ops`.
+
+Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden. So kann beispielsweise ein Objekt entweder über den Transform-Operator verschoben,
+
+```python
+bpy.ops.transform.translate(value=(1,0,0))
+```
+
+oder dessen Position im Raum direkt angesprochen werden:
+
+```python
+bpy.context.object.location.x += 1
+
+#bzw nach import von mathutils mit 
+bpy.context.object.location += mathutils.Vector((1,0,0))
+```
+
+
 
 ## Beispiel: Matrix Extrude
 

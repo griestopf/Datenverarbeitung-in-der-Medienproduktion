@@ -122,11 +122,11 @@ Es handelt sich hierbei nicht um klassische Variablendeklaration. Wir weisen kei
 
 {{<todo>}}
 {{<twoculumn>}}
-{{<left>}}
+{{<left 50>}}
 
-Passe das **Operator Simple** Template folgendermaßen an:
+Passt das **Operator Simple** Template folgendermaßen an:
 
-- Zunächst Wir legen wir in der Operatorklasse eine `FloatVectorProperty` an und weisen ihr Name, Beschreibung und Defaultwert zu.
+- Zunächst legen wir in der Operatorklasse eine `FloatVectorProperty` an und weisen ihr Name, Beschreibung und Defaultwert zu.
 
 - Nun können wir unsere Property anwenden. Diese sind innerhalb der Klasse über das Schlüsselwort `self` (ähnlich wie `this` in anderen Sprachen) aufrufbar. In diesem Beispiel Fügen wir unserer `main` Methode einen Parameter `value` hinzu und übergeben bei deren Aufruf in der `execute` Methode `self.my_vector`. 
 - Damit beim Ausführen des Operators auch etwas passiert, ändern wir in `main` die Position jedes Objekts zu diesem Wert.
@@ -143,8 +143,10 @@ Alle Objekte in der Szene sollten nun an die Position (2, 2, 2) verschoben werde
 
 ![location](img/location.png)
 
+
+
 {{</left>}}
-{{<right>}}
+{{<right 50>}}
 ```python
 import bpy
 
@@ -157,6 +159,7 @@ class SimpleOperator(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.simple_operator"
     bl_label = "Simple Object Operator"
+    bl_options = {"REGISTER", "UNDO"}
 
     @classmethod
     def poll(cls, context):
@@ -187,31 +190,28 @@ if __name__ == "__main__":
 ```
 {{</right>}}
 {{</twoculumn>}}
+
+- Damit Properties nun auch in einem Menü beim Aufruf des Operators eingestellt werden können, müssen wir das Blender in der Operatorklasse mit einer weiteren bl_... Zeile: `bl_options = {"REGISTER", "UNDO"}` sagen.
+
+- Testet den Operator mit dem `F3` Suchmenü im Viewport
+
+<video autoplay loop src="img/operator.mp4"></video>
+
+
+
 {{</todo>}}
 
 
-
-```python
-bpy.ops.object.simple_operator(my_float=5.2)
-```
-
-damit diese nun auch in einem Menü beim Aufruf des Operators eingestellt werden können, müssen wir das Blender in der Operatorklasse mit einer weiteren bl_... Zeile: `bl_options = {"REGISTER", "UNDO"}` sagen.
-
-Im Beispielcode [MatrixExtrudeAddonProps.py](MatrixExtrudeAddonProps.py) wurden dem Matrix-Etrude-Operator drei solcher Properties hinzugefügt:
-- `segment_count` 
-- `scale` und
-- `angle`
-
 ## Addons
 {{<twoculumn>}}
-{{<left>}}
-Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem `bl_info` Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Nicht alle Parameter sind dabei verpflichtend. Für sehr einfache Addons reicht theoretisch Name, Author und Kategorie.
+{{<left 50>}}
+Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem `bl_info` Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.
 {{</left>}}
-{{<right>}}
+{{<right 50>}}
 ```python
 bl_info = {
     "name": "Cubedimension",
-    "author": "Ich",
+    "author": "Ich <ich@webmail.hs-furtwangen.de>",
     "version": (1, 0),
     "blender": (2, 91, 0),
     "location": "View3D > Search Menu > Cubedimension",
@@ -235,8 +235,11 @@ bl_info = {
  `doc_url` | Link zur Dokumentation, falls diese existiert (was meist wünschenswert ist)
  `category` | Gibt die Kategorie unter der das Addon in den Einstellungen angezeigt wird 
 
+ TODO als .py abspeichern
+
 ## Ressourcen & Tutorials zum Thema
 
 | Art/Länge | Titel | Beschreibung | Quelle |
 |---|---|---|---|
-|<img src="/general/icons/video.png" class="resicon">  22min | [Your Own Operator - Scripting for Artists [8]](https://youtu.be/xscQ9tcN4GI) | Operators | [Blender Cloud](https://cloud.blender.org/welcome) - [Dr. Sybren A. Stüvel](https://stuvel.eu/)|
+|<img src="/general/icons/video.png" class="resicon">  22min | [Your Own Operator - Scripting for Artists [8]](https://youtu.be/xscQ9tcN4GI?list=PLa1F2ddGya_8acrgoQr1fTeIuQtkSd6BW) | Operators | [Blender Cloud](https://cloud.blender.org/welcome) - [Dr. Sybren A. Stüvel](https://stuvel.eu/)|
+|<img src="/general/icons/video.png" class="resicon">  10min | [From Script to Add-on - Scripting for Artists [9]](https://youtu.be/nKt6CtMH0no?list=PLa1F2ddGya_8acrgoQr1fTeIuQtkSd6BW) | Operators | [Blender Cloud](https://cloud.blender.org/welcome) - [Dr. Sybren A. Stüvel](https://stuvel.eu/)|
