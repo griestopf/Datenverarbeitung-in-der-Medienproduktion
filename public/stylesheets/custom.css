@@ -36,6 +36,13 @@ pre {
     margin-right: 8px;
 }
 
+.doclink {
+    position: relative;
+    /* Adjust these values accordingly */
+    top: 5px;
+    width: 28px;
+}
+
 .counter {
     color: white;
     font-weight: bold;
@@ -52,12 +59,11 @@ pre {
 }
 
 .left {
-    width: 50%;
     padding-right: 10px;
 }
 
 .right {
-    width: 50%;
+    float: right;
 }
 
 @media screen and (max-width: 600px) {

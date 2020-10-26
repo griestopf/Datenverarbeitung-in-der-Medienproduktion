@@ -339,19 +339,70 @@
 
 <h2 id="die-wichtigsten-untermodule-von-bpy">Die wichtigsten &ldquo;Untermodule&rdquo; von <code>bpy</code></h2>
 
-<h3 id="bpy-context"><code>bpy.context</code></h3>
+<h3 id="bpy-context-hahahugoshortcode-0xc0000d0000-2-hbhb"><code>bpy.context</code> <a href="https://docs.blender.org/api/current/bpy.context.html" target="_blank"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation" class="doclink"></a></h3>
 
 <p>Klassen und Methoden unterhalb von <code>bpy.context</code> erlauben den Zugriff auf den aktuellen Kontext, in dem sich der Benutzer befindet wie z.B. Szene, Modus, Selektierte Objekte, Faces, Kanten u. Vertices.</p>
 
-<h3 id="bpy-data"><code>bpy.data</code></h3>
+<hr />
 
-<p><code>bpy.data</code> ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das &ldquo;.blend&rdquo;-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  <code>bpy.data</code> Zugegriffen werden. Einen Überblick darüber, was das ist, liefert der Outliner-Editor, wenn man ihn von &ldquo;All Scenes&rdquo; auf &ldquo;Blender File&rdquo; oder &ldquo;All Data Blocks&rdquo; umstellt. Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über <code>bpy.data</code>.</p>
+<h3 id="bpy-data-hahahugoshortcode-0xc0000d0000-3-hbhb"><code>bpy.data</code> <a href="https://docs.blender.org/api/current/bpy.data.html" target="_blank"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation" class="doclink"></a></h3>
 
-<h3 id="bpy-ops"><code>bpy.ops</code></h3>
+<p><code>bpy.data</code> ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das &ldquo;.blend&rdquo;-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  <code>bpy.data</code> Zugegriffen werden. Einen Überblick darüber, was das ist, liefert die <em>Blender File</em> Ansicht des Outliners.
+Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über <code>bpy.data</code>.</p>
 
-<p><code>bpy.ops</code> steht für &ldquo;Operatoren&rdquo;. Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus <code>bpy.ops</code>.</p>
+<p>Ein typischer Anwendungsfall ist zum Beispiel der Zugriff auf Materialien. Dieser erfolgt mit</p>
 
-<p>Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden.</p>
+<pre><code class="language-python">bpy.data.materials[&quot;materialname&quot;]
+</code></pre>
+
+<blockquote class="info">
+    <div class="row">
+    <div class="column left" style="width: 60%">
+
+    <p>Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die Kameradaten hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich <span class="counter">1</span></p>
+
+<pre><code class="language-python">bpy.data.cameras[&quot;My_Cam_Data&quot;]
+</code></pre>
+
+<p><strong>oder</strong> über die <a href="https://docs.blender.org/manual/en/latest/scene_layout/collections/collections.html">Collection</a>, welche das Kameraobjekt <em>My_Cam_Object</em> und die ihm zugewiesenen Kameradaten beinhaltet <span class="counter">2</span></p>
+
+<pre><code class="language-python">bpy.data.collections[&quot;Collection&quot;].objects[&quot;My_Cam_Object&quot;].data
+</code></pre>
+
+
+</div>
+
+<div class="column right" style="width: 40%">
+
+    <br>
+<img src="img/bpydata.png" alt="bpy data" />
+
+</div>
+
+<p></div></p>
+
+<p>Zu beachten ist hier, dass <em>My_Cam_Object</em> nicht dasselbe ist wie <em>My_Cam_Data</em>. Ersteres ist das generische Blender-Objekt - z.b. mit dessen Transformation. Letzteres sind die ihm zugewiesenen Kameradaten - z.b. mit Brennweite und Tiefenunschärfe.</p>
+
+</blockquote>
+
+<hr />
+
+<h3 id="bpy-ops-hahahugoshortcode-0xc0000d0000-5-hbhb">[<code>bpy.ops</code>] <a href="https://docs.blender.org/api/current/bpy.ops.html" target="_blank"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation" class="doclink"></a></h3>
+
+<p><code>bpy.ops</code> steht für <strong>&ldquo;Operatoren&rdquo;</strong>. Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus <code>bpy.ops</code>.</p>
+
+<p>Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden. So kann beispielsweise ein Objekt entweder über den Transform-Operator verschoben,</p>
+
+<pre><code class="language-python">bpy.ops.transform.translate(value=(1,0,0))
+</code></pre>
+
+<p>oder dessen Position im Raum direkt angesprochen werden:</p>
+
+<pre><code class="language-python">bpy.context.object.location.x += 1
+
+#bzw nach import von mathutils mit 
+bpy.context.object.location += mathutils.Vector((1,0,0))
+</code></pre>
 
 <h2 id="beispiel-matrix-extrude">Beispiel: Matrix Extrude</h2>
 

@@ -959,7 +959,12 @@ pre span {
     margin: 0
 }
 
-.article h3,
+.article h3 {
+    font-size: 17px;
+    padding-top: 76px;
+    margin-top: -56px
+}
+
 .article h4 {
     font-size: 14px;
     padding-top: 76px;
