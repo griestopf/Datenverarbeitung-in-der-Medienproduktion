@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Python Style Guide - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 5 - Meshgenerierung - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.79.1" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
     
-    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/">
+    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
     
 
-    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/">
+    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
     <meta property="og:title" content="Datenverarbeitung in der Medienproduktion">
     <meta property="og:image" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/lecture_logo_dvmp.png">
     <meta name="apple-mobile-web-app-title" content="Datenverarbeitung in der Medienproduktion">
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Python Style Guide
+        Übung 5 - Meshgenerierung
       </div>
     </div>
 
@@ -185,14 +185,11 @@
 
 
 
-<a class="current" title="Python Style Guide" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/">
+<a  title="Python Style Guide" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/">
 	
 	Python Style Guide
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
       
@@ -264,11 +261,14 @@
 
 
 
-<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
+<a class="current" title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
 	
 	5. Meshes - Basics 
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
       
@@ -303,14 +303,111 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Python Style Guide </h1>
+			<h1>Übung 5 - Meshgenerierung </h1>
 
-			<p>Um Code schnell lesbar für Dritte zu machen, sollte beim Programmieren gewissen Regeln gefolgt werden. Das betrifft die Benennung von Variablen, Imports, Einrückungen, Leerzeichen etc. Haltet euch beim Scripting mit Python für Blender daher so gut wie möglich an die unten verlinkten Stylingregeln.</p>
+			<p><strong>Basics der Meshgenerierung und -manipulation</strong></p>
+<h2 id="vorbereitung">Vorbereitung</h2>
+<blockquote class="todo">
+    <p>Aktiviere das vorinstallierte Addon <strong>MeasureIt Tols</strong>. Dieses erlaubt es uns, Indices, Positionen und andere Infos des selektierten Objekts im Viewport anzuzeigen.</p>
+<p><video src="./img/measureit.mp4" autoplay loop style="width: 80%;"></video></p>
+<p>Nach der Installation sind dessen Optionen in der Sidebar (Shortcut <strong>N →  View → MeasureIt Tools → Mesh Debug</strong>) zu finden. Das Addon selbst muss noch mit <strong>Show</strong> ganz oben im Panel gestartet werden.</p>
+
+</blockquote>
 <ul>
-<li>Für Python ist der offizielle Styleguide das sogenannte <a href="https://www.python.org/dev/peps/pep-0008/"><strong>PEP (Python Enhancement Proposal)</strong></a>.</li>
-<li>Für Blender-Scripting sollte daher auch diesem Standard gefolgt werden. Spezifisch für Blender gibt es noch eine <a href="https://wiki.blender.org/wiki/Style_Guide/Python"><strong>kurze Erweiterung zu PEP.</strong></a></li>
+<li>Vertices bewegen</li>
+<li>Anwendung? Funktion plotten, Terrain / Fraktal generieren?</li>
 </ul>
-<p>Vermeidet zudem einen Mischmasch aus Englisch und Deutsch. Verwendet nur Englisch für den Code, Kommentare sind hier auch auf Deutsch ok.</p>
+<p>Zu den wichtigsten Aufgaben von Addons gehört die Manipulation und generierung neuer Meshes. Hierfür bietet uns die Blender API zwei Möglichkeiten.</p>
+<ul>
+<li>
+<p>Die <strong>mesh</strong> Schnittstelle erlaubt uns die schnelle Manipulation von Meshes, indem es uns Zugriff auf dessen einzelne Vertices, Edges und Polygone gibt.</p>
+</li>
+<li>
+<p>Das Modul <strong>bmesh</strong> ist eine weitaus komplexere Bibliothek, die bei komplexeren Mesh-Manipulationen und -Generierungen zum Einsatz kommen sollte.</p>
+</li>
+</ul>
+<h2 id="vertices-hahahugoshortcode-s1-hbhb">Vertices <a href="https://docs.blender.org/api/current/bpy.types.MeshVertex.html#bpy.types.MeshVertex" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
+<p>Die Vertices  des Meshes werden in dessen Array <code>vertices</code> gespeichert. Jeder Vertex hat eine <code>co</code> (Coordinates) Variable, die einen Vector mit x,y und z Position des Vertex repräsentiert.</p>
+<pre><code class="language-python">import bpy
+
+currentmesh = bpy.context.object.data
+
+for vert in currentmesh.vertices:
+    vert.co.z += 1
+
+currentmesh.update()
+</code></pre>
+<p>Um Normalen etc neu zu berechnen, muss das am Ende die <code>update</code> Methode des Meshes aufgerufen werden.</p>
+<p>Alleine mit der Manipulation der Vertixpositionen kann schon viel erreicht werden. Hier wurde zum Beispiel einer UV-Sphere ein schraubenartiges Muster gegeben:</p>
+<div class="row"><div class="column left" style="width: 50%"><pre><code class="language-python">import bpy
+import math
+<p>frequency = 10
+amplitude = 0.2</p>
+<p>currentmesh = bpy.context.object.data</p>
+<p>for vert in currentmesh.vertices:
+vert.co.y += amplitude * math.sin(frequency * vert.co.z)
+vert.co.x += amplitude * math.cos(frequency * vert.co.z)</p>
+<p>currentmesh.update()
+</code></pre></p>
+</div>
+<div class="column right" style="width: 50%"><img src="img/screw.png" alt="screw"></div>
+</div>
+<blockquote class="todo">
+    <p>Schreibe ein Script, dass einen unterteilten Würfel nach oben hin um 90° verdreht (siehe Bild).</p>
+<p><img src="img/rotate.png" alt="img"></p>
+<p><strong>Tipps:</strong></p>
+<ul>
+<li>
+<p>Die Formel für die Rotation eines zweidimensionalen Vectors um den Nullpunkt um den Winkel <em>w</em> ist folgende:<br>
+<em>x' = x ⋅ cos(w) - y ⋅ sin(w)<br>
+y' = x ⋅ sin(w) + y ⋅ cos(w)</em></p>
+</li>
+<li>
+<p>Der Drehwinkel muss abhängig von der Höhe ves Vertex sein.</p>
+</li>
+</ul>
+
+</blockquote>
+<a href="#hide" class="hide btn" id="hide">Lösung anzeigen</a>
+<a href="#show" class="show btn" id="show">hide spoiler</a>
+<div class="spoiler">
+    <span class="spoiler-content"><br><ul>
+<li>
+<p>Zunächst berechnen wir den Winkel in Radianten, in dem jeder Vertex gedreht wird. Dieser soll abhängig von dessen Höhe z sein. Damit wir unten am Würfel mit 0 beginnen, fügen wir z 1 hinzu (denn der Würfel ist 2 Hoch und hat seine Mitte auf Höhe 1) <br>
+<code>angle = math.radians((vert.co.z + 1) * 45)</code></p>
+</li>
+<li>
+<p>Nun rotieren wir jeden Vertex auf der Z-Achse um den Nullpunkt. Z bleibt also unverändert. Die obige Formel in Python sieht folgendermaßen aus:<br>
+<code>x = vert.co.x * math.cos(angle) - vert.co.y * math.sin(angle)</code><br>
+<code>y = vert.co.x * math.sin(angle) + vert.co.y * math.cos(angle)</code></p>
+</li>
+<li>
+<p>letztlich weisen wir die so generierten x und y Werte dem Vertex wieder zu<br>
+<code>vert.co.x = x</code><br>
+<code>vert.co.y = y</code></p>
+</li>
+</ul>
+<p>Der ganze Code sieht also so aus:</p>
+<pre><code class="language-python">import bpy
+import math
+
+currentmesh = bpy.context.object.data
+
+for vert in currentmesh.vertices:
+    
+    angle = math.radians((vert.co.z + 1) * 45)
+    
+    x = vert.co.x * math.cos(angle) - vert.co.y * math.sin(angle)
+    y = vert.co.x * math.sin(angle) + vert.co.y * math.cos(angle)
+    
+    vert.co.x = x
+    vert.co.y = y
+
+currentmesh.update()
+</code></pre>
+</span>
+</div>
+<h2 id="neues-mesh">Neues Mesh</h2>
 
 
 			<aside class="copyright" role="note">
@@ -327,7 +424,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_b/" title="Übung 1 - Basics">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/" title="Übung 6 - Addon-Entwicklung und VS Code">
         <span class="direction">
           Previous
         </span>
@@ -337,7 +434,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 1 - Basics
+              Übung 6 - Addon-Entwicklung und VS Code
             </div>
           </div>
         </div>
@@ -347,14 +444,14 @@
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/links/" title="Links &amp; Literatur">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/" title="Übung 4 - Addon-Entwicklung mit Visual Studio Code">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Links &amp; Literatur
+              Übung 4 - Addon-Entwicklung mit Visual Studio Code
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

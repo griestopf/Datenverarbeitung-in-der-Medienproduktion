@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -8,42 +8,38 @@
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/</loc>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/</loc>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -56,7 +52,6 @@
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/tags/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -72,7 +67,11 @@
   </url>
   
   <url>
-    <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_b/</loc>
+    <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_b/</loc>
+  </url>
+  
+  <url>
+    <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_b/</loc>
   </url>
   
   <url>
@@ -92,11 +91,15 @@
   </url>
   
   <url>
-    <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</loc>
+    <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/</loc>
   </url>
   
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</loc>
+  </url>
+  
+  <url>
+    <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</loc>
   </url>
   
 </urlset>
