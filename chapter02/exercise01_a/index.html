@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 2 - Würfelturm - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.79.1" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -251,7 +251,7 @@
 
 
 
-<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
+<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
 	
 	4. Addon-Entwicklung und VS Code
 </a>
@@ -264,7 +264,7 @@
 
 
 
-<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
+<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
 	
 	5. Meshes - Basics 
 </a>
@@ -277,7 +277,7 @@
 
 
 
-<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
+<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
 	
 	6. Meshes - BMesh
 </a>
@@ -305,25 +305,16 @@
 		<div class="wrapper">
 			<h1>Übung 2 - Würfelturm </h1>
 
-			
-
-<h2 id="das-blender-python-modul-bpy">Das Blender-Python-Modul <code>bpy</code></h2>
-
+			<h2 id="das-blender-python-modul-bpy">Das Blender-Python-Modul <code>bpy</code></h2>
 <p>Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python <em>Module</em>. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul <code>bpy</code> (Abk. f. <em>Blender Python</em>) zur Verfügung.</p>
-
 <p>In Blender-Skripten muss dieses Modul wie jedes andere Modul auch zunächst mit einer <code>import</code>-Anweisung eingebunden werden:</p>
-
 <pre><code class="language-Python">import bpy
 
 # Rest des Skripts...
 </code></pre>
-
 <p>Wird die in Blender eingebaute interaktive Python-Konsole verwendet, ist dies automatisch schon geschehen, d.h. es kann direkt auf alles, was <code>bpy</code> bietet, zugegriffen werden.</p>
-
 <h3 id="aufteilung">Aufteilung</h3>
-
 <p>Das Modul <code>bpy</code> bietet die gesamte skript-bare Blender-Funktionalität in acht &ldquo;Unterebenen&rdquo; an.</p>
-
 <blockquote class="todo">
     <ul>
 <li>Gebt auf der Blender-Python-Console nur <code>bpy.</code> ein und drückt dann <code>Strg</code>-<code>Leertaste</code>, bzw. den Button &ldquo;Autocomplete&rdquo;</li>
@@ -331,116 +322,85 @@
 </ul>
 
 </blockquote>
-
-<p>Von diesen acht Gruppen unterhalb von <code>bpy</code> sollen hier die folgenden drei näher betrachtet werden:
-- <code>bpy.ops</code>
-- <code>bpy.context</code>
-- <code>bpy.data</code></p>
-
+<p>Von diesen acht Gruppen unterhalb von <code>bpy</code> sollen hier die folgenden drei näher betrachtet werden:</p>
+<ul>
+<li><code>bpy.ops</code></li>
+<li><code>bpy.context</code></li>
+<li><code>bpy.data</code></li>
+</ul>
 <h2 id="die-wichtigsten-untermodule-von-bpy">Die wichtigsten &ldquo;Untermodule&rdquo; von <code>bpy</code></h2>
-
-<h3 id="bpy-context-hahahugoshortcode-0xc00020f400-2-hbhb"><code>bpy.context</code> <a href="https://docs.blender.org/api/current/bpy.context.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
-
+<h3 id="bpycontext-hahahugoshortcode-s1-hbhb"><code>bpy.context</code> <a href="https://docs.blender.org/api/current/bpy.context.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p>Klassen und Methoden unterhalb von <code>bpy.context</code> erlauben den Zugriff auf den aktuellen Kontext, in dem sich der Benutzer befindet wie z.B. Szene, Modus, Selektierte Objekte, Faces, Kanten u. Vertices.</p>
-
-<hr />
-
-<h3 id="bpy-data-hahahugoshortcode-0xc00020f400-3-hbhb"><code>bpy.data</code> <a href="https://docs.blender.org/api/current/bpy.data.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
-
+<hr>
+<h3 id="bpydata-hahahugoshortcode-s2-hbhb"><code>bpy.data</code> <a href="https://docs.blender.org/api/current/bpy.data.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p><code>bpy.data</code> ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das &ldquo;.blend&rdquo;-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  <code>bpy.data</code> Zugegriffen werden. Einen Überblick darüber, was das ist, liefert die <em>Blender File</em> Ansicht des Outliners.
 Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über <code>bpy.data</code>.</p>
-
 <p>Ein typischer Anwendungsfall ist zum Beispiel der Zugriff auf Materialien. Dieser erfolgt mit</p>
-
 <pre><code class="language-python">bpy.data.materials[&quot;materialname&quot;]
 </code></pre>
-
 <blockquote class="info">
-    <div class="row">
-    <div class="column left" style="width: 60%">
-
-    <p>Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die Kameradaten hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich <span class="counter">1</span></p>
-
+    <div class="row"><div class="column left" style="width: 60%"><p>Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die <a href="https://docs.blender.org/manual/en/latest/render/cameras.html">Kameradaten</a> hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich <span class="counter">1</span></p>
 <pre><code class="language-python">bpy.data.cameras[&quot;My_Cam_Data&quot;]
 </code></pre>
-
 <p><strong>oder</strong> über die <a href="https://docs.blender.org/manual/en/latest/scene_layout/collections/collections.html">Collection</a>, welche das Kameraobjekt <em>My_Cam_Object</em> und die ihm zugewiesenen Kameradaten beinhaltet <span class="counter">2</span></p>
-
 <pre><code class="language-python">bpy.data.collections[&quot;Collection&quot;].objects[&quot;My_Cam_Object&quot;].data
 </code></pre>
-
-
 </div>
-
-<div class="column right" style="width: 40%">
-
-    <br>
-<img src="img/bpydata.png" alt="bpy data" />
-
+<div class="column right" style="width: 40%"><br>
+![bpy data](img/bpydata.png)</div>
 </div>
-
-<p></div></p>
-
 <p>Zu beachten ist hier, dass <em>My_Cam_Object</em> nicht dasselbe ist wie <em>My_Cam_Data</em>. Ersteres ist das generische Blender-Objekt - z.b. mit dessen Transformation. Letzteres sind die ihm zugewiesenen Kameradaten - z.b. mit Brennweite und Tiefenunschärfe.</p>
 
 </blockquote>
-
-<hr />
-
-<h3 id="bpy-ops-hahahugoshortcode-0xc00020f400-5-hbhb"><code>bpy.ops</code> <a href="https://docs.blender.org/api/current/bpy.ops.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
-
+<hr>
+<h3 id="bpyops-hahahugoshortcode-s4-hbhb"><code>bpy.ops</code> <a href="https://docs.blender.org/api/current/bpy.ops.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p><code>bpy.ops</code> steht für <strong>&ldquo;Operatoren&rdquo;</strong>. Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus <code>bpy.ops</code>.</p>
-
 <p>Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden. So kann beispielsweise ein Objekt entweder über den Transform-Operator verschoben,</p>
-
 <pre><code class="language-python">bpy.ops.transform.translate(value=(1,0,0))
 </code></pre>
-
 <p>oder dessen Position im Raum direkt angesprochen werden:</p>
-
 <pre><code class="language-python">bpy.context.object.location.x += 1
 
 #bzw nach import von mathutils mit 
 bpy.context.object.location += mathutils.Vector((1,0,0))
 </code></pre>
-
+<h2 id="andere-mitgelieferte-module">Andere mitgelieferte Module</h2>
+<p>Neben <code>bpy</code> werden auch noch andere Python-Module mit Blender mitgeliefert. Die für uns hier Wichtigen sind Folgende:</p>
+<h3 id="mathutils-hahahugoshortcode-s5-hbhb"><code>mathutils</code> <a href="https://docs.blender.org/api/current/mathutils.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<p>Hier sind u.a. wichtige Typen für das Scripting in Blender und deren Methoden enthalten (<code>Color</code>, <code>Euler</code>, <code>Matrix</code>, <code>Quaternion</code>, <code>Vector</code>)</p>
+<hr>
+<h3 id="bmesh-hahahugoshortcode-s6-hbhb"><code>bmesh</code> <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<p>Gibt Zugriff auf Blenders interne Mesh-Editing API.</p>
+<hr>
+<h3 id="gpu-hahahugoshortcode-s7-hbhb">(<code>gpu</code>) <a href="https://docs.blender.org/api/current/gpu.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<p>Ermöglicht u.a. das Zeichnen von selbstdefinierten Shadern im Viewport.</p>
 <h2 id="beispiel-matrix-extrude">Beispiel: Matrix Extrude</h2>
-
 <h2 id="aufgaben">Aufgaben</h2>
-
 <p>Implemeniert ein Skript zum unten beschriebenen &ldquo;Matrix Extrude&rdquo;:</p>
-
 <p>Insbesondere beim Box Modelling kommt folgende Abfolge von Bearbeitungsschritten auf einer Fläche häufig vor</p>
-
 <ol>
 <li>Fläche wird in Richtung der Flächennormalen um eine Länge extrudiert.</li>
 <li>Die extrudierte Fläche wird skaliert (z.B. verkleinert).</li>
 <li>Die extrudierte Fläche wird rotiert.</li>
 </ol>
-
 <p>Durch mehrfaches Wiederholen der o.g. Schritte lassen sich sehr gut &ldquo;Auswüchse&rdquo; aus einem bestehenden Box-Modell erzeugen, wie z.B. Arme, Beine, Tentakel u.ä.</p>
-
 <p>Schreibt ein Skript, das die aktuell selektierten Flächen eines Mesh um einen bestimmten Betrag entlang der Normalen extrudiert, die Flächen um einen bestimmten Betrag skaliert und rotiert. Packt diese drei Anweisungen in eine Schleife, die eine definierte Anzahl von durchläufen wiederholt wird.</p>
-
 <blockquote class="info">
     Tipp: Führt oben genannten Arbeitsschritte von Hand aus und schaut im Arbeitsbereich des Info-Editors, welche Python-Befehle sich dahinter verbergen. Die im Info-Editor angezeigten Befehele enthalten immer den vollen Parametersatz. Davon können viele Einstellungen weggelassen werden, wenn sie sowieso die voreingestellten Standardwerte sind. Dünnt die Aufrufe in Eurem Code aus.
 </blockquote>
-
 <p>Packt die vom Benutzer zu verändernden Werte wie Rotationswinkel/Achse, Skalierungsfaktor, Extrusions-Strecke und Anzahl der Wiederholungen in Variablen, die zentral am Anfang des Skriptes stehen und dort bequem geändert werden können.</p>
-
 <blockquote class="todo">
     <ul>
 <li>Arbeitet das einleitende Kapitel der offiziellen <a href="https://docs.blender.org/api/current/info_quickstart.html">Blender Python Dokumentation</a> durch.
-
 <ul>
 <li>Was ist das besondere an den <code>bpy</code>-Collections?</li>
 <li>Wie wird ein neues Mesh erzeugt?</li>
 <li>Wie setze ich das aktuell selektierte Objekt in Python?</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
 </blockquote>
-
 <!-- TODO Erstzen
 - Sucht im Internet sinnvolle Python-Code-Schnipsel für die Verwendung der drei oben genannten "Untermodule" `bpy.context`, `bpy.data`, `bpy.ops`.
  - Probiert die Code-Schnipsel selbst aus.
@@ -448,21 +408,15 @@ bpy.context.object.location += mathutils.Vector((1,0,0))
  - Lest die Referenz-Doku u. ggf. andere Quellen zu den verwendeten Befehlen nach.
  - Gibt es im jweiligen Untermodul ähnliche Befehle? Welche Funktion haben diese
 -->
-
 <h2 id="prozedurale-würfeltürmchen-bauen">Prozedurale Würfeltürmchen bauen</h2>
-
-<p><img src="img/turm.png" alt="turm" /></p>
-
+<p><img src="img/turm.png" alt="turm"></p>
 <p>Türmchen:</p>
-
 <ul>
 <li>Genau gestapelte Würfel</li>
 <li>nach oben schmaler werden</li>
 <li>Würfel mit random Scale, Z-Rotation und Location-Offset</li>
 </ul>
-
 <p><strong>Beispielcode Würfeltürmchen</strong></p>
-
 <pre><code class="language-python">import bpy
 import random
 from datetime import datetime
@@ -530,7 +484,7 @@ for i in range (1, random.randint(MIN_STACKS, MAX_STACKS)):
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/" title="Übung 1 - Blender Setup &amp; Scripting-Tools">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/" title="Übung 3 - Operatoren &amp; Addons">
         <span class="direction">
           Previous
         </span>
@@ -540,7 +494,7 @@ for i in range (1, random.randint(MIN_STACKS, MAX_STACKS)):
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 1 - Blender Setup &amp; Scripting-Tools
+              Übung 3 - Operatoren &amp; Addons
             </div>
           </div>
         </div>
@@ -550,14 +504,14 @@ for i in range (1, random.randint(MIN_STACKS, MAX_STACKS)):
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/" title="Übung 3 - Operatoren &amp; Addons">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/" title="Übung 1 - Blender Setup &amp; Scripting-Tools">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 3 - Operatoren &amp; Addons
+              Übung 1 - Blender Setup &amp; Scripting-Tools
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 1 - Blender Setup &amp; Scripting-Tools - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.79.1" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -251,7 +251,7 @@
 
 
 
-<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
+<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
 	
 	4. Addon-Entwicklung und VS Code
 </a>
@@ -264,7 +264,7 @@
 
 
 
-<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
+<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
 	
 	5. Meshes - Basics 
 </a>
@@ -277,7 +277,7 @@
 
 
 
-<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
+<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
 	
 	6. Meshes - BMesh
 </a>
@@ -305,14 +305,9 @@
 		<div class="wrapper">
 			<h1>Übung 1 - Blender Setup &amp; Scripting-Tools </h1>
 
-			
-
-<p><strong>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.</strong></p>
-
+			<p><strong>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.</strong></p>
 <h2 id="einführung">Einführung</h2>
-
 <p>Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen <code>python</code> Unterverzeichnis). Obwohl der Kern von Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus sind sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a.</p>
-
 <ul>
 <li>Szenen und Objekte</li>
 <li>Geometrie</li>
@@ -320,66 +315,35 @@
 <li>Materialien</li>
 <li>Texturen</li>
 </ul>
-
 <h2 id="erste-schritte">Erste Schritte</h2>
-
 <p><blockquote class="todo">
     Ladet euch zunächst von <a href="https://www.blender.org/download/">Blender.org</a> die aktuelle Version von Blender herunter.
 </blockquote>
 Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.</p>
-
 <!--Link zu CG Webseite? Ist ja nicht immer alles Online und vlt auch nicht immer auf Davids Webspace?-->
-
 <ul>
 <li>Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im <a href="https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/chapter01/lecture01/"><strong>Script zur Veranstalltung Computergrafik</strong></a></li>
 </ul>
-
 <blockquote class="todo">
     <ul>
-<li>Öffnet Blender und in Blender die <strong><em>Preferences</em></strong>
-<img src="img/preferences.png" alt="Preferences" /></li>
-<li>Aktiviert hier nun im <strong><em>Interface</em></strong> Tab <em>Python Tooltips</em> und <em>Development Extras</em></li>
+<li>Öffnet Blender und in Blender die <em><strong>Preferences</strong></em>
+<img src="img/preferences.png" alt="Preferences"></li>
+<li>Aktiviert hier nun im <em><strong>Interface</strong></em> Tab <em>Python Tooltips</em> und <em>Development Extras</em></li>
 </ul>
 
 </blockquote>
-
-<p><br></p>
-
-<div class="row">
-    <div class="column left" style="width: 50%">
-
-    <strong>Python Tooltips</strong> zeigt nun beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.
-
+<br>
+<div class="row"><div class="column left" style="width: 50%"><strong>Python Tooltips</strong> zeigt nun beim Hovern mit dem Cursor über einen Wert dessen Pfad in der Blender API an.</div>
+<div class="column right" style="width: 50%"><img src="img/python_tooltip.png" alt="Python Tooltip"></div>
 </div>
-<div class="column right" style="width: 50%">
-
-    <img src="img/python_tooltip.png" alt="Python Tooltip" />
-
+<div class="row"><div class="column left" style="width: 50%"><strong>Development Extras</strong> Ermöglicht einige Funktionen, die uns das Scripten erleichter, wie z.b. das Anzeigen des Python-Codes von Features (<code>RMB</code> → <em>Edit Source</em>). Der Sourcecode wird dann im Texteditor geöffnet. Da manche Bereiche der UI automatisch über den <a href="https://github.com/blender/blender/tree/master/source/blender">C-Kern</a> von Blender generiert werden, gibt es jedoch nicht zu jedem Wert und Knopf ein Pythonscript.</div>
+ <div class="column right" style="width: 50%"><img src="img/edit_source.png" alt="Edit Source"></div>
 </div>
-
-</div>
-
-<div class="row">
-    <div class="column left" style="width: 50%">
-
-    <strong>Development Extras</strong> Ermöglicht einige Funktionen, die uns das Scripten erleichter, wie z.b. das Anzeigen des Python-Codes von Features (<code>RMB</code> → <em>Edit Source</em>). Der Sourcecode wird dann im Texteditor geöffnet. Da manche Bereiche der UI automatisch über den <a href="https://github.com/blender/blender/tree/master/source/blender">C-Kern</a> von Blender generiert werden, gibt es jedoch nicht zu jedem Wert und Knopf ein Pythonscript.
-
-</div>
- <div class="column right" style="width: 50%">
-
-    <img src="img/edit_source.png" alt="Edit Source" />
-
-</div>
-
-</div>
-
 <h2 id="scripting-tools">Scripting Tools</h2>
-
 <p><blockquote class="todo">
-    Wechselt nun zum Workspace-Tab <strong><em>Scripting</em></strong>
+    Wechselt nun zum Workspace-Tab <em><strong>Scripting</strong></em>
 </blockquote>
-<img src="img/scripting_workspace.png" alt="Scripting Workspace" /> <!--TODO Bild Counter einfügen--></p>
-
+<img src="img/scripting_workspace.png" alt="Scripting Workspace"> <!--TODO Bild Counter einfügen--></p>
 <ul>
 <li>Der <strong><span style="color: ForestGreen">3D View</span></strong> <span class="counter">1</span> stellt die aktuelle Szene in 3D dar.</li>
 <li>Mit der <strong><span style="color: DarkGoldenRod">Python Konsole</span></strong>  <span class="counter">2</span> kann wie mit dem <code>python</code>-Befehl von der Kommandozeile des Betriebssystems interaktiv Python-Code Zeile für Zeile eingegeben werden.</li>
@@ -388,140 +352,105 @@ Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventue
 <li>Die beiden <strong><span style="color: DarkOrange">Outliner Fenster</span></strong>  <span class="counter">5</span> zeigen oben die aktuelle Szenen-Hierarchie und unten alle Daten des geöffneten Blender Files</li>
 <li>Der <strong><span style="color: Magenta">Properties Editor</span></strong>  <span class="counter">6</span> ermöglicht die Bearbeitung von Werten des aktuellen Objekts, sowie Einstellungen der Szene.</li>
 </ul>
-
-<p>Ein weiteres wichtiges Werkzeug ist die <strong>Systemkonsole</strong>.
+<p>Ein weiteres wichtiges Werkzeug ist die <strong>Systemkonsole</strong>. 
 <blockquote class="todo">
     <ul>
 <li>Wenn Windows benutzt wird, wählt <strong>Window → Toggle System Console</strong></li>
 <li>In Linux und Mac(? - TODO) muss Blender über das Terminal gestartet werden und dieses Terminal erfüllt dann deren Zweck.
-<img src="img/console.png" alt="Scripting Workspace" /> <!--TODO Bild Counter einfügen--></li>
+<img src="img/console.png" alt="Scripting Workspace"> <!--TODO Bild Counter einfügen--></li>
 </ul>
 
 </blockquote></p>
-
 <p>Nach dem Start von Blender zeigt uns die Systemkonsole die mitgelieferte Python-Installation an. Hier werden auch Fehlermeldungen und Ausgaben des <code>print()</code> Befehls ausgegeben.</p>
-
 <h2 id="live-scripting">Live Scripting</h2>
-
 <!--Zwei-Spalten layout in "Markdown" WOW! Funktioniert nur ohne Einrückung-->
-
-<div class="row">
-    <div class="column left" style="width: 50%">
-
-    <p>Die <strong>Python Konsole</strong> ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (<strong>b</strong>lender <strong>py</strong>thon API) getippt werden und anschließend mit <code>TAB</code> die verfügbaren nachfolgenden Pfade angezeigt werden. Mit <code>Pfeil nach oben</code> kann der letzte Befehl wieder aufgerufen werden.</p>
-
+<div class="row"><div class="column left" style="width: 50%"><p>Die <strong>Python Konsole</strong> ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (<strong>b</strong>lender <strong>py</strong>thon API) getippt werden und anschließend mit <code>TAB</code> die verfügbaren nachfolgenden Pfade angezeigt werden. Mit <code>Pfeil nach oben</code> kann der letzte Befehl wieder aufgerufen werden.</p>
 <p>Mit folgendem Befehl können wir z.b. das selektierten Objekts um zwei Einheiten entlang der Y-Achse verschieben.</p>
-
 <pre><code class="language-n">bpy.ops.transform.translate(value=(0, 2, 0))
 </code></pre>
-
 <p>Pfade können auch in Variablen gespeichert und dann über diese manipulert werden:</p>
-
 <pre><code class="language-n">my_cube = bpy.context.object
 </code></pre>
-
 <pre><code class="language-n">my_cube.location.x += 2
 </code></pre>
-
 <p>wird lediglich der Pfad zu einer Variablen oa. eingegeben, gibt die Konsole deren Wert zurück. Z.b. <code>my_cube.scale</code> gibt <code>Vector((1.0, 1.0, 1.0))</code> zurück. Wir wissen also nun, dass es sich bei scale um eine Datenstruktur &ldquo;Vector&rdquo; handelt und diese die Werte (1,1,1) für x, y und z hat.</p>
-
 <p>Die Struktur der API wird im folgenden Kapitel noch genauer behandelt.</p>
-
-
 </div>
-
-<div class="column right" style="width: 50%">
-
-    <video autoplay controls loop src="img/live_console.mp4"></video>
-
-
+<div class="column right" style="width: 50%"><video autoplay controls loop src="img/live_console.mp4"></video></div>
 </div>
-
-</div>
-
 <p>Was fällt uns hier ins Auge?:</p>
-
 <ul>
-<li><p>Alles, was Blender für das Skripten zur Verfügung stellt, ist über das Python-<em>Modul</em> <code>bpy</code> abrufbar. Unterhalb von <code>bpy</code> gibt es eine weitere hierarchische Aufteilung, so dass Blender-Kommandos in Python folgende Struktur haben:</p>
-
+<li>
+<p>Alles, was Blender für das Skripten zur Verfügung stellt, ist über das Python-<em>Modul</em> <code>bpy</code> abrufbar. Unterhalb von <code>bpy</code> gibt es eine weitere hierarchische Aufteilung, so dass Blender-Kommandos in Python folgende Struktur haben:</p>
 <pre><code>bpy.abc.def.[...].command()
 </code></pre>
-
-<p>Das Kommando <code>bpy.ops.transform.translate()</code> verwendet aus der Gesamtheit aller Blender-Python-Funktionalität <code>bpy</code> die Untergruppe der Operatoren <code>ops</code>, dort wird dann aus der Untergruppe der Transformations-Operatoren <code>transform</code> die Methode <code>translate</code> aufgerufen.</p></li>
-
-<li><p>Funktionen (Methoden), die Parameter entgegen nehmen, verwenden meist <em>named</em> Paramter. Im Beispiel oben muss daher der Verschiebungsvektor, der an die Methode <code>translate</code> übergeben wird, mit <code>value=...</code> explizit benannt werden. Bislang haben wir bei Python-Methoden die aus anderen Programmiersprachen bekannten <em>positional</em> Parameter kennen gelernt, bei denen die Position in der Parameterliste eindeutig bestimmt, welcher Parameter gemeint ist.</p></li>
-
-<li><p>Vektoren werden in  einer 3D-Anwendung an allen möglichen Stellen verwendet. So auch in Blender, z.B. für die Angaben von Verschiebungen, Positionen, Normalen, Euler-Winkel, Textur-Koordinaten usw.. Diese können in Blender Python als <em>Tupel</em> (Siehe Lektion 2 - Datentypen) angegeben werden.</p></li>
+<p>Das Kommando <code>bpy.ops.transform.translate()</code> verwendet aus der Gesamtheit aller Blender-Python-Funktionalität <code>bpy</code> die Untergruppe der Operatoren <code>ops</code>, dort wird dann aus der Untergruppe der Transformations-Operatoren <code>transform</code> die Methode <code>translate</code> aufgerufen.</p>
+</li>
+<li>
+<p>Funktionen (Methoden), die Parameter entgegen nehmen, verwenden meist <em>named</em> Paramter. Im Beispiel oben muss daher der Verschiebungsvektor, der an die Methode <code>translate</code> übergeben wird, mit <code>value=...</code> explizit benannt werden. Bislang haben wir bei Python-Methoden die aus anderen Programmiersprachen bekannten <em>positional</em> Parameter kennen gelernt, bei denen die Position in der Parameterliste eindeutig bestimmt, welcher Parameter gemeint ist.</p>
+</li>
+<li>
+<p>Vektoren werden in  einer 3D-Anwendung an allen möglichen Stellen verwendet. So auch in Blender, z.B. für die Angaben von Verschiebungen, Positionen, Normalen, Euler-Winkel, Textur-Koordinaten usw.. Diese können in Blender Python als <em>Tupel</em> (Siehe Lektion 2 - Datentypen) angegeben werden.</p>
+</li>
 </ul>
-
 <h2 id="abläufe-als-script-speichern">Abläufe als Script speichern</h2>
-
 <p>Das Info Fenster gibt uns für die meisten Aktionen, die wir in Blender tun den Python-Code aus, der im Hintergrund ausgeführt wird. So können wir schnell Arbeitsabläufe einfach aus dem Info Fenster herauskopieren und als Script abspeichern, um uns repetetive Arbeit zu sparen.</p>
-
-<p><img src="img/info.png" alt="Info Fenster" />
+<p><img src="img/info.png" alt="Info Fenster">
 Das Info Fenster nachdem ein Affenkopf hinzugefügt, diesem ein Subdivisio Surface Modifier hinzugefügt und er auf der Z-Achse um 2.0 skaliert wurde</p>
-
 <blockquote class="todo">
     <ul>
-<li><p>Der Inhalt des Info-Fensters kann mit <code>LMB + Drag</code> selektiert werden und mit <code>STRG + C</code> &amp; <code>STRG + V</code> in das Textfenster kopiert werden (vorher dort oben auf <strong><em>New</em></strong> klicken).</p></li>
-
-<li><p>Damit unser Script funktioniert muss hier noch das <strong>bpy Modul</strong> importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).</p></li>
-
-<li><p>Das Script kann mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut <code>ALT + P</code> (mit Mauscursor im Texteditor) ausgeführt werden.</p></li>
+<li>
+<p>Der Inhalt des Info-Fensters kann mit <code>LMB + Drag</code> selektiert werden und mit <code>STRG + C</code> &amp; <code>STRG + V</code> in das Textfenster kopiert werden (vorher dort oben auf <em><strong>New</strong></em> klicken).</p>
+</li>
+<li>
+<p>Damit unser Script funktioniert muss hier noch das <strong>bpy Modul</strong> importiert werden (in der Echtzeit-Konsole geschieht dies automatisch).</p>
+</li>
+<li>
+<p>Das Script kann mit Klick auf den Play-Button oben im Texteditor oder mit dem Shortcut <code>ALT + P</code> (mit Mauscursor im Texteditor) ausgeführt werden.</p>
+</li>
 </ul>
-
-<p><img src="img/automated.png" alt="Automatisierung von Abläufen" /></p>
+<p><img src="img/automated.png" alt="Automatisierung von Abläufen"></p>
 
 </blockquote>
-
 <p>Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen werden, wenn sie nicht benötigt werden. Es reicht daher für diesen Zweck auf folgender Code:</p>
-
 <pre><code class="language-python">import bpy
 
 bpy.ops.mesh.primitive_monkey_add()
 bpy.ops.object.modifier_add(type='SUBSURF')
 bpy.ops.transform.resize(value=(1, 1, 2)) #(1, 1, 2) steht hierbei für 1 auf X- und Y-Achse und 2 auf der Z-Achse
 </code></pre>
-
 <blockquote>
 <p>in Python können Funktionsparameter (hier z.b. der <em>value</em> Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.</p>
 </blockquote>
-
 <h2 id="affentheater">Affentheater</h2>
-
 <p>Wir wollen nun das erlernte anwenden, um eine Horde von Affenköpfen (im Rechteck angeordnet) zu erstellen.</p>
-
-<p><img src="img/affentheater.png" alt="Affentheater" /></p>
-
+<p><img src="img/affentheater.png" alt="Affentheater"></p>
 <blockquote class="todo">
     <ul>
 <li>Erstellt im Text Editor ein neues Script</li>
 <li>importiert zunächst die Blender API mit <code>import bpy</code></li>
 <li>Um ein Gitter zu erzeugen benötigen wir zwei verschachtelte Schleifen (Zeilen und Spalten). Solche For-Schleifen in Python sind sehr einfach mit der <strong>range</strong> funktion möglich. Wird in dieser nur eine Zahl angegeben, entspricht diese der Anzahl an ausgeführten Iterationen.</li>
 </ul>
-
 <pre><code class="language-python">for row in range(5):
     for column in range(5):
         #...Code um Affengitter mit 5 Reihen und Spalten zu erzeugen
 </code></pre>
-
 <ul>
-<li><p>Fügt nun den Code der Operatoren, den ihr aus dem Info Fenster kopieren könnt, in die geschachtelte Schleife ein. Wir wollen mit jeder Iteration:</p>
-
+<li>
+<p>Fügt nun den Code der Operatoren, den ihr aus dem Info Fenster kopieren könnt, in die geschachtelte Schleife ein. Wir wollen mit jeder Iteration:</p>
 <ul>
 <li>Einen Affen (Suzanne) an seinem Platz im Gitter hinzufügen</li>
 <li>Den Affen rotieren, damit er hübscher guckt</li>
-<li>Das Shading des Meshes auf <em>Smooth</em> setzen
-<br /></li>
-</ul></li>
-
-<li><p>Entfernt nun die nicht benötigten Parameter aus den Operatorfunktionen</p></li>
+<li>Das Shading des Meshes auf <em>Smooth</em> setzen</li>
+</ul>
+</li>
+<li>
+<p>Entfernt nun die nicht benötigten Parameter aus den Operatorfunktionen</p>
+</li>
 </ul>
 
 </blockquote>
-
 <p>Das Affengitter-Script sollte nun in etwa so aussehen:</p>
-
 <pre><code class="language-python">import bpy
 
 for row in range(5):
@@ -530,15 +459,12 @@ for row in range(5):
         bpy.ops.transform.rotate(value=0.6, orient_axis='X', orient_type='GLOBAL')
         bpy.ops.object.shade_smooth()
 </code></pre>
-
 <p>Schließlich wollen wir die Verwendung von Magic Numbers (undokumentierte Zahlen irgendwo im Code) reduzieren.</p>
-
 <blockquote class="todo">
     <ul>
 <li>Dazu legen wir oben im Script die entsprechenden &ldquo;Konstanten&rdquo; an (speziell deklarierte Konstanten gibt es in Python nicht) und setzen sie unten im Code ein.</li>
 <li>Hier importieren wir noch das <strong>random</strong> modul und verwenden deren <strong>uniform</strong> Funktion, um jedem Affen eine zufällige Größe zu geben. Diese gibt einen zufälligen Wert innerhalb der Beiden übergebenen Parameter zurück.</li>
 </ul>
-
 <pre><code class="language-python">import bpy
 import random
 
@@ -558,41 +484,31 @@ for row in range(GRID_SIZE):
         bpy.ops.transform.resize(value=(size, size, size))
 
 </code></pre>
-
 <p><em>Der fertige Affentheater Code</em></p>
 
 </blockquote>
-
 <blockquote class="todo">
     <h2 id="aufgabe-bis-zum-nächsten-mal">Aufgabe bis zum nächsten Mal</h2>
-
 <ul>
 <li>Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet</li>
 <li>Freiwilliger Zusatz: Lasst die Affenköpfe alle in die Mitte der Szene gucken.</li>
 </ul>
-
-<p><img src="img/affenkreis.png" alt="img" /></p>
-
+<p><img src="img/affenkreis.png" alt="img"></p>
 <ul>
 <li>Experimentiert auch gerne mit weiteren Funkionen</li>
 </ul>
-
 <h3 id="tipps">Tipps</h3>
-
 <ul>
 <li>Die Formel für die Position eines Punktes im Einheitskreis ist Folgende:<br>
-<img src="img/einheitskreis.png" alt="img" /><br></li>
+<img src="img/einheitskreis.png" alt="img"><br></li>
 <li><strong>t</strong> ist dabei der Winkel in Radianten. 360° entspricht 2Pi.</li>
 <li>Zur Nutzung von Sinus &amp; Cosinus muss das math Modul importiert werden</li>
 </ul>
-
 <pre><code class="language-python"> import math
 </code></pre>
 
 </blockquote>
-
-<h2 id="ressourcen-tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
-
+<h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
 <table>
 <thead>
 <tr>
@@ -602,7 +518,6 @@ for row in range(GRID_SIZE):
 <th>Quelle</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  44min</td>
@@ -610,42 +525,36 @@ for row in range(GRID_SIZE):
 <td>Guter Schnelleinstieg in Scripting mit Blender</td>
 <td><a href="https://www.youtube.com/channel/UCzghqpGuEmk4YdVewxA79GA">YouTube -  Curtis Holt</a></td>
 </tr>
-
 <tr>
 <td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
 <td><a href="https://docs.blender.org/api/current/info_quickstart.html">Blender Python API Dokumentation</a></td>
 <td>Offizielle Blender API Dokumentation</td>
 <td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
 </tr>
-
 <tr>
 <td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/playlist.png" class="resicon"> 21x je 5-20min</td>
 <td><a href="https://www.youtube.com/playlist?list=PLFtLHTf5bnym_wk4DcYIMq1DkjqB7kDb-">Blender Python - Scripting Series</a></td>
 <td>Ausführlichere Serie zu Blender Scripting</td>
 <td><a href="https://www.youtube.com/c/DarkfallBlender">YouTube - Darkfall</a></td>
 </tr>
-
 <tr>
 <td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/playlist.png" class="resicon"> 15x je 5-20min</td>
 <td><a href="https://cloud.blender.org/p/scripting-for-artists/">Scripting for Artists</a></td>
 <td>Sehr gute aufgearbeitete Serie zu Blender Scripting und Addon Entwicklung - teilweise jedoch kostenpflichtig</td>
 <td><a href="https://cloud.blender.org/welcome">Blender Cloud</a> - <a href="https://stuvel.eu/">Dr. Sybren A. Stüvel</a></td>
 </tr>
-
 <tr>
 <td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
 <td><a href="https://pythonbuch.com/">Einführung ins Programmieren mit Python</a></td>
 <td>Auf Deutsch</td>
 <td><a href="pythonbuch.com">pythonbuch.com</a></td>
 </tr>
-
 <tr>
 <td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
 <td><a href="https://docs.python.org/3.7/tutorial/index.html">The Python 3.7 Tutorial</a></td>
 <td>Einstieg in Python</td>
 <td><a href="https://docs.python.org/3.7/">Offizielle Python 3.7 Documentation</a></td>
 </tr>
-
 <tr>
 <td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon"> 111min</td>
 <td><a href="https://youtu.be/H1elmMBnykA">Python Tutorial 2020</a></td>
@@ -670,7 +579,7 @@ for row in range(GRID_SIZE):
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_b/" title="Übung 1 - Basics">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/" title="Übung 2 - Würfelturm">
         <span class="direction">
           Previous
         </span>
@@ -680,7 +589,7 @@ for row in range(GRID_SIZE):
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 1 - Basics
+              Übung 2 - Würfelturm
             </div>
           </div>
         </div>
@@ -690,14 +599,14 @@ for row in range(GRID_SIZE):
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/" title="Übung 2 - Würfelturm">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_b/" title="Übung 1 - Basics">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 2 - Würfelturm
+              Übung 1 - Basics
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

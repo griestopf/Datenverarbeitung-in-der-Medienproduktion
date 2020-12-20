@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 4 - Meshgenerierung - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.54.0" />
+    <title>Übung 4 - Addon-Entwicklung mit Visual Studio Code - Datenverarbeitung in der Medienproduktion</title>
+    <meta name="generator" content="Hugo 0.79.1" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 4 - Meshgenerierung
+        Übung 4 - Addon-Entwicklung mit Visual Studio Code
       </div>
     </div>
 
@@ -248,22 +248,9 @@
 
 
 
-<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
+<a class="current" title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
 	
 	4. Addon-Entwicklung und VS Code
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a class="current" title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
-	
-	5. Meshes - Basics 
 </a>
 
 
@@ -277,7 +264,20 @@
 
 
 
-<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
+<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
+	
+	5. Meshes - Basics 
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
 	
 	6. Meshes - BMesh
 </a>
@@ -303,54 +303,185 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 4 - Meshgenerierung </h1>
+			<h1>Übung 4 - Addon-Entwicklung mit Visual Studio Code </h1>
 
-			
-
-<p><strong>Basics der Meshgenerierung und -manipulation</strong></p>
-
+			<p>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.</p>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<blockquote class="todo">
+    <ul>
+<li>Installiert zunächst <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+<li>Installiert Python 3.7
 <ul>
-<li>BMesh</li>
-<li>Vertices bewegen</li>
-<li>Anwendung? Funktion plotten, Terrain / Fraktal generieren?</li>
+<li>Für Windows <a href="https://www.python.org/downloads/release/python-379/">hier</a></li>
+<li>Mit Linux (Ubuntu basierte Distributionen) im Terminal mit <code>sudo apt-get install python3.7</code></li>
+<li>TODO PATH &amp; PIP</li>
 </ul>
-
-<h2 id="meshmanipulation-codebeispiel">Meshmanipulation Codebeispiel</h2>
-
+</li>
+<li>öffnet VS Code und installiert die beiden Extensions <strong>Python</strong> von Microsoft und <strong>Blender Development</strong> von Jacques Lucke.</li>
+</ul>
+<p><img src="img/extensions.png" alt="python-extension"></p>
 <ul>
-<li><a href="https://docs.blender.org/api/current/bmesh.html">BMesh</a> Einführung</li>
+<li>TODO select interpreter</li>
+<li>Öffnet nun ein Terminal in VS Code (<strong>Teminal → New Terminal</strong>)</li>
+<li>Installiert das fake-bpy-module mit <code>pip install fake-bpy-module-2.90</code> (bzw aktuelle Blender Version). Dieses ermöglicht uns Autovervollständigung etc. für die Blender API.</li>
+<li>Wenn ihr nun mi VS Code eine Datei als .py abspeichert und bpy importiert, sollte es keine Fehlermeldungen geben und Autovervollständigung sollte funktionieren.</li>
 </ul>
+<p><video width="75%" autoplay loop src="img/fake-bpy-module.mp4"></video></p>
 
-<pre><code class="language-python"># This example assumes we have a mesh object selected
+</blockquote>
+<h1 id="lektion-04---blender-add-ons-in-python">Lektion 04 - Blender Add-ons in Python</h1>
+<p>In der letzten Lektion haben wir gesehen, wie Blender-Kommandos über da <code>bpy</code>-Modul aus Python-Code ausgeführt werden können. Hierzu wurde ein Python-Skript innerhalb des Text-Editors erstellt und ausgeführt.</p>
+<p>Mit Python implementierte Blender-Automatisierung soll in vielen Fällen unabhängig von einer bestimmten Blender-Szene nutzbar sein. Vielmehr ist es wünschenswert, dass ein einmal erzeugtes Skript in allen Szenen, die mit Blender bearbeitet werden, ausgeführt werden kann.</p>
+<p>Zu diesem Zweck bietet Blender die Möglichkeit, Python-Skripte so anzulegen, dass diese als Add-ons verwendet werden können. Add-ons in Blender können über den &ldquo;Add-on&rdquo;-Tab im &ldquo;User Preferences&rdquo; Dialog (<code>Ctrl</code>-<code>Alt</code>-<code>U</code>) geladen, aktiviert, deaktiviert und entladen werden.</p>
+<h2 id="ein-erstes-leeres-add-on">Ein erstes (leeres) Add-On</h2>
+<p>Da ein Add-on nicht Bestandteil einer bestimmten &ldquo;.blend&rdquo;-Datei sein soll, sondern für alle möglichen Dateien, die von einer Blender-Installation bearbeitet werden, zur Verfügung stehen soll, muss das Add-on-Skript losgelöst von einer bestimmten &ldquo;.blend&rdquo;-Datei entwickelt werden.</p>
+<p>Dazu kann das Python-Skript aus dem ein Blender eingebauten Text-Editor unabhängig von der aktuell geöffneten &ldquo;.bend&rdquo;-Datei gespeichert werden. Empfehlenswert ist es allerdings, einen externen Python-Editor (z.B. Visuals Studio Code) zum Editieren der Python-Add-on-Datei zu verwenden</p>
+<h4 id="todo">TODO</h4>
+<blockquote>
+<ul>
+<li>
+<p>Erzeugt eine neue Datei &ldquo;EmptyAddOn.py&rdquo; und fügt dieser folgenden Code hinzu:</p>
+<pre><code class="language-python">bl_info = {&quot;name&quot;: &quot;My Test Addon&quot;, &quot;category&quot;: &quot;Object&quot;}
+def register():
+    print(&quot;Hello World&quot;)
+def unregister():
+    print(&quot;Goodbye World&quot;)
 
-import bpy
-import bmesh
-
-# Get the active mesh
-me = bpy.context.object.data
-
-# Get a BMesh representation
-bm = bmesh.new()   # create an empty BMesh
-bm.from_mesh(me)   # fill it in from a Mesh
-
-# Modify the BMesh, can do anything here...
-for v in bm.verts:
-    v.co.x += 1.0
-
-# Finish up, write the bmesh back to the mesh
-bm.to_mesh(me)
-bm.free()  # free and prevent further access
-
-me.update()
 </code></pre>
-
-<h2 id="ressourcen-tutorials">Ressourcen &amp; Tutorials</h2>
-
+</li>
+<li>
+<p>Erklärt euch, was in dieser Datei passiert.</p>
+</li>
+<li>
+<p>Öffnet den &ldquo;User Preferences&rdquo; Dialog und ladet das Add-on:</p>
 <ul>
-<li><a href="https://youtu.be/mljWBuj0Gho">How to Make Meshes with Python in Blender!</a></li>
-<li><a href="http://sinestesia.co/blog/tutorials/python-2d-grid/">create meshes from low-level data | Diego Gangl</a></li>
-<li><a href="https://medium.com/@behreajj/shaping-models-with-bmesh-in-blender-2-9-2f4fcc889bf0">Shaping models with BMesh | jeremy Beherandt</a></li>
+<li>&ldquo;Install Add-on from File&hellip;&rdquo; -&gt; Python-Datei auswählen.</li>
+<li>Das Add-on sollte im  <em>Supported Level</em> &ldquo;Community&rdquo; unter der <em>Category</em> &ldquo;User&rdquo; als <strong>Object: My Test Addon</strong> erscheinen.</li>
 </ul>
+</li>
+<li>
+<p>Öffnet die Blender System Console (Blender-Hauptmenü &ldquo;Window&rdquo; -&gt; &ldquo;Open System Console&rdquo;).</p>
+</li>
+<li>
+<p>Registriert und Deregistriert das Add-on über die Checkbox neben dem Add-on im &ldquo;User Preferences&rdquo; Dialog -&gt; Die o.a. <code>print</code>-Ausgaben sollten in der System Console erscheinen.</p>
+</li>
+</ul>
+</blockquote>
+<p>Folgende Beobachtungen sind bemerkenswert:</p>
+<ul>
+<li>Der minimale Code, um ein Blender-Add-on zu implementieren, ist nicht umfangreich. Es muss noch nicht mal <code>bpy</code> importiert werden.</li>
+<li>Ein Add-on in Blender kann registriert und deregistriert werden, dazu muss in der Add-on &ldquo;.py&rdquo;-Datei eine <code>register</code> und eine <code>unregister</code> Funktion definiert werden. Hier kann Code ausgeführt werden, der bei den entsprechenden Aktionen von Bedeutung ist.</li>
+<li>Ein Blender-Add-on-Skript enthält eine beschreibende Struktur <code>bl_info</code> in Form eines Dictionary, in dem u.A. der Name des Add-On und die sog. Kategorie, in der das Add-on erscheinen soll,</li>
+<li>Die Namen <code>register</code>, <code>unregister</code> und <code>bl_info</code> haben im Kontext von Blender-Add-ons eine besondere Bedeutung.</li>
+<li>Durch die Installation wird das Add-on entweder direkt in das  Blender-Installations-Verzeichnis kopiert (z. B.: C:\Programme\Blender Foundation\Blender\2.79\scripts\addons) oder in das Benutzerdaten-Verzeichnis (z. B.: C:\Users\<em>user</em>\AppData\Roaming\Blender Foundation\Blender\2.79\scripts\addons). Um das Add-on wieder rückstandsfrei zu entfernen, muss die Sktipt-Datei von dort gelöscht werden.</li>
+</ul>
+<h4 id="todo-1">TODO</h4>
+<blockquote>
+<ul>
+<li>Findet die Stelle auf der Festplatte, an die das Add-on installiert wurde.</li>
+</ul>
+</blockquote>
+<h2 id="funktionalität-hinzufügen">Funktionalität hinzufügen</h2>
+<p>Nun soll das Add-on mit der Matrix-Extrude-Funktionlität der letzten Lektion gefüllt werden.</p>
+<h4 id="todo-2">TODO</h4>
+<blockquote>
+<ul>
+<li>Installiert das Add-on-Skript <a href="MatrixExtrudeAddon.py">MatrixExtrudeAddon.py</a>.</li>
+<li>Verwendet das Add-on indem ihr im 3D-View mit der Leertaste das Kommando-Menü erscheinen lasst und dann durch die Eingabe von <code>Matrix Extrude</code> den neuen Matrix-Extrude-Befehl ausführt.</li>
+<li>Konnektiert den neuen Matrix-Extrude-Befehl im &ldquo;User Preferences&rdquo; Dialog mit einer Tastenkombination Eurer Wahl, in dem ihr den internen Namen des Kommandos <code>mesh.matrix_extrude</code> verwendet.</li>
+</ul>
+</blockquote>
+<p>Der Code enthält eine Reihe von bemerkenswerten neuen Eigenschaften.</p>
+<ul>
+<li>Das Dictionary <code>bl_info</code> enthält eine Reihe weiterer Einträge.</li>
+<li>Die <code>register</code> und <code>unregister</code> Funktionen verwenden nun entsprechende Methoden aus <code>bpy.utils</code>, um eine selbst definierte Klasse namens <code>MatrixExtrude</code> zu registrieren.</li>
+<li>Die Klasse <code>MatrixExtrude</code> enthält eine einzige Methode namens <code>execute</code>. Hier befindet sich der Code, der die Matrix-Extrudierung durchführt.</li>
+<li><code>execute</code> gibt ein Objekt mit der Eigenschaft <code>'FINISHED'</code> zurück.</li>
+<li>Die Klasse  <code>MatrixExtrude</code> erbt von <code>bpy.types.Operator</code>.</li>
+<li>Daneben enthält die Klasse <code>MatrixExtrude</code> die Eigenschaften <code>bl_idname</code>, <code>bl_label</code> und <code>bl_options</code>.</li>
+</ul>
+<p>Mit diesem Add-on wurde nun ein so genannter <strong>Operator</strong> in Blender erstellt. Sämtliche eingebauten und auch per Add-on hinzugefügten Operatoren sind wiederum über das Modul <code>bpy.ops</code> abrufbar.</p>
+<h2 id="properties">Properties</h2>
+<p>Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren <em>Properties</em>.</p>
+<p>Properties lassen sich ganz einfach als Eigenschaften der Klasse, die den Operator definiert implementieren (also die Klasse, die von <code>bpy.types.Operator</code> erbt und die eine <code>execute</code>-Methode definiert). Hierzu können einfach auf Klassenebene Eigenschaften definiert werden, denen ein Aufruf einer der folgenden Funktionen zugewiesen wird.</p>
+<ul>
+<li><code>bpy.props.IntProperty</code></li>
+<li><code>bpy.props.BoolProperty</code></li>
+<li><code>bpy.props.FloatProperty</code></li>
+<li><code>bpy.props.FloatVectorProperty</code></li>
+</ul>
+<p>Im Beispielcode <a href="MatrixExtrudeAddonProps.py">MatrixExtrudeAddonProps.py</a> wurden dem Matrix-Etrude-Operator drei solcher Properties hinzugefügt:</p>
+<ul>
+<li><code>segment_count</code></li>
+<li><code>scale</code> und</li>
+<li><code>angle</code></li>
+</ul>
+<h4 id="todo-3">TODO</h4>
+<blockquote>
+<ul>
+<li>Installiert <a href="MatrixExtrudeAddonProps.py">MatrixExtrudeAddonProps.py</a> als Add-on (ersetzt das alte Add-on damit).</li>
+<li>Beobachtet, wie die Properties im unteren Teil des Tool-Tabs (linke Seite des 3D-Editors) erscheinen und wie diese interaktiv verändert werden können.</li>
+</ul>
+</blockquote>
+<h2 id="add-ons-debuggen">Add-ons debuggen</h2>
+<ul>
+<li>python-Pfad in der Blender-Installation umbenennen.</li>
+<li>Systemweit Python in der gleichen Version wie Blender installieren.</li>
+<li>Visual Studio Code</li>
+<li>Python Extension</li>
+<li>PTVSD (Python Visual Studio Debugger) <code>pip install ptvsd</code></li>
+<li>Im Skript:
+<pre><code class="language-python">import ptvsd
+ptvsd.enable_attach()
+</code></pre>
+</li>
+<li>In Blender: &ldquo;User Preferences&rdquo; -&gt; &ldquo;File&rdquo; -&gt; &ldquo;Scripts&rdquo;: Pfad bis zum &ldquo;addons&rdquo;-Unterverzichnis, in dem das zu debuggende Skript liegt. Blender neu starten und Add-on mittels Häkchen registrieren.</li>
+<li>In VS Code: addons-Ordner öffnen und Debug-Konfiguration(en) hinzufügen (im Debug-Pfeil-Dropout).</li>
+<li>Breakpoint in der <code>execute</code>-Methode.</li>
+<li><code>Attach</code>-Debugging starten</li>
+<li>Add-on (Operator) ausführen.</li>
+</ul>
+<h2 id="aufgabe">Aufgabe</h2>
+<ul>
+<li>
+<p>Fügt dem Matrix-Extrude-Operator zwei weitere Properties hinzu:</p>
+<ul>
+<li><code>distance</code> (Float) - Wie weit soll jedes Face pro Extrusionschritt transliert werden?</li>
+<li><code>proportional</code> (bool) - Soll die <code>distance</code> pro Extrusionsschritt mit <code>scale</code> skaliert werden oder soll in jedem Schritt der selbe Abstand verwendet werden?</li>
+</ul>
+</li>
+<li>
+<p>Lest euch die Dokumentation zu <a href="https://wiki.blender.org/wiki/Process/Addons/Guidelines/metainfo"><code>bl_info</code> im Blender Wiki</a> durch.</p>
+</li>
+<li>
+<p>Informiert euch über die Parameter, die beim Anlegen von Operator-Properties angegeben werden können: <a href="https://docs.blender.org/api/blender_python_api_2_77_0/bpy.props.html">https://docs.blender.org/api/blender_python_api_2_77_0/bpy.props.html</a></p>
+</li>
+<li>
+<p>Ersetzt das <code>angle</code> Property durch einen FloatVectorProperty, der als Euler-Winkel funktioniert. Dazu müsst ihr die Eulerwinkel, die vom Benutzer in Grad angegeben werden in einen Angle-Axis Wert umrechnen. Das geht mit Hilfe der Blender-Python-Klassen <code>mathutil.Euler</code> und <code>mathutil.Quaternion</code>.</p>
+</li>
+<li>
+<p>Vollzieht das Debugging mit o.b. Methode nach.</p>
+</li>
+</ul>
+<h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
+<table>
+<thead>
+<tr>
+<th>Art/Länge</th>
+<th>Titel</th>
+<th>Beschreibung</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  13min</td>
+<td><a href="https://youtu.be/77mMpeoh3OI">Setting Up VSCode To Use As IDE With Blender In Windows</a></td>
+<td>VS Code Setup</td>
+<td><a href="https://www.youtube.com/channel/UCUeGicdkP1QafhJZ44nzdNw">YouTube -  Michael bridges</a></td>
+</tr>
+</tbody>
+</table>
 
 
 			<aside class="copyright" role="note">
@@ -367,7 +498,7 @@ me.update()
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/" title="Übung 3 - Operatoren &amp; Addons">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/" title="Übung 5 - Meshgenerierung">
         <span class="direction">
           Previous
         </span>
@@ -377,7 +508,7 @@ me.update()
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 3 - Operatoren &amp; Addons
+              Übung 5 - Meshgenerierung
             </div>
           </div>
         </div>
@@ -387,14 +518,14 @@ me.update()
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/" title="Übung 6 - Addon-Entwicklung mit Visual Studio Code">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/" title="Übung 3 - Operatoren &amp; Addons">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 6 - Addon-Entwicklung mit Visual Studio Code
+              Übung 3 - Operatoren &amp; Addons
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

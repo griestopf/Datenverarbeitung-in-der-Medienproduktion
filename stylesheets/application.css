@@ -1758,3 +1758,23 @@ h1 .article .headerlink {
     border-color: #52a9fa;
     max-width: 100%;
 }
+
+.spoiler {
+    display: none;
+  }
+  
+  .show {
+    display: none; 
+  }
+  
+  .hide:target + .show {
+    display: inline; 
+  }
+  
+  .hide:target {
+    display: none;
+  }
+  
+  .hide:target ~ .spoiler {
+    display: inline;
+  }
