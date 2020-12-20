@@ -54,7 +54,7 @@ bpy.data.materials["materialname"]
 {{<twoculumn>}}
 
 {{<left 60>}}
-Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die Kameradaten hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich {{<counter 1>}}
+Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die [Kameradaten](https://docs.blender.org/manual/en/latest/render/cameras.html) hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich {{<counter 1>}}
 
 ```python
 bpy.data.cameras["My_Cam_Data"]
@@ -99,7 +99,25 @@ bpy.context.object.location.x += 1
 bpy.context.object.location += mathutils.Vector((1,0,0))
 ```
 
+## Andere mitgelieferte Module
 
+Neben `bpy` werden auch noch andere Python-Module mit Blender mitgeliefert. Die für uns hier Wichtigen sind Folgende: 
+
+### `mathutils` {{<doclink "https://docs.blender.org/api/current/mathutils.html">}}
+
+Hier sind u.a. wichtige Typen für das Scripting in Blender und deren Methoden enthalten (`Color`, `Euler`, `Matrix`, `Quaternion`, `Vector`)
+
+---
+
+### `bmesh` {{<doclink "https://docs.blender.org/api/current/bmesh.html">}}
+
+Gibt Zugriff auf Blenders interne Mesh-Editing API.
+
+---
+
+### (`gpu`) {{<doclink "https://docs.blender.org/api/current/gpu.html">}}
+
+Ermöglicht u.a. das Zeichnen von selbstdefinierten Shadern im Viewport.
 
 ## Beispiel: Matrix Extrude
 

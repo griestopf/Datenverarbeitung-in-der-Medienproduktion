@@ -138,6 +138,8 @@ Das Info Fenster nachdem ein Affenkopf hinzugefügt, diesem ein Subdivisio Surfa
 {{</todo>}}
 
 
+
+
 Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen werden, wenn sie nicht benötigt werden. Es reicht daher für diesen Zweck auf folgender Code:
 
 ```python

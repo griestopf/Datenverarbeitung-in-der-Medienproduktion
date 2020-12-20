@@ -82,7 +82,7 @@ Die Überprüfung `if __name__ == "__main__"` überprüft dabei lediglich, ob da
 - Öffne die Systemkonsole mit **Window → Toggle System Console**
 - Suche im mit F3 nach *Simple Object Operator*
 
-In der Konsole wird nun eine Liste der Objekte in der Szene ausgegeben.
+In der Systemkonsole wird nun eine Liste der Objekte in der Szene ausgegeben.
 
 {{<console 700px>}}
 found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.91\python
@@ -92,7 +92,7 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 {{</console>}}
 {{</todo>}}
 
-TODO ADDON INHALT - generierung von irgendwass. Vlt Würfeldimension
+TODO ADDON INHALT - Generierung von irgendwass. Vlt Würfelwelt oä.
 
 ## Properties {{<doclink "https://docs.blender.org/api/current/bpy.props.html">}}
 
@@ -201,9 +201,12 @@ if __name__ == "__main__":
 ## Addons {{<doclink "https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html">}}
 {{<twoculumn>}}
 {{<left 50>}}
+
 Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem `bl_info` Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.
+
 {{</left>}}
 {{<right 50>}}
+
 ```python
 bl_info = {
     "name": "Cubedimension",
@@ -217,6 +220,7 @@ bl_info = {
     "category": "Add Mesh",
 }
 ```
+
 {{</right>}}
 {{</twoculumn>}}
 

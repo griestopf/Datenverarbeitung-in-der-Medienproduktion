@@ -71,25 +71,18 @@ googleAnalytics = ""
 
 [[menu.main]]
 	name   = "4. Addon-Entwicklung und VS Code"
-	url    = "chapter06/exercise01_a/"
-	parent = "Kapitel"
-
-[[menu.main]]
-	name   = "5. Meshes - Basics "
 	url    = "chapter04/exercise01_a/"
 	parent = "Kapitel"
 
 [[menu.main]]
-	name   = "6. Meshes - BMesh"
+	name   = "5. Meshes - Basics "
 	url    = "chapter05/exercise01_a/"
 	parent = "Kapitel"
 
-
-[blackfriday]
-	smartypants	= true
-	fractions = true
-	smartDashes = true
-	plainIDAnchors = true
+[[menu.main]]
+	name   = "6. Meshes - BMesh"
+	url    = "chapter06/exercise01_a/"
+	parent = "Kapitel"
 
 [markup]
   [markup.goldmark]
@@ -109,3 +102,14 @@ googleAnalytics = ""
       hardWraps = false
       unsafe = true
       xhtml = false
+	[markup.highlight]
+		anchorLineNos = false
+		codeFences = false
+		guessSyntax = false
+		hl_Lines = ""
+		lineAnchors = ""
+		lineNoStart = 1
+		lineNos = false
+		lineNumbersInTable = true
+		noClasses = true
+		tabWidth = 4
