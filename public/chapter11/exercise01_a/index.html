@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 1 - Basics - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 11 - Animation - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.79.1" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
     
-    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_b/">
+    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/">
     
 
-    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_b/">
+    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/">
     <meta property="og:title" content="Datenverarbeitung in der Medienproduktion">
     <meta property="og:image" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/lecture_logo_dvmp.png">
     <meta name="apple-mobile-web-app-title" content="Datenverarbeitung in der Medienproduktion">
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 1 - Basics
+        Übung 11 - Animation
       </div>
     </div>
 
@@ -287,11 +287,14 @@
 
 
 
-<a  title="11. Animation" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/">
+<a class="current" title="11. Animation" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/">
 	
 	11. Animation
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
       
@@ -313,9 +316,171 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 1 - Basics </h1>
+			<h1>Übung 11 - Animation </h1>
 
-			
+			<p>Zur Generierung von Animationen stellt uns die Blender API verschiedene Möglichkeiten zur Verfügung. In folgender Übung werden wir uns die wichtigsten hiervon ansehen.</p>
+<ul>
+<li>Keyframes</li>
+<li>Driver
+<ul>
+<li>Scripted Expressions</li>
+<li>Custom Drivers</li>
+</ul>
+</li>
+<li>App Handlers</li>
+</ul>
+<h2 id="keyframes">Keyframes</h2>
+<p>Wir können die Blender API nutzen um per Script Keyframes zu setzen. Dafür wird die Methode <code>keyframe_insert</code> <a href="https://docs.blender.org/api/current/bpy.types.bpy_struct.html#bpy.types.bpy_struct.keyframe_insert" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> verwendet. Diese kann zum Beispiel von Objekten aus aufgerufen werden. Deren wichtigste Parameter sind <code>data_path</code> (Pfad zum Wert, der verwendet werden soll) und <code>frame</code> (Framenummer des Keyframes).</p>
+<p>Hier setzen wir beispielsweise auf unserem Würfel zunächst einen Location-Keyframe an Frame 0, verschieben den Würfel dann nach (0, 5, 0) und setzen dann einen Keyframe bei Frame 20.</p>
+<div class="row"><div class="column left" style="width: 50%"><pre><code>import bpy
+<p>cube = bpy.data.objects[&lsquo;Cube&rsquo;]</p>
+<p>cube.keyframe_insert(data_path=&quot;location&quot;, frame=1)</p>
+<p>cube.location = (0, 5, 0)</p>
+<p>cube.keyframe_insert(data_path=&quot;location&quot;, frame=20)
+</code></pre></p>
+</div>
+<div class="column right" style="width: 50%"><video autoplay loop width=350 src="img/keyframes.mp4"></video></div>
+</div>
+<blockquote class="todo">
+    <p>Schreibt ein Script, welches eine Kugel alle Objekte innerhalb einer Collection <em>points</em> abfliegen lässt. Es soll so aussehen, als spränge die Kugel von Punkt zu Punkt.</p>
+<p><img src="img/pointjumper_outliner.png" alt="outliner"></p>
+<p><video autoplay loop src="img/pointjumper.mp4"></video></p>
+
+</blockquote>
+<p><strong>Lösung</strong></p>
+<p>Um zu beginnen suchen wir unsere benötigten Objekte und legen fest, wie lange die Kugel für die Strecke zwischen zwei Punkten brauchen soll:</p>
+<pre><code class="language-python">import bpy
+
+points = bpy.data.collections['points'].objects
+sphere = bpy.data.objects['Sphere']
+
+FRAMES_PER_POINT = 20
+</code></pre>
+<p>Nun iterieren wir über alle Objekte in <code>points</code> und setzen jeweils die Kugel an die Position des aktuellen Objekts. Dann setzen wir einen Keyframe an die Stelle <code>FRAMES_PER_POINT * i</code></p>
+<pre><code class="language-python">for i in range(0, len(points)):
+    sphere.location = points[i].location
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=FRAMES_PER_POINT * i)
+</code></pre>
+<p>&hellip;</p>
+<ul>
+<li>So fliegt der Ball nun schon zwischen den Punkten umher. Als nächstes soll er mit konstanter Geschwindgkeit fliegen - also muss der zeitliche Abstand des Keyframes an jedem Punkt jeweils abhängig von der Distanz zum letzten Punkt sein. Zuerst nutzen wir den Satz des Pythagoras, um die die Distanz zwischen zwei Punkten zu errechnen</li>
+</ul>
+<pre><code class="language-python">def get_distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)
+</code></pre>
+<ul>
+<li>Innerhal der Punkte-Schleife berechnen wir dann jeweils die Distanz zum vorherigen Punkt.</li>
+<li>Um uns eine If-Abfrage zu sparen, lagern wir den Keyframe für den ersten Punkt (der keinen vorherigen Punkt hat) aus.</li>
+<li>Zudem brauchen wir noch eine Variable <code>current_frame</code>, an dessen Stelle der Keyframe gesetzt wird</li>
+<li><code>FRAMES_PER_POINT</code> haben wir umbenannt in <code>FRAMES_PER_UNIT</code>, da diese nun mit der Distanz multipliziert wird, um <code>current_frame</code> zu berechnen</li>
+</ul>
+<pre><code class="language-python">sphere.location = points[0].location
+sphere.keyframe_insert(data_path=&quot;location&quot;, frame=1)
+
+current_frame = 1
+
+for i in range(1, len(points)):
+
+    sphere.location = points[i].location
+    
+    distance_to_last_point = get_distance(points[i].location, points[i-1].location)
+    current_frame += distance_to_last_point * FRAMES_PER_UNIT
+
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=current_frame)
+        
+</code></pre>
+<ul>
+<li>Nun wollen wir, dass der Ball Bögen zwischen den Punkten fliegt. Dazu müssen wir zwischen aufeinanderfolgenden Punkten den Punkt in deren Mitte berechnen und nach oben verschieben.</li>
+<li>Wie weit der Punkt nach oben versetzt wird, soll ebenfalls von der Distanz zum letzten Punkt und einer Variable <code>JUMP_HEIGHT</code> abhängen.</li>
+</ul>
+<pre><code class="language-python">intermediate_point = (points[i-1].location + points[i].location) / 2
+intermediate_point.z += distance_to_last_point * JUMP_HEIGHT
+</code></pre>
+<p><em>final script</em></p>
+<pre><code class="language-python">import bpy
+import math
+import mathutils
+
+SPEED = 1.5
+JUMP_HEIGHT = 0.7
+
+points = bpy.data.collections['points'].objects
+sphere = bpy.data.objects['Sphere']
+
+at_frame = 1
+ 
+def get_distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)
+
+def set_handle_types():
+    for c_fcurve in sphere.animation_data.action.fcurves:
+        for i, c_keyframe in enumerate(c_fcurve.keyframe_points):
+            if i % 2 == 0:
+                c_keyframe.handle_left_type = &quot;VECTOR&quot;
+                c_keyframe.handle_right_type = &quot;VECTOR&quot;
+        c_fcurve.update()
+
+# Initial Keyframe
+sphere.location = points[0].location
+sphere.keyframe_insert(data_path=&quot;location&quot;, frame=1)
+
+for i in range(1, len(points)):
+    
+    distance_to_next_point = get_distance(points[i-1].location, points[i].location)
+
+    keyframe_loc = at_frame + distance_to_next_point * SPEED
+    at_frame = keyframe_loc
+    
+    sphere.location = points[i].location
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=keyframe_loc)
+    
+    # Mittelpunkt zwischen 1-1 und 1 berechnen
+    intermediate_point = (points[i-1].location + points[i].location) / 2
+    intermediate_point.z += distance_to_next_point * JUMP_HEIGHT
+    sphere.location = intermediate_point
+
+    intermediate_keyframe_loc = at_frame - distance_to_next_point / 2 * SPEED  
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=intermediate_keyframe_loc)
+    
+    set_handle_types()
+</code></pre>
+<a href="#hide" class="hide btn" id="hide">Lösung</a>
+<a href="#show" class="show btn" id="show">hide spoiler</a>
+<div class="spoiler">
+    <span class="spoiler-content"><br></span>
+</div>
+<h2 id="driver">Driver</h2>
+<p>Driver geben uns die Möglichkeit, Abhängigkeiten von Variablen verschiedener Objekte definieren. Fast jeder Variable in Blender kann mit <code>RMB</code> → <em>Add Driver</em> ein Driver hinzugefügt werden. Im Nun erscheinenden Fenster können dem Driver Input-Variablen anderer Objekte hinzugefügt werden, die dann in einer Expression verwendet werden können, die den Wert bestimmt, den unsere Variable erhalten soll.</p>
+<p><img src="img/kurbel.png" alt="kurbel"></p>
+<p>In diesem Beispiel verwenden wir für die Y-Location unseres Würfels die Z-Rotation des Kurbel-Objekts und nennen sie <code>kurbel_rot_z</code> <span class="counter">1</span>. In der Expression multiplizieren wir deren Wert dann mit 0.5 <span class="counter">2</span>. Nun können wir durch Rotation der Kurbel unseren Würfel kontrollieren.</p>
+<p><video autoplay loop src="img/kurbel.mp4"></video></p>
+<h3 id="kurven">Kurven</h3>
+<p>Zudem kann der <em>Driver Editor</em> geöffnet werden (Rechtsklick auf Variable). Hier kann zusätzlich die Kurve angepasst werden, anhand der unser Driver die Variablen miteinander verknüpft. Das Ergebnis der Expression wird hierbei mit dem Wert der Kurve am jeweiligen Punkt multipliziert.</p>
+<p><img src="img/curves.png" alt="kurbel"></p>
+<p>In diesem Beispiel bedeutet das, dass der Würfel sich bis einer Rotation von 1 * 0.5 Radianten der Kurbel zum Punkt 1.0 auf der Y-Achse bewegt und sich dann wieder zurück auf 0 bewegt.</p>
+<p><video autoplay loop src="img/bezier.mp4"></video></p>
+<blockquote class="todo">
+    TODO
+</blockquote>
+<h3 id="custom-drivers">Custom Drivers</h3>
+<p>Um nun den Bogen zum Scripting zu schlagen, können wir auch Python-Funktionen als Driver definieren. Ein sehr einfaches Beispiel sieht folgendermaßen aus:</p>
+<pre><code class="language-python">import bpy
+
+def my_driver(val, v2):
+   &quot;&quot;&quot;Returns the square of the given value&quot;&quot;&quot;
+   return v2 * v2
+
+bpy.app.driver_namespace['my_driver'] = my_driver
+</code></pre>
+<p>Zunächst definieren wir eine Funktion, welche beliebig viele Variablen entgegennimmt und einen Wert ausgibt. Dann fügen wir unsere Funktion dem <code>driver_namespace</code> hinzu. Nach Ausführung des Scripts können wir nun die Funktion <code>my_driver</code> in der Expression eines Drivers verwenden.</p>
+<p><img src="img/my_driver.png" alt="kurbel"></p>
+<blockquote class="info">
+    Custom Drivers sind zwar mächtig, sollten jedoch eher sparsam eingesetzt werden. Da in einer Animation die Funktion jeden Frame ausgeführt werden muss und Python recht langsam ist, kann die Performance hier schnell einbrechen.
+</blockquote>
+<blockquote class="todo">
+    TODO
+</blockquote>
+
 
 			<aside class="copyright" role="note">
 				
@@ -331,7 +496,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_b/" title="Übung 1 - Basics">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/" title="Übung 2 - Würfelturm">
         <span class="direction">
           Previous
         </span>
@@ -341,7 +506,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Übung 1 - Basics
+              Übung 2 - Würfelturm
             </div>
           </div>
         </div>
@@ -351,14 +516,14 @@
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/" title="Übung 1 - Basics">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/" title="Übung 1 - Blender Setup &amp; Scripting-Tools">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 1 - Basics
+              Übung 1 - Blender Setup &amp; Scripting-Tools
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
