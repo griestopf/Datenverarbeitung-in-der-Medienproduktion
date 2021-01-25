@@ -28,10 +28,10 @@
 | 1 | Blender Setup und Scripting-Tools - Monkeygrid |
 | 2 | Python & Blender API - zufällige Würfeltürmchen generieren |
 | 3 | Operatoren & Codestruktur  - Würfeldimension |
+| 7 | Addon UI |
 | 4 | Meshgenerierung und Manipulation 1 & Projektthemen Orga |
 | 5 | Meshgenerierung und Manipulation 2 - BMesh |
 | 6 | VS Code Setup & Addon-Entwicklung (vlt auch vor Meshgen.?) |
-| 7 | Addon UI |
 | 8 | fortgeschrittene Prozedurale Assetgenerierung (Texturen, Noise etc.) |
 | 9 | Projekt Zwischenstandspräsentationen |
 | 10| Materialien |

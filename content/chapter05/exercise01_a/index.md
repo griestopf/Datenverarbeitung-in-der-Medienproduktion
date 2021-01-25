@@ -122,3 +122,4 @@ currentmesh.update()
 
 ## Neues Mesh
 
+Natürlich können auch komplett neue Meshes generiert werden. Dafür werden wir nun das `bmesh` Modul {{<doclink "https://docs.blender.org/api/current/bmesh.html" >}} verwenden.
