@@ -20,7 +20,7 @@ Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blen
 {{<todo>}}
 Ladet euch zunächst von [Blender.org](https://www.blender.org/download/) die aktuelle Version von Blender herunter. 
 {{</todo>}}
-Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.
+- Dieses Script behandelt die Version 2.91 / 2.92. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.
 
 <!--Link zu CG Webseite? Ist ja nicht immer alles Online und vlt auch nicht immer auf Davids Webspace?-->
 - Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im [**Script zur Veranstalltung Computergrafik**](https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/chapter01/lecture01/) 
@@ -28,7 +28,7 @@ Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventue
 {{<todo>}}
 - Öffnet Blender und in Blender die ***Preferences***
 ![Preferences](img/preferences.png)
-- Aktiviert hier nun im ***Interface*** Tab *Python Tooltips* und *Development Extras*
+- Aktiviert hier nun im ***Interface*** Tab ***Python Tooltips*** und ***Development Extras***
 {{</todo>}}
 
 <br>
@@ -70,7 +70,12 @@ Wechselt nun zum Workspace-Tab ***Scripting***
 Ein weiteres wichtiges Werkzeug ist die **Systemkonsole**. 
 {{<todo>}}
 - Wenn Windows benutzt wird, wählt **Window → Toggle System Console**
-- In Linux und Mac(? - TODO) muss Blender über das Terminal gestartet werden und dieses Terminal erfüllt dann deren Zweck.
+
+- In Linux und Mac muss Blender über das Terminal gestartet werden und dieses Terminal erfüllt dann deren Zweck:
+
+  - **Linux:** Wenn Blender über die Packetverwaltung installiert wurde *(was übrigens nicht empfehlenswert ist, da diese Versionen meist veraltet sind, keinen CUDA support haben etc.)* einfach in die Konsole `blender` eingeben. Wenn Blender von der Webseite heruntergeladen und extrahiert wurde, muss der ganze Pfad zur Blender executable angegeben werden - z.b. `/home/software/blender-2.91.2-linux64/blender`
+
+  - **MacOS:** Im Terminal den Pfad zur Blender installation angeben - z.b. `"/Applications/Blender/blender.app/Contents/MacOS/blender`
 ![Scripting Workspace](img/console.png) <!--TODO Bild Counter einfügen-->
 {{</todo>}}
 
@@ -144,18 +149,46 @@ Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen 
 
 ```python
 import bpy
-
 bpy.ops.mesh.primitive_monkey_add()
 bpy.ops.object.modifier_add(type='SUBSURF')
-bpy.ops.transform.resize(value=(1, 1, 2)) #(1, 1, 2) steht hierbei für 1 auf X- und Y-Achse und 2 auf der Z-Achse
+bpy.ops.transform.resize(value=(2, 1, 1)) 
+# (2, 1, 1) steht hierbei für 2 auf X- und 1 Y- und Z-Achse. 
+# Die Default-Skalierung ist (1,1,1)
 ```
 
 > in Python können Funktionsparameter (hier z.b. der *value* Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.
 
+Wir können unseren Code natürlich auch in eine Funktion packen und diese später im Code aufrufen. 
+
+
+```python
+import bpy
+
+def add_smooth_wide_monkey(wideness):
+    bpy.ops.mesh.primitive_monkey_add()
+    bpy.ops.object.modifier_add(type='SUBSURF')
+    bpy.ops.transform.resize(value=(wideness, 1, 1))
+
+add_smooth_wide_monkey(2)
+```
+
+**ACHTUNG:** Anders als in den meisten kompilierten Sprachen, müssen Funktionen in Python immer schon VOR deren Aufruf definiert werden.
+
+Bei Fehlern im Code kann uns die Systemkonsole nützlich werden. Wenn beispielsweise hier ein Schreibfehler im Variablenaufruf in Zeile 6 passiert, teilt uns das die Systemkonsole folgendermaßen mit:
+
+{{<console>}}
+Traceback (most recent call last):
+  File "/Text", line 8, in <module>
+  File "/Text", line 6, in add_smooth_wide_monkey
+NameError: name 'wiseness' is not defined
+Error: Python script failed, check the message in the system console
+{{</console>}}
+
+Da dementsprechend auch der Aufruf der kaputten Funktion nicht funktioniert, wird auch in Zeile 8 ein Fehler angezeigt.
 
 ## Affentheater
 
-Wir wollen nun das erlernte anwenden, um eine Horde von Affenköpfen (im Rechteck angeordnet) zu erstellen.
+Wir wollen nun das Erlernte anwenden, um eine Horde von Affenköpfen (im Rechteck angeordnet) zu erstellen.
 
 ![Affentheater](img/affentheater.png)
 
@@ -186,7 +219,7 @@ import bpy
 for row in range(5):
     for column in range(5):
         bpy.ops.mesh.primitive_monkey_add(location=(3 * row ,3 * column, 0))
-        bpy.ops.transform.rotate(value=0.6, orient_axis='X', orient_type='GLOBAL')
+        bpy.ops.transform.rotate(value=-0.6, orient_axis='X', orient_type='GLOBAL')
         bpy.ops.object.shade_smooth()
 ```
 
@@ -208,16 +241,28 @@ SIZE_MAX = 1.2
 for row in range(GRID_SIZE):
     for column in range(GRID_SIZE):
         bpy.ops.mesh.primitive_monkey_add(location=(GRID_SPACING * row ,GRID_SPACING * column, 0))
-        bpy.ops.transform.rotate(value=0.6, orient_axis='X', orient_type='GLOBAL')
+        bpy.ops.transform.rotate(value=-0.6, orient_axis='X', orient_type='GLOBAL')
         bpy.ops.object.shade_smooth()
         
         # random size
-        size = random.uniform(SIZE_MIN, SIZE_MAX)
-        bpy.ops.transform.resize(value=(size, size, size))
-
+        size_x = random.uniform(SIZE_MIN, SIZE_MAX)
+        size_y = random.uniform(SIZE_MIN, SIZE_MAX)
+        size_z = random.uniform(SIZE_MIN, SIZE_MAX)
+        bpy.ops.transform.resize(value=(size_x, size_y, size_z))
 ```
 *Der fertige Affentheater Code*
 {{</todo>}}
+
+{{<info>}}
+
+Um die Szene vor jeder Ausführung des Scripts zu leeren, kann folgender Code an den Anfang des Scripts (unter imports) gesetzt werden.
+
+```python
+bpy.ops.object.select_all(action='SELECT') # selektiert alle Objekte
+bpy.ops.object.delete(use_global=False, confirm=False) # löscht selektierte objekte
+bpy.ops.outliner.orphans_purge() # löscht überbleibende Meshdaten etc.
+```
+{{</info>}}
 
 {{<todo>}}
 
