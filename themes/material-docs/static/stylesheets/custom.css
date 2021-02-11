@@ -59,7 +59,10 @@ pre {
 .column {
     float: left;
     height: auto;
-    /* Should be removed. Only for demonstration */
+}
+
+.column image, video {
+    max-width: 100%;
 }
 
 .left {

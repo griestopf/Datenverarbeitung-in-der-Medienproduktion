@@ -4,6 +4,17 @@ title: Allgemeines
 
 **Vorlesungsunterlagen für die Veranstalltung Datenverarbeitung in der Medienproduktion.**
 
+## Telnahmevoraussetzungen
+
+**Benötigt:**
+- Grundkenntnisse im Programmieren
+
+**Hilfreich:**
+- Grundkentnisse in Python 
+- Gundkenntnisse im Umgang mit Blender oder anderer 3D-Software
+
+
+
 ## Geplante Veranstaltungsstruktur
 | VS Nr. | Inhalt |
 |---------|------------------------------------------|
