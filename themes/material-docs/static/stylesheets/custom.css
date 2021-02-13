@@ -56,7 +56,7 @@ pre {
     margin: 0px 3px !important;
 }
 
-.column {
+.tcl-column {
     float: left;
     height: auto;
 }
@@ -65,11 +65,11 @@ pre {
     max-width: 100%;
 }
 
-.left {
+.tcl-left {
     padding-right: 10px;
 }
 
-.right {
+.tcl-right {
     float: right;
 }
 
@@ -82,7 +82,7 @@ pre {
 
 /* Clear floats after the columns */
 
-.row:after {
+.tcl-row:after {
     content: "";
     display: table;
     clear: both;
