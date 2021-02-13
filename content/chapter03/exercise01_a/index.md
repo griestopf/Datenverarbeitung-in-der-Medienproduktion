@@ -157,22 +157,12 @@ Alle Objekte in der Szene sollten nun an die Position (2, 2, 2) verschoben werde
 
 {{</left>}}
 {{<right 50>}}
-
-<pre><code class="language-python">
-import bpy
-
-def main(context, loc):
-    for ob in context.scene.objects:
-        ob.location = loc
-</code></pre>
-
 ```python
 import bpy
 
 def main(context, loc):
     for ob in context.scene.objects:
         ob.location = loc
-
 
 class SimpleOperator(bpy.types.Operator):
     """Tooltip"""
@@ -189,8 +179,8 @@ class SimpleOperator(bpy.types.Operator):
         return {'FINISHED'}
 
     my_vec: bpy.props.FloatVectorProperty(
-        name="My Vector",
-        description="does stuff with the thing.",
+        name='My Vector',
+        description='does stuff with the thing.',
         default = (1, 1, 1))
 
 
