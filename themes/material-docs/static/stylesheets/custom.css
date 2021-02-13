@@ -16,11 +16,10 @@
     padding-bottom: 10px !important;
 }
 
-code {
+.hljs {
     border: #c3c3c3 solid 1px;
     border-radius: 3px;
     padding: 2px 4px !important;
-    background-color: #f6f6f6 !important;
 }
 
 pre {
@@ -61,7 +60,7 @@ pre {
     height: auto;
 }
 
-.column image, video {
+.tcl-column image, video {
     max-width: 100%;
 }
 
@@ -74,8 +73,9 @@ pre {
 }
 
 @media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
+    .tcl-column {
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 
