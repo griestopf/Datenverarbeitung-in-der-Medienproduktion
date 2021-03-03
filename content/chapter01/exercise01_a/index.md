@@ -156,7 +156,9 @@ bpy.ops.transform.resize(value=(2, 1, 1))
 # Die Default-Skalierung ist (1,1,1)
 ```
 
-> in Python können Funktionsparameter (hier z.b. der *value* Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.
+{{<info>}}
+in Python können Funktionsparameter (hier z.b. der *value* Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.
+{{</info>}}
 
 Wir können unseren Code natürlich auch in eine Funktion packen und diese später im Code aufrufen. 
 
@@ -188,7 +190,7 @@ Da dementsprechend auch der Aufruf der kaputten Funktion nicht funktioniert, wir
 
 ## Affentheater
 
-Wir wollen nun das Erlernte anwenden, um eine Horde von Affenköpfen (im Rechteck angeordnet) zu erstellen.
+Wir wollen nun das Erlernte anwenden, um eine Horde von unterschiedlich gefärbten und skalierten Affenköpfen (im Rechteck angeordnet) zu erstellen.
 
 ![Affentheater](img/affentheater.png)
 
@@ -213,6 +215,7 @@ for row in range(5):
 {{</todo>}}
 
 Das Affengitter-Script sollte nun in etwa so aussehen:
+
 ```python
 import bpy
 
@@ -228,6 +231,7 @@ Schließlich wollen wir die Verwendung von Magic Numbers (undokumentierte Zahlen
 {{<todo>}}
 - Dazu legen wir oben im Script die entsprechenden "Konstanten" an (speziell deklarierte Konstanten gibt es in Python nicht) und setzen sie unten im Code ein.
 - Hier importieren wir noch das **random** modul und verwenden deren **uniform** Funktion, um jedem Affen eine zufällige Größe zu geben. Diese gibt einen zufälligen Wert innerhalb der Beiden übergebenen Parameter zurück.
+
 
 ```python
 import bpy
@@ -250,9 +254,7 @@ for row in range(GRID_SIZE):
         size_z = random.uniform(SIZE_MIN, SIZE_MAX)
         bpy.ops.transform.resize(value=(size_x, size_y, size_z))
 ```
-*Der fertige Affentheater Code*
-{{</todo>}}
-
+*Der Affentheater Code bis hierhin*
 {{<info>}}
 
 Um die Szene vor jeder Ausführung des Scripts zu leeren, kann folgender Code an den Anfang des Scripts (unter imports) gesetzt werden.
@@ -263,12 +265,43 @@ bpy.ops.object.delete(use_global=False, confirm=False) # löscht selektierte obj
 bpy.ops.outliner.orphans_purge() # löscht überbleibende Meshdaten etc.
 ```
 {{</info>}}
+{{</todo>}}
+
+
+### Farbe
+
+Nun wollen wir jedem Kopf eine eigene Farbe geben. Mit dem Scripting von richtigen Materialien werden wir uns in einer späteren Übung auseinandersetzen. Für dieses Beispiel werden lediglich die `color` Variable jedes Objektes im Loop setzen, der für sich alleine stehend noch keinen Einfluss auf das Ergebnis beim Rendering hat. Im UI ist dieser Wert im **Properties Editor → Object → Viewport Display** zu finden.
+
+![objectcolor](img/objectcolor.png)
+
+Wir können ihn uns auf Objekten jedoch anzeigen lassen, indem wir im im **Shading Menü → Color** auf **Object** stellen.
+
+![viewport_objectcolor](img/viewport_settings_objectcolor.png)
+
+{{<todo>}}
+
+- Stellt wie oben gezeigt das Viewport Shading auf **Object**
+- Legt in der for-Schleife nun einen Wert an, der eine zufällige Farbe generiert und dem aktiven Objekt zuweist
+
+```python
+object_color = (
+    random.uniform(0, 1),
+    random.uniform(0, 1),
+    random.uniform(0, 1),
+    1 # Alpha-Wert der Farbe (Intransparenz) - soll hier immer 1 sein
+)
+
+bpy.context.object.color = object_color
+```
+
+{{</todo>}}
 
 {{<todo>}}
 
 ## Aufgabe bis zum nächsten Mal
 - Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet
-- Freiwilliger Zusatz: Lasst die Affenköpfe alle in die Mitte der Szene gucken.
+- Lasst die Affenköpfe alle in die Mitte der Szene gucken
+- **Freiwillig:** Verbessert den Farbzuweisungs-Code, um den Affen natürlichere Farben zuzuweisen. Seht euch dazu `mathutils.color` {{<doclink "https://docs.blender.org/api/current/mathutils.html#mathutils.Color" >}} an.
 
 ![img](img/affenkreis.png)
 
