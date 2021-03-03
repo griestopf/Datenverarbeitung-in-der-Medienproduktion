@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 3 - Operatoren &amp; Addons - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.79.1" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -422,8 +422,16 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 <blockquote class="info">
     Es handelt sich hierbei nicht um klassische Variablendeklaration. Wir weisen keinen Wert einer Python-Variablen hinzu, wir sagen Blender nur: &ldquo;Erstelle in deiner internen Datenstruktur eine Float-Variable mit diesem Namen etc.&rdquo;
 </blockquote>
+<pre><code class="language-python">
+import bpy
+
+def main(context, loc):
+    for ob in context.scene.objects:
+        ob.location = loc
+</code></pre>
 <blockquote class="todo">
-    <div class="row"><div class="column left" style="width: 50%"><p>Passt das <strong>Operator Simple</strong> Template folgendermaßen an:</p>
+    <div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 50%"><p>Passt das <strong>Operator Simple</strong> Template folgendermaßen an:</p>
 <ul>
 <li>
 <p>Zunächst legen wir in der Operatorklasse eine <code>FloatVectorProperty</code> an und weisen ihr Name, Beschreibung und Defaultwert zu.</p>
@@ -444,7 +452,7 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 <p>Alle Objekte in der Szene sollten nun an die Position (2, 2, 2) verschoben werden.</p>
 <p><img src="img/location.png" alt="location"></p>
 </div>
-<div class="column right" style="width: 50%"><pre><code class="language-python">import bpy
+<div class="tcl-column tcl-right" style="width: 50%"><pre><code class="language-python">import bpy
 <p>def main(context, loc):
 for ob in context.scene.objects:
 ob.location = loc</p>
@@ -456,14 +464,16 @@ bl_options = {&quot;REGISTER&quot;, &quot;UNDO&quot;}</p>
 <pre><code>@classmethod
 def poll(cls, context):
     return context.active_object is not None
-<p>def execute(self, context):
-main(context, self.my_vec)
-return {&lsquo;FINISHED&rsquo;}</p>
-<p>my_vec: bpy.props.FloatVectorProperty(
-name=&amp;quot;My Vector&amp;quot;,
-description=&amp;quot;does stuff with the thing.&amp;quot;,
-default = (1, 1, 1))
-</code></pre></p>
+
+def execute(self, context):
+    main(context, self.my_vec)
+    return {'FINISHED'}
+
+my_vec: bpy.props.FloatVectorProperty(
+    name='My Vector',
+    description='does stuff with the thing.',
+    default = (1, 1, 1))
+</code></pre>
 <p>def register():
 bpy.utils.register_class(SimpleOperator)</p>
 <p>def unregister():
@@ -484,8 +494,9 @@ bpy.ops.object.simple_operator()
 
 </blockquote>
 <h2 id="addons-hahahugoshortcode-s7-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
-<div class="row"><div class="column left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.</div>
-<div class="column right" style="width: 50%"><pre><code class="language-python">bl_info = {
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.</div>
+<div class="tcl-column tcl-right" style="width: 50%"><pre><code class="language-python">bl_info = {
     &quot;name&quot;: &quot;Cubedimension&quot;,
     &quot;author&quot;: &quot;Ich &lt;ich@webmail.hs-furtwangen.de&gt;&quot;,
     &quot;version&quot;: (1, 0),

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 11 - Animation - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.79.1" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -332,14 +332,19 @@
 <h2 id="keyframes">Keyframes</h2>
 <p>Wir können die Blender API nutzen um per Script Keyframes zu setzen. Dafür wird die Methode <code>keyframe_insert</code> <a href="https://docs.blender.org/api/current/bpy.types.bpy_struct.html#bpy.types.bpy_struct.keyframe_insert" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> verwendet. Diese kann zum Beispiel von Objekten aus aufgerufen werden. Deren wichtigste Parameter sind <code>data_path</code> (Pfad zum Wert, der verwendet werden soll) und <code>frame</code> (Framenummer des Keyframes).</p>
 <p>Hier setzen wir beispielsweise auf unserem Würfel zunächst einen Location-Keyframe an Frame 0, verschieben den Würfel dann nach (0, 5, 0) und setzen dann einen Keyframe bei Frame 20.</p>
-<div class="row"><div class="column left" style="width: 50%"><pre><code>import bpy
-<p>cube = bpy.data.objects[&lsquo;Cube&rsquo;]</p>
-<p>cube.keyframe_insert(data_path=&quot;location&quot;, frame=1)</p>
-<p>cube.location = (0, 5, 0)</p>
-<p>cube.keyframe_insert(data_path=&quot;location&quot;, frame=20)
-</code></pre></p>
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 50%"><pre><code>import bpy
+
+cube = bpy.data.objects['Cube']
+
+cube.keyframe_insert(data_path=&quot;location&quot;, frame=1)
+
+cube.location = (0, 5, 0)
+
+cube.keyframe_insert(data_path=&quot;location&quot;, frame=20)
+</code></pre>
 </div>
-<div class="column right" style="width: 50%"><video autoplay loop width=350 src="img/keyframes.mp4"></video></div>
+<div class="tcl-column tcl-right" style="width: 50%"><video autoplay loop width=350 src="img/keyframes.mp4"></video></div>
 </div>
 <blockquote class="todo">
     <p>Schreibt ein Script, welches eine Kugel alle Objekte innerhalb einer Collection <em>points</em> abfliegen lässt. Es soll so aussehen, als spränge die Kugel von Punkt zu Punkt.</p>
@@ -444,8 +449,8 @@ for i in range(1, len(points)):
     
     set_handle_types()
 </code></pre>
-<a href="#hide" class="hide btn" id="hide">Lösung</a>
-<a href="#show" class="show btn" id="show">hide spoiler</a>
+<a href="#hide" class="hide" id="hide">> Lösung</a>
+<a href="#show" class="show" id="show">ᐯ Lösung</a>
 <div class="spoiler">
     <span class="spoiler-content"><br></span>
 </div>
