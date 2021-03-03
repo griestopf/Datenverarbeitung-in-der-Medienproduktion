@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 2 - Würfelturm - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.79.1" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -352,14 +352,15 @@ Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von
 <pre><code class="language-python">bpy.data.materials[&quot;materialname&quot;]
 </code></pre>
 <blockquote class="info">
-    <div class="row"><div class="column left" style="width: 60%"><p>Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die <a href="https://docs.blender.org/manual/en/latest/render/cameras.html">Kameradaten</a> hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich <span class="counter">1</span></p>
+    <div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 60%"><p>Oft sind Daten über verschiedene Pfade abrufbar. So sind zum Beispiel die <a href="https://docs.blender.org/manual/en/latest/render/cameras.html">Kameradaten</a> hier entweder über den Aufruf der Liste mit allen Kameradaten der Blender-Datei möglich <span class="counter">1</span></p>
 <pre><code class="language-python">bpy.data.cameras[&quot;My_Cam_Data&quot;]
 </code></pre>
 <p><strong>oder</strong> über die <a href="https://docs.blender.org/manual/en/latest/scene_layout/collections/collections.html">Collection</a>, welche das Kameraobjekt <em>My_Cam_Object</em> und die ihm zugewiesenen Kameradaten beinhaltet <span class="counter">2</span></p>
 <pre><code class="language-python">bpy.data.collections[&quot;Collection&quot;].objects[&quot;My_Cam_Object&quot;].data
 </code></pre>
 </div>
-<div class="column right" style="width: 40%"><br>
+<div class="tcl-column tcl-right" style="width: 40%"><br>
 ![bpy data](img/bpydata.png)</div>
 </div>
 <p>Zu beachten ist hier, dass <em>My_Cam_Object</em> nicht dasselbe ist wie <em>My_Cam_Data</em>. Ersteres ist das generische Blender-Objekt - z.b. mit dessen Transformation. Letzteres sind die ihm zugewiesenen Kameradaten - z.b. mit Brennweite und Tiefenunschärfe.</p>
