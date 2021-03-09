@@ -70,7 +70,9 @@ bpy.data.collections["Collection"].objects["My_Cam_Object"].data
 
 {{<right 40>}}
 <br>
+
 ![bpy data](img/bpydata.png)
+
 {{</right>}}
 {{</twoculumn>}}
 
@@ -115,14 +117,60 @@ Gibt Zugriff auf Blenders interne Mesh-Editing API.
 
 ---
 
-### (`gpu`) {{<doclink "https://docs.blender.org/api/current/gpu.html">}}
+### `gpu` {{<doclink "https://docs.blender.org/api/current/gpu.html">}}
 
 Ermöglicht u.a. das Zeichnen von selbstdefinierten Shadern im Viewport.
 
-## Beispiel: Matrix Extrude
-
 
 ## Aufgaben
+
+{{<todo>}}
+- Arbeitet das einleitende Kapitel der offiziellen [Blender Python Dokumentation](https://docs.blender.org/api/current/info_quickstart.html) durch.
+  - Was ist das besondere an den `bpy`-Collections?
+  - Wie wird ein neues Mesh erzeugt?
+  - Wie setze ich das aktuell selektierte Objekt in Python?
+{{</todo>}}
+
+
+
+{{<todo>}}
+
+### Materialien zuweisen
+
+Wir wollen nun das `data` Modul benutzen, um ein material für jeden Affenkopf aus der letzten Aufgabe zu erstellen und dieses dem aktuellen Objekt zuweisen.
+
+- Erstellt ein neues Material in `bpy.data.materials` mit der `new` Funktion und stellt sicher, dass es das Material-Nodesystem benutzt
+
+```python
+mat_monkey = bpy.data.materials.new("Monkeymaterial")
+mat_monkey.use_nodes = True
+```
+
+- Auf die einzelne Nodes des materials kann nun über dessen Nodetree de zugegriffen werden.
+
+```python
+nodes = mat_monkey.node_tree.nodes
+```
+
+- Jeder Node hat einen Array von Inputs und Outputs, die die Sockel links und rechts repräsentieren. Der erste Input des **Principled BSDF** Shaders ist **Base Color**, daher steuern wir diesen folgendermaßen an: 
+
+
+```python
+nodes["Principled BSDF"].inputs[0].default_value = object_color 
+# object_color ist hier die in Übung 1 bereits erstellte Variable
+```
+
+![nodesockets](img/nodes.png)
+
+- Zu guter Letzt weisen wir dem aktiven Objekt unser Material zu.
+
+```python
+bpy.context.object.data.materials.append(mat_monkey)
+```
+
+{{</todo>}}
+
+## Beispiel `ops`: Matrix Extrude
 
 Implemeniert ein Skript zum unten beschriebenen "Matrix Extrude":
 
@@ -142,12 +190,6 @@ Tipp: Führt oben genannten Arbeitsschritte von Hand aus und schaut im Arbeitsbe
 
 Packt die vom Benutzer zu verändernden Werte wie Rotationswinkel/Achse, Skalierungsfaktor, Extrusions-Strecke und Anzahl der Wiederholungen in Variablen, die zentral am Anfang des Skriptes stehen und dort bequem geändert werden können.
 
-{{<todo>}}
-- Arbeitet das einleitende Kapitel der offiziellen [Blender Python Dokumentation](https://docs.blender.org/api/current/info_quickstart.html) durch.
-  - Was ist das besondere an den `bpy`-Collections?
-  - Wie wird ein neues Mesh erzeugt?
-  - Wie setze ich das aktuell selektierte Objekt in Python?
-{{</todo>}}
 
 <!-- TODO Erstzen
 - Sucht im Internet sinnvolle Python-Code-Schnipsel für die Verwendung der drei oben genannten "Untermodule" `bpy.context`, `bpy.data`, `bpy.ops`.
@@ -183,8 +225,8 @@ MIN_SCALE = 0.5
 
 # clear scene - später entfernen
 bpy.ops.object.select_all(action='SELECT')
-bpy.ops.object.delete()
-
+bpy.ops.object.delete(use_global=False, confirm=False)
+bpy.ops.outliner.orphans_purge()
 
 random.seed(datetime.now())
 
