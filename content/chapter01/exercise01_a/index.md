@@ -3,11 +3,42 @@ title: Übung 1 - Blender Setup & Scripting-Tools
 
 ---
  
-**In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.**
 
 ## Einführung
 
-Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen `python` Unterverzeichnis). Obwohl der Kern von Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus sind sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a. 
+
+### Digitale Medienproduktionen
+
+Die meisten Prozesse in digitalen Medienproduktionen werden mit Hilfe hochspezialisierter Softwaretools durchgeführt. 3D-Modelle und Animationen, Post-Produktion, Color-Grading, Greenscreen Keying, Camera-Tracking usw. sind nur effizient mit Hilfe speziell dafür entwickelter Softwarepakete in Produktionen einsetzbar.
+
+Ohne jeglichen Anspruch auf Vollständigkeit hier ein paar Beispiele häufig zum Einsatz kommender Werkzeuge:
+
+- Maya
+- Cinema 4D
+- Houdini
+- 3ds Max
+- Nuke
+- Blender
+- After Effects
+- DaVinci Resolve
+
+### Effizienz bei Bewegtbild-Produktionen
+
+Speziell bei Bewegtbild-Medien genügt aber oft nicht die manuelle Bedienung dieser Werkzeuge. Da hier zwischen 24 und 60 Bilder pro Sekunde, bei Stereoproduktionen sogar doppelt so viele, bearbeitet oder generiert werden müssen, ist eine manueller Bild-für-Bild Prozess zu ineffizient.
+
+Eine ausreichende Effizienz lässt sich hier meistens nur mit Hilfe von automatisierten, selbst ablaufenden Prozessen erzielen - also möglichst ohne viel zeitaufwändige und kostenintensive menschliche Interaktion.
+
+
+### Automatisierung durch Skripting
+
+Derartige automatisierte Prozesse lassen sich meist nur mit Hilfe von Algorithmen, also durch Programmierung, realisieren. Alle oben genannten Beispiele bieten hierzu eine Programmierschnittstelle an, mit der sich meist sämtliche Funktionen der Software per Code ansprechen lassen. Oftmals ist bereits in die Software ein Code-Editor eingebaut. Damit ist die Programmierung so genannter Skripte oder Makros möglich.
+
+
+### Die Rolle von Python in der Medienproduktion
+
+In vielen Software-Paketen, die in Medienproduktionen zum Einsatz kommen, wird die Programmiersprache Python verwendet - so können zum Beispiel alle oben genannten Produkte durch Python-Skripte automatisiert werden.
+
+In dieser Veranstaltung soll daher die Verwendung von Python im Umfeld von Medienproduktionen gelehrt werden. Nach einer allgemeinen Einführung in die Programmiersprache wird schnell die Verwendung von Python in der 3D- und Compositing/VFX-Software Blender erarbeitet. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen `python` Unterverzeichnis). Obwohl der Kern von Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus ist auf sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a. 
 
 - Szenen und Objekte
 - Geometrie
@@ -16,6 +47,9 @@ Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blen
 - Texturen
 
 ## Erste Schritte
+
+**In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.**
+
 
 {{<todo>}}
 Ladet euch zunächst von [Blender.org](https://www.blender.org/download/) die aktuelle Version von Blender herunter. 
