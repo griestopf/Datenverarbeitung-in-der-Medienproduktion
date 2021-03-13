@@ -217,87 +217,6 @@
 
 
       
-        
-        
-
-
-
-<a class="current" title="2. Python &amp; Blender API" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/">
-	
-	2. Python &amp; Blender API
-</a>
-
-
-<ul id="scrollspy">
-</ul>
-
-
-      
-        
-        
-
-
-
-<a  title="3. Operatoren &amp; Addons" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/">
-	
-	3. Operatoren &amp; Addons
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
-	
-	4. Addon-Entwicklung und VS Code
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
-	
-	5. Meshes - Basics 
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
-	
-	6. Meshes - BMesh
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="11. Animation" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/">
-	
-	11. Animation
-</a>
-
-
-
-      
     </ul>
   
 </li>
@@ -361,7 +280,7 @@ Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von
 </code></pre>
 </div>
 <div class="tcl-column tcl-right" style="width: 40%"><br>
-![bpy data](img/bpydata.png)</div>
+<p><img src="img/bpydata.png" alt="bpy data"></div>
 </div>
 <p>Zu beachten ist hier, dass <em>My_Cam_Object</em> nicht dasselbe ist wie <em>My_Cam_Data</em>. Ersteres ist das generische Blender-Objekt - z.b. mit dessen Transformation. Letzteres sind die ihm zugewiesenen Kameradaten - z.b. mit Brennweite und Tiefenunschärfe.</p>
 
@@ -386,10 +305,50 @@ bpy.context.object.location += mathutils.Vector((1,0,0))
 <h3 id="bmesh-hahahugoshortcode-s6-hbhb"><code>bmesh</code> <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p>Gibt Zugriff auf Blenders interne Mesh-Editing API.</p>
 <hr>
-<h3 id="gpu-hahahugoshortcode-s7-hbhb">(<code>gpu</code>) <a href="https://docs.blender.org/api/current/gpu.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<h3 id="gpu-hahahugoshortcode-s7-hbhb"><code>gpu</code> <a href="https://docs.blender.org/api/current/gpu.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p>Ermöglicht u.a. das Zeichnen von selbstdefinierten Shadern im Viewport.</p>
-<h2 id="beispiel-matrix-extrude">Beispiel: Matrix Extrude</h2>
 <h2 id="aufgaben">Aufgaben</h2>
+<blockquote class="todo">
+    <ul>
+<li>Arbeitet das einleitende Kapitel der offiziellen <a href="https://docs.blender.org/api/current/info_quickstart.html">Blender Python Dokumentation</a> durch.
+<ul>
+<li>Was ist das besondere an den <code>bpy</code>-Collections?</li>
+<li>Wie wird ein neues Mesh erzeugt?</li>
+<li>Wie setze ich das aktuell selektierte Objekt in Python?</li>
+</ul>
+</li>
+</ul>
+
+</blockquote>
+<blockquote class="todo">
+    <h3 id="materialien-zuweisen">Materialien zuweisen</h3>
+<p>Wir wollen nun das <code>data</code> Modul benutzen, um ein material für jeden Affenkopf aus der letzten Aufgabe zu erstellen und dieses dem aktuellen Objekt zuweisen.</p>
+<ul>
+<li>Erstellt ein neues Material in <code>bpy.data.materials</code> mit der <code>new</code> Funktion und stellt sicher, dass es das Material-Nodesystem benutzt</li>
+</ul>
+<pre><code class="language-python">mat_monkey = bpy.data.materials.new(&quot;Monkeymaterial&quot;)
+mat_monkey.use_nodes = True
+</code></pre>
+<ul>
+<li>Auf die einzelne Nodes des materials kann nun über dessen Nodetree de zugegriffen werden.</li>
+</ul>
+<pre><code class="language-python">nodes = mat_monkey.node_tree.nodes
+</code></pre>
+<ul>
+<li>Jeder Node hat einen Array von Inputs und Outputs, die die Sockel links und rechts repräsentieren. Der erste Input des <strong>Principled BSDF</strong> Shaders ist <strong>Base Color</strong>, daher steuern wir diesen folgendermaßen an:</li>
+</ul>
+<pre><code class="language-python">nodes[&quot;Principled BSDF&quot;].inputs[0].default_value = object_color 
+# object_color ist hier die in Übung 1 bereits erstellte Variable
+</code></pre>
+<p><img src="img/nodes.png" alt="nodesockets"></p>
+<ul>
+<li>Zu guter Letzt weisen wir dem aktiven Objekt unser Material zu.</li>
+</ul>
+<pre><code class="language-python">bpy.context.object.data.materials.append(mat_monkey)
+</code></pre>
+
+</blockquote>
+<h2 id="beispiel-ops-matrix-extrude">Beispiel <code>ops</code>: Matrix Extrude</h2>
 <p>Implemeniert ein Skript zum unten beschriebenen &ldquo;Matrix Extrude&rdquo;:</p>
 <p>Insbesondere beim Box Modelling kommt folgende Abfolge von Bearbeitungsschritten auf einer Fläche häufig vor</p>
 <ol>
@@ -403,18 +362,6 @@ bpy.context.object.location += mathutils.Vector((1,0,0))
     Tipp: Führt oben genannten Arbeitsschritte von Hand aus und schaut im Arbeitsbereich des Info-Editors, welche Python-Befehle sich dahinter verbergen. Die im Info-Editor angezeigten Befehele enthalten immer den vollen Parametersatz. Davon können viele Einstellungen weggelassen werden, wenn sie sowieso die voreingestellten Standardwerte sind. Dünnt die Aufrufe in Eurem Code aus.
 </blockquote>
 <p>Packt die vom Benutzer zu verändernden Werte wie Rotationswinkel/Achse, Skalierungsfaktor, Extrusions-Strecke und Anzahl der Wiederholungen in Variablen, die zentral am Anfang des Skriptes stehen und dort bequem geändert werden können.</p>
-<blockquote class="todo">
-    <ul>
-<li>Arbeitet das einleitende Kapitel der offiziellen <a href="https://docs.blender.org/api/current/info_quickstart.html">Blender Python Dokumentation</a> durch.
-<ul>
-<li>Was ist das besondere an den <code>bpy</code>-Collections?</li>
-<li>Wie wird ein neues Mesh erzeugt?</li>
-<li>Wie setze ich das aktuell selektierte Objekt in Python?</li>
-</ul>
-</li>
-</ul>
-
-</blockquote>
 <!-- TODO Erstzen
 - Sucht im Internet sinnvolle Python-Code-Schnipsel für die Verwendung der drei oben genannten "Untermodule" `bpy.context`, `bpy.data`, `bpy.ops`.
  - Probiert die Code-Schnipsel selbst aus.
@@ -444,8 +391,8 @@ MIN_SCALE = 0.5
 
 # clear scene - später entfernen
 bpy.ops.object.select_all(action='SELECT')
-bpy.ops.object.delete()
-
+bpy.ops.object.delete(use_global=False, confirm=False)
+bpy.ops.outliner.orphans_purge()
 
 random.seed(datetime.now())
 
