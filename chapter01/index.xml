@@ -21,8 +21,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/</guid>
-      <description>In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.
-Einführung Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen python Unterverzeichnis). Obwohl der Kern von Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt.</description>
+      <description>Einführung Digitale Medienproduktionen Die meisten Prozesse in digitalen Medienproduktionen werden mit Hilfe hochspezialisierter Softwaretools durchgeführt. 3D-Modelle und Animationen, Post-Produktion, Color-Grading, Greenscreen Keying, Camera-Tracking usw. sind nur effizient mit Hilfe speziell dafür entwickelter Softwarepakete in Produktionen einsetzbar.
+Ohne jeglichen Anspruch auf Vollständigkeit hier ein paar Beispiele häufig zum Einsatz kommender Werkzeuge:
+ Maya Cinema 4D Houdini 3ds Max Nuke Blender After Effects DaVinci Resolve  Effizienz bei Bewegtbild-Produktionen Speziell bei Bewegtbild-Medien genügt aber oft nicht die manuelle Bedienung dieser Werkzeuge.</description>
     </item>
     
   </channel>
