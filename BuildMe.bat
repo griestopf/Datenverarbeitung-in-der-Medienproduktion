@@ -7,6 +7,6 @@ IF ERRORLEVEL 1 (
 echo on
 hugo
 git add --all
-git commit "buildme"
+git commit -m "buildme"
 git push
 git subtree push --prefix public origin gh-pages
