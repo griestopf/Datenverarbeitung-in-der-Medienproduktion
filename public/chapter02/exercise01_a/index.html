@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 2 - Würfelturm - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 2 - Blender API &amp; Visual Studio Code - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.80.0" />
 
     
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 2 - Würfelturm
+        Übung 2 - Blender API &amp; Visual Studio Code
       </div>
     </div>
 
@@ -217,6 +217,22 @@
 
 
       
+        
+        
+
+
+
+<a class="current" title="2. Python &amp; Blender API" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/">
+	
+	2. Python &amp; Blender API
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
     </ul>
   
 </li>
@@ -235,9 +251,41 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 2 - Würfelturm </h1>
+			<h1>Übung 2 - Blender API &amp; Visual Studio Code </h1>
 
-			<h2 id="das-blender-python-modul-bpy">Das Blender-Python-Modul <code>bpy</code></h2>
+			<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 60%"><p>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unpraktisch, nur den Blender-internen Texteditor einzusetzen. Zu diesem Zweck werden wir uns in dieser Übung die Entwicklung mit der IDE Visual Studio Code erleichtern.</p>
+<p>Zudem werden wir die verschieden Untermodule der Blender API kennenlernen, um einen Burgturm-Generator zu programmieren.</p>
+</div>
+<div class="tcl-column tcl-right" style="width: 40%"><img src="img/thumbnail.png" alt="thumbnail"></div>
+</div>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<blockquote class="todo">
+    <ul>
+<li>Installiert zunächst <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+<li>Installiert Python 3.7</li>
+<li>Download für Windows <a href="https://www.python.org/downloads/release/python-379/">hier</a>
+<ul>
+<li>Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt <strong>JA</strong> - Neustart evtl. erforderlich</li>
+</ul>
+</li>
+<li>Mit Linux (Ubuntu basierte Distributionen) im Terminal mit <code>sudo apt-get install python3.7</code></li>
+<li>öffnet VS Code und installiert die beiden Extensions <strong>Python</strong> von Microsoft und <strong>Blender Development</strong> von Jacques Lucke.</li>
+</ul>
+<p><img src="img/extensions.png" alt="python-extension"></p>
+<ul>
+<li>Öffnet nun ein Terminal in VS Code (<strong>Teminal → New Terminal</strong>)</li>
+<li>Installiert das fake-bpy-module mit <code>pip install fake-bpy-module-2.90</code> (bzw aktuelle Blender Version). Dieses ermöglicht uns Autovervollständigung etc. für die Blender API.</li>
+<li>Wenn ihr nun mi VS Code eine Datei als .py abspeichert und bpy importiert, sollte es keine Fehlermeldungen geben und Autovervollständigung sollte funktionieren.
+<ul>
+<li>Unten links in VS Code kann (bei offener .py Datei) der Python Interpreter selektiert werden. Wählt hier eure Python 3.7 Version.</li>
+</ul>
+</li>
+</ul>
+<p><video width="75%" autoplay loop src="img/fake-bpy-module.mp4"></video></p>
+
+</blockquote>
+<h2 id="das-blender-python-modul-bpy">Das Blender-Python-Modul <code>bpy</code></h2>
 <p>Wie in anderen Programmiersprachen auch, lassen sich in Python Bibliotheken anlegen, die abrufbare Funktionalität in vordefinierten Klassen und Methoden (Funktionen) bereit halten. Diese heißen in Python <em>Module</em>. Um in Python-Skripten für Blender auf die von Blender vorgehaltene Funktionalität zugreifen zu können, steht in Blender-Python-Skripten das Modul <code>bpy</code> (Abk. f. <em>Blender Python</em>) zur Verfügung.</p>
 <p>In Blender-Skripten muss dieses Modul wie jedes andere Modul auch zunächst mit einer <code>import</code>-Anweisung eingebunden werden:</p>
 <pre><code class="language-Python">import bpy
@@ -259,12 +307,13 @@
 <li><code>bpy.ops</code></li>
 <li><code>bpy.context</code></li>
 <li><code>bpy.data</code></li>
+<li><code>bpy.types</code></li>
 </ul>
 <h2 id="die-wichtigsten-untermodule-von-bpy">Die wichtigsten &ldquo;Untermodule&rdquo; von <code>bpy</code></h2>
-<h3 id="bpycontext-hahahugoshortcode-s1-hbhb"><code>bpy.context</code> <a href="https://docs.blender.org/api/current/bpy.context.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<h3 id="bpycontext-hahahugoshortcode-s3-hbhb"><code>bpy.context</code> <a href="https://docs.blender.org/api/current/bpy.context.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p>Klassen und Methoden unterhalb von <code>bpy.context</code> erlauben den Zugriff auf den aktuellen Kontext, in dem sich der Benutzer befindet wie z.B. Szene, Modus, Selektierte Objekte, Faces, Kanten u. Vertices.</p>
 <hr>
-<h3 id="bpydata-hahahugoshortcode-s2-hbhb"><code>bpy.data</code> <a href="https://docs.blender.org/api/current/bpy.data.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<h3 id="bpydata-hahahugoshortcode-s4-hbhb"><code>bpy.data</code> <a href="https://docs.blender.org/api/current/bpy.data.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p><code>bpy.data</code> ermöglicht den Zugriff auf die interne Datenstruktur der gerade in Blender geöffneten Datei. Letztendlich wird hier das &ldquo;.blend&rdquo;-Datenformat abgebildet. Auf alles, was in einer .blend-Datei enthalten ist, kann mit  <code>bpy.data</code> Zugegriffen werden. Einen Überblick darüber, was das ist, liefert die <em>Blender File</em> Ansicht des Outliners.
 Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von Blender Zugriff auf Daten der Szene ermöglichen, sind meistens über <code>bpy.data</code>.</p>
 <p>Ein typischer Anwendungsfall ist zum Beispiel der Zugriff auf Materialien. Dieser erfolgt mit</p>
@@ -286,7 +335,7 @@ Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von
 
 </blockquote>
 <hr>
-<h3 id="bpyops-hahahugoshortcode-s4-hbhb"><code>bpy.ops</code> <a href="https://docs.blender.org/api/current/bpy.ops.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<h3 id="bpyops-hahahugoshortcode-s6-hbhb"><code>bpy.ops</code> <a href="https://docs.blender.org/api/current/bpy.ops.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p><code>bpy.ops</code> steht für <strong>&ldquo;Operatoren&rdquo;</strong>. Hierunter verbergen sich die Kommandos, die über Tastenkombinationen oder Menüeinträge eingegeben werden können. Die Kommandos, die im Arbeitsbereich des Info-Editors angezeigt werden, stammen meistens aus <code>bpy.ops</code>.</p>
 <p>Zu beachten ist hierbei, dass mach jedem Aufruf eines Operator ein Szenenupdate gemacht wird. In Performancerelevanten Code sollten diese daher sparsam verwendet werden. So kann beispielsweise ein Objekt entweder über den Transform-Operator verschoben,</p>
 <pre><code class="language-python">bpy.ops.transform.translate(value=(1,0,0))
@@ -297,42 +346,64 @@ Python-Kommandos aus den Tool-Tips, die über Benutzerschnitsstellenelemente von
 #bzw nach import von mathutils mit 
 bpy.context.object.location += mathutils.Vector((1,0,0))
 </code></pre>
+<h3 id="bpytypes-hahahugoshortcode-s7-hbhb"><code>bpy.types</code> <a href="https://docs.blender.org/api/current/bpy.types.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<p>Dieses Modul enthält Blenders interne Datentypen wie z.b. Objekte, Materialien, Nodes etc. Es kann z.B. für Type Hinting eingesetzt werden.</p>
+<pre><code class="language-python">my_material: bpy.types.Material = bpy.data.materials.new(&quot;My Material&quot;)
+</code></pre>
 <h2 id="andere-mitgelieferte-module">Andere mitgelieferte Module</h2>
 <p>Neben <code>bpy</code> werden auch noch andere Python-Module mit Blender mitgeliefert. Die für uns hier Wichtigen sind Folgende:</p>
-<h3 id="mathutils-hahahugoshortcode-s5-hbhb"><code>mathutils</code> <a href="https://docs.blender.org/api/current/mathutils.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<h3 id="mathutils-hahahugoshortcode-s8-hbhb"><code>mathutils</code> <a href="https://docs.blender.org/api/current/mathutils.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p>Hier sind u.a. wichtige Typen für das Scripting in Blender und deren Methoden enthalten (<code>Color</code>, <code>Euler</code>, <code>Matrix</code>, <code>Quaternion</code>, <code>Vector</code>)</p>
 <hr>
-<h3 id="bmesh-hahahugoshortcode-s6-hbhb"><code>bmesh</code> <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<h3 id="bmesh-hahahugoshortcode-s9-hbhb"><code>bmesh</code> <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p>Gibt Zugriff auf Blenders interne Mesh-Editing API.</p>
 <hr>
-<h3 id="gpu-hahahugoshortcode-s7-hbhb"><code>gpu</code> <a href="https://docs.blender.org/api/current/gpu.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
+<h3 id="gpu-hahahugoshortcode-s10-hbhb"><code>gpu</code> <a href="https://docs.blender.org/api/current/gpu.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h3>
 <p>Ermöglicht u.a. das Zeichnen von selbstdefinierten Shadern im Viewport.</p>
-<h2 id="aufgaben">Aufgaben</h2>
+<h2 id="aufgabe---burgturm-generator">Aufgabe - Burgturm Generator</h2>
+<p>Nun wollen wir die verschiedenen bpy Module einsetzen, um einen Burgturm bestehend aus einem <strong>Cylinder</strong> und einem <strong>Cone</strong> zu generieren</p>
 <blockquote class="todo">
-    <ul>
-<li>Arbeitet das einleitende Kapitel der offiziellen <a href="https://docs.blender.org/api/current/info_quickstart.html">Blender Python Dokumentation</a> durch.
+    <h3 id="grundform-generieren">Grundform generieren</h3>
 <ul>
-<li>Was ist das besondere an den <code>bpy</code>-Collections?</li>
-<li>Wie wird ein neues Mesh erzeugt?</li>
-<li>Wie setze ich das aktuell selektierte Objekt in Python?</li>
+<li>
+<p>Erstellt dazu eine Klasse <a href="https://www.w3schools.com/python/python_classes.asp" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> <code>Tower</code> mit folgenden Membervariablen:</p>
+<ul>
+<li><code>tower_radius</code></li>
+<li><code>tower_height</code></li>
+<li><code>roof_height</code></li>
+<li><code>roof_overhang</code> (bestimmt wie weit das Dach über die Wand hinausragt)</li>
 </ul>
 </li>
+<li>
+<p>Nutzt die folgende Grafik, um eine Methode <code>generate_tower</code> zu schreiben, die den Turm in der Szene aufbaut</p>
+</li>
 </ul>
+<p><img src="img/tower_sizes.png" alt="Tower"></p>
 
 </blockquote>
 <blockquote class="todo">
     <h3 id="materialien-zuweisen">Materialien zuweisen</h3>
-<p>Wir wollen nun das <code>data</code> Modul benutzen, um ein material für jeden Affenkopf aus der letzten Aufgabe zu erstellen und dieses dem aktuellen Objekt zuweisen.</p>
+<p>Wir wollen nun das <code>data</code> Modul benutzen, um ein Material für die beiden erstellten Objekte zu erstellen.</p>
+<ul>
+<li>Wechselt die 3D-Ansicht zu **Material Preview&quot;</li>
+</ul>
+<p><img src="img/matpreview.png" alt="preview"></p>
 <ul>
 <li>Erstellt ein neues Material in <code>bpy.data.materials</code> mit der <code>new</code> Funktion und stellt sicher, dass es das Material-Nodesystem benutzt</li>
 </ul>
-<pre><code class="language-python">mat_monkey = bpy.data.materials.new(&quot;Monkeymaterial&quot;)
-mat_monkey.use_nodes = True
+<pre><code class="language-python">mat_tower = bpy.data.materials.new(&quot;Tower Base Baterial&quot;)
+mat_tower.use_nodes = True
 </code></pre>
+<p>Wir wollen nun z.B. folgendes Node-Setup generieren, um dem Turm eine Steinziegel-Textur zu verpassen.</p>
+<p><img src="img/tower_material.png" alt="towermat"></p>
 <ul>
-<li>Auf die einzelne Nodes des materials kann nun über dessen Nodetree de zugegriffen werden.</li>
+<li>Auf die einzelne Nodes des Materials kann nun über dessen Nodetree de zugegriffen werden.</li>
 </ul>
-<pre><code class="language-python">nodes = mat_monkey.node_tree.nodes
+<pre><code class="language-python">nodes = mat_tower.node_tree.nodes
+
+# optional mit Type Hinting:
+import typing
+nodes: typing.List[bpy.types.Nodes] = mat_tower.node_tree.nodes
 </code></pre>
 <ul>
 <li>Jeder Node hat einen Array von Inputs und Outputs, die die Sockel links und rechts repräsentieren. Der erste Input des <strong>Principled BSDF</strong> Shaders ist <strong>Base Color</strong>, daher steuern wir diesen folgendermaßen an:</li>
@@ -342,93 +413,119 @@ mat_monkey.use_nodes = True
 </code></pre>
 <p><img src="img/nodes.png" alt="nodesockets"></p>
 <ul>
-<li>Zu guter Letzt weisen wir dem aktiven Objekt unser Material zu.</li>
+<li>Neue Nodes können über &ldquo;new&rdquo; Methode der vorher definierten <code>nodes</code> Liste erstellt werden. Die Namen der Shadernodes können (abgesehen von der <a href="https://docs.blender.org/api/current/bpy.types.html">bpy.types Dokumentation</a>) über die <strong>Python-Tooltips</strong> im <strong>Add</strong> Menü des Shadereditors herausgefunden werden.</li>
 </ul>
-<pre><code class="language-python">bpy.context.object.data.materials.append(mat_monkey)
+<p><img src="img/nodetooltip.png" alt="nodetooltip"></p>
+<pre><code class="language-python">node_brick: bpy.types.Node = nodes.new(&quot;ShaderNodeTexBrick&quot;)
+node_coords: bpy.types.Node = nodes.new(&quot;ShaderNodeTexCoord&quot;)
 </code></pre>
-
-</blockquote>
-<h2 id="beispiel-ops-matrix-extrude">Beispiel <code>ops</code>: Matrix Extrude</h2>
-<p>Implemeniert ein Skript zum unten beschriebenen &ldquo;Matrix Extrude&rdquo;:</p>
-<p>Insbesondere beim Box Modelling kommt folgende Abfolge von Bearbeitungsschritten auf einer Fläche häufig vor</p>
-<ol>
-<li>Fläche wird in Richtung der Flächennormalen um eine Länge extrudiert.</li>
-<li>Die extrudierte Fläche wird skaliert (z.B. verkleinert).</li>
-<li>Die extrudierte Fläche wird rotiert.</li>
-</ol>
-<p>Durch mehrfaches Wiederholen der o.g. Schritte lassen sich sehr gut &ldquo;Auswüchse&rdquo; aus einem bestehenden Box-Modell erzeugen, wie z.B. Arme, Beine, Tentakel u.ä.</p>
-<p>Schreibt ein Skript, das die aktuell selektierten Flächen eines Mesh um einen bestimmten Betrag entlang der Normalen extrudiert, die Flächen um einen bestimmten Betrag skaliert und rotiert. Packt diese drei Anweisungen in eine Schleife, die eine definierte Anzahl von durchläufen wiederholt wird.</p>
-<blockquote class="info">
-    Tipp: Führt oben genannten Arbeitsschritte von Hand aus und schaut im Arbeitsbereich des Info-Editors, welche Python-Befehle sich dahinter verbergen. Die im Info-Editor angezeigten Befehele enthalten immer den vollen Parametersatz. Davon können viele Einstellungen weggelassen werden, wenn sie sowieso die voreingestellten Standardwerte sind. Dünnt die Aufrufe in Eurem Code aus.
-</blockquote>
-<p>Packt die vom Benutzer zu verändernden Werte wie Rotationswinkel/Achse, Skalierungsfaktor, Extrusions-Strecke und Anzahl der Wiederholungen in Variablen, die zentral am Anfang des Skriptes stehen und dort bequem geändert werden können.</p>
-<!-- TODO Erstzen
-- Sucht im Internet sinnvolle Python-Code-Schnipsel für die Verwendung der drei oben genannten "Untermodule" `bpy.context`, `bpy.data`, `bpy.ops`.
- - Probiert die Code-Schnipsel selbst aus.
- - Variiert den Code und schaut was sich ändert
- - Lest die Referenz-Doku u. ggf. andere Quellen zu den verwendeten Befehlen nach.
- - Gibt es im jweiligen Untermodul ähnliche Befehle? Welche Funktion haben diese
--->
-<h2 id="prozedurale-würfeltürmchen-bauen">Prozedurale Würfeltürmchen bauen</h2>
-<p><img src="img/turm.png" alt="turm"></p>
-<p>Türmchen:</p>
 <ul>
-<li>Genau gestapelte Würfel</li>
-<li>nach oben schmaler werden</li>
-<li>Würfel mit random Scale, Z-Rotation und Location-Offset</li>
+<li>Um nun die entsprechenden Sockel der Nodes zu verbinden, nutzen wir die <code>links</code> Liste des <code>node_tree</code> des Materials</li>
 </ul>
-<p><strong>Beispielcode Würfeltürmchen</strong></p>
-<pre><code class="language-python">import bpy
-import random
-from datetime import datetime
-
-import mathutils
-
-MAX_STACKS = 10
-MIN_STACKS = 2
-MAX_SCALE = 2.5
-MIN_SCALE = 0.5
-
-# clear scene - später entfernen
-bpy.ops.object.select_all(action='SELECT')
-bpy.ops.object.delete(use_global=False, confirm=False)
-bpy.ops.outliner.orphans_purge()
-
-random.seed(datetime.now())
-
-bpy.ops.mesh.primitive_cube_add()
-C = bpy.context
-
-src_obj = C.active_object
-
-src_obj.rotation_euler.z = random.random() * 360
-
-rand_scale = random.uniform(MIN_SCALE, MAX_SCALE)
-src_obj.scale = mathutils.Vector((rand_scale,rand_scale,rand_scale))
-src_obj.location.z = rand_scale
-
-height = rand_scale * 2 # * 2 weil cube 2m groß ist. Später durch dimensions ersetzen.
-
-previous_scale = rand_scale
-
-for i in range (1, random.randint(MIN_STACKS, MAX_STACKS)):
-    new_obj = src_obj.copy()
-    new_obj.data = src_obj.data
-    new_obj.rotation_euler.z = random.random() * 360
-    
-    rand_scale = random.uniform(MIN_SCALE, MAX_SCALE)  * (1 - i / MAX_STACKS)
-    
-    new_obj.scale = mathutils.Vector((rand_scale, rand_scale, rand_scale))
-    
-    height += rand_scale
-    new_obj.location.z = height
-    height += rand_scale
-    
-    previous_scale = rand_scale
-    
-    C.collection.objects.link(new_obj)
-
+<pre><code class="language-python"># Hier beispielhaft zwei verschiedene Arten des Zugriffs auf die beiden verbundenen Nodes.
+# Über die vorher zugewiesene Variable, oder über den Namen des Nodes.
+mat_tower.node_tree.links.new(node_brick.outputs[0], nodes[&quot;Principled BSDF&quot;].inputs[0])
 </code></pre>
+<ul>
+<li>
+<p>Erstellt so nun alle benötigten Nodes und Links zwischen ihnen</p>
+</li>
+<li>
+<p>Nun weisen wir dem Objekt unser Material zu. Auch hier gibt es mehrere Möglichkeiten.</p>
+</li>
+</ul>
+<pre><code class="language-python"># dem aktuell selektiertem Objekt
+bpy.context.object.data.materials.append(mat_tower)
+
+# oder einem in der Variable tower_base gespeichertem Objekt
+tower_base.data.materials.append(mat_tower)
+
+# oder über das data Modul mit dem Objektnamen
+bpy.data.objects[&quot;Tower Base&quot;].materials.append(mat_tower)
+</code></pre>
+
+</blockquote>
+<blockquote class="todo">
+    <h3 id="fenster">Fenster</h3>
+<p>Der wohl schwierigste Teil dieser Aufgabe sind die Fenster. Hier werden wir mit Modifiern arbeiten.</p>
+<ul>
+<li>Fügt zunächst der Klasse neue - für die Fenstergenerierung wichtige Variablen hinzu. Gebt den Variablen sinnvolle default Werte</li>
+</ul>
+<pre><code class="language-python">windows_num_circular: int = 5
+windows_num_vertical: int = 4
+windows_size: float = 1
+wall_thickness = 0.5
+</code></pre>
+<ul>
+<li>
+<p>Wir wollen folgenden Ablauf generieren:</p>
+<ol>
+<li>Mehrere Würfel (<code>windows_num_circular</code>) in Fenstergröße generieren</li>
+<li>Würfel kreisfärmig um den Turm herum anordnen</li>
+<li>Würfel zu einem einzigen Objekt verbinden</li>
+<li>Würfel mit einem <strong>Array</strong> Modifier vertikal stapeln (<code>windows_num_vertical</code>)</li>
+<li>Würfel-<code>display_type</code> auf <code>WIRE</code> setzen, damit die Fenster durchsichtig sind</li>
+<li>Turm einen <strong>Boolean-Modifier</strong> hinzufügen, der die Fensterformen aus dem Mesh &ldquo;herausschneidet&rdquo;</li>
+<li>Towerbase einen <strong>Solidify</strong> Modifier hinzufügen, um der Wand eine Dicke zu geben</li>
+</ol>
+<p><img src="img/windows.png" alt="img"></p>
+</li>
+<li>
+<p>Modifier werden Objekten über deren Liste <code>modifiers</code> mit der <code>new</code> Methode hinzugefügt. Dieser übergeben wir einen (beliebigen) namen und den großgeschriebenen Arraytypen.</p>
+</li>
+</ul>
+<pre><code class="language-python">mod_solid = tower_base.modifiers.new('Wall Thickness','SOLIDIFY')
+</code></pre>
+<ul>
+<li>Die Python-Tooltips können wider benutzt werden, um die Pfade zu den einzelnen Parameter der Modifier herauszufinden.</li>
+</ul>
+<pre><code class="language-python">mod_solid.thickness = self.wall_thickness
+</code></pre>
+
+</blockquote>
+<h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
+<table>
+<thead>
+<tr>
+<th>Art/Länge</th>
+<th>Titel</th>
+<th>Beschreibung</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.blender.org/api/current/bpy.context.html">bpy.context Dokumentation</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.blender.org/api/current/bpy.data.html">bpy.data Dokumentation</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.blender.org/api/current/bpy.ops.html">bpy.ops Dokumentation</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.blender.org/api/current/bpy.types.html">bpy.types Dokumentation</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  23min</td>
+<td><a href="https://youtu.be/eo7UjKFiagk">How to create and assign a Material Shader</a></td>
+<td>Ausführliches Tutorial zu Materialien in der Blender API</td>
+<td><a href="https://www.youtube.com/channel/UCOUWVGNhcHEICE8AjR8up3g">YouTube -  Darkfall</a></td>
+</tr>
+</tbody>
+</table>
 
 
 			<aside class="copyright" role="note">
