@@ -123,7 +123,7 @@ Nach dem Start von Blender zeigt uns die Systemkonsole die mitgelieferte Python-
 {{<left 50>}}
 Die **Python Konsole** ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (**b**lender **py**thon API) getippt werden und anschließend mit `TAB` die verfügbaren nachfolgenden Pfade angezeigt werden. Mit `Pfeil nach oben` kann der letzte Befehl wieder aufgerufen werden.
 
-Mit folgendem Befehl können wir z.b. das selektierten Objekts um zwei Einheiten entlang der Y-Achse verschieben.
+Mit folgendem Befehl können wir z.b. das selektierte Objekts um zwei Einheiten entlang der Y-Achse verschieben.
 ```n
 bpy.ops.transform.translate(value=(0, 2, 0))
 ```

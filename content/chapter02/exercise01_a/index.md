@@ -1,6 +1,39 @@
 ---
-title: Übung 2 - Würfelturm
+title: Übung 2 - Blender API & Visual Studio Code
 ---
+
+{{<twoculumn>}}
+{{<left 60>}}
+Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.
+
+{{</left>}}
+{{<right 40>}}
+![thumbnail](img/thumbnail.png)
+{{</right>}}
+{{</twoculumn>}}
+
+
+## Visual Studio Code
+
+{{<todo>}}
+- Installiert zunächst [Visual Studio Code](https://code.visualstudio.com/).
+- Installiert Python 3.7
+- Für Windows [hier](https://www.python.org/downloads/release/python-379/)
+  - Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt **JA** - Neustart evtl. erforderlich
+- Mit Linux (Ubuntu basierte Distributionen) im Terminal mit `sudo apt-get install python3.7`
+- öffnet VS Code und installiert die beiden Extensions **Python** von Microsoft und **Blender Development** von Jacques Lucke.
+
+
+![python-extension](img/extensions.png)
+
+
+- Öffnet nun ein Terminal in VS Code (**Teminal → New Terminal**)
+- Installiert das fake-bpy-module mit `pip install fake-bpy-module-2.90` (bzw aktuelle Blender Version). Dieses ermöglicht uns Autovervollständigung etc. für die Blender API.
+- Wenn ihr nun mi VS Code eine Datei als .py abspeichert und bpy importiert, sollte es keine Fehlermeldungen geben und Autovervollständigung sollte funktionieren.
+  - Unten links in VS Code kann (bei offener .py Datei) der Python Interpreter selektiert werden. Wählt hier eure Python 3.7 Version.
+
+<video width="75%" autoplay loop src="img/fake-bpy-module.mp4"></video>
+{{</todo>}}
 
 
 ## Das Blender-Python-Modul `bpy`
@@ -125,10 +158,18 @@ Ermöglicht u.a. das Zeichnen von selbstdefinierten Shadern im Viewport.
 ## Aufgaben
 
 {{<todo>}}
-- Arbeitet das einleitende Kapitel der offiziellen [Blender Python Dokumentation](https://docs.blender.org/api/current/info_quickstart.html) durch.
-  - Was ist das besondere an den `bpy`-Collections?
-  - Wie wird ein neues Mesh erzeugt?
-  - Wie setze ich das aktuell selektierte Objekt in Python?
+
+- Generiert einen Burgturm bestehend aus einem **Cylinder** und einem **Cone**
+- Erstellt dazu eine Klasse `Tower` mit folgenden Membervariablen:
+    - `tower_radius`
+    - `tower_height`
+    - `roof_height`
+    - `roof_overhang` (bestimmt wie weit das Dach über die Wand hinausragt)
+
+- Nutzt die folgende Grafik, um eine Methode `generate_tower` zu schreiben, die den Turm in der Szene aufbaut
+
+![Tower](img/tower_sizes.png)
+
 {{</todo>}}
 
 
