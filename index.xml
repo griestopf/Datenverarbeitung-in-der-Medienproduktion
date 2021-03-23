@@ -29,6 +29,16 @@ Telnahmevoraussetzungen Benötigt:
     </item>
     
     <item>
+      <title>Python Skripte aus der Vorlesung</title>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/</guid>
+      <description>VL2 Turmgenerator Code-Zwischenstand aus der Vorlesung am 23.03.21
+import bpy import typing import math class Tower: tower_radius: float = 2 tower_height: float = 8 roof_height: float = 2.5 roof_overhang: float = 0.5 windows_num_circular: int = 5 windows_num_vertical: int = 4 windows_size: float = 1 window_height_multiplyer: float = 1.5 wall_thickness: float = 0.5 PI2 = math.pi * 2 def generate_windows(self): windows = [] for i in range(self.windows_num_circular): bpy.ops.mesh.primitive_cube_add( scale=(self.windows_size, self.windows_size, self.windows_size * self.</description>
+    </item>
+    
+    <item>
       <title>Python Style Guide</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
