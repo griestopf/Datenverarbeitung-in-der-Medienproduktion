@@ -52,6 +52,11 @@ googleAnalytics = ""
 	parent = "Allgemeines"
 
 [[menu.main]]
+	name   = "Vorlesungs Pythonscripts"
+	url    = "course-python-scripts/"
+	parent = "Allgemeines"
+
+[[menu.main]]
 	name   = "Kapitel"
 
 [[menu.main]]
@@ -95,6 +100,7 @@ googleAnalytics = ""
 # 	name   = "11. Animation"
 # 	url    = "chapter11/exercise01_a/"
 # 	parent = "Kapitel"
+
 
 [markup]
   [markup.goldmark]
