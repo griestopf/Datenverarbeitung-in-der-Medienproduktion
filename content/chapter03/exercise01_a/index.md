@@ -12,7 +12,7 @@ title: Übung 3 - Operatoren & Addons
 - Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)
 -->
 
-Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unserer TODO - JA WAS DENN erweitern.
+Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unseres Turms erweitern
 
 ## Operatoren {{<doclink "https://docs.blender.org/api/current/bpy.types.Operator.html">}}
 
