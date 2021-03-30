@@ -71,11 +71,11 @@ googleAnalytics = ""
 	url    = "chapter02/exercise01_a/"
 	parent = "Kapitel"
 
-# [[menu.main]]
-# 	weight = 3
-# 	name   = "3. Operatoren & Addons"
-# 	url    = "chapter03/exercise01_a/"
-# 	parent = "Kapitel"
+[[menu.main]]
+	weight = 3
+	name   = "3. Operatoren & Addons"
+	url    = "chapter03/exercise01_a/"
+	parent = "Kapitel"
 
 # [[menu.main]]
 # 	weight = 4

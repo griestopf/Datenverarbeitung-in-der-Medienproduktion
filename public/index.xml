@@ -35,7 +35,7 @@ Telnahmevoraussetzungen Benötigt:
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/</guid>
       <description>VL2 Turmgenerator Code-Zwischenstand aus der Vorlesung am 23.03.21
-import bpy import typing import math class Tower: tower_radius: float = 2 tower_height: float = 8 roof_height: float = 2.5 roof_overhang: float = 0.5 windows_num_circular: int = 5 windows_num_vertical: int = 4 windows_size: float = 1 window_height_multiplyer: float = 1.5 wall_thickness: float = 0.5 PI2 = math.pi * 2 def generate_windows(self): windows = [] for i in range(self.windows_num_circular): bpy.ops.mesh.primitive_cube_add( scale=(self.windows_size, self.windows_size, self.windows_size * self.</description>
+import bpy import typing import math class tower(): tower_radius: float = 3 tower_height: float = 8 roof_height: float = 2.5 roof_overhang: float = 0.5 windows_num_circular: int = 5 windows_num_vertical: int = 3 windows_size: float = 1 wall_thickness: float = 0.5 PI2 = math.pi * 2 def generate_windows(self) -&amp;gt; object: windows = [] for i in range(self.windows_num_circular): bpy.ops.mesh.primitive_cube_add( scale=(self.windows_size, self.windows_size, self.windows_size * 1.5) ) c_window = bpy.</description>
     </item>
     
     <item>

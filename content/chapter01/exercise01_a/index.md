@@ -106,7 +106,7 @@ Ein weiteres wichtiges Werkzeug ist die **Systemkonsole**.
 - Wenn Windows benutzt wird, wählt **Window → Toggle System Console**
 
 - In Linux und Mac muss Blender über das Terminal gestartet werden und dieses Terminal erfüllt dann deren Zweck:
-
+    bpy.types.VIEW3D_MT_add.remove(add_object_button)
   - **Linux:** Wenn Blender über die Packetverwaltung installiert wurde *(was übrigens nicht empfehlenswert ist, da diese Versionen meist veraltet sind, keinen CUDA support haben etc.)* einfach in die Konsole `blender` eingeben. Wenn Blender von der Webseite heruntergeladen und extrahiert wurde, muss der ganze Pfad zur Blender executable angegeben werden - z.b. `/home/software/blender-2.91.2-linux64/blender`
 
   - **MacOS:** Im Terminal den Pfad zur Blender installation angeben - z.b. `"/Applications/Blender/blender.app/Contents/MacOS/blender`

@@ -243,6 +243,22 @@
 
 
       
+        
+        
+
+
+
+<a class="current" title="3. Operatoren &amp; Addons" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/">
+	
+	3. Operatoren &amp; Addons
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
     </ul>
   
 </li>
@@ -304,14 +320,14 @@
 <!--Warum ist poll classmethod und execute nicht?-->
 <ul>
 <li>
-<p>Die <strong><code>poll</code></strong> Methode ist optional. Sie empfängt hier TODO(KLASSE) und den aktuellen Kontex</p>
+<p>Die <strong><code>poll</code></strong> Methode ist optional. Sie ist eine statische Methode (daher <code>@classmethod</code>) und benötigt daher keine Instanz der Klasse, um aufgerufen zu werden. <code>cls</code> ist hier die Referenz auf die sie beinhaltende Klasse selbst (während <code>self</code> immer eine Instanz referenziert). Poll empfängt zudem den aktuellen Kontex</p>
 </li>
 <li>
 <p>Die <strong><code>execute</code></strong> Methode ist der tatsächlich ausgeführte Code beim aufrufen des Operators. Ihr wird hier <code>self</code> übergeben (in Python wird über <code>self.meine_variable</code> auf Membervariablen der aktuellen Klasseninstanz zugegriffen) und wiederum der aktuelle Kontext.</p>
 </li>
 </ul>
 <p>Der ausgeführte Code wurde hier in die <code>main</code> Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben. In diesem Beispiel wird über jedes Objekt in der aktuellen Szene <code>context.scene.objects</code> iteriert und dieses in der Konsole ausgegeben. <code>for</code> lässt dich in Python nutzen wie <code>foreach</code> in anderen Sprachen.</p>
-<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes .</p>
+<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes und dienen zur Registrierung der Klassen in der API bzw zur Deregistrierung bei Deaktivierung des Addons.</p>
 <blockquote class="info">
     <p>Wenn viele Klassen zu registrieren sind, lässt sich auch die <code>register_classes_factory</code> nutzen, der ein Tuple an Klassen übergeben wird.</p>
 <pre><code class="language-python">register, unregister = bpy.utils.register_classes_factory(
@@ -331,7 +347,7 @@
     # test call
     bpy.ops.object.simple_operator()
 </code></pre>
-<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.</p>
+<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird oder einfach nur als Modul importiert wurde. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.</p>
 <blockquote class="todo">
     <ul>
 <li>Stelle sicher, dass <strong>Preferences → Interface → Developer Extras</strong> aktiviert ist (nur dann lassen sich so erstellte Operatoren mit F3 suchen)</li>
@@ -349,7 +365,6 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 </pre>
 
 </blockquote>
-<p>TODO ADDON INHALT - Generierung von irgendwass. Vlt Würfelwelt oä.</p>
 <h2 id="properties-hahahugoshortcode-s4-hbhb">Properties <a href="https://docs.blender.org/api/current/bpy.props.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 <p>Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren <em>Properties</em>.</p>
 <p>Properties lassen sich ganz einfach als Eigenschaften der Klasse, die den Operator definiert implementieren (also die Klasse, die von <code>bpy.types.Operator</code> erbt und die eine <code>execute</code>-Methode definiert). Hierzu können innerhalb des Klassenrumpfes Eigenschaften definiert werden, denen ein Aufruf einer der folgenden Funktionen zugewiesen wird.</p>
@@ -398,9 +413,10 @@ def main(context, loc):
 <p><img src="img/location.png" alt="location"></p>
 </div>
 <div class="tcl-column tcl-right" style="width: 50%"><pre><code class="language-python">import bpy
-<p>def main(context, loc):
-for ob in context.scene.objects:
-ob.location = loc</p>
+<p>def main(context, loc):</p>
+<pre><code>for ob in context.scene.objects:
+    ob.location = loc
+</code></pre>
 <p>class SimpleOperator(bpy.types.Operator):
 &quot;&quot;&quot;Tooltip&quot;&quot;&quot;
 bl_idname = &quot;object.simple_operator&quot;
@@ -438,9 +454,12 @@ bpy.ops.object.simple_operator()
 <p><video autoplay loop src="img/operator.mp4"></video></p>
 
 </blockquote>
-<h2 id="addons-hahahugoshortcode-s7-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
+<blockquote class="todo">
+    Wandelt das <a href="../../course-python-scripts/#vl2-turmgenerator">Turmgenerator-Skript</a> vom letzten mal in einen Operator um und macht dessen Parameter zu Operator-Properties.
+</blockquote>
+<h2 id="addons-hahahugoshortcode-s8-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 <div class="tcl-row">
-<div class="tcl-column tcl-left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.</div>
+<div class="tcl-column tcl-left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.</div>
 <div class="tcl-column tcl-right" style="width: 50%"><pre><code class="language-python">bl_info = {
     &quot;name&quot;: &quot;Cubedimension&quot;,
     &quot;author&quot;: &quot;Ich &lt;ich@webmail.hs-furtwangen.de&gt;&quot;,
@@ -456,7 +475,7 @@ bpy.ops.object.simple_operator()
 </div>
 </div>
 <!--Dunkle Markdown-CSS Magie-->
-<p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info<b></p>
+<p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info</b></p>
 <table>
 <thead>
 <tr>
@@ -487,7 +506,9 @@ bpy.ops.object.simple_operator()
 </tr>
 </tbody>
 </table>
-<p>TODO als .py abspeichern</p>
+<blockquote class="todo">
+    Wandelt das Turmgenerator-Skript nun in ein Addon um und installiert es. Auch die Deinstallation sollte reibungslos klappen.
+</blockquote>
 <h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
 <table>
 <thead>
