@@ -16,11 +16,10 @@
     padding-bottom: 10px !important;
 }
 
-code {
+.hljs {
     border: #c3c3c3 solid 1px;
     border-radius: 3px;
     padding: 2px 4px !important;
-    background-color: #f6f6f6 !important;
 }
 
 pre {
@@ -56,30 +55,34 @@ pre {
     margin: 0px 3px !important;
 }
 
-.column {
+.tcl-column {
     float: left;
     height: auto;
-    /* Should be removed. Only for demonstration */
 }
 
-.left {
+.tcl-column image, video {
+    max-width: 100%;
+}
+
+.tcl-left {
     padding-right: 10px;
 }
 
-.right {
+.tcl-right {
     float: right;
 }
 
 @media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
+    .tcl-column {
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 
 
 /* Clear floats after the columns */
 
-.row:after {
+.tcl-row:after {
     content: "";
     display: table;
     clear: both;
@@ -112,4 +115,20 @@ pre {
     margin-bottom: -65px;
     z-index: 2000 !important;
     position: flex;
+}
+
+.show,
+.hide {
+    padding: 4px;
+    text-decoration: none !important;
+    border-radius: 3px;
+    color: white !important;
+}
+
+.show {
+    background-color: rgb(82, 182, 182);
+}
+
+.hide {
+    background-color: teal;
 }

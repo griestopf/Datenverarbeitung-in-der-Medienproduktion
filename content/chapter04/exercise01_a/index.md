@@ -148,8 +148,19 @@ Im Beispielcode [MatrixExtrudeAddonProps.py](MatrixExtrudeAddonProps.py) wurden 
 - Vollzieht das Debugging mit o.b. Methode nach.
 
 
+Linux:
+- install VS Code
+- install python3 and pip3
+- pip3 install fake-bpy-module-2.91 (in Zukunft evtl Versionsnummer von Blender anpassen)
+- VSCode install pylint
+
+Je nach Linux-Distribution sind python, pip und python3, pip3 separate Befehle (für python 2 und python 3+) Wir brauchen 3+
+
+
 ## Ressourcen & Tutorials zum Thema
 
 | Art/Länge | Titel | Beschreibung | Quelle |
 |---|---|---|---|
 |<img src="/general/icons/video.png" class="resicon">  13min | [Setting Up VSCode To Use As IDE With Blender In Windows](https://youtu.be/77mMpeoh3OI) | VS Code Setup | [YouTube -  Michael bridges](https://www.youtube.com/channel/UCUeGicdkP1QafhJZ44nzdNw) |
+|<img src="/general/icons/video.png" class="resicon">  14min | [Setting Up VSCode To Use As IDE With Blender In Linux](https://youtu.be/bmpKAluHiEc) | VS Code Setup | [YouTube -  Michael bridges](https://www.youtube.com/channel/UCUeGicdkP1QafhJZ44nzdNw) |
+|<img src="/general/icons/video.png" class="resicon">  16min | [Setting Up VSCode To Use As IDE With Blender In MacOS](https://youtu.be/8EUy21CGjNU) | VS Code Setup | [YouTube -  Michael bridges](https://www.youtube.com/channel/UCUeGicdkP1QafhJZ44nzdNw) |

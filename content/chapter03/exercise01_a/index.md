@@ -12,7 +12,7 @@ title: Übung 3 - Operatoren & Addons
 - Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)
 -->
 
-Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unserer TODO - JA WAS DENN erweitern.
+Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unseres Turms erweitern
 
 ## Operatoren {{<doclink "https://docs.blender.org/api/current/bpy.types.Operator.html">}}
 
@@ -45,13 +45,13 @@ class SimpleOperator(bpy.types.Operator):
 - **`bl_idname`** ist der pfad API-Pfad unter dem der Operator aufrufbar sein wird `"object.simple_operator"` lässt sich dann mit `bpy.ops.object.simple_operator()` aufrufen.
 - `bl_label`
 <!--Warum ist poll classmethod und execute nicht?-->
-- Die **`poll`** Methode ist optional. Sie empfängt hier TODO(KLASSE) und den aktuellen Kontex
+- Die **`poll`** Methode ist optional. Sie ist eine statische Methode (daher `@classmethod`) und benötigt daher keine Instanz der Klasse, um aufgerufen zu werden. `cls` ist hier die Referenz auf die sie beinhaltende Klasse selbst (während `self` immer eine Instanz referenziert). Poll empfängt zudem den aktuellen Kontex
 
 - Die **`execute`** Methode ist der tatsächlich ausgeführte Code beim aufrufen des Operators. Ihr wird hier `self` übergeben (in Python wird über `self.meine_variable` auf Membervariablen der aktuellen Klasseninstanz zugegriffen) und wiederum der aktuelle Kontext.
 
 Der ausgeführte Code wurde hier in die `main` Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben. In diesem Beispiel wird über jedes Objekt in der aktuellen Szene `context.scene.objects` iteriert und dieses in der Konsole ausgegeben. `for` lässt dich in Python nutzen wie `foreach` in anderen Sprachen.
 
-Schließlich fallen noch die beiden Methoden `register` und `unregister` auf. Diese sind außerhalb des Klassenrumpfes .
+Schließlich fallen noch die beiden Methoden `register` und `unregister` auf. Diese sind außerhalb des Klassenrumpfes und dienen zur Registrierung der Klassen in der API bzw zur Deregistrierung bei Deaktivierung des Addons.
 
 {{<info>}}
 Wenn viele Klassen zu registrieren sind, lässt sich auch die `register_classes_factory` nutzen, der ein Tuple an Klassen übergeben wird.
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     bpy.ops.object.simple_operator()
 ```
 
-Die Überprüfung `if __name__ == "__main__"` überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.
+Die Überprüfung `if __name__ == "__main__"` überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird oder einfach nur als Modul importiert wurde. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.
 
 {{<todo>}}
 - Stelle sicher, dass **Preferences → Interface → Developer Extras** aktiviert ist (nur dann lassen sich so erstellte Operatoren mit F3 suchen)
@@ -91,8 +91,6 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 &lt;bpy_struct, Object("Camera") at 0x000001D2821FBB08&gt;>}}
 {{</console>}}
 {{</todo>}}
-
-TODO ADDON INHALT - Generierung von irgendwass. Vlt Würfelwelt oä.
 
 ## Properties {{<doclink "https://docs.blender.org/api/current/bpy.props.html">}}
 
@@ -120,7 +118,17 @@ Es handelt sich hierbei nicht um klassische Variablendeklaration. Wir weisen kei
 {{</info>}}
 
 
+<pre><code class="language-python">
+import bpy
+
+def main(context, loc):
+    for ob in context.scene.objects:
+        ob.location = loc
+</code></pre>
+
 {{<todo>}}
+
+
 {{<twoculumn>}}
 {{<left 50>}}
 
@@ -151,9 +159,9 @@ Alle Objekte in der Szene sollten nun an die Position (2, 2, 2) verschoben werde
 import bpy
 
 def main(context, loc):
+    
     for ob in context.scene.objects:
         ob.location = loc
-
 
 class SimpleOperator(bpy.types.Operator):
     """Tooltip"""
@@ -170,8 +178,8 @@ class SimpleOperator(bpy.types.Operator):
         return {'FINISHED'}
 
     my_vec: bpy.props.FloatVectorProperty(
-        name="My Vector",
-        description="does stuff with the thing.",
+        name='My Vector',
+        description='does stuff with the thing.',
         default = (1, 1, 1))
 
 
@@ -198,11 +206,15 @@ if __name__ == "__main__":
 {{</todo>}}
 
 
+{{<todo>}}
+Wandelt das [Turmgenerator-Skript](../../course-python-scripts/#vl2-turmgenerator) vom letzten mal in einen Operator um und macht dessen Parameter zu Operator-Properties.
+{{</todo>}}
+
 ## Addons {{<doclink "https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html">}}
 {{<twoculumn>}}
 {{<left 50>}}
 
-Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem `bl_info` Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.
+Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem `bl_info` Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.
 
 {{</left>}}
 {{<right 50>}}
@@ -224,18 +236,21 @@ bl_info = {
 {{</right>}}
 {{</twoculumn>}}
 
+
 <!--Dunkle Markdown-CSS Magie-->
-<p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info<b></p>
+<p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info</b></p>
 
 |||
----|---
- `version` | gibt die (frei wählbare) Versionsnummer des Addons an.
- `blender` | ist die Blender Version, mit der das Addon getestet wurde (was nicht heißt, dass es nicht auch in anderen Versionen funktionieren kann)
- `location` | zeigt den Weg zur UI des Addons (nur als Anleitung für den Nutzer)
- `doc_url` | Link zur Dokumentation, falls diese existiert (was meist wünschenswert ist)
- `category` | Gibt die Kategorie unter der das Addon in den Einstellungen angezeigt wird 
+|---|---|
+| `version` | gibt die (frei wählbare) Versionsnummer des Addons an.|
+| `blender` | ist die Blender Version, mit der das Addon getestet wurde (was nicht heißt, dass es nicht auch in anderen Versionen funktionieren kann)|
+| `location` | zeigt den Weg zur UI des Addons (nur als Anleitung für den Nutzer)|
+| `doc_url` | Link zur Dokumentation, falls diese existiert (was meist wünschenswert ist)|
+| `category` | Gibt die Kategorie unter der das Addon in den Einstellungen angezeigt wird  |
 
- TODO als .py abspeichern
+{{<todo>}}
+Wandelt das Turmgenerator-Skript nun in ein Addon um und installiert es. Auch die Deinstallation sollte reibungslos klappen.
+{{</todo>}}
 
 ## Ressourcen & Tutorials zum Thema
 

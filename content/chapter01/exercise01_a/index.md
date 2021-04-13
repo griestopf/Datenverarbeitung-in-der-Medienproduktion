@@ -3,11 +3,42 @@ title: Übung 1 - Blender Setup & Scripting-Tools
 
 ---
  
-**In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.**
 
 ## Einführung
 
-Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blender mit der Programmiersprache Python automatisieren. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen `python` Unterverzeichnis). Obwohl der Kern von Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus sind sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a. 
+
+### Digitale Medienproduktionen
+
+Die meisten Prozesse in digitalen Medienproduktionen werden mit Hilfe hochspezialisierter Softwaretools durchgeführt. 3D-Modelle und Animationen, Post-Produktion, Color-Grading, Greenscreen Keying, Camera-Tracking usw. sind nur effizient mit Hilfe speziell dafür entwickelter Softwarepakete in Produktionen einsetzbar.
+
+Ohne jeglichen Anspruch auf Vollständigkeit hier ein paar Beispiele häufig zum Einsatz kommender Werkzeuge:
+
+- Maya
+- Cinema 4D
+- Houdini
+- 3ds Max
+- Nuke
+- Blender
+- After Effects
+- DaVinci Resolve
+
+### Effizienz bei Bewegtbild-Produktionen
+
+Speziell bei Bewegtbild-Medien genügt aber oft nicht die manuelle Bedienung dieser Werkzeuge. Da hier zwischen 24 und 60 Bilder pro Sekunde, bei Stereoproduktionen sogar doppelt so viele, bearbeitet oder generiert werden müssen, ist eine manueller Bild-für-Bild Prozess zu ineffizient.
+
+Eine ausreichende Effizienz lässt sich hier meistens nur mit Hilfe von automatisierten, selbst ablaufenden Prozessen erzielen - also möglichst ohne viel zeitaufwändige und kostenintensive menschliche Interaktion.
+
+
+### Automatisierung durch Skripting
+
+Derartige automatisierte Prozesse lassen sich meist nur mit Hilfe von Algorithmen, also durch Programmierung, realisieren. Alle oben genannten Beispiele bieten hierzu eine Programmierschnittstelle an, mit der sich meist sämtliche Funktionen der Software per Code ansprechen lassen. Oftmals ist bereits in die Software ein Code-Editor eingebaut. Damit ist die Programmierung so genannter Skripte oder Makros möglich.
+
+
+### Die Rolle von Python in der Medienproduktion
+
+In vielen Software-Paketen, die in Medienproduktionen zum Einsatz kommen, wird die Programmiersprache Python verwendet - so können zum Beispiel alle oben genannten Produkte durch Python-Skripte automatisiert werden.
+
+In dieser Veranstaltung soll daher die Verwendung von Python im Umfeld von Medienproduktionen gelehrt werden. Nach einer allgemeinen Einführung in die Programmiersprache wird schnell die Verwendung von Python in der 3D- und Compositing/VFX-Software Blender erarbeitet. Blender wird dazu mit einer eigenen Python-Distribution ausgeliefert und installiert (diese liegt im Blender-Installationsverzeichnis in einem eigenen `python` Unterverzeichnis). Obwohl der Kern von Blender selbst in den Programmiersprachen C und C++ geschrieben wurde, ist der gesamte Source-Code eng mit Python verzahnt. Nahezu jede Funktionalität, die sich in Blender über das User Interface auslösen lässt, kann auch mit Python-Befehlen aus einem Skript aufgerufen werden. Darüber hinaus ist auf sämtliche Daten innerhalb von Blender über Python-Strukturen zugreifbar. Dazu zählen u.a. 
 
 - Szenen und Objekte
 - Geometrie
@@ -17,10 +48,13 @@ Wie viele andere Softwarepakete im Bereich der Medienproduktion lässt sich Blen
 
 ## Erste Schritte
 
+**In dieser Übung wollen wir uns mit dem Setup von Blender für Scripting, sowie den Tools, die uns von Blender selbst dafür zur Verfügung gestellt werden beschäftigen.**
+
+
 {{<todo>}}
 Ladet euch zunächst von [Blender.org](https://www.blender.org/download/) die aktuelle Version von Blender herunter. 
 {{</todo>}}
-Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.
+- Dieses Script behandelt die Version 2.91 / 2.92. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.
 
 <!--Link zu CG Webseite? Ist ja nicht immer alles Online und vlt auch nicht immer auf Davids Webspace?-->
 - Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im [**Script zur Veranstalltung Computergrafik**](https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/chapter01/lecture01/) 
@@ -28,7 +62,7 @@ Dieses Script behandelt die Version 2.91. Zukünftige Versionen könnten eventue
 {{<todo>}}
 - Öffnet Blender und in Blender die ***Preferences***
 ![Preferences](img/preferences.png)
-- Aktiviert hier nun im ***Interface*** Tab *Python Tooltips* und *Development Extras*
+- Aktiviert hier nun im ***Interface*** Tab ***Python Tooltips*** und ***Development Extras***
 {{</todo>}}
 
 <br>
@@ -70,7 +104,12 @@ Wechselt nun zum Workspace-Tab ***Scripting***
 Ein weiteres wichtiges Werkzeug ist die **Systemkonsole**. 
 {{<todo>}}
 - Wenn Windows benutzt wird, wählt **Window → Toggle System Console**
-- In Linux und Mac(? - TODO) muss Blender über das Terminal gestartet werden und dieses Terminal erfüllt dann deren Zweck.
+
+- In Linux und Mac muss Blender über das Terminal gestartet werden und dieses Terminal erfüllt dann deren Zweck:
+    bpy.types.VIEW3D_MT_add.remove(add_object_button)
+  - **Linux:** Wenn Blender über die Packetverwaltung installiert wurde *(was übrigens nicht empfehlenswert ist, da diese Versionen meist veraltet sind, keinen CUDA support haben etc.)* einfach in die Konsole `blender` eingeben. Wenn Blender von der Webseite heruntergeladen und extrahiert wurde, muss der ganze Pfad zur Blender executable angegeben werden - z.b. `/home/software/blender-2.91.2-linux64/blender`
+
+  - **MacOS:** Im Terminal den Pfad zur Blender installation angeben - z.b. `"/Applications/Blender/blender.app/Contents/MacOS/blender`
 ![Scripting Workspace](img/console.png) <!--TODO Bild Counter einfügen-->
 {{</todo>}}
 
@@ -84,7 +123,7 @@ Nach dem Start von Blender zeigt uns die Systemkonsole die mitgelieferte Python-
 {{<left 50>}}
 Die **Python Konsole** ermöglicht Live Scripting. Auch Auto Vervollständigung ist möglich. So kann beispielsweise bpy. (**b**lender **py**thon API) getippt werden und anschließend mit `TAB` die verfügbaren nachfolgenden Pfade angezeigt werden. Mit `Pfeil nach oben` kann der letzte Befehl wieder aufgerufen werden.
 
-Mit folgendem Befehl können wir z.b. das selektierten Objekts um zwei Einheiten entlang der Y-Achse verschieben.
+Mit folgendem Befehl können wir z.b. das selektierte Objekts um zwei Einheiten entlang der Y-Achse verschieben.
 ```n
 bpy.ops.transform.translate(value=(0, 2, 0))
 ```
@@ -144,18 +183,48 @@ Die meisten Optionen der Operatoren haben Standardwerte und können weggelassen 
 
 ```python
 import bpy
-
 bpy.ops.mesh.primitive_monkey_add()
 bpy.ops.object.modifier_add(type='SUBSURF')
-bpy.ops.transform.resize(value=(1, 1, 2)) #(1, 1, 2) steht hierbei für 1 auf X- und Y-Achse und 2 auf der Z-Achse
+bpy.ops.transform.resize(value=(2, 1, 1)) 
+# (2, 1, 1) steht hierbei für 2 auf X- und 1 Y- und Z-Achse. 
+# Die Default-Skalierung ist (1,1,1)
 ```
 
-> in Python können Funktionsparameter (hier z.b. der *value* Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.
+{{<info>}}
+in Python können Funktionsparameter (hier z.b. der *value* Vektor der resize Funktion) entweder in deren Reihenfolge ohne Bezeichner, oder mit Bezeichner in beliebiger Reihenfolge aufgerufen werden. Letzeres ist zu bevorzugen wenn die Parameter nicht offensichtlich sind, um den Code gut lesbar zu halten.
+{{</info>}}
 
+Wir können unseren Code natürlich auch in eine Funktion packen und diese später im Code aufrufen. 
+
+
+```python
+import bpy
+
+def add_smooth_wide_monkey(wideness):
+    bpy.ops.mesh.primitive_monkey_add()
+    bpy.ops.object.modifier_add(type='SUBSURF')
+    bpy.ops.transform.resize(value=(wideness, 1, 1))
+
+add_smooth_wide_monkey(2)
+```
+
+**ACHTUNG:** Anders als in den meisten kompilierten Sprachen, müssen Funktionen in Python immer schon VOR deren Aufruf definiert werden.
+
+Bei Fehlern im Code kann uns die Systemkonsole nützlich werden. Wenn beispielsweise hier ein Schreibfehler im Variablenaufruf in Zeile 6 passiert, teilt uns das die Systemkonsole folgendermaßen mit:
+
+{{<console>}}
+Traceback (most recent call last):
+  File "/Text", line 8, in <module>
+  File "/Text", line 6, in add_smooth_wide_monkey
+NameError: name 'wiseness' is not defined
+Error: Python script failed, check the message in the system console
+{{</console>}}
+
+Da dementsprechend auch der Aufruf der kaputten Funktion nicht funktioniert, wird auch in Zeile 8 ein Fehler angezeigt.
 
 ## Affentheater
 
-Wir wollen nun das erlernte anwenden, um eine Horde von Affenköpfen (im Rechteck angeordnet) zu erstellen.
+Wir wollen nun das Erlernte anwenden, um eine Horde von unterschiedlich gefärbten und skalierten Affenköpfen (im Rechteck angeordnet) zu erstellen.
 
 ![Affentheater](img/affentheater.png)
 
@@ -180,13 +249,14 @@ for row in range(5):
 {{</todo>}}
 
 Das Affengitter-Script sollte nun in etwa so aussehen:
+
 ```python
 import bpy
 
 for row in range(5):
     for column in range(5):
         bpy.ops.mesh.primitive_monkey_add(location=(3 * row ,3 * column, 0))
-        bpy.ops.transform.rotate(value=0.6, orient_axis='X', orient_type='GLOBAL')
+        bpy.ops.transform.rotate(value=-0.6, orient_axis='X', orient_type='GLOBAL')
         bpy.ops.object.shade_smooth()
 ```
 
@@ -195,6 +265,7 @@ Schließlich wollen wir die Verwendung von Magic Numbers (undokumentierte Zahlen
 {{<todo>}}
 - Dazu legen wir oben im Script die entsprechenden "Konstanten" an (speziell deklarierte Konstanten gibt es in Python nicht) und setzen sie unten im Code ein.
 - Hier importieren wir noch das **random** modul und verwenden deren **uniform** Funktion, um jedem Affen eine zufällige Größe zu geben. Diese gibt einen zufälligen Wert innerhalb der Beiden übergebenen Parameter zurück.
+
 
 ```python
 import bpy
@@ -208,22 +279,63 @@ SIZE_MAX = 1.2
 for row in range(GRID_SIZE):
     for column in range(GRID_SIZE):
         bpy.ops.mesh.primitive_monkey_add(location=(GRID_SPACING * row ,GRID_SPACING * column, 0))
-        bpy.ops.transform.rotate(value=0.6, orient_axis='X', orient_type='GLOBAL')
+        bpy.ops.transform.rotate(value=-0.6, orient_axis='X', orient_type='GLOBAL')
         bpy.ops.object.shade_smooth()
         
         # random size
-        size = random.uniform(SIZE_MIN, SIZE_MAX)
-        bpy.ops.transform.resize(value=(size, size, size))
-
+        size_x = random.uniform(SIZE_MIN, SIZE_MAX)
+        size_y = random.uniform(SIZE_MIN, SIZE_MAX)
+        size_z = random.uniform(SIZE_MIN, SIZE_MAX)
+        bpy.ops.transform.resize(value=(size_x, size_y, size_z))
 ```
-*Der fertige Affentheater Code*
+*Der Affentheater Code bis hierhin*
+{{<info>}}
+
+Um die Szene vor jeder Ausführung des Scripts zu leeren, kann folgender Code an den Anfang des Scripts (unter imports) gesetzt werden.
+
+```python
+bpy.ops.object.select_all(action='SELECT') # selektiert alle Objekte
+bpy.ops.object.delete(use_global=False, confirm=False) # löscht selektierte objekte
+bpy.ops.outliner.orphans_purge() # löscht überbleibende Meshdaten etc.
+```
+{{</info>}}
+{{</todo>}}
+
+
+### Farbe
+
+Nun wollen wir jedem Kopf eine eigene Farbe geben. Mit dem Scripting von richtigen Materialien werden wir uns in einer späteren Übung auseinandersetzen. Für dieses Beispiel werden lediglich die `color` Variable jedes Objektes im Loop setzen, der für sich alleine stehend noch keinen Einfluss auf das Ergebnis beim Rendering hat. Im UI ist dieser Wert im **Properties Editor → Object → Viewport Display** zu finden.
+
+![objectcolor](img/objectcolor.png)
+
+Wir können ihn uns auf Objekten jedoch anzeigen lassen, indem wir im im **Shading Menü → Color** auf **Object** stellen.
+
+![viewport_objectcolor](img/viewport_settings_objectcolor.png)
+
+{{<todo>}}
+
+- Stellt wie oben gezeigt das Viewport Shading auf **Object**
+- Legt in der for-Schleife nun einen Wert an, der eine zufällige Farbe generiert und dem aktiven Objekt zuweist
+
+```python
+object_color = (
+    random.uniform(0, 1),
+    random.uniform(0, 1),
+    random.uniform(0, 1),
+    1 # Alpha-Wert der Farbe (Intransparenz) - soll hier immer 1 sein
+)
+
+bpy.context.object.color = object_color
+```
+
 {{</todo>}}
 
 {{<todo>}}
 
 ## Aufgabe bis zum nächsten Mal
 - Schreibt ein Script, welches eine Horde (5 oder mehr) von Affen in der Szene platziert und im Kreis anordnet
-- Freiwilliger Zusatz: Lasst die Affenköpfe alle in die Mitte der Szene gucken.
+- Lasst die Affenköpfe alle in die Mitte der Szene gucken
+- **Freiwillig:** Verbessert den Farbzuweisungs-Code, um den Affen natürlichere Farben zuzuweisen. Seht euch dazu `mathutils.color` {{<doclink "https://docs.blender.org/api/current/mathutils.html#mathutils.Color" >}} an.
 
 ![img](img/affenkreis.png)
 

@@ -52,6 +52,11 @@ googleAnalytics = ""
 	parent = "Allgemeines"
 
 [[menu.main]]
+	name   = "Vorlesungs Pythonscripts"
+	url    = "course-python-scripts/"
+	parent = "Allgemeines"
+
+[[menu.main]]
 	name   = "Kapitel"
 
 [[menu.main]]
@@ -72,29 +77,30 @@ googleAnalytics = ""
 	url    = "chapter03/exercise01_a/"
 	parent = "Kapitel"
 
-[[menu.main]]
-	weight = 4
-	name   = "4. Addon-Entwicklung und VS Code"
-	url    = "chapter04/exercise01_a/"
-	parent = "Kapitel"
+# [[menu.main]]
+# 	weight = 4
+# 	name   = "4. Addon-Entwicklung und VS Code"
+# 	url    = "chapter04/exercise01_a/"
+# 	parent = "Kapitel"
 
-[[menu.main]]
-	weight = 5
-	name   = "5. Meshes - Basics "
-	url    = "chapter05/exercise01_a/"
-	parent = "Kapitel"
+# [[menu.main]]
+# 	weight = 5
+# 	name   = "5. Meshes - Basics "
+# 	url    = "chapter05/exercise01_a/"
+# 	parent = "Kapitel"
 
-[[menu.main]]
-	weight = 6
-	name   = "6. Meshes - BMesh"
-	url    = "chapter06/exercise01_a/"
-	parent = "Kapitel"
+# [[menu.main]]
+# 	weight = 6
+# 	name   = "6. Meshes - BMesh"
+# 	url    = "chapter06/exercise01_a/"
+# 	parent = "Kapitel"
 
-[[menu.main]]
-	weight = 11
-	name   = "11. Animation"
-	url    = "chapter11/exercise01_a/"
-	parent = "Kapitel"
+# [[menu.main]]
+# 	weight = 11
+# 	name   = "11. Animation"
+# 	url    = "chapter11/exercise01_a/"
+# 	parent = "Kapitel"
+
 
 [markup]
   [markup.goldmark]

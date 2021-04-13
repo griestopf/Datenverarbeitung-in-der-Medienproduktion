@@ -1760,21 +1760,24 @@ h1 .article .headerlink {
 }
 
 .spoiler {
-    display: none;
-  }
-  
-  .show {
+    transform: scaleY(0);
+    transform-origin: top;
+    overflow: hidden;
+    transition: transform 600ms ease-out;
+}
+
+.show {
     display: none; 
-  }
-  
-  .hide:target + .show {
+}
+
+.hide:target + .show {
     display: inline; 
-  }
-  
-  .hide:target {
+}
+
+.hide:target {
     display: none;
-  }
-  
-  .hide:target ~ .spoiler {
-    display: inline;
-  }
+}
+
+.hide:target ~ .spoiler {
+    transform: scaleY(1);
+}
