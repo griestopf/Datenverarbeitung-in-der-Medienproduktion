@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 3 - Operatoren &amp; Addons - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.79.1" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -193,6 +193,19 @@
 
 
       
+        
+        
+
+
+
+<a  title="Vorlesungs Pythonscripts" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/">
+	
+	Vorlesungs Pythonscripts
+</a>
+
+
+
+      
     </ul>
   
 </li>
@@ -246,58 +259,6 @@
 
 
       
-        
-        
-
-
-
-<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
-	
-	4. Addon-Entwicklung und VS Code
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
-	
-	5. Meshes - Basics 
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
-	
-	6. Meshes - BMesh
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="11. Animation" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/">
-	
-	11. Animation
-</a>
-
-
-
-      
     </ul>
   
 </li>
@@ -326,7 +287,7 @@
 - Mit Voronoi Diagram (Kollisionsfrei - oder doch Partikelsystem wenn zu kompliziert) auf Fläche verteilen
 - Würfel bis zum Horizont - hübsch rendern (bei Bedarf vorgegebene Szene)
 -->
-<p>Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unserer TODO - JA WAS DENN erweitern.</p>
+<p>Bisher sind alle Funktionalitäten, die wir mit unseren Scripten erstellt haben auch nur als solche ausführbar - als Script im Texteditor. In dieser Übung wollen wir das ändern und Blender selbst um eine Benutzeroberfläche für die Generierung unseres Turms erweitern</p>
 <h2 id="operatoren-hahahugoshortcode-s0-hbhb">Operatoren <a href="https://docs.blender.org/api/current/bpy.types.Operator.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 <p>Wir haben bereits die <code>ops</code> Kategorie des <code>bpy</code> Moduls kennengelernt. Nun wollen wir unseren eigenen Operator schreiben, der dann auch über die API aufgerufen und mit der <code>F3</code>-Suche gefunden werden kann.</p>
 <blockquote class="todo">
@@ -359,14 +320,14 @@
 <!--Warum ist poll classmethod und execute nicht?-->
 <ul>
 <li>
-<p>Die <strong><code>poll</code></strong> Methode ist optional. Sie empfängt hier TODO(KLASSE) und den aktuellen Kontex</p>
+<p>Die <strong><code>poll</code></strong> Methode ist optional. Sie ist eine statische Methode (daher <code>@classmethod</code>) und benötigt daher keine Instanz der Klasse, um aufgerufen zu werden. <code>cls</code> ist hier die Referenz auf die sie beinhaltende Klasse selbst (während <code>self</code> immer eine Instanz referenziert). Poll empfängt zudem den aktuellen Kontex</p>
 </li>
 <li>
 <p>Die <strong><code>execute</code></strong> Methode ist der tatsächlich ausgeführte Code beim aufrufen des Operators. Ihr wird hier <code>self</code> übergeben (in Python wird über <code>self.meine_variable</code> auf Membervariablen der aktuellen Klasseninstanz zugegriffen) und wiederum der aktuelle Kontext.</p>
 </li>
 </ul>
 <p>Der ausgeführte Code wurde hier in die <code>main</code> Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben. In diesem Beispiel wird über jedes Objekt in der aktuellen Szene <code>context.scene.objects</code> iteriert und dieses in der Konsole ausgegeben. <code>for</code> lässt dich in Python nutzen wie <code>foreach</code> in anderen Sprachen.</p>
-<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes .</p>
+<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes und dienen zur Registrierung der Klassen in der API bzw zur Deregistrierung bei Deaktivierung des Addons.</p>
 <blockquote class="info">
     <p>Wenn viele Klassen zu registrieren sind, lässt sich auch die <code>register_classes_factory</code> nutzen, der ein Tuple an Klassen übergeben wird.</p>
 <pre><code class="language-python">register, unregister = bpy.utils.register_classes_factory(
@@ -386,7 +347,7 @@
     # test call
     bpy.ops.object.simple_operator()
 </code></pre>
-<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.</p>
+<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird oder einfach nur als Modul importiert wurde. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.</p>
 <blockquote class="todo">
     <ul>
 <li>Stelle sicher, dass <strong>Preferences → Interface → Developer Extras</strong> aktiviert ist (nur dann lassen sich so erstellte Operatoren mit F3 suchen)</li>
@@ -404,7 +365,6 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 </pre>
 
 </blockquote>
-<p>TODO ADDON INHALT - Generierung von irgendwass. Vlt Würfelwelt oä.</p>
 <h2 id="properties-hahahugoshortcode-s4-hbhb">Properties <a href="https://docs.blender.org/api/current/bpy.props.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 <p>Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren <em>Properties</em>.</p>
 <p>Properties lassen sich ganz einfach als Eigenschaften der Klasse, die den Operator definiert implementieren (also die Klasse, die von <code>bpy.types.Operator</code> erbt und die eine <code>execute</code>-Methode definiert). Hierzu können innerhalb des Klassenrumpfes Eigenschaften definiert werden, denen ein Aufruf einer der folgenden Funktionen zugewiesen wird.</p>
@@ -422,8 +382,16 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 <blockquote class="info">
     Es handelt sich hierbei nicht um klassische Variablendeklaration. Wir weisen keinen Wert einer Python-Variablen hinzu, wir sagen Blender nur: &ldquo;Erstelle in deiner internen Datenstruktur eine Float-Variable mit diesem Namen etc.&rdquo;
 </blockquote>
+<pre><code class="language-python">
+import bpy
+
+def main(context, loc):
+    for ob in context.scene.objects:
+        ob.location = loc
+</code></pre>
 <blockquote class="todo">
-    <div class="row"><div class="column left" style="width: 50%"><p>Passt das <strong>Operator Simple</strong> Template folgendermaßen an:</p>
+    <div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 50%"><p>Passt das <strong>Operator Simple</strong> Template folgendermaßen an:</p>
 <ul>
 <li>
 <p>Zunächst legen wir in der Operatorklasse eine <code>FloatVectorProperty</code> an und weisen ihr Name, Beschreibung und Defaultwert zu.</p>
@@ -444,10 +412,11 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 <p>Alle Objekte in der Szene sollten nun an die Position (2, 2, 2) verschoben werden.</p>
 <p><img src="img/location.png" alt="location"></p>
 </div>
-<div class="column right" style="width: 50%"><pre><code class="language-python">import bpy
-<p>def main(context, loc):
-for ob in context.scene.objects:
-ob.location = loc</p>
+<div class="tcl-column tcl-right" style="width: 50%"><pre><code class="language-python">import bpy
+<p>def main(context, loc):</p>
+<pre><code>for ob in context.scene.objects:
+    ob.location = loc
+</code></pre>
 <p>class SimpleOperator(bpy.types.Operator):
 &quot;&quot;&quot;Tooltip&quot;&quot;&quot;
 bl_idname = &quot;object.simple_operator&quot;
@@ -456,14 +425,16 @@ bl_options = {&quot;REGISTER&quot;, &quot;UNDO&quot;}</p>
 <pre><code>@classmethod
 def poll(cls, context):
     return context.active_object is not None
-<p>def execute(self, context):
-main(context, self.my_vec)
-return {&lsquo;FINISHED&rsquo;}</p>
-<p>my_vec: bpy.props.FloatVectorProperty(
-name=&amp;quot;My Vector&amp;quot;,
-description=&amp;quot;does stuff with the thing.&amp;quot;,
-default = (1, 1, 1))
-</code></pre></p>
+
+def execute(self, context):
+    main(context, self.my_vec)
+    return {'FINISHED'}
+
+my_vec: bpy.props.FloatVectorProperty(
+    name='My Vector',
+    description='does stuff with the thing.',
+    default = (1, 1, 1))
+</code></pre>
 <p>def register():
 bpy.utils.register_class(SimpleOperator)</p>
 <p>def unregister():
@@ -483,9 +454,13 @@ bpy.ops.object.simple_operator()
 <p><video autoplay loop src="img/operator.mp4"></video></p>
 
 </blockquote>
-<h2 id="addons-hahahugoshortcode-s7-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
-<div class="row"><div class="column left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu ist lediglich benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.</div>
-<div class="column right" style="width: 50%"><pre><code class="language-python">bl_info = {
+<blockquote class="todo">
+    Wandelt das <a href="../../course-python-scripts/#vl2-turmgenerator">Turmgenerator-Skript</a> vom letzten mal in einen Operator um und macht dessen Parameter zu Operator-Properties.
+</blockquote>
+<h2 id="addons-hahahugoshortcode-s8-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.</div>
+<div class="tcl-column tcl-right" style="width: 50%"><pre><code class="language-python">bl_info = {
     &quot;name&quot;: &quot;Cubedimension&quot;,
     &quot;author&quot;: &quot;Ich &lt;ich@webmail.hs-furtwangen.de&gt;&quot;,
     &quot;version&quot;: (1, 0),
@@ -500,7 +475,7 @@ bpy.ops.object.simple_operator()
 </div>
 </div>
 <!--Dunkle Markdown-CSS Magie-->
-<p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info<b></p>
+<p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info</b></p>
 <table>
 <thead>
 <tr>
@@ -531,7 +506,9 @@ bpy.ops.object.simple_operator()
 </tr>
 </tbody>
 </table>
-<p>TODO als .py abspeichern</p>
+<blockquote class="todo">
+    Wandelt das Turmgenerator-Skript nun in ein Addon um und installiert es. Auch die Deinstallation sollte reibungslos klappen.
+</blockquote>
 <h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
 <table>
 <thead>
@@ -593,14 +570,14 @@ bpy.ops.object.simple_operator()
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/" title="Übung 2 - Würfelturm">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/" title="Übung 2 - Blender API &amp; Visual Studio Code">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 2 - Würfelturm
+              Übung 2 - Blender API &amp; Visual Studio Code
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

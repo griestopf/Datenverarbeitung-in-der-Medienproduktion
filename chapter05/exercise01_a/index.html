@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Übung 5 - Meshgenerierung - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.79.1" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -193,6 +193,19 @@
 
 
       
+        
+        
+
+
+
+<a  title="Vorlesungs Pythonscripts" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/">
+	
+	Vorlesungs Pythonscripts
+</a>
+
+
+
+      
     </ul>
   
 </li>
@@ -238,61 +251,6 @@
 <a  title="3. Operatoren &amp; Addons" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/">
 	
 	3. Operatoren &amp; Addons
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="4. Addon-Entwicklung und VS Code" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
-	
-	4. Addon-Entwicklung und VS Code
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a class="current" title="5. Meshes - Basics " href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
-	
-	5. Meshes - Basics 
-</a>
-
-
-<ul id="scrollspy">
-</ul>
-
-
-      
-        
-        
-
-
-
-<a  title="6. Meshes - BMesh" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
-	
-	6. Meshes - BMesh
-</a>
-
-
-
-      
-        
-        
-
-
-
-<a  title="11. Animation" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/">
-	
-	11. Animation
 </a>
 
 
@@ -352,18 +310,23 @@ currentmesh.update()
 </code></pre>
 <p>Um Normalen etc neu zu berechnen, muss das am Ende die <code>update</code> Methode des Meshes aufgerufen werden.</p>
 <p>Alleine mit der Manipulation der Vertixpositionen kann schon viel erreicht werden. Hier wurde zum Beispiel einer UV-Sphere ein schraubenartiges Muster gegeben:</p>
-<div class="row"><div class="column left" style="width: 50%"><pre><code class="language-python">import bpy
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 50%"><pre><code class="language-python">import bpy
 import math
-<p>frequency = 10
-amplitude = 0.2</p>
-<p>currentmesh = bpy.context.object.data</p>
-<p>for vert in currentmesh.vertices:
-vert.co.y += amplitude * math.sin(frequency * vert.co.z)
-vert.co.x += amplitude * math.cos(frequency * vert.co.z)</p>
-<p>currentmesh.update()
-</code></pre></p>
+
+frequency = 10
+amplitude = 0.2
+
+currentmesh = bpy.context.object.data
+
+for vert in currentmesh.vertices:
+    vert.co.y += amplitude * math.sin(frequency * vert.co.z)
+    vert.co.x += amplitude * math.cos(frequency * vert.co.z)
+
+currentmesh.update()
+</code></pre>
 </div>
-<div class="column right" style="width: 50%"><img src="img/screw.png" alt="screw"></div>
+<div class="tcl-column tcl-right" style="width: 50%"><img src="img/screw.png" alt="screw"></div>
 </div>
 <blockquote class="todo">
     <p>Schreibe ein Script, dass einen unterteilten Würfel nach oben hin um 90° verdreht (siehe Bild).</p>
@@ -381,8 +344,8 @@ y' = x ⋅ sin(w) + y ⋅ cos(w)</em></p>
 </ul>
 
 </blockquote>
-<a href="#hide" class="hide btn" id="hide">Lösung anzeigen</a>
-<a href="#show" class="show btn" id="show">hide spoiler</a>
+<a href="#hide" class="hide" id="hide">> Lösung anzeigen</a>
+<a href="#show" class="show" id="show">ᐯ Lösung anzeigen</a>
 <div class="spoiler">
     <span class="spoiler-content"><br><ul>
 <li>

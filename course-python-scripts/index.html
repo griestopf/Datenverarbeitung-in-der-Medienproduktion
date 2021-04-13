@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Datenverarbeitung in der Medienproduktion</title>
+    <title>Python Skripte aus der Vorlesung - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
     
-    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/">
+    <link rel="canonical" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/">
     
 
-    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/">
+    <meta property="og:url" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/">
     <meta property="og:title" content="Datenverarbeitung in der Medienproduktion">
     <meta property="og:image" content="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/lecture_logo_dvmp.png">
     <meta name="apple-mobile-web-app-title" content="Datenverarbeitung in der Medienproduktion">
@@ -69,9 +69,6 @@
     <script src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/javascripts/modernizr.js"></script>
 
     
-    <link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/index.xml" rel="alternate" type="application/rss+xml" title="Datenverarbeitung in der Medienproduktion" />
-    <link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/index.xml" rel="feed" type="application/rss+xml" title="Datenverarbeitung in der Medienproduktion" />
-    
 
   </head>
   <body class="palette-primary-teal palette-accent-teal">
@@ -97,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Datenverarbeitung in der Medienproduktion
+        Python Skripte aus der Vorlesung
       </div>
     </div>
 
@@ -201,11 +198,14 @@
 
 
 
-<a  title="Vorlesungs Pythonscripts" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/">
+<a class="current" title="Vorlesungs Pythonscripts" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/">
 	
 	Vorlesungs Pythonscripts
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
       
@@ -277,7 +277,132 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
+			<h1>Python Skripte aus der Vorlesung </h1>
+
+			<h2 id="vl2-turmgenerator">VL2 Turmgenerator</h2>
+<p><strong>Code-Zwischenstand aus der Vorlesung am 23.03.21</strong></p>
+<pre><code class="language-python">import bpy
+import typing
+import math
+
+class tower():
+    tower_radius: float = 3
+    tower_height: float = 8
+    roof_height: float = 2.5
+    roof_overhang: float = 0.5
+
+    windows_num_circular: int = 5
+    windows_num_vertical: int = 3
+    windows_size: float = 1
+    wall_thickness: float = 0.5
+
+    PI2 = math.pi * 2
+
+    def generate_windows(self) -&gt; object:
+
+
+        windows = []
+
+        for i in range(self.windows_num_circular):
+            bpy.ops.mesh.primitive_cube_add(
+                scale=(self.windows_size, self.windows_size, self.windows_size * 1.5)
+            )
+        
+            c_window = bpy.context.object
+
+            c_window.location = (
+                (math.cos(i / self.windows_num_circular * self.PI2) * self.tower_radius),
+                (math.sin(i / self.windows_num_circular * self.PI2) * self.tower_radius),
+                1
+            )
+
+            if i &gt; 0:
+                c_window.rotation_euler.z = self.PI2 * i / self.windows_num_circular
+
+            windows.append(c_window)
+
+        for c_window in windows:
+            c_window.select_set(True)
+
+        bpy.ops.object.join()
+
+        window = bpy.context.object
+        modifier_array = window.modifiers.new(&quot;Window Array&quot;, &quot;ARRAY&quot;)
+        modifier_array.use_relative_offset = False
+        modifier_array.use_constant_offset = True
+        modifier_array.count = self.windows_num_vertical
+        
+        modifier_array.constant_offset_displace = (0, 0, 2.5)
+
+        bpy.context.object.display_type = 'WIRE'
+        
+        return bpy.context.object
+
+
+    def create_roof_material(self) -&gt; bpy.types.Material:
+        mat_roof: bpy.types.Material = bpy.data.materials.new(&quot;Roof Material&quot;)
+        mat_roof.use_nodes = True
+        nodes_roof: typing.List[bpy.types.Node] = mat_roof.node_tree.nodes
+        nodes_roof[&quot;Principled BSDF&quot;].inputs[0].default_value = [0.103312, 0.236954, 0.177671, 1.000000]
+
+        return mat_roof
+
+    def create_tower_material(self) -&gt; bpy.types.Material:
+        mat_tower: bpy.types.Material = bpy.data.materials.new(&quot;Tower Material&quot;)
+
+        mat_tower.use_nodes = True
+
+        nodes_tower: typing.List[bpy.types.Node] = mat_tower.node_tree.nodes
+        node_bricks: bpy.types.Node = nodes_tower.new(&quot;ShaderNodeTexBrick&quot;)
+        node_coords: bpy.types.Node = nodes_tower.new(&quot;ShaderNodeTexCoord&quot;)
+
+        node_bricks.inputs[1].default_value = (0.1,0.1,0.1,0.1)
+        node_bricks.inputs[4].default_value = 10
+        
+        mat_tower.node_tree.links.new(node_bricks.outputs[0], nodes_tower[&quot;Principled BSDF&quot;].inputs[0])
+        mat_tower.node_tree.links.new(node_coords.outputs[2], node_bricks.inputs[0])
+        
+        return mat_tower
+
+    def generate_tower(self):
+        bpy.ops.mesh.primitive_cylinder_add(
+            location=(0, 0, self.tower_height / 2), 
+            depth=self.tower_height, 
+            radius=self.tower_radius)
+        
+        tower_base = bpy.context.object
+        
+        
+
+        bpy.context.object.data.materials.append(self.create_tower_material())
+
+        bpy.ops.mesh.primitive_cone_add(
+            depth=self.roof_height,
+            location=(0, 0, self.tower_height + self.roof_height / 2),
+            radius1=self.tower_radius + self.roof_overhang
+            )
+
+        bpy.context.object.data.materials.append(self.create_roof_material())
+
+        windows = self.generate_windows()
+
+        modifier_solidify = tower_base.modifiers.new(&quot;Wall Thickness&quot;, &quot;SOLIDIFY&quot;)
+        modifier_solidify.thickness = self.wall_thickness
+        
+        modifier_bool = tower_base.modifiers.new(&quot;Window Bool&quot;, &quot;BOOLEAN&quot;)
+        modifier_bool.object = windows
+
+
+bpy.ops.object.select_all(action='SELECT') # selektiert alle Objekte
+bpy.ops.object.delete(use_global=False, confirm=False) # löscht selektierte objekte
+bpy.ops.outliner.orphans_purge() # löscht überbleibende Meshdaten etc.
+
+t = tower()
+t.generate_tower()
+
+
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
@@ -290,23 +415,37 @@
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/" title="Python Style Guide">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Python Style Guide
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/categories/" title="Categories">
+  
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/links/" title="Links &amp; Literatur">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Categories
+              Links &amp; Literatur
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -314,8 +453,11 @@
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 
