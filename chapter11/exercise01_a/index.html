@@ -361,9 +361,9 @@ FRAMES_PER_POINT = 20
     sphere.location = points[i].location
     sphere.keyframe_insert(data_path=&quot;location&quot;, frame=FRAMES_PER_POINT * i)
 </code></pre>
-<p>&hellip;</p>
 <ul>
-<li>So fliegt der Ball nun schon zwischen den Punkten umher. Als nächstes soll er mit konstanter Geschwindgkeit fliegen - also muss der zeitliche Abstand des Keyframes an jedem Punkt jeweils abhängig von der Distanz zum letzten Punkt sein. Zuerst nutzen wir den Satz des Pythagoras, um die die Distanz zwischen zwei Punkten zu errechnen</li>
+<li>So fliegt der Ball nun schon zwischen den Punkten umher. Als nächstes soll er mit konstanter Geschwindgkeit fliegen - also muss der zeitliche Abstand des Keyframes an jedem Punkt jeweils abhängig von der Distanz zum letzten Punkt sein.</li>
+<li>Zuerst nutzen wir den Satz des Pythagoras, um die die Distanz zwischen zwei Punkten zu errechnen.</li>
 </ul>
 <pre><code class="language-python">def get_distance(p1, p2):
     return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)
