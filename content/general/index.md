@@ -60,7 +60,11 @@ Die Abgabe besteht aus Scripts als Addon und optional Blender File + Video-/Bild
 - Qualität der Vorträge (Vorbereitung, Visualisierungen, Folien, …)
 
 ### Projektthemen Bsp.
+- Landschaft mit Bäumen generieren (Perlin Noise...)
 - Fraktale
+- Sonnensystem simulieren
+- Vogelschwarm animieren
+- Prozedurale Animation von Charakteren (IK Rigs)
 - Gebäude / Natur generieren
 - Daten auslesen und Visualisieren
 

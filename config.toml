@@ -77,11 +77,11 @@ googleAnalytics = ""
 	url    = "chapter03/exercise01_a/"
 	parent = "Kapitel"
 
-# [[menu.main]]
-# 	weight = 4
-# 	name   = "4. Addon-Entwicklung und VS Code"
-# 	url    = "chapter04/exercise01_a/"
-# 	parent = "Kapitel"
+ [[menu.main]]
+ 	weight = 4
+ 	name   = "4. Meshgenerierung"
+ 	url    = "chapter04/exercise01_a/"
+ 	parent = "Kapitel"
 
 # [[menu.main]]
 # 	weight = 5

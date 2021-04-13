@@ -23,7 +23,7 @@
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</guid>
       <description>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unpraktisch, nur den Blender-internen Texteditor einzusetzen. Zu diesem Zweck werden wir uns in dieser Übung die Entwicklung mit der IDE Visual Studio Code erleichtern.
 Zudem werden wir die verschieden Untermodule der Blender API kennenlernen, um einen Burgturm-Generator zu programmieren.
-   Visual Studio Code  Installiert zunächst Visual Studio Code. Installiert Python 3.7 Download für Windows hier  Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt JA - Neustart evtl.</description>
+ Visual Studio Code  Installiert zunächst Visual Studio Code. Installiert Python 3.7 Download für Windows hier  Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt JA - Neustart evtl.</description>
     </item>
     
   </channel>
