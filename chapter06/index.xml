@@ -22,7 +22,7 @@
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
       <description>BMesh
- BMesh Vertices bewegen Anwendung? Funktion plotten, Terrain / Fraktal generieren?  Meshmanipulation Codebeispiel  BMesh Einführung  # This example assumes we have a mesh object selected import bpy import bmesh # Get the active mesh me = bpy.context.object.data # Get a BMesh representation bm = bmesh.new() # create an empty BMesh bm.from_mesh(me) # fill it in from a Mesh # Modify the BMesh, can do anything here... for v in bm.</description>
+ BMesh Vertices bewegen Anwendung? Funktion plotten, Terrain / Fraktal generieren?  Meshmanipulation Codebeispiel  BMesh Einführung  # This example assumes we have a mesh object selectedimport bpyimport bmesh# Get the active meshme = bpy.context.object.data# Get a BMesh representationbm = bmesh.new() # create an empty BMeshbm.from_mesh(me) # fill it in from a Mesh# Modify the BMesh, can do anything here...for v in bm.</description>
     </item>
     
   </channel>

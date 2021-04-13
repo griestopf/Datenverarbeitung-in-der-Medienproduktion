@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 4 - Addon-Entwicklung mit Visual Studio Code - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 4 - Meshgenerierung - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.80.0" />
 
     
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 4 - Addon-Entwicklung mit Visual Studio Code
+        Übung 4 - Meshgenerierung
       </div>
     </div>
 
@@ -256,6 +256,22 @@
 
 
       
+        
+        
+
+
+
+<a class="current" title="4. Meshgenerierung" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/">
+	
+	4. Meshgenerierung
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
     </ul>
   
 </li>
@@ -274,205 +290,214 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 4 - Addon-Entwicklung mit Visual Studio Code </h1>
+			<h1>Übung 4 - Meshgenerierung </h1>
 
-			<p>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.</p>
-<h2 id="visual-studio-code">Visual Studio Code</h2>
+			<p><strong>Basics der Meshgenerierung und -manipulation</strong></p>
+<h2 id="vorbereitung">Vorbereitung</h2>
 <blockquote class="todo">
-    <ul>
-<li>Installiert zunächst <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
-<li>Installiert Python 3.7
-<ul>
-<li>Für Windows <a href="https://www.python.org/downloads/release/python-379/">hier</a></li>
-<li>Mit Linux (Ubuntu basierte Distributionen) im Terminal mit <code>sudo apt-get install python3.7</code></li>
-<li>TODO PATH &amp; PIP</li>
-</ul>
-</li>
-<li>öffnet VS Code und installiert die beiden Extensions <strong>Python</strong> von Microsoft und <strong>Blender Development</strong> von Jacques Lucke.</li>
-</ul>
-<p><img src="img/extensions.png" alt="python-extension"></p>
-<ul>
-<li>TODO select interpreter</li>
-<li>Öffnet nun ein Terminal in VS Code (<strong>Teminal → New Terminal</strong>)</li>
-<li>Installiert das fake-bpy-module mit <code>pip install fake-bpy-module-2.90</code> (bzw aktuelle Blender Version). Dieses ermöglicht uns Autovervollständigung etc. für die Blender API.</li>
-<li>Wenn ihr nun mi VS Code eine Datei als .py abspeichert und bpy importiert, sollte es keine Fehlermeldungen geben und Autovervollständigung sollte funktionieren.</li>
-</ul>
-<p><video width="75%" autoplay loop src="img/fake-bpy-module.mp4"></video></p>
+    <p>Aktiviere das vorinstallierte Addon <strong>MeasureIt Tols</strong>. Dieses erlaubt es uns, Indices, Positionen und andere Infos des selektierten Objekts im Viewport anzuzeigen.</p>
+<p><video src="./img/measureit.mp4" autoplay loop style="width: 80%;"></video></p>
+<p>Nach der Installation sind dessen Optionen in der Sidebar (Shortcut <strong>N →  View → MeasureIt Tools → Mesh Debug</strong>) zu finden. Das Addon selbst muss noch mit <strong>Show</strong> ganz oben im Panel gestartet werden.</p>
 
 </blockquote>
-<h1 id="lektion-04---blender-add-ons-in-python">Lektion 04 - Blender Add-ons in Python</h1>
-<p>In der letzten Lektion haben wir gesehen, wie Blender-Kommandos über da <code>bpy</code>-Modul aus Python-Code ausgeführt werden können. Hierzu wurde ein Python-Skript innerhalb des Text-Editors erstellt und ausgeführt.</p>
-<p>Mit Python implementierte Blender-Automatisierung soll in vielen Fällen unabhängig von einer bestimmten Blender-Szene nutzbar sein. Vielmehr ist es wünschenswert, dass ein einmal erzeugtes Skript in allen Szenen, die mit Blender bearbeitet werden, ausgeführt werden kann.</p>
-<p>Zu diesem Zweck bietet Blender die Möglichkeit, Python-Skripte so anzulegen, dass diese als Add-ons verwendet werden können. Add-ons in Blender können über den &ldquo;Add-on&rdquo;-Tab im &ldquo;User Preferences&rdquo; Dialog (<code>Ctrl</code>-<code>Alt</code>-<code>U</code>) geladen, aktiviert, deaktiviert und entladen werden.</p>
-<h2 id="ein-erstes-leeres-add-on">Ein erstes (leeres) Add-On</h2>
-<p>Da ein Add-on nicht Bestandteil einer bestimmten &ldquo;.blend&rdquo;-Datei sein soll, sondern für alle möglichen Dateien, die von einer Blender-Installation bearbeitet werden, zur Verfügung stehen soll, muss das Add-on-Skript losgelöst von einer bestimmten &ldquo;.blend&rdquo;-Datei entwickelt werden.</p>
-<p>Dazu kann das Python-Skript aus dem ein Blender eingebauten Text-Editor unabhängig von der aktuell geöffneten &ldquo;.bend&rdquo;-Datei gespeichert werden. Empfehlenswert ist es allerdings, einen externen Python-Editor (z.B. Visuals Studio Code) zum Editieren der Python-Add-on-Datei zu verwenden</p>
-<h4 id="todo">TODO</h4>
-<blockquote>
+<p>Zu den wichtigsten Aufgaben von Addons gehört die Manipulation und Generierung neuer Meshes. Zur Generierung eines Meshes brauchen Programme dabei grundsätzlich drei Arrays an Daten.</p>
+<p><strong>Vertices</strong><br>
+Diese bestehen aus je drei <code>floats</code>, die die Position eines Punktes im Raum auf der X, Y und Z Achse angeben.</p>
+<p><strong>Faces / Polygone</strong><br>
+Diese bestehen je aus einer Liste an integern, die die ID der Vertices im Verticearray angeben, die das Polygon aufspannen. Normalerweise spannen je drei oder vier Vertices ein Polygon auf. In Blender sind jedoch auch N-Gons mit beliebig vielen Vertices möglich. Intern wird für die Grafikkarte alles zu Dreiecken umgerechnet.</p>
+<p><strong>Normalen</strong><br>
+Bestehen aus je drei <code>floats</code>, die für jeden Vertice den (normalisierten) Richtungsvektor angeben, der orthogonal auf der Oberfläche steht. Diesen braucht die Software z.b. zur Berechnung von Lichteigenschaften des Meshes. Normalen werden manchmal auch pro Polygon angegeben und die Normalen der anliegenden Vertices werden intern generiert. Generell lassen Normalen oft automatisch generieren.</p>
+<p><img src="img/meshdata.png" alt="meshdata"></p>
+<p>Neben diesen essentiellen Daten gibt es noch weitere, von denen hier noch zwei genannt werden sollen:</p>
+<p><strong>Edges</strong><br>
+Verbindungen zwischen je zwei Vertixes (anhand deren index). Werden meist nicht extra angegeben, da sie durch die Generierung von Polygonen schon impliziert werden.</p>
+<p><strong>Texturkoordinaten (UVs)</strong><br>
+Wenn das Mesh texturiert werden soll, werden diese benötigt. UVs geben für jeden Vertice zwei <code>floats</code> an, die beschreiben, wo sich dieser Vertixe auf einer zweidimensionalen Textur befinden soll.</p>
+<p>Hierfür bietet uns die Blender API zwei Möglichkeiten.</p>
 <ul>
 <li>
-<p>Erzeugt eine neue Datei &ldquo;EmptyAddOn.py&rdquo; und fügt dieser folgenden Code hinzu:</p>
-<pre><code class="language-python">bl_info = {&quot;name&quot;: &quot;My Test Addon&quot;, &quot;category&quot;: &quot;Object&quot;}
-def register():
-    print(&quot;Hello World&quot;)
-def unregister():
-    print(&quot;Goodbye World&quot;)
+<p>Die <strong>mesh</strong> Schnittstelle erlaubt uns die schnelle Manipulation von Meshes, indem es uns Zugriff auf dessen einzelne Vertices, Edges und Polygone gibt.</p>
+</li>
+<li>
+<p>Das Modul <strong>bmesh</strong> ist eine weitaus komplexere Bibliothek, die bei komplexeren Mesh-Manipulationen und -Generierungen zum Einsatz kommen sollte.</p>
+</li>
+</ul>
+<h2 id="vertices-hahahugoshortcode-s1-hbhb">Vertices <a href="https://docs.blender.org/api/current/bpy.types.MeshVertex.html#bpy.types.MeshVertex" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
+<p>Die Vertices  des Meshes werden in dessen Array <code>vertices</code> gespeichert. Jeder Vertex hat eine <code>co</code> (Coordinates) Variable, die einen Vector mit x,y und z Position des Vertex repräsentiert.</p>
+<pre><code class="language-python">import bpy
+
+currentmesh = bpy.context.object.data
+
+for vert in currentmesh.vertices:
+    vert.co.z += 1
+
+currentmesh.update()
+</code></pre>
+<p>Um Normalen etc neu zu berechnen, muss das am Ende die <code>update</code> Methode des Meshes aufgerufen werden.</p>
+<p>Alleine mit der Manipulation der Vertixpositionen kann schon viel erreicht werden. Hier wurde zum Beispiel einer UV-Sphere ein schraubenartiges Muster gegeben:</p>
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 50%"><pre><code class="language-python">import bpy
+import math
+
+frequency = 10
+amplitude = 0.2
+
+currentmesh = bpy.context.object.data
+
+for vert in currentmesh.vertices:
+    vert.co.y += amplitude * math.sin(frequency * vert.co.z)
+    vert.co.x += amplitude * math.cos(frequency * vert.co.z)
+
+currentmesh.update()
+</code></pre>
+</div>
+<div class="tcl-column tcl-right" style="width: 50%"><img src="img/screw.png" alt="screw"></div>
+</div>
+<blockquote class="todo">
+    <p>Schreibe ein Script, dass einen unterteilten Würfel nach oben hin um 90° verdreht (siehe Bild).</p>
+<p><img src="img/rotate.png" alt="img"></p>
+<p><strong>Tipps:</strong></p>
+<ul>
+<li>
+<p>Die Formel für die Rotation eines zweidimensionalen Vectors um den Nullpunkt um den Winkel <em>w</em> ist folgende:<br>
+<em>x' = x ⋅ cos(w) - y ⋅ sin(w)<br>
+y' = x ⋅ sin(w) + y ⋅ cos(w)</em></p>
+</li>
+<li>
+<p>Der Drehwinkel muss abhängig von der Höhe ves Vertex sein.</p>
+</li>
+</ul>
+
+</blockquote>
+<ul>
+<li>
+<p>Zunächst berechnen wir den Winkel in Radianten, in dem jeder Vertex gedreht wird. Dieser soll abhängig von dessen Höhe z sein. Damit wir unten am Würfel mit 0 beginnen, fügen wir z 1 hinzu (denn der Würfel ist 2 Hoch und hat seine Mitte auf Höhe 1) <br>
+<code>angle = math.radians((vert.co.z + 1) * 45)</code></p>
+</li>
+<li>
+<p>Nun rotieren wir jeden Vertex auf der Z-Achse um den Nullpunkt. Z bleibt also unverändert. Die obige Formel in Python sieht folgendermaßen aus:<br>
+<code>x = vert.co.x * math.cos(angle) - vert.co.y * math.sin(angle)</code><br>
+<code>y = vert.co.x * math.sin(angle) + vert.co.y * math.cos(angle)</code></p>
+</li>
+<li>
+<p>letztlich weisen wir die so generierten x und y Werte dem Vertex wieder zu<br>
+<code>vert.co.x = x</code><br>
+<code>vert.co.y = y</code></p>
+</li>
+</ul>
+<p>Der ganze Code sieht also so aus:</p>
+<pre><code class="language-python">import bpy
+import math
+
+currentmesh = bpy.context.object.data
+
+for vert in currentmesh.vertices:
+    
+    angle = math.radians((vert.co.z + 1) * 45)
+    
+    x = vert.co.x * math.cos(angle) - vert.co.y * math.sin(angle)
+    y = vert.co.x * math.sin(angle) + vert.co.y * math.cos(angle)
+    
+    vert.co.x = x
+    vert.co.y = y
+
+currentmesh.update()
+</code></pre>
+<h2 id="neues-mesh---pflanzen-wachsen-lassen">Neues Mesh - Pflanzen wachsen lassen</h2>
+<p>Natürlich können auch komplett neue Meshes generiert werden. Dafür werden wir nun das <code>bmesh</code> Modul <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> verwenden. In diesem Beispiel werden wir eine Graßpflanze erzeugen.</p>
+<ul>
+<li>Zunächst müssen wir sowohl das Mesh, als auch das Objekt erzeugen, dem wir das Mesh als <code>data</code> übergeben.</li>
+</ul>
+<pre><code class="language-python">grassblade_mesh = bpy.data.meshes.new(&quot;grassblade mesh&quot;)
+grassblade_object = bpy.data.objects.new(&quot;grassblade&quot;, grassblade_mesh)
+</code></pre>
+<ul>
+<li>Um das Objekt nun der Szene hinzuzufügen, verlinken wir es in der aktuell ausgewählten <em>Collection</em></li>
+</ul>
+<pre><code class="language-python">grassblade_mesh
+</code></pre>
+<ul>
+<li>Nun kommt das bmesh Modul ins Spiel (importiert es am Anfang der Datei). Wir erzeugen ein neues bmesh anhand des zuvor erstellten Meshes.</li>
+</ul>
+<pre><code class="language-python">bm = bmesh.new()
+bm.from_mesh(grassblade_mesh)
+</code></pre>
+<p>Neue Vertices und Polygone lassen sich nun folgendermaßen erzeugen:</p>
+<pre><code class="language-python">myvert_1 = bm.verts.new((0,0,0)) #Erzeugt Vertex an Position 0 0 0
+
+myface = bm.faces.new((myvert_1, myvert_2, myvert_3, myvert_4)) #Erzeugt ein Polygon zwischen den angegebenen Vertices
+
+# um Vertices anhand deren indices anzugeben, muss zuerst folgende Methode aufgerufen werden.
+bm.verts.ensure_lookup_table() 
+myface = bm.faces.new((bm.verts[0], bm.verts[1], bm.verts[2], bm.verts[3]))
 
 </code></pre>
-</li>
-<li>
-<p>Erklärt euch, was in dieser Datei passiert.</p>
-</li>
-<li>
-<p>Öffnet den &ldquo;User Preferences&rdquo; Dialog und ladet das Add-on:</p>
-<ul>
-<li>&ldquo;Install Add-on from File&hellip;&rdquo; -&gt; Python-Datei auswählen.</li>
-<li>Das Add-on sollte im  <em>Supported Level</em> &ldquo;Community&rdquo; unter der <em>Category</em> &ldquo;User&rdquo; als <strong>Object: My Test Addon</strong> erscheinen.</li>
-</ul>
-</li>
-<li>
-<p>Öffnet die Blender System Console (Blender-Hauptmenü &ldquo;Window&rdquo; -&gt; &ldquo;Open System Console&rdquo;).</p>
-</li>
-<li>
-<p>Registriert und Deregistriert das Add-on über die Checkbox neben dem Add-on im &ldquo;User Preferences&rdquo; Dialog -&gt; Die o.a. <code>print</code>-Ausgaben sollten in der System Console erscheinen.</p>
-</li>
-</ul>
-</blockquote>
-<p>Folgende Beobachtungen sind bemerkenswert:</p>
-<ul>
-<li>Der minimale Code, um ein Blender-Add-on zu implementieren, ist nicht umfangreich. Es muss noch nicht mal <code>bpy</code> importiert werden.</li>
-<li>Ein Add-on in Blender kann registriert und deregistriert werden, dazu muss in der Add-on &ldquo;.py&rdquo;-Datei eine <code>register</code> und eine <code>unregister</code> Funktion definiert werden. Hier kann Code ausgeführt werden, der bei den entsprechenden Aktionen von Bedeutung ist.</li>
-<li>Ein Blender-Add-on-Skript enthält eine beschreibende Struktur <code>bl_info</code> in Form eines Dictionary, in dem u.A. der Name des Add-On und die sog. Kategorie, in der das Add-on erscheinen soll,</li>
-<li>Die Namen <code>register</code>, <code>unregister</code> und <code>bl_info</code> haben im Kontext von Blender-Add-ons eine besondere Bedeutung.</li>
-<li>Durch die Installation wird das Add-on entweder direkt in das  Blender-Installations-Verzeichnis kopiert (z. B.: C:\Programme\Blender Foundation\Blender\2.79\scripts\addons) oder in das Benutzerdaten-Verzeichnis (z. B.: C:\Users\<em>user</em>\AppData\Roaming\Blender Foundation\Blender\2.79\scripts\addons). Um das Add-on wieder rückstandsfrei zu entfernen, muss die Sktipt-Datei von dort gelöscht werden.</li>
-</ul>
-<h4 id="todo-1">TODO</h4>
-<blockquote>
-<ul>
-<li>Findet die Stelle auf der Festplatte, an die das Add-on installiert wurde.</li>
-</ul>
-</blockquote>
-<h2 id="funktionalität-hinzufügen">Funktionalität hinzufügen</h2>
-<p>Nun soll das Add-on mit der Matrix-Extrude-Funktionlität der letzten Lektion gefüllt werden.</p>
-<h4 id="todo-2">TODO</h4>
-<blockquote>
-<ul>
-<li>Installiert das Add-on-Skript <a href="MatrixExtrudeAddon.py">MatrixExtrudeAddon.py</a>.</li>
-<li>Verwendet das Add-on indem ihr im 3D-View mit der Leertaste das Kommando-Menü erscheinen lasst und dann durch die Eingabe von <code>Matrix Extrude</code> den neuen Matrix-Extrude-Befehl ausführt.</li>
-<li>Konnektiert den neuen Matrix-Extrude-Befehl im &ldquo;User Preferences&rdquo; Dialog mit einer Tastenkombination Eurer Wahl, in dem ihr den internen Namen des Kommandos <code>mesh.matrix_extrude</code> verwendet.</li>
-</ul>
-</blockquote>
-<p>Der Code enthält eine Reihe von bemerkenswerten neuen Eigenschaften.</p>
-<ul>
-<li>Das Dictionary <code>bl_info</code> enthält eine Reihe weiterer Einträge.</li>
-<li>Die <code>register</code> und <code>unregister</code> Funktionen verwenden nun entsprechende Methoden aus <code>bpy.utils</code>, um eine selbst definierte Klasse namens <code>MatrixExtrude</code> zu registrieren.</li>
-<li>Die Klasse <code>MatrixExtrude</code> enthält eine einzige Methode namens <code>execute</code>. Hier befindet sich der Code, der die Matrix-Extrudierung durchführt.</li>
-<li><code>execute</code> gibt ein Objekt mit der Eigenschaft <code>'FINISHED'</code> zurück.</li>
-<li>Die Klasse  <code>MatrixExtrude</code> erbt von <code>bpy.types.Operator</code>.</li>
-<li>Daneben enthält die Klasse <code>MatrixExtrude</code> die Eigenschaften <code>bl_idname</code>, <code>bl_label</code> und <code>bl_options</code>.</li>
-</ul>
-<p>Mit diesem Add-on wurde nun ein so genannter <strong>Operator</strong> in Blender erstellt. Sämtliche eingebauten und auch per Add-on hinzugefügten Operatoren sind wiederum über das Modul <code>bpy.ops</code> abrufbar.</p>
-<h2 id="properties">Properties</h2>
-<p>Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren <em>Properties</em>.</p>
-<p>Properties lassen sich ganz einfach als Eigenschaften der Klasse, die den Operator definiert implementieren (also die Klasse, die von <code>bpy.types.Operator</code> erbt und die eine <code>execute</code>-Methode definiert). Hierzu können einfach auf Klassenebene Eigenschaften definiert werden, denen ein Aufruf einer der folgenden Funktionen zugewiesen wird.</p>
-<ul>
-<li><code>bpy.props.IntProperty</code></li>
-<li><code>bpy.props.BoolProperty</code></li>
-<li><code>bpy.props.FloatProperty</code></li>
-<li><code>bpy.props.FloatVectorProperty</code></li>
-</ul>
-<p>Im Beispielcode <a href="MatrixExtrudeAddonProps.py">MatrixExtrudeAddonProps.py</a> wurden dem Matrix-Etrude-Operator drei solcher Properties hinzugefügt:</p>
-<ul>
-<li><code>segment_count</code></li>
-<li><code>scale</code> und</li>
-<li><code>angle</code></li>
-</ul>
-<h4 id="todo-3">TODO</h4>
-<blockquote>
-<ul>
-<li>Installiert <a href="MatrixExtrudeAddonProps.py">MatrixExtrudeAddonProps.py</a> als Add-on (ersetzt das alte Add-on damit).</li>
-<li>Beobachtet, wie die Properties im unteren Teil des Tool-Tabs (linke Seite des 3D-Editors) erscheinen und wie diese interaktiv verändert werden können.</li>
-</ul>
-</blockquote>
-<h2 id="add-ons-debuggen">Add-ons debuggen</h2>
-<ul>
-<li>python-Pfad in der Blender-Installation umbenennen.</li>
-<li>Systemweit Python in der gleichen Version wie Blender installieren.</li>
-<li>Visual Studio Code</li>
-<li>Python Extension</li>
-<li>PTVSD (Python Visual Studio Debugger) <code>pip install ptvsd</code></li>
-<li>Im Skript:
-<pre><code class="language-python">import ptvsd
-ptvsd.enable_attach()
+<p>Nachdem alle Operationen am Mesh durchgeführt wurden, muss das bmesh wieder zum Mesh konvertiert und anschließend entfernt werden:</p>
+<pre><code class="language-python">bm.to_mesh(grassblade_mesh)
+bm.free()
 </code></pre>
+<blockquote class="todo">
+    <h2 id="aufgabe-graßhalmstruktur-erzeugen">Aufgabe: Graßhalmstruktur erzeugen</h2>
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 70%"><ul>
+<li>
+<p>Nutzt die oben genannten Möglichkeiten nun, um der Szene ein neues Mesh hinzuzufügen. Dieses soll aus sich nach oben verjüngenden Polygonen bestehen.</p>
 </li>
-<li>In Blender: &ldquo;User Preferences&rdquo; -&gt; &ldquo;File&rdquo; -&gt; &ldquo;Scripts&rdquo;: Pfad bis zum &ldquo;addons&rdquo;-Unterverzichnis, in dem das zu debuggende Skript liegt. Blender neu starten und Add-on mittels Häkchen registrieren.</li>
-<li>In VS Code: addons-Ordner öffnen und Debug-Konfiguration(en) hinzufügen (im Debug-Pfeil-Dropout).</li>
-<li>Breakpoint in der <code>execute</code>-Methode.</li>
-<li><code>Attach</code>-Debugging starten</li>
-<li>Add-on (Operator) ausführen.</li>
+<li>
+<p>Anhand der Parameter <code>HEIGHT, MIN_WIDTH und MAX_WIDTH</code> soll das Mesh parametrisierbar sein.</p>
+</li>
+<li>
+<p>Beachtet, dass die Reihenfolge der Vertices eines Faces mit vier Ecken eine wichtige Rolle spielt.</p>
+</li>
 </ul>
-<h2 id="aufgabe">Aufgabe</h2>
+</div>
+<div class="tcl-column tcl-right" style="width: 30%"><img src="img/grass1.png" alt="grass1"></div>
+</div>
+<blockquote class="info">
+    <p>Um einen Wert innerhalb von 0 und 1 (oder anderer Beliebiger Werte) auf einen neue Skala zu bringen kann die <em>map range</em> formel verwendet werden.</p>
+<p><img src="img/map_range.png" alt="remap"></p>
+</blockquote>
+
+</blockquote>
+<h3 id="rotation">Rotation</h3>
+<p>Um Drehungen von Vertices umzusetzen können wir eine Drehmatrix nutzen. Zur erzeugung dieser können wir das <code>mathutils</code> Modul benutzen. Dabei übergeben wir den Winkel in Radianten, die Größe der Matrix (im 3D Raum 4) und die Achse, um die rotiert werden soll.</p>
+<pre><code class="language-python">rot_angle = 45
+rotation_matrix = mathutils.Matrix.Rotation(math.radians(rot_angle), 4, 'X') #
+</code></pre>
+<p>Um die Matrix nun anzuwenden nutzen wir die <code>bmesh.ops.rotate</code> Funktion. Dieser übergeben wir unser bmesh, das Zentrum der Rotation, die Matrix und die Vertices, die rotiert werden sollen.</p>
+<pre><code class="language-python">bmesh.ops.rotate(bm, cent=(0, 0, 0), matrix=rotation_matrix, verts=[v1, v2])
+</code></pre>
+<blockquote class="todo">
+    <h2 id="aufgabe-graßhalm-biegen">Aufgabe: Graßhalm biegen</h2>
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 70%"><ul>
+<li>
+<p>Biegt den Graßhalm, indem ihr die Vertices weiter oben stärker rotiert als die unten.</p>
+</li>
+<li>
+<p>Macht dies mit <code>ROT_START</code> (Biegung unten am Halm) und <code>ROT_END</code> (Bieung oben) Parametern einstellbar.</p>
+</li>
+</ul>
+</div>
+<div class="tcl-column tcl-right" style="width: 30%"><img src="img/grass2.png" alt="grass1"></div>
+</div>
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 70%"><ul>
+<li>Zusatz: Nutzt die <code>math.pow</code> Funktion (Exponentialfunktion), um die Biegung und die Verjüngung des Halms nach oben natürlcher wirken zu lassen.</li>
+</ul>
+</div>
+<div class="tcl-column tcl-right" style="width: 30%"><img src="img/grass3.png" alt="grass1"></div>
+</div>
+<h2 id="aufgabe-graßbüschel-addon">Aufgabe: Graßbüschel-Addon</h2>
+<div class="tcl-row">
+<div class="tcl-column tcl-left" style="width: 70%">Erzeugt schließlich einen ganzen Graßbüschel, indem ihr mehrere Graßhalme mit randomisierten Parametern und rotationen um die Z-Achse erzeut.</div>
+<div class="tcl-column tcl-right" style="width: 30%"><img src="img/grass4.png" alt="grass1"></div>
+</div>
 <ul>
-<li>
-<p>Fügt dem Matrix-Extrude-Operator zwei weitere Properties hinzu:</p>
-<ul>
-<li><code>distance</code> (Float) - Wie weit soll jedes Face pro Extrusionschritt transliert werden?</li>
-<li><code>proportional</code> (bool) - Soll die <code>distance</code> pro Extrusionsschritt mit <code>scale</code> skaliert werden oder soll in jedem Schritt der selbe Abstand verwendet werden?</li>
+<li>Verpackt das ganze letztendlich in einen Operator mit sinnvollen Parametern und macht das Skript als Addon installierbar.</li>
 </ul>
-</li>
-<li>
-<p>Lest euch die Dokumentation zu <a href="https://wiki.blender.org/wiki/Process/Addons/Guidelines/metainfo"><code>bl_info</code> im Blender Wiki</a> durch.</p>
-</li>
-<li>
-<p>Informiert euch über die Parameter, die beim Anlegen von Operator-Properties angegeben werden können: <a href="https://docs.blender.org/api/blender_python_api_2_77_0/bpy.props.html">https://docs.blender.org/api/blender_python_api_2_77_0/bpy.props.html</a></p>
-</li>
-<li>
-<p>Ersetzt das <code>angle</code> Property durch einen FloatVectorProperty, der als Euler-Winkel funktioniert. Dazu müsst ihr die Eulerwinkel, die vom Benutzer in Grad angegeben werden in einen Angle-Axis Wert umrechnen. Das geht mit Hilfe der Blender-Python-Klassen <code>mathutil.Euler</code> und <code>mathutil.Quaternion</code>.</p>
-</li>
-<li>
-<p>Vollzieht das Debugging mit o.b. Methode nach.</p>
-</li>
-</ul>
-<p>Linux:</p>
-<ul>
-<li>install VS Code</li>
-<li>install python3 and pip3</li>
-<li>pip3 install fake-bpy-module-2.91 (in Zukunft evtl Versionsnummer von Blender anpassen)</li>
-<li>VSCode install pylint</li>
-</ul>
-<p>Je nach Linux-Distribution sind python, pip und python3, pip3 separate Befehle (für python 2 und python 3+) Wir brauchen 3+</p>
-<h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
-<table>
-<thead>
-<tr>
-<th>Art/Länge</th>
-<th>Titel</th>
-<th>Beschreibung</th>
-<th>Quelle</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  13min</td>
-<td><a href="https://youtu.be/77mMpeoh3OI">Setting Up VSCode To Use As IDE With Blender In Windows</a></td>
-<td>VS Code Setup</td>
-<td><a href="https://www.youtube.com/channel/UCUeGicdkP1QafhJZ44nzdNw">YouTube -  Michael bridges</a></td>
-</tr>
-<tr>
-<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  14min</td>
-<td><a href="https://youtu.be/bmpKAluHiEc">Setting Up VSCode To Use As IDE With Blender In Linux</a></td>
-<td>VS Code Setup</td>
-<td><a href="https://www.youtube.com/channel/UCUeGicdkP1QafhJZ44nzdNw">YouTube -  Michael bridges</a></td>
-</tr>
-<tr>
-<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  16min</td>
-<td><a href="https://youtu.be/8EUy21CGjNU">Setting Up VSCode To Use As IDE With Blender In MacOS</a></td>
-<td>VS Code Setup</td>
-<td><a href="https://www.youtube.com/channel/UCUeGicdkP1QafhJZ44nzdNw">YouTube -  Michael bridges</a></td>
-</tr>
-</tbody>
-</table>
+
+</blockquote>
 
 
 			<aside class="copyright" role="note">
