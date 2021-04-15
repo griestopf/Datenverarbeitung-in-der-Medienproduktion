@@ -34,8 +34,8 @@ Telnahmevoraussetzungen Benötigt:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/</guid>
-      <description>VL2 Turmgenerator Code-Zwischenstand aus der Vorlesung am 23.03.21
-import bpyimport typingimport mathclass tower():tower_radius: float = 3tower_height: float = 8roof_height: float = 2.5roof_overhang: float = 0.5windows_num_circular: int = 5windows_num_vertical: int = 3windows_size: float = 1wall_thickness: float = 0.5PI2 = math.pi * 2def generate_windows(self) -&amp;gt; object:windows = []for i in range(self.windows_num_circular):bpy.ops.mesh.primitive_cube_add(scale=(self.windows_size, self.windows_size, self.windows_size * 1.5))c_window = bpy.</description>
+      <description>VL4 Meshgenerierung - Graßbüschel Code-Zwischenstand aus der Vorlesung am 14.04.21
+import bpyimport bmeshimport mathimport mathutilsimport randomBLADES = 8WIDTH_MAX = 0.6WIDTH_MIN = 0.03HEIGHT_MIN = 4HEIGHT_MAX = 12ROT_BASE_MIN = 3ROT_BASE_MAX = 25ROT_TIP_MIN = 30ROT_TIP_MAX = 90ROT_FALLOFF = 5# Szene leerenbpy.ops.object.select_all(action=&#39;SELECT&#39;) # selektiert alle Objektebpy.ops.object.delete(use_global=False, confirm=False) # löscht selektierte objektebpy.ops.outliner.orphans_purge() # löscht überbleibende Meshdaten etc.# Mesh und Objekt erstellengrass_mesh = bpy.</description>
     </item>
     
     <item>
