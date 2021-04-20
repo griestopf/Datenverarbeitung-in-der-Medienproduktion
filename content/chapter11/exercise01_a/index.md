@@ -157,10 +157,6 @@ for i in range(1, len(points)):
     set_handle_types()
 ```
 
-{{<spoiler Lösung>}}
-
-{{</spoiler>}}
-
 ## Driver
 
 Driver geben uns die Möglichkeit, Abhängigkeiten von Variablen verschiedener Objekte definieren. Fast jeder Variable in Blender kann mit `RMB` → *Add Driver* ein Driver hinzugefügt werden. Im Nun erscheinenden Fenster können dem Driver Input-Variablen anderer Objekte hinzugefügt werden, die dann in einer Expression verwendet werden können, die den Wert bestimmt, den unsere Variable erhalten soll. 

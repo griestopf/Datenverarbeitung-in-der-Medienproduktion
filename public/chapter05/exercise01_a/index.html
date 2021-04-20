@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 5 - Meshgenerierung - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 5 - Animation - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.80.0" />
 
     
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 5 - Meshgenerierung
+        Übung 5 - Animation
       </div>
     </div>
 
@@ -269,6 +269,22 @@
 
 
       
+        
+        
+
+
+
+<a class="current" title="5. Animation" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/">
+	
+	5. Animation
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
     </ul>
   
 </li>
@@ -287,117 +303,128 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 5 - Meshgenerierung </h1>
+			<h1>Übung 5 - Animation </h1>
 
-			<p><strong>Basics der Meshgenerierung und -manipulation</strong></p>
-<h2 id="vorbereitung">Vorbereitung</h2>
-<blockquote class="todo">
-    <p>Aktiviere das vorinstallierte Addon <strong>MeasureIt Tols</strong>. Dieses erlaubt es uns, Indices, Positionen und andere Infos des selektierten Objekts im Viewport anzuzeigen.</p>
-<p><video src="./img/measureit.mp4" autoplay loop style="width: 80%;"></video></p>
-<p>Nach der Installation sind dessen Optionen in der Sidebar (Shortcut <strong>N →  View → MeasureIt Tools → Mesh Debug</strong>) zu finden. Das Addon selbst muss noch mit <strong>Show</strong> ganz oben im Panel gestartet werden.</p>
-
-</blockquote>
+			<p>Zur Generierung von Animationen stellt uns die Blender API verschiedene Möglichkeiten zur Verfügung. In folgender Übung werden wir uns die wichtigsten hiervon ansehen.</p>
 <ul>
-<li>Vertices bewegen</li>
-<li>Anwendung? Funktion plotten, Terrain / Fraktal generieren?</li>
-</ul>
-<p>Zu den wichtigsten Aufgaben von Addons gehört die Manipulation und generierung neuer Meshes. Hierfür bietet uns die Blender API zwei Möglichkeiten.</p>
+<li>Keyframes</li>
+<li>Driver
 <ul>
-<li>
-<p>Die <strong>mesh</strong> Schnittstelle erlaubt uns die schnelle Manipulation von Meshes, indem es uns Zugriff auf dessen einzelne Vertices, Edges und Polygone gibt.</p>
-</li>
-<li>
-<p>Das Modul <strong>bmesh</strong> ist eine weitaus komplexere Bibliothek, die bei komplexeren Mesh-Manipulationen und -Generierungen zum Einsatz kommen sollte.</p>
-</li>
+<li>Scripted Expressions</li>
+<li>Custom Drivers</li>
 </ul>
-<h2 id="vertices-hahahugoshortcode-s1-hbhb">Vertices <a href="https://docs.blender.org/api/current/bpy.types.MeshVertex.html#bpy.types.MeshVertex" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
-<p>Die Vertices  des Meshes werden in dessen Array <code>vertices</code> gespeichert. Jeder Vertex hat eine <code>co</code> (Coordinates) Variable, die einen Vector mit x,y und z Position des Vertex repräsentiert.</p>
-<pre><code class="language-python">import bpy
-
-currentmesh = bpy.context.object.data
-
-for vert in currentmesh.vertices:
-    vert.co.z += 1
-
-currentmesh.update()
-</code></pre>
-<p>Um Normalen etc neu zu berechnen, muss das am Ende die <code>update</code> Methode des Meshes aufgerufen werden.</p>
-<p>Alleine mit der Manipulation der Vertixpositionen kann schon viel erreicht werden. Hier wurde zum Beispiel einer UV-Sphere ein schraubenartiges Muster gegeben:</p>
+</li>
+<li>App Handlers</li>
+</ul>
+<h2 id="keyframes">Keyframes</h2>
+<p>Wir können die Blender API nutzen um per Script Keyframes zu setzen. Dafür wird die Methode <code>keyframe_insert</code> <a href="https://docs.blender.org/api/current/bpy.types.bpy_struct.html#bpy.types.bpy_struct.keyframe_insert" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> verwendet. Diese kann zum Beispiel von Objekten aus aufgerufen werden. Deren wichtigste Parameter sind <code>data_path</code> (Pfad zum Wert, der verwendet werden soll) und <code>frame</code> (Framenummer des Keyframes).</p>
+<p>Hier setzen wir beispielsweise auf unserem Würfel zunächst einen Location-Keyframe an Frame 0, verschieben den Würfel dann nach (0, 5, 0) und setzen dann einen Keyframe bei Frame 20.</p>
 <div class="tcl-row">
-<div class="tcl-column tcl-left" style="width: 50%"><pre><code class="language-python">import bpy
-import math
+<div class="tcl-column tcl-left" style="width: 50%"><pre><code>import bpy
 
-frequency = 10
-amplitude = 0.2
+cube = bpy.data.objects['Cube']
 
-currentmesh = bpy.context.object.data
+cube.keyframe_insert(data_path=&quot;location&quot;, frame=1)
 
-for vert in currentmesh.vertices:
-    vert.co.y += amplitude * math.sin(frequency * vert.co.z)
-    vert.co.x += amplitude * math.cos(frequency * vert.co.z)
+cube.location = (0, 5, 0)
 
-currentmesh.update()
+cube.keyframe_insert(data_path=&quot;location&quot;, frame=20)
 </code></pre>
 </div>
-<div class="tcl-column tcl-right" style="width: 50%"><img src="img/screw.png" alt="screw"></div>
+<div class="tcl-column tcl-right" style="width: 50%"><video autoplay loop width=350 src="img/keyframes.mp4"></video></div>
 </div>
 <blockquote class="todo">
-    <p>Schreibe ein Script, dass einen unterteilten Würfel nach oben hin um 90° verdreht (siehe Bild).</p>
-<p><img src="img/rotate.png" alt="img"></p>
-<p><strong>Tipps:</strong></p>
-<ul>
-<li>
-<p>Die Formel für die Rotation eines zweidimensionalen Vectors um den Nullpunkt um den Winkel <em>w</em> ist folgende:<br>
-<em>x' = x ⋅ cos(w) - y ⋅ sin(w)<br>
-y' = x ⋅ sin(w) + y ⋅ cos(w)</em></p>
-</li>
-<li>
-<p>Der Drehwinkel muss abhängig von der Höhe ves Vertex sein.</p>
-</li>
-</ul>
+    <p>Schreibt ein Script, welches eine Kugel alle Objekte innerhalb einer Collection <em>points</em> abfliegen lässt. Es soll so aussehen, als spränge die Kugel von Punkt zu Punkt. Als Start kann <a href="res/pointjumper.blend">diese</a> Blender-Datei verwendet werden.</p>
+<p><img src="img/pointjumper_outliner.png" alt="outliner"></p>
+<p><video autoplay loop src="img/pointjumper.mp4"></video></p>
 
 </blockquote>
-<a href="#hide" class="hide" id="hide">> Lösung anzeigen</a>
-<a href="#show" class="show" id="show">ᐯ Lösung anzeigen</a>
-<div class="spoiler">
-    <span class="spoiler-content"><br><ul>
-<li>
-<p>Zunächst berechnen wir den Winkel in Radianten, in dem jeder Vertex gedreht wird. Dieser soll abhängig von dessen Höhe z sein. Damit wir unten am Würfel mit 0 beginnen, fügen wir z 1 hinzu (denn der Würfel ist 2 Hoch und hat seine Mitte auf Höhe 1) <br>
-<code>angle = math.radians((vert.co.z + 1) * 45)</code></p>
-</li>
-<li>
-<p>Nun rotieren wir jeden Vertex auf der Z-Achse um den Nullpunkt. Z bleibt also unverändert. Die obige Formel in Python sieht folgendermaßen aus:<br>
-<code>x = vert.co.x * math.cos(angle) - vert.co.y * math.sin(angle)</code><br>
-<code>y = vert.co.x * math.sin(angle) + vert.co.y * math.cos(angle)</code></p>
-</li>
-<li>
-<p>letztlich weisen wir die so generierten x und y Werte dem Vertex wieder zu<br>
-<code>vert.co.x = x</code><br>
-<code>vert.co.y = y</code></p>
-</li>
-</ul>
-<p>Der ganze Code sieht also so aus:</p>
-<pre><code class="language-python">import bpy
-import math
+<p><strong>Vorgehen</strong></p>
+<p>Um zu beginnen suchen wir unsere benötigten Objekte und legen fest, wie lange die Kugel für die Strecke zwischen zwei Punkten brauchen soll:</p>
+<pre><code class="language-python">points = bpy.data.collections['points'].objects
+sphere = bpy.data.objects['Sphere']
 
-currentmesh = bpy.context.object.data
-
-for vert in currentmesh.vertices:
-    
-    angle = math.radians((vert.co.z + 1) * 45)
-    
-    x = vert.co.x * math.cos(angle) - vert.co.y * math.sin(angle)
-    y = vert.co.x * math.sin(angle) + vert.co.y * math.cos(angle)
-    
-    vert.co.x = x
-    vert.co.y = y
-
-currentmesh.update()
+FRAMES_PER_POINT = 20
 </code></pre>
-</span>
-</div>
-<h2 id="neues-mesh">Neues Mesh</h2>
-<p>Natürlich können auch komplett neue Meshes generiert werden. Dafür werden wir nun das <code>bmesh</code> Modul <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> verwenden.</p>
+<p>Nun iterieren wir über alle Objekte in <code>points</code> und setzen jeweils die Kugel an die Position des aktuellen Objekts. Dann setzen wir einen Keyframe an die Stelle <code>FRAMES_PER_POINT * i</code></p>
+<pre><code class="language-python">for i in range(0, len(points)):
+    sphere.location = points[i].location
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=FRAMES_PER_POINT * i)
+</code></pre>
+<ul>
+<li>So fliegt der Ball nun schon zwischen den Punkten umher. Als nächstes soll er mit konstanter Geschwindgkeit fliegen - also muss der zeitliche Abstand des Keyframes an jedem Punkt jeweils abhängig von der Distanz zum letzten Punkt sein.</li>
+<li>Zuerst nutzen wir den Satz des Pythagoras, um die die Distanz zwischen zwei Punkten zu errechnen.</li>
+</ul>
+<pre><code class="language-python">def get_distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)
+</code></pre>
+<ul>
+<li>Innerhal der Punkte-Schleife berechnen wir dann jeweils die Distanz zum vorherigen Punkt.</li>
+<li>Um uns eine If-Abfrage zu sparen, lagern wir den Keyframe für den ersten Punkt (der keinen vorherigen Punkt hat) aus.</li>
+<li>Zudem brauchen wir noch eine Variable <code>current_frame</code>, an dessen Stelle der Keyframe gesetzt wird</li>
+<li><code>FRAMES_PER_POINT</code> haben wir umbenannt in <code>FRAMES_PER_UNIT</code>, da diese nun mit der Distanz multipliziert wird, um <code>current_frame</code> zu berechnen</li>
+</ul>
+<pre><code class="language-python">sphere.location = points[0].location
+sphere.keyframe_insert(data_path=&quot;location&quot;, frame=1)
+
+current_frame = 1
+
+for i in range(1, len(points)):
+
+    sphere.location = points[i].location
+    
+    distance_to_last_point = get_distance(points[i].location, points[i-1].location)
+    current_frame += distance_to_last_point * FRAMES_PER_UNIT
+
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=current_frame)
+        
+</code></pre>
+<ul>
+<li>Nun wollen wir, dass der Ball Bögen zwischen den Punkten fliegt. Dazu müssen wir zwischen aufeinanderfolgenden Punkten den Punkt in deren Mitte berechnen und nach oben verschieben.</li>
+<li>Wie weit der Punkt nach oben versetzt wird, soll ebenfalls von der Distanz zum letzten Punkt und einer Variable <code>JUMP_HEIGHT</code> abhängen.</li>
+</ul>
+<pre><code class="language-python">intermediate_point = (points[i-1].location + points[i].location) / 2
+intermediate_point.z += distance_to_last_point * JUMP_HEIGHT
+</code></pre>
+<p>Standardmäßig der Überganz zwischen Keyframes in Blender mit Bezierkurven<a href="https://de.wikipedia.org/wiki/B%C3%A9zierkurve" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> interpoliert. Diese machen die Bewegungen sehr weich. Da wir den Ball jedoch hart von den Punkten abspringen lassen wollen, müssen wir den Interpolationstyp der Keyframes an den Punkten ändern.</p>
+<p><img src="img/fcurve.png" alt="img">
+<em>Vergleich der Handletypes - im <strong>Graph Editor</strong> sichtbar</em></p>
+<ul>
+<li>Wir loopen also über jede Animationskurve und ändern den Handletype jedes zweiten Keyframes (die Keyframes an denen der Ball oben ist lassen wir aus) zu <em>VECTOR</em></li>
+<li>Danach muss die Funktion <code>...fcurvename.update()</code> aufgerufen werden`</li>
+</ul>
+<pre><code class="language-python">for c_fcurve in sphere.animation_data.action.fcurves:
+        for i, c_keyframe in enumerate(c_fcurve.keyframe_points):
+            if i % 2 == 0:
+                c_keyframe.handle_left_type = &quot;VECTOR&quot;
+                c_keyframe.handle_right_type = &quot;VECTOR&quot;
+        c_fcurve.update()
+</code></pre>
+<h2 id="driver">Driver</h2>
+<p>Driver geben uns die Möglichkeit, Abhängigkeiten von Variablen verschiedener Objekte definieren. Fast jeder Variable in Blender kann mit <code>RMB</code> → <em>Add Driver</em> ein Driver hinzugefügt werden. Im Nun erscheinenden Fenster können dem Driver Input-Variablen anderer Objekte hinzugefügt werden, die dann in einer Expression verwendet werden können, die den Wert bestimmt, den unsere Variable erhalten soll.</p>
+<p><img src="img/kurbel.png" alt="kurbel"></p>
+<p>In diesem Beispiel verwenden wir für die Y-Location unseres Würfels die Z-Rotation des Kurbel-Objekts und nennen sie <code>kurbel_rot_z</code> <span class="counter">1</span>. In der Expression multiplizieren wir deren Wert dann mit 0.5 <span class="counter">2</span>. Nun können wir durch Rotation der Kurbel unseren Würfel kontrollieren.</p>
+<p><video autoplay loop src="img/kurbel.mp4"></video></p>
+<h3 id="kurven">Kurven</h3>
+<p>Zudem kann der <em>Driver Editor</em> geöffnet werden (Rechtsklick auf Variable). Hier kann zusätzlich die Kurve angepasst werden, anhand der unser Driver die Variablen miteinander verknüpft. Das Ergebnis der Expression wird hierbei mit dem Wert der Kurve am jeweiligen Punkt multipliziert.</p>
+<p><img src="img/curves.png" alt="kurbel"></p>
+<p>In diesem Beispiel bedeutet das, dass der Würfel sich bis einer Rotation von 1 * 0.5 Radianten der Kurbel zum Punkt 1.0 auf der Y-Achse bewegt und sich dann wieder zurück auf 0 bewegt.</p>
+<p><video autoplay loop src="img/bezier.mp4"></video></p>
+<h3 id="custom-drivers">Custom Drivers</h3>
+<p>Um nun den Bogen zum Scripting zu schlagen, können wir auch Python-Funktionen als Driver definieren. Ein sehr einfaches Beispiel sieht folgendermaßen aus:</p>
+<pre><code class="language-python">import bpy
+
+def my_driver(val, v2):
+   &quot;&quot;&quot;Returns the square of the given value&quot;&quot;&quot;
+   return v2 * v2
+
+bpy.app.driver_namespace['my_driver'] = my_driver
+</code></pre>
+<p>Zunächst definieren wir eine Funktion, welche beliebig viele Variablen entgegennimmt und einen Wert ausgibt. Dann fügen wir unsere Funktion dem <code>driver_namespace</code> hinzu. Nach Ausführung des Scripts können wir nun die Funktion <code>my_driver</code> in der Expression eines Drivers verwenden.</p>
+<p><img src="img/my_driver.png" alt="kurbel"></p>
+<blockquote class="info">
+    Custom Drivers sind zwar mächtig, sollten jedoch eher sparsam eingesetzt werden. Da in einer Animation die Funktion jeden Frame ausgeführt werden muss und Python recht langsam ist, kann die Performance hier schnell einbrechen.
+</blockquote>
 
 
 			<aside class="copyright" role="note">
