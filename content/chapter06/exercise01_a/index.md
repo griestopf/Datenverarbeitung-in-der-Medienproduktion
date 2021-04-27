@@ -2,7 +2,7 @@
 title: Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden
 ---
 
-Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.
+Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten der Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.
 
 Ein einfaches Beispiel: Wir wollen einen Baum mit Blättern generieren.
 
@@ -10,7 +10,7 @@ Ein einfaches Beispiel: Wir wollen einen Baum mit Blättern generieren.
 {{<twoculumn>}}
 {{<left 50>}}
 - Der naive Ansatz wäre nun, das Mesh des Stams komplett selbst zu generieren - dabei komplizierte Algorithmen anzuwenden, um die Generierung des Meshes umzusetzen
-- Der klügere Ansatz hier wäre nur das Skelett des Baumes mit Edges nachzuzeichnen. Den Rest kann nämlich ein *Skin Modifier* {{<doclink "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/skin.html" >}}, der Geometrie um unser Edge-Selett herum erzeugt und ein *Subdivision Surface Modifier* {{<doclink "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/subdivision_surface.html" >}} für uns erledigen.
+- Der klügere Ansatz hier wäre nur das Skelett des Baumes mit Edges nachzuzeichnen. Den Rest kann nämlich ein *Skin Modifier* {{<doclink "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/skin.html" >}}, der Geometrie um unser Edge-Skelett herum erzeugt und ein *Subdivision Surface Modifier* {{<doclink "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/subdivision_surface.html" >}} für uns erledigen.
 
 ![tree_mods](img/mods.png)
 
@@ -31,13 +31,13 @@ mod_skin = my_object.modifier_add("my_skin_modifier" type='SKIN')
 - Die Parameter unterscheiden sich natürlich je nach Modifier und können entweder über deren Python-Tooltips (im Blender UI bei Maus-hover) oder in der Dokumentation {{<doclink "https://docs.blender.org/api/current/search.html?q=modifier&check_keywords=yes&area=default" >}} recherchiert werden. 
 
 
-- Besonders wichtix ist der *vertex-group* Parameter, den viele Modifier haben. Vertex-Groups {{<doclink "https://docs.blender.org/api/current/bpy.types.VertexGroups.html" >}} bestimmen, wie stark sich der Modifier auf jede Stellen des Meshes auswirkt.
+- Besonders wichtig ist der *vertex-group* Parameter, den viele Modifier haben. Vertex-Groups {{<doclink "https://docs.blender.org/api/current/bpy.types.VertexGroups.html" >}} bestimmen, wie stark sich der Modifier auf jede Stellen des Meshes auswirkt.
 
 - Vertex Groups {{<doclink "https://docs.blender.org/manual/en/latest/sculpt_paint/weight_paint/usage.html" >}} sind auch für andere Bereiche von Blender wichtig, zum Beispiel für die Verteilung von Partikeln und den Einfluss von Knochen auf das Mesh beim Rigging. Vertex Groups können in der UI im Weight-Paint Modus gezeichnet werden.
 
 ![vgroup](img/vgroup.png)<br>*Vertex Group im Weight Paint Modus. Jeder Vertex hat einen Wert von 0-1 (blau-Rot) und je nach dessen Stärke verteilen sich in diesem Beispiel die Partikel auf dem Mesh.*
 
-Im Beispiel unseres Baumes können wir eine Vertex Group nutzen, um den Einfluss eines *Displacement Modifiers* zu kontrollieren, der Windanimation simulieren soll. Desto weiter unten im Baum, desto schwächer soll der Einfluss des Modifier sein. Daher steigen die Einflusswerte der Vertex Group nach oben im Baum immer weiter an.
+Im Beispiel unseres Baumes können wir eine Vertex Group nutzen, um den Einfluss eines *Displacement Modifiers* zu kontrollieren, der eine Windanimation simulieren soll. Desto weiter unten im Baum, desto schwächer soll der Einfluss des Modifier sein. Daher steigen die Einflusswerte der Vertex Group nach oben im Baum immer weiter an.
 
 <video src="img/displacement.mp4" autoplay loop></video>
 
