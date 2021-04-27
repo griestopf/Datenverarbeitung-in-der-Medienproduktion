@@ -174,7 +174,7 @@ bl_info = {&amp;quot;name&amp;quot;: &amp;quot;New Object&amp;quot;,&amp;quot;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
-      <description>Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.</description>
+      <description>Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten der Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.</description>
     </item>
     
   </channel>
