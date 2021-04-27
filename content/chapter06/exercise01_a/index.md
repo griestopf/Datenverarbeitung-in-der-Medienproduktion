@@ -1,86 +1,59 @@
 ---
-title: Übung 6 - BMesh
+title: Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden
 ---
 
-**BMesh**
+Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.
 
-- BMesh
-- Vertices bewegen
-- Anwendung? Funktion plotten, Terrain / Fraktal generieren?
+Ein einfaches Beispiel: Wir wollen einen Baum mit Blättern generieren.
 
-## Meshmanipulation Codebeispiel
 
-- [BMesh](https://docs.blender.org/api/current/bmesh.html) Einführung
+{{<twoculumn>}}
+{{<left 50>}}
+- Der naive Ansatz wäre nun, das Mesh des Stams komplett selbst zu generieren - dabei komplizierte Algorithmen anzuwenden, um die Generierung des Meshes umzusetzen
+- Der klügere Ansatz hier wäre nur das Skelett des Baumes mit Edges nachzuzeichnen. Den Rest kann nämlich ein *Skin Modifier* {{<doclink "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/skin.html" >}}, der Geometrie um unser Edge-Selett herum erzeugt und ein *Subdivision Surface Modifier* {{<doclink "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/subdivision_surface.html" >}} für uns erledigen.
+
+![tree_mods](img/mods.png)
+
+{{</left>}}
+{{<right 50>}}
+
+![tree_mods](img/tree_mods.png)
+
+{{</right>}}
+{{</twoculumn>}}
+
+Das Hinzufügen von Modifiern ist in Python sehr einfach. 
 
 ```python
-# This example assumes we have a mesh object selected
-
-import bpy
-import bmesh
-
-# Get the active mesh
-me = bpy.context.object.data
-
-# Get a BMesh representation
-bm = bmesh.new()   # create an empty BMesh
-bm.from_mesh(me)   # fill it in from a Mesh
-
-# Modify the BMesh, can do anything here...
-for v in bm.verts:
-    v.co.x += 1.0
-
-# Finish up, write the bmesh back to the mesh
-bm.to_mesh(me)
-bm.free()  # free and prevent further access
-
-me.update()
+mod_skin = my_object.modifier_add("my_skin_modifier" type='SKIN')
 ```
 
-## Ressourcen & Tutorials
-- [How to Make Meshes with Python in Blender!](https://youtu.be/mljWBuj0Gho)
-- [create meshes from low-level data | Diego Gangl](http://sinestesia.co/blog/tutorials/python-2d-grid/)
-- [Shaping models with BMesh | jeremy Beherandt](https://medium.com/@behreajj/shaping-models-with-bmesh-in-blender-2-9-2f4fcc889bf0)
+- Die Parameter unterscheiden sich natürlich je nach Modifier und können entweder über deren Python-Tooltips (im Blender UI bei Maus-hover) oder in der Dokumentation {{<doclink "https://docs.blender.org/api/current/search.html?q=modifier&check_keywords=yes&area=default" >}} recherchiert werden. 
 
----
-title: Übung 5 - Meshgenerierung
----
 
-**Basics der Meshgenerierung und -manipulation**
+- Besonders wichtix ist der *vertex-group* Parameter, den viele Modifier haben. Vertex-Groups {{<doclink "https://docs.blender.org/api/current/bpy.types.VertexGroups.html" >}} bestimmen, wie stark sich der Modifier auf jede Stellen des Meshes auswirkt.
 
-- BMesh
-- Vertices bewegen
-- Anwendung? Funktion plotten, Terrain / Fraktal generieren?
+- Vertex Groups {{<doclink "https://docs.blender.org/manual/en/latest/sculpt_paint/weight_paint/usage.html" >}} sind auch für andere Bereiche von Blender wichtig, zum Beispiel für die Verteilung von Partikeln und den Einfluss von Knochen auf das Mesh beim Rigging. Vertex Groups können in der UI im Weight-Paint Modus gezeichnet werden.
 
-## Meshmanipulation Codebeispiel
+![vgroup](img/vgroup.png)<br>*Vertex Group im Weight Paint Modus. Jeder Vertex hat einen Wert von 0-1 (blau-Rot) und je nach dessen Stärke verteilen sich in diesem Beispiel die Partikel auf dem Mesh.*
 
-- [BMesh](https://docs.blender.org/api/current/bmesh.html) Einführung
+Im Beispiel unseres Baumes können wir eine Vertex Group nutzen, um den Einfluss eines *Displacement Modifiers* zu kontrollieren, der Windanimation simulieren soll. Desto weiter unten im Baum, desto schwächer soll der Einfluss des Modifier sein. Daher steigen die Einflusswerte der Vertex Group nach oben im Baum immer weiter an.
 
-```python
-# This example assumes we have a mesh object selected
+<video src="img/displacement.mp4" autoplay loop></video>
 
-import bpy
-import bmesh
+Das gleiche Prinzip - vorhandene Funktionalitäten zu verwenden anstatt von Grund auf aufzubauen lässt sich auf viele Gebiete Anwenden. So kann zum Beispiel auch die Verteilung der Blätter auch im Skript über ein Partikelsystem umgesetzt werden. 
 
-# Get the active mesh
-me = bpy.context.object.data
+![tree_mods](img/leafes.png)<br>
+*Die Blätter werden über ein Partikelsystem anhand des Wertes einer Vertex Group über den Baum verteilt.*
 
-# Get a BMesh representation
-bm = bmesh.new()   # create an empty BMesh
-bm.from_mesh(me)   # fill it in from a Mesh
 
-# Modify the BMesh, can do anything here...
-for v in bm.verts:
-    v.co.x += 1.0
+{{<todo>}}
+Die Anforderungen für das Skripting-Projekt betrifft das insofern, dass Ressourcen gespart werden wo es geht, die dann in erweiterte Funktionalität und User Experience reinvestiert werden sollten.
 
-# Finish up, write the bmesh back to the mesh
-bm.to_mesh(me)
-bm.free()  # free and prevent further access
+- Schafft euch einen groben Überblick darüber, welche Modifier für euer Projekt interessant sein könnten
 
-me.update()
-```
+- Überlegt euch, welche anderen Abläufe sich eventuell mit existierenden Funktionalitäten umsetzen lassen
 
-## Ressourcen & Tutorials
-- [How to Make Meshes with Python in Blender!](https://youtu.be/mljWBuj0Gho)
-- [create meshes from low-level data | Diego Gangl](http://sinestesia.co/blog/tutorials/python-2d-grid/)
-- [Shaping models with BMesh | jeremy Beherandt](https://medium.com/@behreajj/shaping-models-with-bmesh-in-blender-2-9-2f4fcc889bf0)
+- Wie kann euer Addon / Skript dem Nutzer helfen, diese Abläufe zu automatisieren und welche weiteren Werkzeuge stellt ihr ihm zusätzlich zur Verfügung
 
+{{</todo>}}

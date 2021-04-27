@@ -16,13 +16,12 @@
     </item>
     
     <item>
-      <title>Übung 6 - BMesh</title>
+      <title>Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
-      <description>BMesh
- BMesh Vertices bewegen Anwendung? Funktion plotten, Terrain / Fraktal generieren?  Meshmanipulation Codebeispiel  BMesh Einführung  # This example assumes we have a mesh object selectedimport bpyimport bmesh# Get the active meshme = bpy.context.object.data# Get a BMesh representationbm = bmesh.new() # create an empty BMeshbm.from_mesh(me) # fill it in from a Mesh# Modify the BMesh, can do anything here...for v in bm.</description>
+      <description>Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.</description>
     </item>
     
   </channel>

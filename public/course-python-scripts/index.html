@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Python Skripte aus der Vorlesung - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="generator" content="Hugo 0.82.1" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -285,6 +285,19 @@
 
 
       
+        
+        
+
+
+
+<a  title="6. Assetgenerierung" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/">
+	
+	6. Assetgenerierung
+</a>
+
+
+
+      
     </ul>
   
 </li>
@@ -305,8 +318,57 @@
 		<div class="wrapper">
 			<h1>Python Skripte aus der Vorlesung </h1>
 
-			<h2 id="vl4-meshgenerierung---graßbüschel">VL4 Meshgenerierung - Graßbüschel</h2>
-<p><strong>Code-Zwischenstand aus der Vorlesung am 14.04.21</strong></p>
+			<h2 id="vl5-animation---springende-kugel">VL5 Animation - Springende Kugel</h2>
+<p><strong>Code-Zwischenstand aus der Vorlesung vom 20.04.21</strong></p>
+<pre><code class="language-python">import bpy
+import math
+
+points = bpy.data.collections[&quot;points&quot;].objects
+sphere: bpy.types.Object = bpy.data.objects[&quot;Sphere&quot;]
+
+JUMP_HEIGHT = 5
+FRAMES_PER_UNIT = 1.5
+
+
+def get_distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)
+
+
+def set_handle_types():
+    for c_curve in sphere.animation_data.action.fcurves:
+        for i, c_keyframe in enumerate(c_curve.keyframe_points):
+            if i % 2 == 0:
+                c_keyframe.handle_left_type = &quot;VECTOR&quot;
+                c_keyframe.handle_right_type = &quot;VECTOR&quot;
+        c_curve.update()
+
+
+sphere.location = points[0].location
+sphere.keyframe_insert(data_path=&quot;location&quot;, frame=0)
+
+at_keyframe = 0
+for i in range(1, len(points)):
+
+    distance_to_last_point = get_distance(points[i-1].location, points[i].location)
+    keyframe_loc = at_keyframe + distance_to_last_point * FRAMES_PER_UNIT
+    intermediate_keyframe_location = at_keyframe + (distance_to_last_point * FRAMES_PER_UNIT) / 2
+
+    at_keyframe = keyframe_loc
+
+    sphere.location = points[i].location
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=keyframe_loc)
+
+    intermediate_point = points[i-1].location + points[i].location / 2
+    intermediate_point.z += JUMP_HEIGHT
+
+    sphere.location = intermediate_point
+    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=intermediate_keyframe_location)
+
+    set_handle_types()
+
+</code></pre>
+<h2 id="vl4-meshgenerierung---graßbüschel">VL4 Meshgenerierung - Graßbüschel</h2>
+<p><strong>Code-Zwischenstand aus der Vorlesung vom 14.04.21</strong></p>
 <pre><code class="language-python">import bpy
 import bmesh
 import math

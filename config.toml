@@ -89,11 +89,11 @@ googleAnalytics = ""
  	url    = "chapter05/exercise01_a/"
  	parent = "Kapitel"
 
-# [[menu.main]]
-# 	weight = 6
-# 	name   = "6. Meshes - BMesh"
-# 	url    = "chapter06/exercise01_a/"
-# 	parent = "Kapitel"
+ [[menu.main]]
+ 	weight = 6
+ 	name   = "6. Assetgenerierung"
+ 	url    = "chapter06/exercise01_a/"
+ 	parent = "Kapitel"
 
 # [[menu.main]]
 # 	weight = 11

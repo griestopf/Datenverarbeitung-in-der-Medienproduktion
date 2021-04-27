@@ -2,9 +2,63 @@
 title: Python Skripte aus der Vorlesung
 ---
 
+## VL5 Animation - Springende Kugel
+
+**Code-Zwischenstand aus der Vorlesung vom 20.04.21**
+
+```python
+import bpy
+import math
+
+points = bpy.data.collections["points"].objects
+sphere: bpy.types.Object = bpy.data.objects["Sphere"]
+
+JUMP_HEIGHT = 5
+FRAMES_PER_UNIT = 1.5
+
+
+def get_distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)
+
+
+def set_handle_types():
+    for c_curve in sphere.animation_data.action.fcurves:
+        for i, c_keyframe in enumerate(c_curve.keyframe_points):
+            if i % 2 == 0:
+                c_keyframe.handle_left_type = "VECTOR"
+                c_keyframe.handle_right_type = "VECTOR"
+        c_curve.update()
+
+
+sphere.location = points[0].location
+sphere.keyframe_insert(data_path="location", frame=0)
+
+at_keyframe = 0
+for i in range(1, len(points)):
+
+    distance_to_last_point = get_distance(points[i-1].location, points[i].location)
+    keyframe_loc = at_keyframe + distance_to_last_point * FRAMES_PER_UNIT
+    intermediate_keyframe_location = at_keyframe + (distance_to_last_point * FRAMES_PER_UNIT) / 2
+
+    at_keyframe = keyframe_loc
+
+    sphere.location = points[i].location
+    sphere.keyframe_insert(data_path="location", frame=keyframe_loc)
+
+    intermediate_point = points[i-1].location + points[i].location / 2
+    intermediate_point.z += JUMP_HEIGHT
+
+    sphere.location = intermediate_point
+    sphere.keyframe_insert(data_path="location", frame=intermediate_keyframe_location)
+
+    set_handle_types()
+
+```
+
+
 ## VL4 Meshgenerierung - Graßbüschel
 
-**Code-Zwischenstand aus der Vorlesung am 14.04.21**
+**Code-Zwischenstand aus der Vorlesung vom 14.04.21**
 
 ```python
 import bpy
