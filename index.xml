@@ -34,8 +34,8 @@ Telnahmevoraussetzungen Benötigt:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/</guid>
-      <description>VL4 Meshgenerierung - Graßbüschel Code-Zwischenstand aus der Vorlesung am 14.04.21
-import bpyimport bmeshimport mathimport mathutilsimport randomBLADES = 8WIDTH_MAX = 0.6WIDTH_MIN = 0.03HEIGHT_MIN = 4HEIGHT_MAX = 12ROT_BASE_MIN = 3ROT_BASE_MAX = 25ROT_TIP_MIN = 30ROT_TIP_MAX = 90ROT_FALLOFF = 5# Szene leerenbpy.ops.object.select_all(action=&#39;SELECT&#39;) # selektiert alle Objektebpy.ops.object.delete(use_global=False, confirm=False) # löscht selektierte objektebpy.ops.outliner.orphans_purge() # löscht überbleibende Meshdaten etc.# Mesh und Objekt erstellengrass_mesh = bpy.</description>
+      <description>VL5 Animation - Springende Kugel Code-Zwischenstand aus der Vorlesung vom 20.04.21
+import bpyimport mathpoints = bpy.data.collections[&amp;quot;points&amp;quot;].objectssphere: bpy.types.Object = bpy.data.objects[&amp;quot;Sphere&amp;quot;]JUMP_HEIGHT = 5FRAMES_PER_UNIT = 1.5def get_distance(p1, p2):return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)def set_handle_types():for c_curve in sphere.animation_data.action.fcurves:for i, c_keyframe in enumerate(c_curve.keyframe_points):if i % 2 == 0:c_keyframe.handle_left_type = &amp;quot;VECTOR&amp;quot;c_keyframe.handle_right_type = &amp;quot;VECTOR&amp;quot;c_curve.</description>
     </item>
     
     <item>
@@ -154,7 +154,7 @@ Nach der Installation sind dessen Optionen in der Sidebar (Shortcut N → View �
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/</guid>
-      <description>Zur Generierung von Animationen stellt uns die Blender API verschiedene Möglichkeiten zur Verfügung. In folgender Übung werden wir uns die wichtigsten hiervon ansehen.
+      <description>Zur Generierung von Animationen stellt uns die Blender API verschiedene Möglichkeiten zur Verfügung. In folgender Übung werden wir uns die Wichtigsten hiervon ansehen.
  Keyframes Driver  Scripted Expressions Custom Drivers   App Handlers  Keyframes Wir können die Blender API nutzen um per Script Keyframes zu setzen. Dafür wird die Methode keyframe_insert  verwendet. Diese kann zum Beispiel von Objekten aus aufgerufen werden. Deren wichtigste Parameter sind data_path (Pfad zum Wert, der verwendet werden soll) und frame (Framenummer des Keyframes).</description>
     </item>
     
@@ -169,13 +169,12 @@ bl_info = {&amp;quot;name&amp;quot;: &amp;quot;New Object&amp;quot;,&amp;quot;
     </item>
     
     <item>
-      <title>Übung 6 - BMesh</title>
+      <title>Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
-      <description>BMesh
- BMesh Vertices bewegen Anwendung? Funktion plotten, Terrain / Fraktal generieren?  Meshmanipulation Codebeispiel  BMesh Einführung  # This example assumes we have a mesh object selectedimport bpyimport bmesh# Get the active meshme = bpy.context.object.data# Get a BMesh representationbm = bmesh.new() # create an empty BMeshbm.from_mesh(me) # fill it in from a Mesh# Modify the BMesh, can do anything here...for v in bm.</description>
+      <description>Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.</description>
     </item>
     
   </channel>

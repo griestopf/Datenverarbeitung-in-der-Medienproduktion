@@ -1,117 +1,61 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/links/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/tags/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_b/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_b/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_b/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_b/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter01/exercise01_a/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter03/exercise01_a/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter04/exercise01_a/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</loc>
   </url>
-  
 </urlset>
