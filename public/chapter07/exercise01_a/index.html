@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Übung 6 - Addon-Entwicklung und VS Code - Datenverarbeitung in der Medienproduktion</title>
+    <title>Übung 7 - User Interfaces - Datenverarbeitung in der Medienproduktion</title>
     <meta name="generator" content="Hugo 0.82.1" />
 
     
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Übung 6 - Addon-Entwicklung und VS Code
+        Übung 7 - User Interfaces
       </div>
     </div>
 
@@ -295,6 +295,22 @@
 
 
       
+        
+        
+
+
+
+<a class="current" title="7. UI" href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/">
+	
+	7. UI
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+      
     </ul>
   
 </li>
@@ -313,21 +329,187 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Übung 6 - Addon-Entwicklung und VS Code </h1>
+			<h1>Übung 7 - User Interfaces </h1>
 
-			<p>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.</p>
-<pre><code class="language-python">bl_info = {
-    &quot;name&quot;: &quot;New Object&quot;,
-    &quot;author&quot;: &quot;Your Name Here&quot;,
-    &quot;version&quot;: (1, 0),
-    &quot;blender&quot;: (2, 80, 0),
-    &quot;location&quot;: &quot;View3D &gt; Add &gt; Mesh &gt; New Object&quot;,
-    &quot;description&quot;: &quot;Adds a new Mesh Object&quot;,
-    &quot;warning&quot;: &quot;&quot;,
-    &quot;doc_url&quot;: &quot;&quot;,
-    &quot;category&quot;: &quot;Add Mesh&quot;,
-}
+			<p><strong>In Übung 3 haben wir uns schon mit der Erstellung von Operatoren beschäftigt und damit auch die ersten Schritte in Richtung GUI gemacht. In dieser Übung wollen wir unser eigenes Panel bauen und Operatoren zu Menüs hinzufügen.</strong></p>
+<blockquote class="todo">
+    <ul>
+<li>Wir fangen damit an, unser <a href="../../course-python-scripts/#vl4-meshgenerierung---gra%C3%9Fb%C3%BCschel">Skript aus Übung 4</a> zum Generieren von Graßhalmen in einen Operator innerhalb eines Addons umzuwandeln. Seht euch dazu nocheinmal Übung 3 an.</li>
+<li>Wir wandeln wir die Konstanten (BLADES, HEIGHT, ANGLE_BASE&hellip;.) oben in die einsprechenden <a href="../../chapter03/exercise01_a/#properties-hahahugoshortcode-s4-hbhb">Properties</a> um und transferieren den Code in die <code>execute</code> Methode des Operators.</li>
+<li>Fügt schließlich die <a href="../../chapter03/exercise01_a/#addons-hahahugoshortcode-s8-hbhb"><code>bl_info</code></a> Felder und die <code>register</code> und <code>unregister</code> funktionen hinzu.</li>
+</ul>
+
+</blockquote>
+<h2 id="panel-klasse-hahahugoshortcode-s1-hbhb">Panel-Klasse <a href="https://docs.blender.org/api/current/bpy.types.Panel.html?highlight=panel" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
+<p>Nun brauchen wir ein Panel, von dem aus wir unseren Operator aufrufen wollen. Öffnet dazu zunächst in Blender das Script Template &ldquo;UI Panel&rdquo;. Dieses zeichnet im Properties Editor → Scene ein Panel.</p>
+<p>Hier fällt uns nun einiges auf:</p>
+<ul>
+<li>Wie auch Operatoren, werden UI Elemente auch in einer Klasse definiert, die von <code>bpy.types.Panel</code> erbt und über die <code>register</code> und <code>unregister</code> Funktionen registriert.</li>
+<li>über überschreibbaren Klassenmember werden weitere Infos angegeben:</li>
+</ul>
+<pre><code class="language-python">class LayoutDemoPanel(bpy.types.Panel):
+    &quot;&quot;&quot;Creates a Panel in the scene context of the properties editor&quot;&quot;&quot;
+    bl_label = &quot;Layout Demo&quot;
+    bl_idname = &quot;SCENE_PT_layout&quot;
+    bl_space_type = 'PROPERTIES'
+    bl_region_type = 'WINDOW'
+    bl_context = &quot;scene&quot;
 </code></pre>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bl_label</td>
+<td>Label des Panels</td>
+</tr>
+<tr>
+<td>bl_idname</td>
+<td>Name für den Zugriff über bpy</td>
+</tr>
+<tr>
+<td>bl_space_type</td>
+<td>In Welchem Editortyp ist das Panel (Liste aller typen hier: <a href="https://docs.blender.org/api/current/bpy.types.Space.html#bpy.types.Space.type" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a>)</td>
+</tr>
+<tr>
+<td>bl_region_type</td>
+<td>in welchem Bereich der UI dieses Editors</td>
+</tr>
+<tr>
+<td>bl_category (nicht hier)</td>
+<td>In welchem Tab erscheint das Panel</td>
+</tr>
+<tr>
+<td>bl_context</td>
+<td>In welchem Kontext erscheint das Panel (im Beispiel des Properties Editor: Tab))</td>
+</tr>
+</tbody>
+</table>
+<p><img src="img/panel.png" alt="Panel"></p>
+<h2 id="draw--layout"><code>draw</code> &amp; <code>layout</code></h2>
+<ul>
+<li>Statt der execute Methode gibt es hier nun eine <code>draw</code> Methode, die das Panel an den oben angegebenen Ort zeichnet.</li>
+<li>Das geschieht über das <code>self.layout</code><a href="https://docs.blender.org/api/current/bpy.types.UILayout.html" target="_blank" class="doclink"><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> des Panels.</li>
+<li>in diesem Beispiel wird zunächst ein Label erstellt, dann eine Zeile (<code>row</code>)</li>
+<li>Der Zeile werden dann zwei Properties hinzugefügt. Dabei handelt es sich um in der API bereits existierende Properties der <code>scene</code> - <code>frame_end</code> und <code>frame_start</code> (diese sind ansonsten in der Timeline als <em>Start</em> und <em>End</em> dargestellt)</li>
+</ul>
+<blockquote class="info">
+    Oft ist es hilfreich, den Quellcode existierender UI Elemente anzuzeigen (RMB → Edit Source), um herauszufinden, wie die UI aufgebaut ist.
+</blockquote>
+<pre><code class="language-python">layout = self.layout
+
+scene = context.scene
+
+layout.label(text=&quot; Simple Row:&quot;)
+
+row = layout.row()
+row.prop(scene, &quot;frame_start&quot;)
+row.prop(scene, &quot;frame_end&quot;)
+</code></pre>
+<ul>
+<li>Wenn der Zeile der Parameter <code>align=True</code> übergeben wird, werden die Properties darin direkt nebeneinander dargestellt.</li>
+</ul>
+<pre><code class="language-python">row = layout.row(align=True)
+</code></pre>
+<ul>
+<li>Auch Spalten sind möglich, denen dann wie zuvor der row Elemente hinzugefügt werden können</li>
+</ul>
+<pre><code class="language-python">split = layout.split()
+
+col = split.column()
+col.label(text=&quot;Column One:&quot;)
+</code></pre>
+<ul>
+<li>UI Elementen können auch Icons gegeben werden: <code>layout.label(text=&quot;My Label&quot;, icon=&quot;QUESTION&quot;)</code></li>
+<li>Die Namen der Icons lassen sich einfach herausfinden, indem das vorinstallierte Addon &ldquo;Icon Viewer&rdquo; installiert wird. Dann erscheint dazu ein Button oben in der <em>Python Console</em></li>
+</ul>
+<p><img src="img/icon_viewer.png" alt="icon viewer"></p>
+<h2 id="operatoraufruf">Operatoraufruf</h2>
+<ul>
+<li>Operatoren können dem Layout direkt, reihen oder spalten über deren Methode <code>operator</code> hinzugefügt werden. Dazu müssen wir lediglich den Pfad (<code>bl_idname</code>) des Operators übergeben.</li>
+</ul>
+<pre><code class="language-python">myrow.operator('mesh.add_grassblade'
+  text='Add Grassblades',
+  icon='OUTLINER_OB_HAIR'
+)
+</code></pre>
+<ul>
+<li>Um den Operator in der UI mit angepassten Default-Werten aufzurufen, kann der Operatorbutton auch in einer Variable gespeichert werden, deren Properties dann angepasst werden.</li>
+</ul>
+<pre><code class="language-python">op_grass = myrow.operator('mesh.add_grassblade'
+  text='Add many Grassblades',
+  icon='OUTLINER_OB_HAIR'
+)
+op_grass.BLADES = 30
+</code></pre>
+<h3 id="operator-presets">Operator Presets</h3>
+<p>Ein Preset Panel lässt sich dem Operator Menü sehr einfach hinzufügen, indem <code>bl_options</code> der <strong>Operatorklasse</strong> neben <code>REGISTER</code> und <code>UNDO</code> zusätzlich noch <code>PRESET</code> übergeben wird.</p>
+<p><img src="img/preset.png" alt="Operator Presets"></p>
+<h2 id="operator-zu-existierendem-menü-hinzufügen">Operator zu existierendem Menü hinzufügen</h2>
+<ul>
+<li>Eine Operatorklasse können wir einem existierendem Menü hinzufügen, indem wir zunächst eine Funktion erstellen, die dem <code>layout</code> des übergebenen context wie bereits beim Panel einen Operator hinzufügt.</li>
+</ul>
+<pre><code class="language-python">def add_object_button(self, context):
+    self.layout.operator(
+        OBJECT_OT_add_object.bl_idname,
+        text=&quot;Add Object&quot;,
+        icon='PLUGIN')
+</code></pre>
+<ul>
+<li>in der <code>register</code> Funktion fügen wir dann dem in <code>bpy.types</code> gespeichertem Menü usere Buttonfunktion hinzu un</li>
+<li><code>VIEW3D_MT_mesh_add</code> bedeutet hier <em>View3d Editor → <strong>Me</strong>nu <strong>T</strong>op</em> → Add → Mesh</li>
+<li>in <code>unregister</code> müssen wir den Eintrag auch wieder entfernen.</li>
+</ul>
+<pre><code class="language-python">def register():
+    bpy.utils.register_class(OBJECT_OT_add_object)
+    bpy.types.VIEW3D_MT_mesh_add.append(add_object_button)
+
+
+def unregister():
+    bpy.utils.unregister_class(OBJECT_OT_add_object)
+    bpy.types.VIEW3D_MT_mesh_add.remove(add_object_button)
+</code></pre>
+<h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
+<table>
+<thead>
+<tr>
+<th>Art/Länge</th>
+<th>Titel</th>
+<th>Beschreibung</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/video.png" class="resicon">  19min</td>
+<td><a href="https://cloud.blender.org/training/scripting-for-artists/5e9953ab173f1d99c7826902">Scripting for Artists #10: User Interfaces</a></td>
+<td>Tutorial zu UI Panels</td>
+<td><a href="https://cloud.blender.org">Blender Cloud</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
+<td><a href="https://sinestesia.co/blog/tutorials/using-blenders-presets-in-python/">Using Blender&rsquo;s presets in Python</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://sinestesia.co/">SINESTESIA</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.blender.org/api/current/bpy.types.UILayout.html">UI Layout Dokumentation</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
+</tr>
+<tr>
+<td><img src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/general/icons/article.png" class="resicon"></td>
+<td><a href="https://docs.blender.org/api/current/bpy.types.Space.html#bpy.types.Space.type">Spacetype Dokumentation</a></td>
+<td>Offizielle Blender API Dokumentation</td>
+<td><a href="https://docs.blender.org/api/current/index.html">Blender Python API Dokumentation</a></td>
+</tr>
+</tbody>
+</table>
 
 
 			<aside class="copyright" role="note">
@@ -344,34 +526,18 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/" title="Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
   <div class="next">
   
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter05/exercise01_a/" title="Übung 5 - Animation">
+      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/" title="Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Übung 5 - Animation
+              Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
