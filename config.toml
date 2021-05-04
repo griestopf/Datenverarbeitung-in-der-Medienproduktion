@@ -95,6 +95,12 @@ googleAnalytics = ""
  	url    = "chapter06/exercise01_a/"
  	parent = "Kapitel"
 
+ [[menu.main]]
+ 	weight = 7
+ 	name   = "7. UI"
+ 	url    = "chapter07/exercise01_a/"
+ 	parent = "Kapitel"
+
 # [[menu.main]]
 # 	weight = 11
 # 	name   = "11. Animation"
