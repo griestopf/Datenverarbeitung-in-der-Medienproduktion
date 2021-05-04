@@ -159,22 +159,22 @@ Nach der Installation sind dessen Optionen in der Sidebar (Shortcut N → View �
     </item>
     
     <item>
-      <title>Übung 6 - Addon-Entwicklung und VS Code</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</guid>
-      <description>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unübersichtlich im Blender-internen Texteditor an einem einzigen riesigen Script zu arbeiten. Zudem wollen wir anderen Nutzern ermöglichen unseren Code ausuführen, ohne jedesmal Scripte zu kopieren und auszuführen. Zu diesem Zweck werden wir in dieser Übung unseren Code in ein Addon bündeln und uns die Entwicklung mit der IDE Visual Studio Code erleichtern.
-bl_info = {&amp;quot;name&amp;quot;: &amp;quot;New Object&amp;quot;,&amp;quot;author&amp;quot;: &amp;quot;Your Name Here&amp;quot;,&amp;quot;version&amp;quot;: (1, 0),&amp;quot;blender&amp;quot;: (2, 80, 0),&amp;quot;location&amp;quot;: &amp;quot;View3D &amp;gt; Add &amp;gt; Mesh &amp;gt; New Object&amp;quot;,&amp;quot;description&amp;quot;: &amp;quot;Adds a new Mesh Object&amp;quot;,&amp;quot;warning&amp;quot;: &amp;quot;&amp;quot;,&amp;quot;doc_url&amp;quot;: &amp;quot;&amp;quot;,&amp;quot;category&amp;quot;: &amp;quot;Add Mesh&amp;quot;,} </description>
-    </item>
-    
-    <item>
       <title>Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden</title>
       <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
       <description>Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten der Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.</description>
+    </item>
+    
+    <item>
+      <title>Übung 7 - User Interfaces</title>
+      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</guid>
+      <description>In Übung 3 haben wir uns schon mit der Erstellung von Operatoren beschäftigt und damit auch die ersten Schritte in Richtung GUI gemacht. In dieser Übung wollen wir unser eigenes Panel bauen und Operatoren zu Menüs hinzufügen.
+ Wir fangen damit an, unser Skript aus Übung 4 zum Generieren von Graßhalmen in einen Operator innerhalb eines Addons umzuwandeln. Seht euch dazu nocheinmal Übung 3 an. Wir wandeln wir die Konstanten (BLADES, HEIGHT, ANGLE_BASE&amp;hellip;.</description>
     </item>
     
   </channel>
