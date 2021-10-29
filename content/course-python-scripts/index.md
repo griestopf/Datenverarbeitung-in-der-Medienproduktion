@@ -2,6 +2,91 @@
 title: Python Skripte aus der Vorlesung
 ---
 
+# WiSe21/22
+
+## VL4 - Mesh Generierung
+
+**Code-Zwischenstand aus der Vorlesung vom 26.10.21**
+
+```python
+bl_info = {
+    "name" : "MyTestAddon",
+    "author" : "Simon",
+    "description" : "",
+    "blender" : (2, 80, 0),
+    "version" : (0, 0, 1),
+    "location" : "",
+    "warning" : "",
+    "category" : "Generic"
+}
+
+import bpy
+import bmesh
+import random
+
+def map_range(v, from_min, from_max, to_min, to_max):
+    """Bringt einen Wert v von einer Skala (from_min, from_max) auf eine neue Skala (to_min, to_max)"""
+    return to_min + (v - from_min) * (to_max - to_min) / (from_max - from_min)
+
+class OT_Mesh_Grassshrub(bpy.types.Operator):
+    bl_idname = "mesh.grass_generator"
+    bl_label = "Generate Grass"
+    bl_description = "Description that shows in blender tooltips"
+    bl_options = {"REGISTER", "UNDO"}
+
+    HEIGHT_MIN: bpy.props.IntProperty(name="Min height", min=1, max=30, default=10)
+    HEIGHT_MAX: bpy.props.IntProperty(name="Max height", min=1, max=30, default=10)
+
+    TIP_WIDTH_MIN: bpy.props.FloatProperty(name="Tip Min Width", min=0.01, max=0.2, default=0.1)
+    TIP_WIDTH_MAX: bpy.props.FloatProperty(name="Tip Max Width", min=0.01, max=0.2, default=0.1)
+
+    BASE_WIDTH_MIN: bpy.props.FloatProperty(name="Base Min Width", min=0.01, max=1, default=0.5)
+    BASE_WIDTH_MAX: bpy.props.FloatProperty(name="Base Max Width", min=0.01, max=1, default=0.5)
+
+    @classmethod
+    def poll(cls, context):
+        return True
+
+    
+
+    def execute(self, context):
+        grass_mesh = bpy.data.meshes.new("grass mesh")
+        grass_object = bpy.data.objects.new("grass object", grass_mesh)
+        bpy.context.collection.objects.link(grass_object)
+
+        bm = bmesh.new()
+        bm.from_mesh(grass_mesh)
+
+        height = random.randint(self.HEIGHT_MIN, self.HEIGHT_MAX)
+        tip_width = random.uniform(self.TIP_WIDTH_MIN, self.TIP_WIDTH_MAX)
+        base_width = random.uniform(self.BASE_WIDTH_MIN, self.BASE_WIDTH_MAX)
+
+        last_vert_1 = None
+        last_vert_2 = None
+
+        for i in range(height):
+            #progress = i / height
+            pos_x = map_range(i, 0, height, base_width, tip_width)
+            vert_1 = bm.verts.new((-pos_x, 0, i))
+            vert_2 = bm.verts.new((pos_x, 0, i))
+
+            if i != 0:
+                bm.faces.new((last_vert_1, last_vert_2, vert_2, vert_1))
+            
+            last_vert_1 = vert_1
+            last_vert_2 = vert_2
+        
+        bm.to_mesh(grass_mesh)
+        bm.free()
+
+        return {"FINISHED"}
+
+register, unregister = bpy.utils.register_classes_factory({OT_Mesh_Grassshrub})
+
+```
+
+# SoSe21
+
 ## VL5 Animation - Springende Kugel
 
 **Code-Zwischenstand aus der Vorlesung vom 20.04.21**
