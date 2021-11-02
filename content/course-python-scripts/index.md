@@ -8,7 +8,19 @@ title: Python Skripte aus der Vorlesung
 
 **Code-Zwischenstand aus der Vorlesung vom 26.10.21**
 
-```python
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 bl_info = {
     "name" : "MyTestAddon",
     "author" : "Simon",
@@ -23,6 +35,8 @@ bl_info = {
 import bpy
 import bmesh
 import random
+import mathutils
+import math
 
 def map_range(v, from_min, from_max, to_min, to_max):
     """Bringt einen Wert v von einer Skala (from_min, from_max) auf eine neue Skala (to_min, to_max)"""
@@ -42,6 +56,14 @@ class OT_Mesh_Grassshrub(bpy.types.Operator):
 
     BASE_WIDTH_MIN: bpy.props.FloatProperty(name="Base Min Width", min=0.01, max=1, default=0.5)
     BASE_WIDTH_MAX: bpy.props.FloatProperty(name="Base Max Width", min=0.01, max=1, default=0.5)
+
+    BASE_ROT_MIN: bpy.props.IntProperty(name="Base Rot Min", min=1, max=90, default=5)
+    BASE_ROT_MAX: bpy.props.IntProperty(name="Base Rot Max", min=1, max=90, default=20)
+
+    TIP_ROT_MIN: bpy.props.IntProperty(name="Tip Rot Min", min=1, max=90, default=40)
+    TIP_ROT_MAX: bpy.props.IntProperty(name="Tip Rot Max", min=1, max=90, default=60)
+
+    ROT_FALLOFF: bpy.props.FloatProperty(name="Rotation Falloff", min=0.2, max=10, default=1)
 
     @classmethod
     def poll(cls, context):
@@ -64,11 +86,19 @@ class OT_Mesh_Grassshrub(bpy.types.Operator):
         last_vert_1 = None
         last_vert_2 = None
 
+        rot_base = random.randint(self.BASE_ROT_MIN, self.BASE_ROT_MAX)
+        rot_tip = random.randint(self.TIP_ROT_MIN, self.TIP_ROT_MAX)
+
         for i in range(height):
-            #progress = i / height
+            progress = i / height
             pos_x = map_range(i, 0, height, base_width, tip_width)
             vert_1 = bm.verts.new((-pos_x, 0, i))
             vert_2 = bm.verts.new((pos_x, 0, i))
+
+            rot_angle = map_range(math.pow(progress, self.ROT_FALLOFF), 0, 1, rot_base, rot_tip)
+
+            rot_matrix = mathutils.Matrix.Rotation(math.radians(rot_angle), 4, "X")
+            bmesh.ops.rotate(bm, cent=(0,0,0), matrix=rot_matrix, verts=[vert_1, vert_2])
 
             if i != 0:
                 bm.faces.new((last_vert_1, last_vert_2, vert_2, vert_1))
