@@ -13,7 +13,7 @@ Die meisten Prozesse in digitalen Medienproduktionen werden mit Hilfe hochspezia
 
 Ohne jeglichen Anspruch auf Vollständigkeit hier ein paar Beispiele häufig zum Einsatz kommender Werkzeuge:
 
-- Mayer
+- Maya
 - Cinema 4D
 - Houdini
 - 3ds Max
