@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapter06s on Datenverarbeitung in der Medienproduktion</title>
-    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/</link>
+    <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/</link>
     <description>Recent content in Chapter06s on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>de</language><atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/index.xml" rel="self" type="application/rss+xml" />
+    <language>de</language><atom:link href="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_b/</link>
+      <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_b/</guid>
+      <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Übung 6 - Assetgenerierung - Das Rad nicht neu erfinden</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</link>
+      <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
+      <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter06/exercise01_a/</guid>
       <description>Bei der Generierung von Assets kann es auf den ersten Blick naheliegend oder wünschenswert erscheinen, alles an Meshes selbst zu generieren. Damit macht man sich allerdings mehr Aufwand als nötig und hat zudem wahrscheinlich schlechter Performance und Nutzerfreudlichkeit, als wenn man einfach mit den bereits vorhandenen Werkzeugen arbeiten würde. Für uns als Addonentwickler ist es daher wichtig, die Möglichkeiten der Software mit der wir arbeiten gut zu kennen. Wichtig sind bei der Assetgenerierung vor allem die Modifier.</description>
     </item>
     
