@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapter02s on Datenverarbeitung in der Medienproduktion</title>
-    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/</link>
+    <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/</link>
     <description>Recent content in Chapter02s on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>de</language><atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/index.xml" rel="self" type="application/rss+xml" />
+    <language>de</language><atom:link href="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Übung 1 - Basics</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/</link>
+      <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/</guid>
+      <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Übung 2 - Blender API &amp; Visual Studio Code</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</link>
+      <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</guid>
+      <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</guid>
       <description>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unpraktisch, nur den Blender-internen Texteditor einzusetzen. Zu diesem Zweck werden wir uns in dieser Übung die Entwicklung mit der IDE Visual Studio Code erleichtern.
 Zudem werden wir die verschieden Untermodule der Blender API kennenlernen, um einen Burgturm-Generator zu programmieren.
 Visual Studio Code Installiert zunächst Visual Studio Code. Installiert Python 3.7 Download für Windows hier Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt JA - Neustart evtl.</description>

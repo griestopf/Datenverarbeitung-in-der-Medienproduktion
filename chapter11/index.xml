@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapter11s on Datenverarbeitung in der Medienproduktion</title>
-    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/</link>
+    <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/</link>
     <description>Recent content in Chapter11s on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>de</language><atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/index.xml" rel="self" type="application/rss+xml" />
+    <language>de</language><atom:link href="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Übung 11 - Animation</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/</link>
+      <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/</guid>
+      <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter11/exercise01_a/</guid>
       <description>Zur Generierung von Animationen stellt uns die Blender API verschiedene Möglichkeiten zur Verfügung. In folgender Übung werden wir uns die wichtigsten hiervon ansehen.
 Keyframes Driver Scripted Expressions Custom Drivers App Handlers Keyframes Wir können die Blender API nutzen um per Script Keyframes zu setzen. Dafür wird die Methode keyframe_insert verwendet. Diese kann zum Beispiel von Objekten aus aufgerufen werden. Deren wichtigste Parameter sind data_path (Pfad zum Wert, der verwendet werden soll) und frame (Framenummer des Keyframes).</description>
     </item>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapter07s on Datenverarbeitung in der Medienproduktion</title>
-    <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/</link>
+    <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/</link>
     <description>Recent content in Chapter07s on Datenverarbeitung in der Medienproduktion</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>de</language><atom:link href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/index.xml" rel="self" type="application/rss+xml" />
+    <language>de</language><atom:link href="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Übung 7 - User Interfaces</title>
-      <link>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</link>
+      <link>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</guid>
+      <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</guid>
       <description>In Übung 3 haben wir uns schon mit der Erstellung von Operatoren beschäftigt und damit auch die ersten Schritte in Richtung GUI gemacht. In dieser Übung wollen wir unser eigenes Panel bauen und Operatoren zu Menüs hinzufügen.
 Wir fangen damit an, unser Skript aus Übung 4 zum Generieren von Graßhalmen in einen Operator innerhalb eines Addons umzuwandeln. Seht euch dazu nocheinmal Übung 3 an. Wir wandeln wir die Konstanten (BLADES, HEIGHT, ANGLE_BASE&amp;hellip;.</description>
     </item>
