@@ -6,7 +6,7 @@ metadataformat = "yaml"
 canonifyurls = true
 home = "general/"
 
-# Enable Google Analytics by entering your tracking id
+# Enable Google Analytics by entering your tracking id - ...
 googleAnalytics = ""
 
 [params]
