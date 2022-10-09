@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Python Skripte aus der Vorlesung - Datenverarbeitung in der Medienproduktion</title>
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.104.3" />
 
     
     <meta name="description" content="Online-Material zur Veranstaltung Datenverarbeitung in der Medienproduktion.">
@@ -123,7 +123,7 @@
 <main class="main">
 	<div class="drawer">
 		<nav aria-label="Navigation">
-  <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion//general" class="project">
+  <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/" class="project">
     <div class="banner">
       
         <div class="logo">
@@ -331,7 +331,117 @@
 		<div class="wrapper">
 			<h1>Python Skripte aus der Vorlesung </h1>
 
-			<h2 id="vl5-animation---springende-kugel">VL5 Animation - Springende Kugel</h2>
+			<h1 id="wise2122">WiSe21/22</h1>
+<h2 id="vl4---mesh-generierung">VL4 - Mesh Generierung</h2>
+<p><strong>Code-Zwischenstand aus der Vorlesung vom 26.10.21</strong></p>
+<pre><code class="language-python"># This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+bl_info = {
+    &quot;name&quot; : &quot;MyTestAddon&quot;,
+    &quot;author&quot; : &quot;Simon&quot;,
+    &quot;description&quot; : &quot;&quot;,
+    &quot;blender&quot; : (2, 80, 0),
+    &quot;version&quot; : (0, 0, 1),
+    &quot;location&quot; : &quot;&quot;,
+    &quot;warning&quot; : &quot;&quot;,
+    &quot;category&quot; : &quot;Generic&quot;
+}
+
+import bpy
+import bmesh
+import random
+import mathutils
+import math
+
+def map_range(v, from_min, from_max, to_min, to_max):
+    &quot;&quot;&quot;Bringt einen Wert v von einer Skala (from_min, from_max) auf eine neue Skala (to_min, to_max)&quot;&quot;&quot;
+    return to_min + (v - from_min) * (to_max - to_min) / (from_max - from_min)
+
+class OT_Mesh_Grassshrub(bpy.types.Operator):
+    bl_idname = &quot;mesh.grass_generator&quot;
+    bl_label = &quot;Generate Grass&quot;
+    bl_description = &quot;Description that shows in blender tooltips&quot;
+    bl_options = {&quot;REGISTER&quot;, &quot;UNDO&quot;}
+
+    HEIGHT_MIN: bpy.props.IntProperty(name=&quot;Min height&quot;, min=1, max=30, default=10)
+    HEIGHT_MAX: bpy.props.IntProperty(name=&quot;Max height&quot;, min=1, max=30, default=10)
+
+    TIP_WIDTH_MIN: bpy.props.FloatProperty(name=&quot;Tip Min Width&quot;, min=0.01, max=0.2, default=0.1)
+    TIP_WIDTH_MAX: bpy.props.FloatProperty(name=&quot;Tip Max Width&quot;, min=0.01, max=0.2, default=0.1)
+
+    BASE_WIDTH_MIN: bpy.props.FloatProperty(name=&quot;Base Min Width&quot;, min=0.01, max=1, default=0.5)
+    BASE_WIDTH_MAX: bpy.props.FloatProperty(name=&quot;Base Max Width&quot;, min=0.01, max=1, default=0.5)
+
+    BASE_ROT_MIN: bpy.props.IntProperty(name=&quot;Base Rot Min&quot;, min=1, max=90, default=5)
+    BASE_ROT_MAX: bpy.props.IntProperty(name=&quot;Base Rot Max&quot;, min=1, max=90, default=20)
+
+    TIP_ROT_MIN: bpy.props.IntProperty(name=&quot;Tip Rot Min&quot;, min=1, max=90, default=40)
+    TIP_ROT_MAX: bpy.props.IntProperty(name=&quot;Tip Rot Max&quot;, min=1, max=90, default=60)
+
+    ROT_FALLOFF: bpy.props.FloatProperty(name=&quot;Rotation Falloff&quot;, min=0.2, max=10, default=1)
+
+    @classmethod
+    def poll(cls, context):
+        return True
+
+    
+
+    def execute(self, context):
+        grass_mesh = bpy.data.meshes.new(&quot;grass mesh&quot;)
+        grass_object = bpy.data.objects.new(&quot;grass object&quot;, grass_mesh)
+        bpy.context.collection.objects.link(grass_object)
+
+        bm = bmesh.new()
+        bm.from_mesh(grass_mesh)
+
+        height = random.randint(self.HEIGHT_MIN, self.HEIGHT_MAX)
+        tip_width = random.uniform(self.TIP_WIDTH_MIN, self.TIP_WIDTH_MAX)
+        base_width = random.uniform(self.BASE_WIDTH_MIN, self.BASE_WIDTH_MAX)
+
+        last_vert_1 = None
+        last_vert_2 = None
+
+        rot_base = random.randint(self.BASE_ROT_MIN, self.BASE_ROT_MAX)
+        rot_tip = random.randint(self.TIP_ROT_MIN, self.TIP_ROT_MAX)
+
+        for i in range(height):
+            progress = i / height
+            pos_x = map_range(i, 0, height, base_width, tip_width)
+            vert_1 = bm.verts.new((-pos_x, 0, i))
+            vert_2 = bm.verts.new((pos_x, 0, i))
+
+            rot_angle = map_range(math.pow(progress, self.ROT_FALLOFF), 0, 1, rot_base, rot_tip)
+
+            rot_matrix = mathutils.Matrix.Rotation(math.radians(rot_angle), 4, &quot;X&quot;)
+            bmesh.ops.rotate(bm, cent=(0,0,0), matrix=rot_matrix, verts=[vert_1, vert_2])
+
+            if i != 0:
+                bm.faces.new((last_vert_1, last_vert_2, vert_2, vert_1))
+            
+            last_vert_1 = vert_1
+            last_vert_2 = vert_2
+        
+        bm.to_mesh(grass_mesh)
+        bm.free()
+
+        return {&quot;FINISHED&quot;}
+
+register, unregister = bpy.utils.register_classes_factory({OT_Mesh_Grassshrub})
+
+</code></pre>
+<h1 id="sose21">SoSe21</h1>
+<h2 id="vl5-animation---springende-kugel">VL5 Animation - Springende Kugel</h2>
 <p><strong>Code-Zwischenstand aus der Vorlesung vom 20.04.21</strong></p>
 <pre><code class="language-python">import bpy
 import math
@@ -605,57 +715,6 @@ t.generate_tower()
 				using the
 				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
 			</aside>
-
-			<footer class="footer">
-				
-
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/python-style-guide/" title="Python Style Guide">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Python Style Guide
-            </div>
-          </div>
-        </div>
-      </a>
-  
-  </div>
-
-  <div class="next">
-  
-      <a href="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/links/" title="Links &amp; Literatur">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Links &amp; Literatur
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  
-  </div>
-</nav>
-
-
-
-
-
-			</footer>
 		</div>
 	</article>
 
@@ -668,59 +727,4 @@ t.generate_tower()
 		</div>
 	</div>
 </main>
-
-    <script>
-    
-      var base_url = '';
-      var repo_id  = '';
-    
-    </script>
-
-    <script src="https://simonstorlschulke.github.io/Datenverarbeitung-in-der-Medienproduktion/javascripts/application.js"></script>
-    
-
-    <script>
-      /* Add headers to scrollspy */
-      var headers   = document.getElementsByTagName("h2");
-      var scrollspy = document.getElementById('scrollspy');
-
-      if(scrollspy) {
-        if(headers.length > 0) {
-          for(var i = 0; i < headers.length; i++) {
-            var li = document.createElement("li");
-            li.setAttribute("class", "anchor");
-
-            var a  = document.createElement("a");
-            a.setAttribute("href", "#" + headers[i].id);
-            a.setAttribute("title", headers[i].innerHTML);
-            a.innerHTML = headers[i].innerHTML;
-
-            li.appendChild(a)
-            scrollspy.appendChild(li);
-          }
-        } else {
-          scrollspy.parentElement.removeChild(scrollspy)
-        }
-
-
-        /* Add permanent link next to the headers */
-        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
-
-        for(var i = 0; i < headers.length; i++) {
-            var a = document.createElement("a");
-            a.setAttribute("class", "headerlink");
-            a.setAttribute("href", "#" + headers[i].id);
-            a.setAttribute("title", "Permanent link")
-            a.innerHTML = "#";
-            headers[i].appendChild(a);
-        }
-      }
-    </script>
-
-    
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
-</html>
 
