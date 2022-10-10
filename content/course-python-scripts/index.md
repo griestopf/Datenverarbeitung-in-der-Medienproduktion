@@ -2,8 +2,9 @@
 title: Python Skripte aus der Vorlesung
 ---
 
-# WiSe21/22
+# WiSe22/23
 
+<!--
 ## VL4 - Mesh Generierung
 
 **Code-Zwischenstand aus der Vorlesung vom 26.10.21**
@@ -394,3 +395,4 @@ t.generate_tower()
 
 
 ```
+-->

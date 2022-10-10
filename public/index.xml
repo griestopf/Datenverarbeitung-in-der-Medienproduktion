@@ -34,8 +34,7 @@ Grundkentnisse in Python Gundkenntnisse im Umgang mit Blender oder anderer 3D-So
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/course-python-scripts/</guid>
-      <description>WiSe21/22 VL4 - Mesh Generierung Code-Zwischenstand aus der Vorlesung vom 26.10.21
-# This program is free software; you can redistribute it and/or modify# it under the terms of the GNU General Public License as published by# the Free Software Foundation; either version 3 of the License, or# (at your option) any later version.## This program is distributed in the hope that it will be useful, but# WITHOUT ANY WARRANTY; without even the implied warranty of# MERCHANTIBILITY or FITNESS FOR A PARTICULAR PURPOSE.</description>
+      <description>WiSe22/23 </description>
     </item>
     
     <item>
@@ -122,7 +121,7 @@ Keyframes Driver Scripted Expressions Custom Drivers App Handlers Keyframes Wir 
       <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter02/exercise01_a/</guid>
       <description>Wenn Scripting-Projekte komplexer werden, wird es irgendwann sehr unpraktisch, nur den Blender-internen Texteditor einzusetzen. Zu diesem Zweck werden wir uns in dieser Übung die Entwicklung mit der IDE Visual Studio Code erleichtern.
 Zudem werden wir die verschieden Untermodule der Blender API kennenlernen, um einen Burgturm-Generator zu programmieren.
-Visual Studio Code Installiert zunächst Visual Studio Code. Installiert Python 3.7 Download für Windows hier Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt JA - Neustart evtl.</description>
+Visual Studio Code Installiert zunächst Visual Studio Code. Installiert die zu Blender passende Python-Version (Blender 3.3.1 kommt mit Python 3.10.2) Download für Windows hier Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt JA - Neustart evtl.</description>
     </item>
     
     <item>

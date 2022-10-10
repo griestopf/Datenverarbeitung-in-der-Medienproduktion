@@ -20,10 +20,10 @@ Zudem werden wir die verschieden Untermodule der Blender API kennenlernen, um ei
 
 {{<todo>}}
 - Installiert zunächst [Visual Studio Code](https://code.visualstudio.com/).
-- Installiert Python 3.7
-- Download für Windows [hier](https://www.python.org/downloads/release/python-379/)
+- Installiert die zu Blender passende Python-Version (Blender 3.3.1 kommt mit Python 3.10.2) 
+- Download für Windows [hier](https://www.python.org/downloads/release/python-3102/)
   - Bei der Option, ob Python zum PATH hinzugefügt werden soll, wählt **JA** - Neustart evtl. erforderlich
-- Mit Linux (Ubuntu basierte Distributionen) im Terminal mit `sudo apt-get install python3.7`
+- Mit Linux (Ubuntu basierte Distributionen) im Terminal mit `sudo apt-get install python3.10`
 - öffnet VS Code und installiert die beiden Extensions **Python** von Microsoft und **Blender Development** von Jacques Lucke.
 
 ![python-extension](img/extensions.png)
