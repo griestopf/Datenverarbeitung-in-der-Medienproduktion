@@ -332,10 +332,13 @@
 		<div class="wrapper">
 			<h1>Python Skripte aus der Vorlesung </h1>
 
-			<h1 id="wise2122">WiSe21/22</h1>
-<h2 id="vl4---mesh-generierung">VL4 - Mesh Generierung</h2>
-<p><strong>Code-Zwischenstand aus der Vorlesung vom 26.10.21</strong></p>
-<pre><code class="language-python"># This program is free software; you can redistribute it and/or modify
+			<h1 id="wise2223">WiSe22/23</h1>
+<!--
+## VL4 - Mesh Generierung
+
+**Code-Zwischenstand aus der Vorlesung vom 26.10.21**
+```python
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 3 of the License, or
 # (at your option) any later version.
@@ -346,17 +349,17 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 bl_info = {
-    &quot;name&quot; : &quot;MyTestAddon&quot;,
-    &quot;author&quot; : &quot;Simon&quot;,
-    &quot;description&quot; : &quot;&quot;,
-    &quot;blender&quot; : (2, 80, 0),
-    &quot;version&quot; : (0, 0, 1),
-    &quot;location&quot; : &quot;&quot;,
-    &quot;warning&quot; : &quot;&quot;,
-    &quot;category&quot; : &quot;Generic&quot;
+    "name" : "MyTestAddon",
+    "author" : "Simon",
+    "description" : "",
+    "blender" : (2, 80, 0),
+    "version" : (0, 0, 1),
+    "location" : "",
+    "warning" : "",
+    "category" : "Generic"
 }
 
 import bpy
@@ -366,31 +369,31 @@ import mathutils
 import math
 
 def map_range(v, from_min, from_max, to_min, to_max):
-    &quot;&quot;&quot;Bringt einen Wert v von einer Skala (from_min, from_max) auf eine neue Skala (to_min, to_max)&quot;&quot;&quot;
+    """Bringt einen Wert v von einer Skala (from_min, from_max) auf eine neue Skala (to_min, to_max)"""
     return to_min + (v - from_min) * (to_max - to_min) / (from_max - from_min)
 
 class OT_Mesh_Grassshrub(bpy.types.Operator):
-    bl_idname = &quot;mesh.grass_generator&quot;
-    bl_label = &quot;Generate Grass&quot;
-    bl_description = &quot;Description that shows in blender tooltips&quot;
-    bl_options = {&quot;REGISTER&quot;, &quot;UNDO&quot;}
+    bl_idname = "mesh.grass_generator"
+    bl_label = "Generate Grass"
+    bl_description = "Description that shows in blender tooltips"
+    bl_options = {"REGISTER", "UNDO"}
 
-    HEIGHT_MIN: bpy.props.IntProperty(name=&quot;Min height&quot;, min=1, max=30, default=10)
-    HEIGHT_MAX: bpy.props.IntProperty(name=&quot;Max height&quot;, min=1, max=30, default=10)
+    HEIGHT_MIN: bpy.props.IntProperty(name="Min height", min=1, max=30, default=10)
+    HEIGHT_MAX: bpy.props.IntProperty(name="Max height", min=1, max=30, default=10)
 
-    TIP_WIDTH_MIN: bpy.props.FloatProperty(name=&quot;Tip Min Width&quot;, min=0.01, max=0.2, default=0.1)
-    TIP_WIDTH_MAX: bpy.props.FloatProperty(name=&quot;Tip Max Width&quot;, min=0.01, max=0.2, default=0.1)
+    TIP_WIDTH_MIN: bpy.props.FloatProperty(name="Tip Min Width", min=0.01, max=0.2, default=0.1)
+    TIP_WIDTH_MAX: bpy.props.FloatProperty(name="Tip Max Width", min=0.01, max=0.2, default=0.1)
 
-    BASE_WIDTH_MIN: bpy.props.FloatProperty(name=&quot;Base Min Width&quot;, min=0.01, max=1, default=0.5)
-    BASE_WIDTH_MAX: bpy.props.FloatProperty(name=&quot;Base Max Width&quot;, min=0.01, max=1, default=0.5)
+    BASE_WIDTH_MIN: bpy.props.FloatProperty(name="Base Min Width", min=0.01, max=1, default=0.5)
+    BASE_WIDTH_MAX: bpy.props.FloatProperty(name="Base Max Width", min=0.01, max=1, default=0.5)
 
-    BASE_ROT_MIN: bpy.props.IntProperty(name=&quot;Base Rot Min&quot;, min=1, max=90, default=5)
-    BASE_ROT_MAX: bpy.props.IntProperty(name=&quot;Base Rot Max&quot;, min=1, max=90, default=20)
+    BASE_ROT_MIN: bpy.props.IntProperty(name="Base Rot Min", min=1, max=90, default=5)
+    BASE_ROT_MAX: bpy.props.IntProperty(name="Base Rot Max", min=1, max=90, default=20)
 
-    TIP_ROT_MIN: bpy.props.IntProperty(name=&quot;Tip Rot Min&quot;, min=1, max=90, default=40)
-    TIP_ROT_MAX: bpy.props.IntProperty(name=&quot;Tip Rot Max&quot;, min=1, max=90, default=60)
+    TIP_ROT_MIN: bpy.props.IntProperty(name="Tip Rot Min", min=1, max=90, default=40)
+    TIP_ROT_MAX: bpy.props.IntProperty(name="Tip Rot Max", min=1, max=90, default=60)
 
-    ROT_FALLOFF: bpy.props.FloatProperty(name=&quot;Rotation Falloff&quot;, min=0.2, max=10, default=1)
+    ROT_FALLOFF: bpy.props.FloatProperty(name="Rotation Falloff", min=0.2, max=10, default=1)
 
     @classmethod
     def poll(cls, context):
@@ -399,8 +402,8 @@ class OT_Mesh_Grassshrub(bpy.types.Operator):
     
 
     def execute(self, context):
-        grass_mesh = bpy.data.meshes.new(&quot;grass mesh&quot;)
-        grass_object = bpy.data.objects.new(&quot;grass object&quot;, grass_mesh)
+        grass_mesh = bpy.data.meshes.new("grass mesh")
+        grass_object = bpy.data.objects.new("grass object", grass_mesh)
         bpy.context.collection.objects.link(grass_object)
 
         bm = bmesh.new()
@@ -424,7 +427,7 @@ class OT_Mesh_Grassshrub(bpy.types.Operator):
 
             rot_angle = map_range(math.pow(progress, self.ROT_FALLOFF), 0, 1, rot_base, rot_tip)
 
-            rot_matrix = mathutils.Matrix.Rotation(math.radians(rot_angle), 4, &quot;X&quot;)
+            rot_matrix = mathutils.Matrix.Rotation(math.radians(rot_angle), 4, "X")
             bmesh.ops.rotate(bm, cent=(0,0,0), matrix=rot_matrix, verts=[vert_1, vert_2])
 
             if i != 0:
@@ -436,19 +439,24 @@ class OT_Mesh_Grassshrub(bpy.types.Operator):
         bm.to_mesh(grass_mesh)
         bm.free()
 
-        return {&quot;FINISHED&quot;}
+        return {"FINISHED"}
 
 register, unregister = bpy.utils.register_classes_factory({OT_Mesh_Grassshrub})
 
-</code></pre>
-<h1 id="sose21">SoSe21</h1>
-<h2 id="vl5-animation---springende-kugel">VL5 Animation - Springende Kugel</h2>
-<p><strong>Code-Zwischenstand aus der Vorlesung vom 20.04.21</strong></p>
-<pre><code class="language-python">import bpy
+```
+
+# SoSe21
+
+## VL5 Animation - Springende Kugel
+
+**Code-Zwischenstand aus der Vorlesung vom 20.04.21**
+
+```python
+import bpy
 import math
 
-points = bpy.data.collections[&quot;points&quot;].objects
-sphere: bpy.types.Object = bpy.data.objects[&quot;Sphere&quot;]
+points = bpy.data.collections["points"].objects
+sphere: bpy.types.Object = bpy.data.objects["Sphere"]
 
 JUMP_HEIGHT = 5
 FRAMES_PER_UNIT = 1.5
@@ -462,13 +470,13 @@ def set_handle_types():
     for c_curve in sphere.animation_data.action.fcurves:
         for i, c_keyframe in enumerate(c_curve.keyframe_points):
             if i % 2 == 0:
-                c_keyframe.handle_left_type = &quot;VECTOR&quot;
-                c_keyframe.handle_right_type = &quot;VECTOR&quot;
+                c_keyframe.handle_left_type = "VECTOR"
+                c_keyframe.handle_right_type = "VECTOR"
         c_curve.update()
 
 
 sphere.location = points[0].location
-sphere.keyframe_insert(data_path=&quot;location&quot;, frame=0)
+sphere.keyframe_insert(data_path="location", frame=0)
 
 at_keyframe = 0
 for i in range(1, len(points)):
@@ -480,20 +488,25 @@ for i in range(1, len(points)):
     at_keyframe = keyframe_loc
 
     sphere.location = points[i].location
-    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=keyframe_loc)
+    sphere.keyframe_insert(data_path="location", frame=keyframe_loc)
 
     intermediate_point = points[i-1].location + points[i].location / 2
     intermediate_point.z += JUMP_HEIGHT
 
     sphere.location = intermediate_point
-    sphere.keyframe_insert(data_path=&quot;location&quot;, frame=intermediate_keyframe_location)
+    sphere.keyframe_insert(data_path="location", frame=intermediate_keyframe_location)
 
     set_handle_types()
 
-</code></pre>
-<h2 id="vl4-meshgenerierung---graßbüschel">VL4 Meshgenerierung - Graßbüschel</h2>
-<p><strong>Code-Zwischenstand aus der Vorlesung vom 14.04.21</strong></p>
-<pre><code class="language-python">import bpy
+```
+
+
+## VL4 Meshgenerierung - Graßbüschel
+
+**Code-Zwischenstand aus der Vorlesung vom 14.04.21**
+
+```python
+import bpy
 import bmesh
 import math
 import mathutils
@@ -519,8 +532,8 @@ bpy.ops.object.delete(use_global=False, confirm=False) # löscht selektierte obj
 bpy.ops.outliner.orphans_purge() # löscht überbleibende Meshdaten etc.
 
 # Mesh und Objekt erstellen
-grass_mesh = bpy.data.meshes.new(&quot;grass_shrub_mesh&quot;)
-grass_object = bpy.data.objects.new(&quot;grass shrub&quot;, grass_mesh)
+grass_mesh = bpy.data.meshes.new("grass_shrub_mesh")
+grass_object = bpy.data.objects.new("grass shrub", grass_mesh)
 
 # Mesh in aktuelle Collection der Szene verlinken
 bpy.context.collection.objects.link(grass_object)
@@ -530,7 +543,7 @@ bm = bmesh.new()
 bm.from_mesh(grass_mesh)
 
 def map_range(v, from_min, from_max, to_min, to_max):
-    &quot;&quot;&quot;Bringt einen Wert v von einer Skala (from_min, from_max) auf eine neue Skala (to_min, to_max)&quot;&quot;&quot;
+    """Bringt einen Wert v von einer Skala (from_min, from_max) auf eine neue Skala (to_min, to_max)"""
     return to_min + (v - from_min) * (to_max - to_min) / (from_max - from_min)
 
 for i in range(BLADES):
@@ -583,10 +596,14 @@ for i in range(BLADES):
 # BMesh auf Mesh anwenden und abschließen
 bm.to_mesh(grass_mesh)
 bm.free()
-</code></pre>
-<h2 id="vl2-turmgenerator">VL2 Turmgenerator</h2>
-<p><strong>Code-Zwischenstand aus der Vorlesung am 23.03.21</strong></p>
-<pre><code class="language-python">import bpy
+```
+
+## VL2 Turmgenerator
+
+**Code-Zwischenstand aus der Vorlesung am 23.03.21**
+
+```python
+import bpy
 import typing
 import math
 
@@ -603,7 +620,7 @@ class tower():
 
     PI2 = math.pi * 2
 
-    def generate_windows(self) -&gt; object:
+    def generate_windows(self) -> object:
 
 
         windows = []
@@ -621,7 +638,7 @@ class tower():
                 1
             )
 
-            if i &gt; 0:
+            if i > 0:
                 c_window.rotation_euler.z = self.PI2 * i / self.windows_num_circular
 
             windows.append(c_window)
@@ -632,7 +649,7 @@ class tower():
         bpy.ops.object.join()
 
         window = bpy.context.object
-        modifier_array = window.modifiers.new(&quot;Window Array&quot;, &quot;ARRAY&quot;)
+        modifier_array = window.modifiers.new("Window Array", "ARRAY")
         modifier_array.use_relative_offset = False
         modifier_array.use_constant_offset = True
         modifier_array.count = self.windows_num_vertical
@@ -644,27 +661,27 @@ class tower():
         return bpy.context.object
 
 
-    def create_roof_material(self) -&gt; bpy.types.Material:
-        mat_roof: bpy.types.Material = bpy.data.materials.new(&quot;Roof Material&quot;)
+    def create_roof_material(self) -> bpy.types.Material:
+        mat_roof: bpy.types.Material = bpy.data.materials.new("Roof Material")
         mat_roof.use_nodes = True
         nodes_roof: typing.List[bpy.types.Node] = mat_roof.node_tree.nodes
-        nodes_roof[&quot;Principled BSDF&quot;].inputs[0].default_value = [0.103312, 0.236954, 0.177671, 1.000000]
+        nodes_roof["Principled BSDF"].inputs[0].default_value = [0.103312, 0.236954, 0.177671, 1.000000]
 
         return mat_roof
 
-    def create_tower_material(self) -&gt; bpy.types.Material:
-        mat_tower: bpy.types.Material = bpy.data.materials.new(&quot;Tower Material&quot;)
+    def create_tower_material(self) -> bpy.types.Material:
+        mat_tower: bpy.types.Material = bpy.data.materials.new("Tower Material")
 
         mat_tower.use_nodes = True
 
         nodes_tower: typing.List[bpy.types.Node] = mat_tower.node_tree.nodes
-        node_bricks: bpy.types.Node = nodes_tower.new(&quot;ShaderNodeTexBrick&quot;)
-        node_coords: bpy.types.Node = nodes_tower.new(&quot;ShaderNodeTexCoord&quot;)
+        node_bricks: bpy.types.Node = nodes_tower.new("ShaderNodeTexBrick")
+        node_coords: bpy.types.Node = nodes_tower.new("ShaderNodeTexCoord")
 
         node_bricks.inputs[1].default_value = (0.1,0.1,0.1,0.1)
         node_bricks.inputs[4].default_value = 10
         
-        mat_tower.node_tree.links.new(node_bricks.outputs[0], nodes_tower[&quot;Principled BSDF&quot;].inputs[0])
+        mat_tower.node_tree.links.new(node_bricks.outputs[0], nodes_tower["Principled BSDF"].inputs[0])
         mat_tower.node_tree.links.new(node_coords.outputs[2], node_bricks.inputs[0])
         
         return mat_tower
@@ -691,10 +708,10 @@ class tower():
 
         windows = self.generate_windows()
 
-        modifier_solidify = tower_base.modifiers.new(&quot;Wall Thickness&quot;, &quot;SOLIDIFY&quot;)
+        modifier_solidify = tower_base.modifiers.new("Wall Thickness", "SOLIDIFY")
         modifier_solidify.thickness = self.wall_thickness
         
-        modifier_bool = tower_base.modifiers.new(&quot;Window Bool&quot;, &quot;BOOLEAN&quot;)
+        modifier_bool = tower_base.modifiers.new("Window Bool", "BOOLEAN")
         modifier_bool.object = windows
 
 
@@ -706,7 +723,8 @@ t = tower()
 t.generate_tower()
 
 
-</code></pre>
+```
+-->
 
 
 			<aside class="copyright" role="note">
