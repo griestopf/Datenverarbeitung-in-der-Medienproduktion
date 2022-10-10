@@ -7,21 +7,43 @@
     height: 90px;
 }
 
+.footer {
+    display: none !important;
+}
+
 .section {
     padding-top: 16px !important;
     padding-bottom: 10px !important;
 }
 
-code {
-    color: #277a00 !important;
-    border: #000 solid 1px;
+.hljs {
+    border: #c3c3c3 solid 1px;
     border-radius: 3px;
     padding: 2px 4px !important;
 }
 
+pre {
+    background: none !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
 .resicon {
-    float:left; 
+    float: left;
     margin-right: 8px;
+}
+
+.doclink img {
+    position: relative;
+    /* Adjust these values accordingly */
+    top: 5px;
+    width: 28px;
+}
+
+.anchor .doclink {
+    display: none !important;
 }
 
 .counter {
@@ -31,6 +53,39 @@ code {
     border: #2ec500 solid 5px;
     border-radius: 7px;
     margin: 0px 3px !important;
+}
+
+.tcl-column {
+    float: left;
+    height: auto;
+}
+
+.tcl-column image, video {
+    max-width: 100%;
+}
+
+.tcl-left {
+    padding-right: 10px;
+}
+
+.tcl-right {
+    float: right;
+}
+
+@media screen and (max-width: 600px) {
+    .tcl-column {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+
+/* Clear floats after the columns */
+
+.tcl-row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .video_example {
@@ -53,17 +108,27 @@ code {
     bottom: 10px;
 }
 
-blockquote {
-    background: rgb(217, 240, 253);
-    background-image: url(../images/lightbulb.svg);
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-size: 24px;
-    background-position-x: 4px;
-    background-position-y: 4px;
-    padding-left: 35px !important;
-    min-height: 35px;
-    border-color: rgb(255, 221, 171) !important;
-    border-width: 5px !important;
-    color: #555 !important;
+.tabletitle {
+    color: white;
+    position: relative;
+    margin-left: 15px;
+    margin-bottom: -65px;
+    z-index: 2000 !important;
+    position: flex;
+}
+
+.show,
+.hide {
+    padding: 4px;
+    text-decoration: none !important;
+    border-radius: 3px;
+    color: white !important;
+}
+
+.show {
+    background-color: rgb(82, 182, 182);
+}
+
+.hide {
+    background-color: teal;
 }

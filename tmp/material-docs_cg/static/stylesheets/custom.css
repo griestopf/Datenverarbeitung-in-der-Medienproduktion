@@ -1,0 +1,69 @@
+.toc ul a {
+    padding-top: 0px !important;
+    padding-bottom: 12px !important;
+}
+
+.project {
+    height: 90px;
+}
+
+.section {
+    padding-top: 16px !important;
+    padding-bottom: 10px !important;
+}
+
+code {
+    color: #277a00 !important;
+    border: #000 solid 1px;
+    border-radius: 3px;
+    padding: 2px 4px !important;
+}
+
+.resicon {
+    float:left; 
+    margin-right: 8px;
+}
+
+.counter {
+    color: white;
+    font-weight: bold;
+    background-color: #2ec500;
+    border: #2ec500 solid 5px;
+    border-radius: 7px;
+    margin: 0px 3px !important;
+}
+
+.video_example {
+    display: inline-block;
+    background: rgb(195, 243, 206);
+    width: 430px;
+    height: 330px;
+    margin: 5px;
+    margin-bottom: 20px;
+}
+
+.video_example_player {
+    width: 430px;
+}
+
+.video_example_label {
+    padding: 3px 5px;
+    height: 145px;
+    overflow: hidden;
+    bottom: 10px;
+}
+
+blockquote {
+    background: rgb(217, 240, 253);
+    background-image: url(../images/lightbulb.svg);
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position-x: 4px;
+    background-position-y: 4px;
+    padding-left: 35px !important;
+    min-height: 35px;
+    border-color: rgb(255, 221, 171) !important;
+    border-width: 5px !important;
+    color: #555 !important;
+}

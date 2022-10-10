@@ -1,0 +1,5 @@
+<a href="#hide" class="hide" id="hide">> {{ index .Params 0 }}</a>
+<a href="#show" class="show" id="show">ᐯ {{ index .Params 0 }}</a>
+<div class="spoiler">
+    <span class="spoiler-content"><br>{{.Inner | markdownify }}</span>
+</div>
