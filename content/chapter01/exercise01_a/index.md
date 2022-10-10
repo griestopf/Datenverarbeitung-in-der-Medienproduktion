@@ -54,10 +54,10 @@ In dieser Veranstaltung soll daher die Verwendung von Python im Umfeld von Medie
 {{<todo>}}
 Ladet euch zunächst von [Blender.org](https://www.blender.org/download/) die aktuelle Version von Blender herunter. 
 {{</todo>}}
-- Dieses Script behandelt die Version 2.91 / 2.92. Zukünftige Versionen könnten eventuell Änderungen an der API vornehmen, normalerweise bleibt die API bei Updates jedoch großteils unverändert.
+- Dieses Script entstand mit der Blender Version 2.91 / 2.92. In zukünftigen Versionen kann sich die Blender-Python-Programmierschnittstelle ändern.
 
 <!--Link zu CG Webseite? Ist ja nicht immer alles Online und vlt auch nicht immer auf Davids Webspace?-->
-- Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im [**Script zur Veranstalltung Computergrafik**](https://sftp.hs-furtwangen.de/~lochmann/computergrafik2019/script/chapter01/lecture01/) 
+- Eine Einführung in Blender selbst, sowie Links mit Tutorials etc. gibt es im [**Script zur Veranstalltung Computergrafik**](https://griestopf.github.io/gihupa/) 
 
 {{<todo>}}
 - Öffnet Blender und in Blender die ***Preferences***
