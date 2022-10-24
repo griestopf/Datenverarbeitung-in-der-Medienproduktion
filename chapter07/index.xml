@@ -13,7 +13,7 @@
       
       <guid>https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/chapter07/exercise01_a/</guid>
       <description>In Übung 3 haben wir uns schon mit der Erstellung von Operatoren beschäftigt und damit auch die ersten Schritte in Richtung GUI gemacht. In dieser Übung wollen wir unser eigenes Panel bauen und Operatoren zu Menüs hinzufügen.
-Wir fangen damit an, unser Skript aus Übung 4 zum Generieren von Graßhalmen in einen Operator innerhalb eines Addons umzuwandeln. Seht euch dazu nocheinmal Übung 3 an. Wir wandeln wir die Konstanten (BLADES, HEIGHT, ANGLE_BASE&amp;hellip;.</description>
+Wir fangen damit an, unser Skript aus Übung 4 zum Generieren von Grashalmen in einen Operator innerhalb eines Addons umzuwandeln. Seht euch dazu nocheinmal Übung 3 an. Wir wandeln wir die Konstanten (BLADES, HEIGHT, ANGLE_BASE&amp;hellip;.</description>
     </item>
     
   </channel>
