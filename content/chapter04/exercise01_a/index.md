@@ -138,7 +138,7 @@ currentmesh.update()
 
 ## Neues Mesh - Pflanzen wachsen lassen
 
-Natürlich können auch komplett neue Meshes generiert werden. Dafür werden wir nun das `bmesh` Modul {{<doclink "https://docs.blender.org/api/current/bmesh.html" >}} verwenden. In diesem Beispiel werden wir eine Graßpflanze erzeugen.
+Natürlich können auch komplett neue Meshes generiert werden. Dafür werden wir nun das `bmesh` Modul {{<doclink "https://docs.blender.org/api/current/bmesh.html" >}} verwenden. In diesem Beispiel werden wir eine Graspflanze erzeugen.
 
 - Zunächst müssen wir sowohl das Mesh, als auch das Objekt erzeugen, dem wir das Mesh als `data` übergeben.
 
@@ -182,7 +182,7 @@ bm.free()
 
 {{<todo>}}
 
-## Aufgabe: Graßhalmstruktur erzeugen
+## Aufgabe: Grashalmstruktur erzeugen
 
 
 {{<twoculumn>}}
@@ -230,12 +230,12 @@ bmesh.ops.rotate(bm, cent=(0, 0, 0), matrix=rotation_matrix, verts=[v1, v2])
 ```
 
 {{<todo>}}
-## Aufgabe: Graßhalm biegen
+## Aufgabe: Grashalm biegen
 
 {{<twoculumn>}}
 
 {{<left 70>}}
-- Biegt den Graßhalm, indem ihr die Vertices weiter oben stärker rotiert als die unten. 
+- Biegt den Grashalm, indem ihr die Vertices weiter oben stärker rotiert als die unten. 
 
 - Macht dies mit `ROT_START` (Biegung unten am Halm) und `ROT_END` (Bieung oben) Parametern einstellbar.
 
@@ -262,11 +262,11 @@ bmesh.ops.rotate(bm, cent=(0, 0, 0), matrix=rotation_matrix, verts=[v1, v2])
 {{</right>}}
 {{</twoculumn>}}
 
-## Aufgabe: Graßbüschel-Addon
+## Aufgabe: Grasbüschel-Addon
 
 {{<twoculumn>}}
 {{<left 70>}}
-Erzeugt schließlich einen ganzen Graßbüschel, indem ihr mehrere Graßhalme mit randomisierten Parametern und rotationen um die Z-Achse erzeut.
+Erzeugt schließlich einen ganzen Grasbüschel, indem ihr mehrere Grashalme mit randomisierten Parametern und rotationen um die Z-Achse erzeut.
 
 {{</left>}}
 {{<right 30>}}

@@ -172,7 +172,7 @@ for i in range(1, len(points)):
 ```
 
 
-## VL4 Meshgenerierung - Graßbüschel
+## VL4 Meshgenerierung - Grasbüschel
 
 **Code-Zwischenstand aus der Vorlesung vom 14.04.21**
 

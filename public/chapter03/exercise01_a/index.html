@@ -367,20 +367,26 @@
 <ul>
 <li>Mit der Deklaration <strong><code>class SimpleOperator(bpy.types.Operator)</code></strong> geben wir an, dass unsere Klasse ein Operator ist - also von <code>bpy.types.Operator</code> erbt.</li>
 <li>Darunter können wir mit <strong><code>&quot;&quot;&quot;Mein Tooltipp&quot;&quot;&quot;</code></strong> eine Beschreibung angeben, die dem Nutzer beim überfahren des Operators mit dem Cursor angezeigt wird.</li>
-<li><strong><code>bl_idname</code></strong> ist der pfad API-Pfad unter dem der Operator aufrufbar sein wird <code>&quot;object.simple_operator&quot;</code> lässt sich dann mit <code>bpy.ops.object.simple_operator()</code> aufrufen.</li>
-<li><code>bl_label</code></li>
+<li><strong><code>bl_idname</code></strong> ist der API-Pfad unter dem der Operator aufrufbar sein wird <code>&quot;object.simple_operator&quot;</code> lässt sich dann mit <code>bpy.ops.object.simple_operator()</code> aufrufen.</li>
+<li><strong><code>bl_label</code></strong> ist der Name, unter dem der Operator auftaucht, wenn er in das Blender-UI, z. B. in ein Menü, eingefügt wird.</li>
 </ul>
 <!--Warum ist poll classmethod und execute nicht?-->
 <ul>
 <li>
-<p>Die <strong><code>poll</code></strong> Methode ist optional. Sie ist eine statische Methode (daher <code>@classmethod</code>) und benötigt daher keine Instanz der Klasse, um aufgerufen zu werden. <code>cls</code> ist hier die Referenz auf die sie beinhaltende Klasse selbst (während <code>self</code> immer eine Instanz referenziert). Poll empfängt zudem den aktuellen Kontex</p>
+<p>Die <strong><code>poll</code></strong> Methode ist optional. Sie ist eine statische Methode (daher <code>@classmethod</code>) und benötigt daher keine Instanz der Klasse, um aufgerufen zu werden. <code>cls</code> ist hier die Referenz auf die sie beinhaltende Klasse selbst (während <code>self</code> immer eine Instanz referenziert). Poll empfängt zudem den aktuellen Kontext.</p>
 </li>
 <li>
 <p>Die <strong><code>execute</code></strong> Methode ist der tatsächlich ausgeführte Code beim aufrufen des Operators. Ihr wird hier <code>self</code> übergeben (in Python wird über <code>self.meine_variable</code> auf Membervariablen der aktuellen Klasseninstanz zugegriffen) und wiederum der aktuelle Kontext.</p>
 </li>
 </ul>
 <p>Der ausgeführte Code wurde hier in die <code>main</code> Methode ausgelagert. Diese könnte auch anders heißen und andere Parameter haben. In diesem Beispiel wird über jedes Objekt in der aktuellen Szene <code>context.scene.objects</code> iteriert und dieses in der Konsole ausgegeben. <code>for</code> lässt dich in Python nutzen wie <code>foreach</code> in anderen Sprachen.</p>
-<p>Schließlich fallen noch die beiden Methoden <code>register</code> und <code>unregister</code> auf. Diese sind außerhalb des Klassenrumpfes und dienen zur Registrierung der Klassen in der API bzw zur Deregistrierung bei Deaktivierung des Addons.</p>
+<p>Schließlich fallen noch die drei Methoden <code>menu_func</code>, <code>register</code> und <code>unregister</code> auf.</p>
+<ul>
+<li><strong><code>menu_func</code></strong> wird vom Blender-UI aufgerufen und &ldquo;rendert&rdquo; den Operator, z. B. als Menüeintrag, in die Umgebung, unter der der Operator ins UI eingefügt wurde.</li>
+<li><strong><code>register</code></strong> dient zur Registrierung des Add-ons und wird u. a. aufgerufen, wenn unter Edit -&gt; Preferences -&gt; Add-ons das Add-on durch Klick auf die Check-Box aktiviert wird. Die Methode registriert das Add-on als Befehl und fügt einen Eintrag ins Object-Menü (<code>VIEW3D_MT_object</code>) des 3D-Views ein.</li>
+<li><strong><code>unregister</code></strong> ist die zu <code>register</code> symmetrische Methode zur Deregistrierung. Sie wird u. a. aufgerufen, wenn unter Edit -&gt; Preferences -&gt; Add-ons das Add-on durch Klick auf die Check-Box deaktiviert wird. Dann wird der Eintrag im Object-Menü gelöscht und die Klasse als Operator deregestiert</li>
+</ul>
+<!--
 <blockquote class="info">
     <p>Wenn viele Klassen zu registrieren sind, lässt sich auch die <code>register_classes_factory</code> nutzen, der ein Tuple an Klassen übergeben wird.</p>
 <pre><code class="language-python">register, unregister = bpy.utils.register_classes_factory(
@@ -391,8 +397,9 @@
 </code></pre>
 
 </blockquote>
+-->
 <ul>
-<li>Zu guter Letzt folgen die etwas kryptische Zeilen</li>
+<li>Zu guter Letzt folgen die etwas kryptischen Zeilen</li>
 </ul>
 <pre><code class="language-python">if __name__ == &quot;__main__&quot;:
     register()
@@ -400,13 +407,38 @@
     # test call
     bpy.ops.object.simple_operator()
 </code></pre>
-<p>Die Überprüfung <code>if __name__ == &quot;__main__&quot;</code> überprüft dabei lediglich, ob das Script gerade über den Texteditor gestartet wird oder einfach nur als Modul importiert wurde. Hier kann also Code untergebracht werden, der nicht ausgeführt wird, wenn das Script als Addon installiert wird. In diesem Fall also die Registrierung des Operators in der API und ein Testlauf.</p>
+<p>Ein &ldquo;fertiges&rdquo; Add-on wird üblicherweise als Python-Datei (.py) oder als ZIP-Datei, die mehrere Python-Dateien enthalten kann, über Preferences -&gt; Add-ons -&gt; Install installiert. In diesem Fall wird beim Aktivieren/Deaktivieren die hinterlegte <code>register</code> und <code>unregister</code>-Methode aufgerufen. Falls das Skript nicht installiert wird, sondern mit dem &ldquo;Play&rdquo;-Button aus dem Text-Editor aufgerufen, ist die Bedingung in <code>if __name__ == &quot;__main__&quot;</code> positiv. Dann wird auch - ohne Installationsprozess - die <code>register</code>-Methode aufgerufen, so dass das Add-on getestet werden kann. Das Starten eines Add-on-Skriptes direkt aus dem Texteditor findet üblicherweise nur während der Entwicklung des Add-on statt.</p>
+<blockquote class="info">
+    <p>Beim Registrieren wird das Beispiel-Add-on (der Simple Object Operator ) im Object-Menü des 3D-View hinzugefügt. Jedes mal, wenn das Skript aus dem Text-Editor gestartet wird, wird somit ein neuer Menüeintrag erzeugt. Da niemals <code>unregister</code>aufgerufen wird, kommen so immer mehr Menüeinträge hinzu.</p>
+<p>Um die Menüeinträge wieder zu löschen, kann im Blender-Icon-Menü der Befehl System -&gt; Reload Scripts ausgeführt werden.</p>
+<p>Alternativ dazu kann auch während des Entwickelns das Aktivieren/Deaktivieren aus dem Preferences -&gt; Add-ons Menü simuliert werden. Dazu muss/darf das Skript nicht per &ldquo;Play&rdquo;-Button aus dem Text-Editor gestartet werden. Stattdessen kann folgendes über die interaktive Python-Konsole eingegeben werden:</p>
+<p>Zunächst muss dem Skript ein &ldquo;Namespace gegeben werden&rdquo;. Dabei muss der Skript-Name (hier <code>operator_simple.py</code>) dem im Text-Editor angezeigten Namen entsprechen.</p>
+<pre><code class="language-python">&gt;&gt;&gt; mein_addon = bpy.data.texts['operator_simple.py'].as_module()
+</code></pre>
+<p>Dann kann es über diesen Namespace registriert werden:</p>
+<pre><code class="language-python">&gt;&gt;&gt; mein_addon.register()
+</code></pre>
+<p>und später auch wieder deregistriert werden:</p>
+<pre><code class="language-python">&gt;&gt;&gt; mein_addon.unregister()
+</code></pre>
+<p>Um vielfache Menüeinträge zu umgehen, könnte auch die Registrierung des Menüeintrags während der Entwicklungszeit einfach weggelassen werden. Dann ist der Operator nur über seinen 
+Python-Namen (<code>bl_idname</code>, hier &ldquo;object.simple_operator&rdquo;) im F3-Menü auffindbar. Allerdings dies auch <em><strong>nur</strong></em>, wenn unter Edit -&gt; Preferences -&gt; Interface die Developer Extras 
+aktiviert sind.</p>
+<p>Um die Python-Namen anderer Blender-Menüs (außer <code>VIEW3D_MT_object</code>) zu erfahren, hilft der jeweilige Python-Tooltip (muss in Edit -&gt; Preferences -&gt; Interface aktiviert sein) beim Hovern über dem Menü-Namen.</p>
+
+</blockquote>
 <blockquote class="todo">
     <ul>
+<li>Lösche den &ldquo;test call&rdquo; aus der letzten Zeile des Add-ons</li>
 <li>Stelle sicher, dass <strong>Preferences → Interface → Developer Extras</strong> aktiviert ist (nur dann lassen sich so erstellte Operatoren mit F3 suchen)</li>
 <li>Führe das Skript <em>Operator Simple</em> im Texteditor aus</li>
 <li>Öffne die Systemkonsole mit <strong>Window → Toggle System Console</strong></li>
 <li>Suche im mit F3 nach <em>Simple Object Operator</em></li>
+</ul>
+<p><em>Alternativ</em></p>
+<ul>
+<li>Lösche den &ldquo;test call&rdquo; aus der letzten Zeile des Add-ons</li>
+<li>Führe den Operator über seinen Menüeintrag im Object-Menü des 3D-View aus</li>
 </ul>
 <p>In der Systemkonsole wird nun eine Liste der Objekte in der Szene ausgegeben.</p>
 <p style="margin-bottom: -30px; margin-left: 5px;"> <img style="margin-bottom: -3px;" height="20px" src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/blender_icon.png" alt=""> blender.exe</p>
@@ -418,7 +450,7 @@ found bundled python: C:\Blender\daily\blender-2.91.0-7ff6bfd1e0af-windows64\2.9
 </pre>
 
 </blockquote>
-<h2 id="properties-hahahugoshortcode-s4-hbhb">Properties <a href="https://docs.blender.org/api/current/bpy.props.html" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
+<h2 id="properties-hahahugoshortcode-s5-hbhb">Properties <a href="https://docs.blender.org/api/current/bpy.props.html" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 <p>Die wenigsten Operatoren sind einfach so ohne weitere Angaben ausführbar. Fast alle Operatoren lassen sich in ihrer Funktionalität durch Parameter beeinflussen. In Blender heißen solche Parameter von Operatoren <em>Properties</em>.</p>
 <p>Properties lassen sich ganz einfach als Eigenschaften der Klasse, die den Operator definiert implementieren (also die Klasse, die von <code>bpy.types.Operator</code> erbt und die eine <code>execute</code>-Methode definiert). Hierzu können innerhalb des Klassenrumpfes Eigenschaften definiert werden, denen ein Aufruf einer der folgenden Funktionen zugewiesen wird.</p>
 <pre><code class="language-python"> bpy.props.IntProperty
@@ -510,57 +542,49 @@ bpy.ops.object.simple_operator()
 <blockquote class="todo">
     Wandelt das <a href="../../course-python-scripts/#vl2-turmgenerator">Turmgenerator-Skript</a> vom letzten mal in einen Operator um und macht dessen Parameter zu Operator-Properties.
 </blockquote>
-<h2 id="addons-hahahugoshortcode-s8-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
+<h2 id="addons-hahahugoshortcode-s9-hbhb">Addons <a href="https://docs.blender.org/manual/en/latest/advanced/scripting/addon_tutorial.html" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a></h2>
 <div class="tcl-row">
-<div class="tcl-column tcl-left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie.</div>
+<div class="tcl-column tcl-left" style="width: 50%">Nun wollen wir unser Skript als Addon abspeichern, damit es jeder einfach installieren und benutzen kann. Dazu benötigt Blender lediglich ein paar Informationen zum Addon. Diese werden in einem <code>bl_info</code> Dictionary (rechts) angegeben, dass wir ganz oben in unser Skript einfügen. Verpflichtend anzugeben sind dabei nur Name, Author und Kategorie. Die vollständige Liste der möglichen Angaben sind im Blender Wiki <a href="https://wiki.blender.org/wiki/Process/Addons/Guidelines/metainfo" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> dokumentiert.</div>
 <div class="tcl-column tcl-right" style="width: 50%"><pre><code class="language-python">bl_info = {
-    &quot;name&quot;: &quot;Cubedimension&quot;,
+    &quot;name&quot;: &quot;Operator Simple&quot;,
     &quot;author&quot;: &quot;Ich &lt;ich@webmail.hs-furtwangen.de&gt;&quot;,
     &quot;version&quot;: (1, 0),
-    &quot;blender&quot;: (2, 91, 0),
-    &quot;location&quot;: &quot;View3D &gt; Search Menu &gt; Cubedimension&quot;,
-    &quot;description&quot;: &quot;Creates a cool Cube Dimension&quot;,
-    &quot;warning&quot;: &quot;Nur ausfüllen falls es etwas zu warnen gibt&quot;,
-    &quot;doc_url&quot;: &quot;&quot;,
-    &quot;category&quot;: &quot;Add Mesh&quot;,
+    &quot;blender&quot;: (3, 3, 1),
+    &quot;location&quot;: &quot;View3D &gt; Object &gt; Operator Simple&quot;,
+    &quot;description&quot;: &quot;Just to show how to hack a blender operator&quot;,
+    &quot;category&quot;: &quot;Object&quot;,
+    &quot;support&quot;: &quot;TESTING&quot;,
 }
 </code></pre>
 </div>
 </div>
-<!--Dunkle Markdown-CSS Magie-->
+<!--Dunkle Markdown-CSS Magie
 <p class="tabletitle"><b>Nicht selbsterklärende Parameter von bl_info</b></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>version</code></td>
-<td>gibt die (frei wählbare) Versionsnummer des Addons an.</td>
-</tr>
-<tr>
-<td><code>blender</code></td>
-<td>ist die Blender Version, mit der das Addon getestet wurde (was nicht heißt, dass es nicht auch in anderen Versionen funktionieren kann)</td>
-</tr>
-<tr>
-<td><code>location</code></td>
-<td>zeigt den Weg zur UI des Addons (nur als Anleitung für den Nutzer)</td>
-</tr>
-<tr>
-<td><code>doc_url</code></td>
-<td>Link zur Dokumentation, falls diese existiert (was meist wünschenswert ist)</td>
-</tr>
-<tr>
-<td><code>category</code></td>
-<td>Gibt die Kategorie unter der das Addon in den Einstellungen angezeigt wird</td>
-</tr>
-</tbody>
-</table>
+
+|||
+|---|---|
+| `version` | gibt die (frei wählbare) Versionsnummer des Addons an.|
+| `blender` | ist die Blender Version, mit der das Addon getestet wurde (was nicht heißt, dass es nicht auch in anderen Versionen funktionieren kann)|
+| `location` | zeigt den Weg zur UI des Addons (nur als Anleitung für den Nutzer)|
+| `doc_url` | Link zur Dokumentation, falls diese existiert (was meist wünschenswert ist)|
+| `category` | Gibt die Kategorie unter der das Addon in den Einstellungen angezeigt wird  |
+-->
 <blockquote class="todo">
-    Wandelt das Turmgenerator-Skript nun in ein Addon um und installiert es. Auch die Deinstallation sollte reibungslos klappen.
+    <p>Folgende Folge von Operationen führt einen Schritt eines &ldquo;Matrix-Extrude&rdquo; aus, mit dem z. B. aus einer Fläche eines Meshes ein Tentakel extrudiert werden kann</p>
+<pre><code class="language-python">    bpy.ops.mesh.extrude_faces_move( TRANSFORM_OT_shrink_fatten={&quot;value&quot;:1.5} )
+    bpy.ops.transform.rotate(value = 0.1)
+    bpy.ops.transform.resize(value = (0.9, 0.9, 0.9))
+</code></pre>
+<p>Erzeugt auf Basis dieser Befehlsfolge ein Matrix-Extrude-Add-on, das die aktuell selektierten Flächen (im Edit-Mode) mehrfach extrudiert. Dabei sollen währende der Ausführung folgende Float-Properties einstellbar sein:</p>
+<ul>
+<li>Anzahl der Wiederholungen (der Schleifendurchläufe, in denen o. a. drei Befehlszeilen durchlaufen werden)</li>
+<li>Extrudierungsabstand pro Wiederholung (in o. a. Code 1.5)</li>
+<li>Rotationswinkel pro Wiederholung in Grad (in o. a. Code 0.1 (Radiant))</li>
+<li>Skalierung der Fläche pro Wiederholung (in o. a. Code (0.0, 0.9, 0.9)). Die Skalierung soll durch einen skalaren Parameter einstellbar sein</li>
+</ul>
+<p>Lest die Dokumentation zu bpy.props.FloatProperty <a href="https://docs.blender.org/api/current/bpy.props.html#bpy.props.FloatProperty" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> und wählt aus der Liste der möglichen Parameter geeignete aus, um das Add-on für Benutzer gut bedienbar zu machen.</p>
+<p>Als Fingerübung: Wandelt das Turmgenerator-Skript nun in ein Addon um und installiert es. Auch die Deinstallation sollte reibungslos klappen.</p>
+
 </blockquote>
 <h2 id="ressourcen--tutorials-zum-thema">Ressourcen &amp; Tutorials zum Thema</h2>
 <table>

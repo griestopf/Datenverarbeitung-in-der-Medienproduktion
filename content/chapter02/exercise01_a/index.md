@@ -201,7 +201,7 @@ Wir wollen nun das `data` Modul benutzen, um ein Material für die beiden erstel
 - Erstellt ein neues Material in `bpy.data.materials` mit der `new` Funktion und stellt sicher, dass es das Material-Nodesystem benutzt
 
 ```python
-mat_tower = bpy.data.materials.new("Tower Base Baterial")
+mat_tower = bpy.data.materials.new("Tower Base Material")
 mat_tower.use_nodes = True
 ```
 

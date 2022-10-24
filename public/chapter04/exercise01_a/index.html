@@ -444,7 +444,7 @@ for vert in currentmesh.vertices:
 currentmesh.update()
 </code></pre>
 <h2 id="neues-mesh---pflanzen-wachsen-lassen">Neues Mesh - Pflanzen wachsen lassen</h2>
-<p>Natürlich können auch komplett neue Meshes generiert werden. Dafür werden wir nun das <code>bmesh</code> Modul <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> verwenden. In diesem Beispiel werden wir eine Graßpflanze erzeugen.</p>
+<p>Natürlich können auch komplett neue Meshes generiert werden. Dafür werden wir nun das <code>bmesh</code> Modul <a href="https://docs.blender.org/api/current/bmesh.html" target="_blank" class="doclink"><img src="https://griestopf.github.io/Datenverarbeitung-in-der-Medienproduktion/images/to_doc.png" title="zur Dokumentation"></a> verwenden. In diesem Beispiel werden wir eine Graspflanze erzeugen.</p>
 <ul>
 <li>Zunächst müssen wir sowohl das Mesh, als auch das Objekt erzeugen, dem wir das Mesh als <code>data</code> übergeben.</li>
 </ul>
@@ -477,7 +477,7 @@ myface = bm.faces.new((bm.verts[0], bm.verts[1], bm.verts[2], bm.verts[3]))
 bm.free()
 </code></pre>
 <blockquote class="todo">
-    <h2 id="aufgabe-graßhalmstruktur-erzeugen">Aufgabe: Graßhalmstruktur erzeugen</h2>
+    <h2 id="aufgabe-grashalmstruktur-erzeugen">Aufgabe: Grashalmstruktur erzeugen</h2>
 <div class="tcl-row">
 <div class="tcl-column tcl-left" style="width: 70%"><ul>
 <li>
@@ -508,11 +508,11 @@ rotation_matrix = mathutils.Matrix.Rotation(math.radians(rot_angle), 4, 'X') #
 <pre><code class="language-python">bmesh.ops.rotate(bm, cent=(0, 0, 0), matrix=rotation_matrix, verts=[v1, v2])
 </code></pre>
 <blockquote class="todo">
-    <h2 id="aufgabe-graßhalm-biegen">Aufgabe: Graßhalm biegen</h2>
+    <h2 id="aufgabe-grashalm-biegen">Aufgabe: Grashalm biegen</h2>
 <div class="tcl-row">
 <div class="tcl-column tcl-left" style="width: 70%"><ul>
 <li>
-<p>Biegt den Graßhalm, indem ihr die Vertices weiter oben stärker rotiert als die unten.</p>
+<p>Biegt den Grashalm, indem ihr die Vertices weiter oben stärker rotiert als die unten.</p>
 </li>
 <li>
 <p>Macht dies mit <code>ROT_START</code> (Biegung unten am Halm) und <code>ROT_END</code> (Bieung oben) Parametern einstellbar.</p>
@@ -528,9 +528,9 @@ rotation_matrix = mathutils.Matrix.Rotation(math.radians(rot_angle), 4, 'X') #
 </div>
 <div class="tcl-column tcl-right" style="width: 30%"><img src="img/grass3.png" alt="grass1"></div>
 </div>
-<h2 id="aufgabe-graßbüschel-addon">Aufgabe: Graßbüschel-Addon</h2>
+<h2 id="aufgabe-grasbüschel-addon">Aufgabe: Grasbüschel-Addon</h2>
 <div class="tcl-row">
-<div class="tcl-column tcl-left" style="width: 70%">Erzeugt schließlich einen ganzen Graßbüschel, indem ihr mehrere Graßhalme mit randomisierten Parametern und rotationen um die Z-Achse erzeut.</div>
+<div class="tcl-column tcl-left" style="width: 70%">Erzeugt schließlich einen ganzen Grasbüschel, indem ihr mehrere Grashalme mit randomisierten Parametern und rotationen um die Z-Achse erzeut.</div>
 <div class="tcl-column tcl-right" style="width: 30%"><img src="img/grass4.png" alt="grass1"></div>
 </div>
 <ul>

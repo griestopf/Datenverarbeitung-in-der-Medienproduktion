@@ -7,7 +7,7 @@ title: Übung 7 - User Interfaces
 
 {{<todo>}}
 
-- Wir fangen damit an, unser [Skript aus Übung 4](../../course-python-scripts/#vl4-meshgenerierung---gra%C3%9Fb%C3%BCschel) zum Generieren von Graßhalmen in einen Operator innerhalb eines Addons umzuwandeln. Seht euch dazu nocheinmal Übung 3 an. 
+- Wir fangen damit an, unser [Skript aus Übung 4](../../course-python-scripts/#vl4-meshgenerierung---gra%C3%9Fb%C3%BCschel) zum Generieren von Grashalmen in einen Operator innerhalb eines Addons umzuwandeln. Seht euch dazu nocheinmal Übung 3 an. 
 - Wir wandeln wir die Konstanten (BLADES, HEIGHT, ANGLE_BASE....) oben in die einsprechenden [Properties](../../chapter03/exercise01_a/#properties-hahahugoshortcode-s4-hbhb) um und transferieren den Code in die `execute` Methode des Operators.
 - Fügt schließlich die [`bl_info`](../../chapter03/exercise01_a/#addons-hahahugoshortcode-s8-hbhb) Felder und die `register` und `unregister` funktionen hinzu.
 
