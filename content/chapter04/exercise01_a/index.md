@@ -16,29 +16,29 @@ Nach der Installation sind dessen Optionen in der Sidebar (Shortcut **N →  Vie
 Zu den wichtigsten Aufgaben von Addons gehört die Manipulation und Generierung neuer Meshes. Zur Generierung eines Meshes brauchen Programme dabei grundsätzlich drei Arrays an Daten.
 
 **Vertices**<br>
-Diese bestehen aus je drei `floats`, die die Position eines Punktes im Raum auf der X, Y und Z Achse angeben.
+Die Eckpunkte der Geometrie. Diese bestehen aus je drei `floats`, die die Position eines Punktes im Raum auf der X, Y und Z Achse angeben.
 
 **Faces / Polygone**<br>
-Diese bestehen je aus einer Liste an integern, die die ID der Vertices im Verticearray angeben, die das Polygon aufspannen. Normalerweise spannen je drei oder vier Vertices ein Polygon auf. In Blender sind jedoch auch N-Gons mit beliebig vielen Vertices möglich. Intern wird für die Grafikkarte alles zu Dreiecken umgerechnet.
+Die an den Eckpunkten aufgehängten Flächen. Diese bestehen je aus einer Liste an integer-Werten, die die ID der Vertices im Vertexarray angeben, die das Polygon aufspannen. Normalerweise spannen je drei oder vier Vertices ein Polygon auf. In Blender sind jedoch auch N-Gons mit beliebig vielen Vertices möglich. Zum Rendern auf der Grafikkarte werden alle Faces in Dreiecke aufgeteilt.
 
 **Normalen**<br>
-Bestehen aus je drei `floats`, die für jeden Vertice den (normalisierten) Richtungsvektor angeben, der orthogonal auf der Oberfläche steht. Diesen braucht die Software z.b. zur Berechnung von Lichteigenschaften des Meshes. Normalen werden manchmal auch pro Polygon angegeben und die Normalen der anliegenden Vertices werden intern generiert. Generell lassen Normalen oft automatisch generieren.
+Beschreiben die Ausrichtung der Fläche oder Teilen davon im Raum. Bestehen aus je drei `floats`, die für jeden Vertex den (normalisierten) Richtungsvektor angeben, der orthogonal auf der Oberfläche steht. Diesen braucht die Software z.b. zur Berechnung von Lichteigenschaften des Meshes. Normalen werden manchmal auch pro Polygon angegeben und die Normalen der anliegenden Vertices werden intern generiert. Normalen können explizit angegeben werden, können aber auch automatisch aus der Raumlage der Eckpunkte und der Faces generiert werden.
 
 ![meshdata](img/meshdata.png)
 
-Neben diesen essentiellen Daten gibt es noch weitere, von denen hier noch zwei genannt werden sollen:
+Neben diesen essenziellen Geometriedaten gibt es noch weitere, von denen hier noch zwei genannt werden sollen:
 
 **Edges**<br>
-Verbindungen zwischen je zwei Vertixes (anhand deren index). Werden meist nicht extra angegeben, da sie durch die Generierung von Polygonen schon impliziert werden.
+Die Kanten zwischen den Eckpunkten. Verbindungen zwischen je zwei Vertices (anhand deren index). Werden meist nicht extra angegeben, da sie durch die Generierung von Polygonen schon impliziert werden.
 
 **Texturkoordinaten (UVs)**<br>
-Wenn das Mesh texturiert werden soll, werden diese benötigt. UVs geben für jeden Vertice zwei `floats` an, die beschreiben, wo sich dieser Vertixe auf einer zweidimensionalen Textur befinden soll.
+Dienen der Ausrichtung einer Textur auf der Geometrie. Wenn das Mesh texturiert werden soll, werden diese benötigt. UVs geben für jeden Vertex zwei `floats` an, die beschreiben, wo sich dieser Vertex auf einer zweidimensionalen Textur befinden soll.
 
-Hierfür bietet uns die Blender API zwei Möglichkeiten. 
+Zur Manipulation dieser Geometriedaten per Scripting bietet uns die Blender API zwei Möglichkeiten. 
 
-- Die **mesh** Schnittstelle erlaubt uns die schnelle Manipulation von Meshes, indem es uns Zugriff auf dessen einzelne Vertices, Edges und Polygone gibt. 
+- Die **mesh** Schnittstelle erlaubt uns die schnelle Manipulation von Meshes. Sie bietet direkten Zugriff auf die oben genannten Daten, wie Vertices, Edges und Polygone. 
 
-- Das Modul **bmesh** ist eine weitaus komplexere Bibliothek, die bei komplexeren Mesh-Manipulationen und -Generierungen zum Einsatz kommen sollte.
+- Das Modul **bmesh** ist eine komplexere Bibliothek, die bei umfangreicheren  Mesh-Manipulationen und -Generierungen zum Einsatz kommen kann. Zentrales Merkmal von bmesh ist, dass Zusammenhänge und Nachbarkeitsbeziehungen zwischen den Mesh-Bestandteilen Vertices, Edges und Faces direkt durch die API bzw. das darunter .
 
 
 
@@ -57,9 +57,9 @@ for vert in currentmesh.vertices:
 currentmesh.update()
 ```
 
-Um Normalen etc neu zu berechnen, muss das am Ende die `update` Methode des Meshes aufgerufen werden.
+Um Normalen etc. neu zu berechnen, muss das am Ende die `update` Methode des Meshes aufgerufen werden.
 
-Alleine mit der Manipulation der Vertixpositionen kann schon viel erreicht werden. Hier wurde zum Beispiel einer UV-Sphere ein schraubenartiges Muster gegeben:
+Alleine mit der Manipulation der Vertexpositionen kann schon viel erreicht werden. Hier wurde zum Beispiel einer UV-Sphere ein schraubenartiges Muster gegeben:
 
 {{<twoculumn>}}
 {{<left 50>}}
