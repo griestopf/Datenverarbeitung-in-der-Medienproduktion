@@ -13,7 +13,7 @@ Aktiviere das vorinstallierte Addon **MeasureIt Tols**. Dieses erlaubt es uns, I
 Nach der Installation sind dessen Optionen in der Sidebar (Shortcut **N →  View → MeasureIt Tools → Mesh Debug**) zu finden. Das Addon selbst muss noch mit **Show** ganz oben im Panel gestartet werden.
 {{</todo>}}
 
-Zu den wichtigsten Aufgaben von Addons gehört die Manipulation und Generierung neuer Meshes. Zur Generierung eines Meshes brauchen Programme dabei grundsätzlich drei Arrays an Daten.
+Zu den wichtigsten Aufgaben von Add-ons gehört die Manipulation und Generierung neuer Meshes. Zur Generierung eines Meshes brauchen Programme dabei grundsätzlich drei Arrays an Daten.
 
 **Vertices**<br>
 Die Eckpunkte der Geometrie. Diese bestehen aus je drei `floats`, die die Position eines Punktes im Raum auf der X, Y und Z Achse angeben.
