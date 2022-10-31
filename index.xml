@@ -143,7 +143,7 @@ Operatoren Wir haben bereits die ops Kategorie des bpy Moduls kennengelernt. Nun
       <description>Basics der Meshgenerierung und -manipulation
 Vorbereitung Aktiviere das vorinstallierte Addon MeasureIt Tols. Dieses erlaubt es uns, Indices, Positionen und andere Infos des selektierten Objekts im Viewport anzuzeigen.
 Nach der Installation sind dessen Optionen in der Sidebar (Shortcut N → View → MeasureIt Tools → Mesh Debug) zu finden. Das Addon selbst muss noch mit Show ganz oben im Panel gestartet werden.
-Zu den wichtigsten Aufgaben von Addons gehört die Manipulation und Generierung neuer Meshes.</description>
+Zu den wichtigsten Aufgaben von Add-ons gehört die Manipulation und Generierung neuer Meshes.</description>
     </item>
     
     <item>
